@@ -44,3 +44,4 @@ F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Proper
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.CreateEmployeeForm.resources
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Component1.resources
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Layout.resources
+F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Layout2.resources

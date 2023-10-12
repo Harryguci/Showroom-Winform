@@ -21,12 +21,6 @@ namespace ShowroomData
             HandleGUI();
 
             //
-            // Enable resizing form size (without border)
-            //
-            DoubleBuffered = true;
-            SetStyle(ControlStyles.ResizeRedraw, true);
-
-            //
             // [Add Form events]
             //
             Resize += Form1_Resize;
@@ -34,49 +28,10 @@ namespace ShowroomData
 
         public void HandleGUI()
         {
-            closeFormBtn.Size = new Size(flowLayoutPanel2.Height, flowLayoutPanel2.Height);
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
         }
-
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    LoadData();
-
-            //    btnConnect.Text = "Refresh";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR");
-            //    Debug.WriteLine(ex.Message);
-            //}
-        }
-
-        //private void LoadData()
-        //{
-        //    DataTable dtEmployee = processDb.GetData("select * from employee");
-        //    dataGridView1.DataSource = dtEmployee;
-        //    //Định dạng dataGrid
-        //    dataGridView1.Columns[0].HeaderText = "Mã nhân viên";
-        //    dataGridView1.Columns[1].HeaderText = "Họ";
-        //    dataGridView1.Columns[2].HeaderText = "Tên";
-        //    dataGridView1.Columns[3].HeaderText = "SDT";
-        //    dataGridView1.Columns[4].HeaderText = "Ngày sinh";
-
-        //    dataGridView1.Columns[0].Width = 150;
-        //    dataGridView1.Columns[1].Width = 250;
-        //    dataGridView1.Columns[2].Width = 250;
-        //    dataGridView1.Columns[3].Width = 350;
-        //    dataGridView1.Columns[4].Width = 400;
-
-        //    dataGridView1.BackgroundColor = Color.LightBlue;
-        //    dataGridView1.GridColor = Color.Gray;
-
-        //    dtEmployee.Dispose();
-        //}
 
         private void Form1_Resize(object? sender, EventArgs e)
         {
@@ -108,6 +63,7 @@ namespace ShowroomData
         {
             CreateEmployeeForm createForm = new CreateEmployeeForm();
             createForm.Show();
+            
         }
 
         private void changeSizeFormBtn_Click(object sender, EventArgs e)
@@ -117,56 +73,81 @@ namespace ShowroomData
             ClientSize = new Size(1000, 500);
         }
 
-        //
-        // Handle Resizing Form
-        //
-        private const int cGrip = 16;      // Grip size
-        private const int cCaption = 32;   // Caption bar height;
-        protected override void OnPaint(PaintEventArgs e)
+        private void Layout_Resize(object sender, EventArgs e)
         {
-            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
-            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
-            rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
-            e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
-        }
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == 0x84)
-            {  // Trap WM_NCHITTEST
-                Point pos = new Point(m.LParam.ToInt32());
-                pos = this.PointToClient(pos);
-                if (pos.Y < cCaption)
-                {
-                    m.Result = (IntPtr)2;  // HTCAPTION
-                    return;
-                }
-                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
-                {
-                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
-                    return;
-                }
-            }
-            base.WndProc(ref m);
+            lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
+               lblHeadingPage.Location.Y);
         }
 
-        //
-        // [Handle Dragging the Form]
-        //
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        private void Form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
+
+        private void ShowEmployData(string type = "all")
+        {
+            string query = "";
+            if (type == "all")
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                query = "select * from employee";
             }
+
+            DataGridView dt = new DataGridView();
+            dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dt.Dock = DockStyle.Fill;
+            dt.Location = new Point(136, 100);
+            dt.Name = "dataGridView1";
+            dt.RowTemplate.Height = 25;
+            dt.Size = new Size(664, 400);
+            dt.TabIndex = 2;
+            dt.CellValueChanged += dt_CellValueChanged;
+
+
+            panel3.Controls.Add(dt);
+
+            DataTable dtEmployee = processDb.GetData(query);
+            dt.DataSource = dtEmployee;
+            //Định dạng dataGrid
+            dt.Columns[0].HeaderText = "Mã nhân viên";
+            dt.Columns[1].HeaderText = "Họ";
+            dt.Columns[2].HeaderText = "Tên";
+            dt.Columns[3].HeaderText = "SDT";
+            dt.Columns[4].HeaderText = "Ngày sinh";
+
+            dt.Columns[0].Width = 150;
+            dt.Columns[1].Width = 250;
+            dt.Columns[2].Width = 250;
+            dt.Columns[3].Width = 350;
+            dt.Columns[4].Width = 400;
+
+            dt.BackgroundColor = Color.LightBlue;
+            dt.GridColor = Color.Gray;
+
+            dtEmployee.Dispose();
+        }
+
+        private void Layout_Load(object sender, EventArgs e)
+        {
+            ShowEmployData();
+        }
+
+        private void dt_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
+        {
+            //savedBtn.Enabled = true;
+        }
+
+        private void Layout_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn thoát", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Dispose();
+            }
+        }
+
+        private void Layout_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Dispose();
         }
     }
 }

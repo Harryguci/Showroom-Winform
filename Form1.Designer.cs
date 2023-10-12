@@ -40,16 +40,10 @@ namespace ShowroomData
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            closeFormBtn = new Button();
-            hideBtn = new Button();
-            button5 = new Button();
             dataGridView1 = new DataGridView();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -167,67 +161,12 @@ namespace ShowroomData
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(flowLayoutPanel2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(664, 100);
             panel1.TabIndex = 1;
             panel1.MouseDown += Form_MouseDown;
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.AllowDrop = true;
-            flowLayoutPanel2.BackColor = Color.White;
-            flowLayoutPanel2.Controls.Add(closeFormBtn);
-            flowLayoutPanel2.Controls.Add(hideBtn);
-            flowLayoutPanel2.Controls.Add(button5);
-            flowLayoutPanel2.Dock = DockStyle.Top;
-            flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel2.Location = new Point(0, 0);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(664, 38);
-            flowLayoutPanel2.TabIndex = 0;
-            flowLayoutPanel2.TabStop = true;
-            flowLayoutPanel2.MouseDown += Form_MouseDown;
-            // 
-            // closeFormBtn
-            // 
-            closeFormBtn.Location = new Point(624, 0);
-            closeFormBtn.Margin = new Padding(0);
-            closeFormBtn.Name = "closeFormBtn";
-            closeFormBtn.RightToLeft = RightToLeft.No;
-            closeFormBtn.Size = new Size(40, 38);
-            closeFormBtn.TabIndex = 1;
-            closeFormBtn.TabStop = false;
-            closeFormBtn.Text = "X";
-            closeFormBtn.UseVisualStyleBackColor = true;
-            closeFormBtn.Click += closeFormBtn_Click;
-            // 
-            // hideBtn
-            // 
-            hideBtn.Location = new Point(584, 0);
-            hideBtn.Margin = new Padding(0);
-            hideBtn.Name = "hideBtn";
-            hideBtn.RightToLeft = RightToLeft.No;
-            hideBtn.Size = new Size(40, 38);
-            hideBtn.TabIndex = 1;
-            hideBtn.TabStop = false;
-            hideBtn.Text = "V";
-            hideBtn.UseVisualStyleBackColor = true;
-            hideBtn.Click += changeSizeFormBtn_Click;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(544, 0);
-            button5.Margin = new Padding(0);
-            button5.Name = "button5";
-            button5.RightToLeft = RightToLeft.No;
-            button5.Size = new Size(40, 38);
-            button5.TabIndex = 2;
-            button5.TabStop = false;
-            button5.Text = "-";
-            button5.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -249,14 +188,11 @@ namespace ShowroomData
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             Text = "Showroom - Management System";
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -269,13 +205,9 @@ namespace ShowroomData
         private Panel panel1;
         private DataGridView dataGridView1;
         private Button savedBtn;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Button closeFormBtn;
-        private Button hideBtn;
         private Button button1;
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button button5;
     }
 }

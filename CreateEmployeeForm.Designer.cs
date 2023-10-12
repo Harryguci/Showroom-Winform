@@ -33,9 +33,6 @@
             pictureBox1 = new PictureBox();
             button1 = new Button();
             panel1 = new Panel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            closeFormBtn = new Button();
-            hideBtn = new Button();
             label1 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
@@ -51,8 +48,6 @@
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel1.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -105,56 +100,11 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(flowLayoutPanel2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(664, 100);
             panel1.TabIndex = 1;
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.AllowDrop = true;
-            flowLayoutPanel2.BackColor = Color.White;
-            flowLayoutPanel2.Controls.Add(closeFormBtn);
-            flowLayoutPanel2.Controls.Add(hideBtn);
-            flowLayoutPanel2.Dock = DockStyle.Top;
-            flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel2.Location = new Point(0, 0);
-            flowLayoutPanel2.Margin = new Padding(0);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(664, 38);
-            flowLayoutPanel2.TabIndex = 0;
-            flowLayoutPanel2.TabStop = true;
-            flowLayoutPanel2.MouseDown += Form_MouseDown;
-            // 
-            // closeFormBtn
-            // 
-            closeFormBtn.Cursor = Cursors.Hand;
-            closeFormBtn.Location = new Point(624, 0);
-            closeFormBtn.Margin = new Padding(0);
-            closeFormBtn.Name = "closeFormBtn";
-            closeFormBtn.RightToLeft = RightToLeft.No;
-            closeFormBtn.Size = new Size(40, 38);
-            closeFormBtn.TabIndex = 1;
-            closeFormBtn.TabStop = false;
-            closeFormBtn.Text = "X";
-            closeFormBtn.UseVisualStyleBackColor = true;
-            closeFormBtn.Click += closeFormBtn_Click;
-            // 
-            // hideBtn
-            // 
-            hideBtn.Cursor = Cursors.Hand;
-            hideBtn.Location = new Point(584, 0);
-            hideBtn.Margin = new Padding(0);
-            hideBtn.Name = "hideBtn";
-            hideBtn.RightToLeft = RightToLeft.No;
-            hideBtn.Size = new Size(40, 38);
-            hideBtn.TabIndex = 1;
-            hideBtn.TabStop = false;
-            hideBtn.Text = "-";
-            hideBtn.UseVisualStyleBackColor = true;
-            hideBtn.Click += hideFormBtn_Click;
             // 
             // label1
             // 
@@ -167,9 +117,9 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(181, 34);
+            textBox1.Location = new Point(132, 34);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(246, 27);
+            textBox1.Size = new Size(295, 27);
             textBox1.TabIndex = 3;
             // 
             // label2
@@ -177,15 +127,15 @@
             label2.AutoSize = true;
             label2.Location = new Point(31, 92);
             label2.Name = "label2";
-            label2.Size = new Size(80, 19);
+            label2.Size = new Size(29, 19);
             label2.TabIndex = 2;
-            label2.Text = "Firstname";
+            label2.Text = "Họ";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(181, 89);
+            textBox2.Location = new Point(132, 89);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(246, 27);
+            textBox2.Size = new Size(295, 27);
             textBox2.TabIndex = 3;
             // 
             // label3
@@ -193,15 +143,15 @@
             label3.AutoSize = true;
             label3.Location = new Point(31, 154);
             label3.Name = "label3";
-            label3.Size = new Size(80, 19);
+            label3.Size = new Size(35, 19);
             label3.TabIndex = 2;
-            label3.Text = "Lastname";
+            label3.Text = "Tên";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(181, 151);
+            textBox3.Location = new Point(132, 151);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(246, 27);
+            textBox3.Size = new Size(295, 27);
             textBox3.TabIndex = 3;
             // 
             // label4
@@ -209,15 +159,15 @@
             label4.AutoSize = true;
             label4.Location = new Point(31, 214);
             label4.Name = "label4";
-            label4.Size = new Size(54, 19);
+            label4.Size = new Size(40, 19);
             label4.TabIndex = 2;
-            label4.Text = "Phone";
+            label4.Text = "SDT";
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(181, 211);
+            textBox4.Location = new Point(132, 211);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(246, 27);
+            textBox4.Size = new Size(295, 27);
             textBox4.TabIndex = 3;
             // 
             // label5
@@ -225,15 +175,15 @@
             label5.AutoSize = true;
             label5.Location = new Point(31, 272);
             label5.Name = "label5";
-            label5.Size = new Size(42, 19);
+            label5.Size = new Size(80, 19);
             label5.TabIndex = 2;
-            label5.Text = "Birth";
+            label5.Text = "Ngày sinh";
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(179, 266);
+            dateTimePicker1.Location = new Point(130, 266);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(248, 27);
+            dateTimePicker1.Size = new Size(297, 27);
             dateTimePicker1.TabIndex = 4;
             // 
             // panel3
@@ -279,22 +229,13 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.None;
-            Padding = new Padding
-            {
-                Left = 0,
-                Top = 0,
-                Right = 0,
-                Bottom = 5,
-            };
             Name = "CreateEmployeeForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a employee";
             MouseDown += Form_MouseDown;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel1.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -306,9 +247,6 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Button closeFormBtn;
-        private Button hideBtn;
         private Button button1;
         private Label label1;
         private TextBox textBox1;

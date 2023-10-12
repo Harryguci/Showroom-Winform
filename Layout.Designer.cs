@@ -36,16 +36,12 @@
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            closeFormBtn = new Button();
-            hideBtn = new Button();
-            button5 = new Button();
             lblHeadingPage = new Label();
+            panel3 = new Panel();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -59,7 +55,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 500);
+            flowLayoutPanel1.Size = new Size(136, 544);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -95,6 +91,7 @@
             button1.TabIndex = 2;
             button1.Text = "Tất cả";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -146,94 +143,50 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Controls.Add(lblHeadingPage);
-            panel1.Controls.Add(flowLayoutPanel2);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(664, 100);
+            panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
-            panel1.MouseDown += Form_MouseDown;
-            // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.AllowDrop = true;
-            flowLayoutPanel2.BackColor = Color.White;
-            flowLayoutPanel2.Controls.Add(closeFormBtn);
-            flowLayoutPanel2.Controls.Add(hideBtn);
-            flowLayoutPanel2.Controls.Add(button5);
-            flowLayoutPanel2.Dock = DockStyle.Top;
-            flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
-            flowLayoutPanel2.Location = new Point(0, 0);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(664, 38);
-            flowLayoutPanel2.TabIndex = 0;
-            flowLayoutPanel2.TabStop = true;
-            flowLayoutPanel2.MouseDown += Form_MouseDown;
-            // 
-            // closeFormBtn
-            // 
-            closeFormBtn.Location = new Point(624, 0);
-            closeFormBtn.Margin = new Padding(0);
-            closeFormBtn.Name = "closeFormBtn";
-            closeFormBtn.RightToLeft = RightToLeft.No;
-            closeFormBtn.Size = new Size(40, 38);
-            closeFormBtn.TabIndex = 1;
-            closeFormBtn.TabStop = false;
-            closeFormBtn.Text = "X";
-            closeFormBtn.UseVisualStyleBackColor = true;
-            closeFormBtn.Click += closeFormBtn_Click;
-            // 
-            // hideBtn
-            // 
-            hideBtn.Location = new Point(584, 0);
-            hideBtn.Margin = new Padding(0);
-            hideBtn.Name = "hideBtn";
-            hideBtn.RightToLeft = RightToLeft.No;
-            hideBtn.Size = new Size(40, 38);
-            hideBtn.TabIndex = 1;
-            hideBtn.TabStop = false;
-            hideBtn.Text = "V";
-            hideBtn.UseVisualStyleBackColor = true;
-            hideBtn.Click += changeSizeFormBtn_Click;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(544, 0);
-            button5.Margin = new Padding(0);
-            button5.Name = "button5";
-            button5.RightToLeft = RightToLeft.No;
-            button5.Size = new Size(40, 38);
-            button5.TabIndex = 2;
-            button5.TabStop = false;
-            button5.Text = "-";
-            button5.UseVisualStyleBackColor = true;
             // 
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Location = new Point(270, 41);
+            lblHeadingPage.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeadingPage.Location = new Point(390, 31);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(52, 19);
+            lblHeadingPage.Size = new Size(105, 27);
             lblHeadingPage.TabIndex = 1;
-            lblHeadingPage.Text = "label1";
+            lblHeadingPage.Text = "Welcome";
+            // 
+            // panel3
+            // 
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(136, 100);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(964, 444);
+            panel3.TabIndex = 2;
             // 
             // Layout
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 500);
+            ClientSize = new Size(1100, 544);
+            Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "Layout";
             Text = "Showroom - Management System";
+            FormClosing += Layout_FormClosing;
+            FormClosed += Layout_FormClosed;
+            Load += Layout_Load;
+            Resize += Layout_Resize;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            flowLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -243,14 +196,11 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private FlowLayoutPanel flowLayoutPanel2;
-        private Button closeFormBtn;
-        private Button hideBtn;
         private Button button1;
         private Button button2;
         private Button button3;
         private Button button4;
-        private Button button5;
         private Label lblHeadingPage;
+        private Panel panel3;
     }
 }
