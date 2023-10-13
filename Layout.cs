@@ -95,7 +95,7 @@ namespace ShowroomData
             string query = "";
             if (type == "all")
             {
-                query = "select * from employee";
+                query = "select * from employees";
             }
 
             DataGridView dt = new DataGridView();
@@ -117,14 +117,22 @@ namespace ShowroomData
             dt.Columns[0].HeaderText = "Mã nhân viên";
             dt.Columns[1].HeaderText = "Họ";
             dt.Columns[2].HeaderText = "Tên";
-            dt.Columns[3].HeaderText = "SDT";
-            dt.Columns[4].HeaderText = "Ngày sinh";
+            dt.Columns[3].HeaderText = "Ngày sinh";
+            dt.Columns[4].HeaderText = "CCCD";
+            dt.Columns[5].HeaderText = "Vị trí";
+            dt.Columns[6].HeaderText = "Ngày bắt đầu";
+            dt.Columns[7].HeaderText = "Lương";
+            dt.Columns[8].HeaderText = "Email";
 
-            dt.Columns[0].Width = 150;
-            dt.Columns[1].Width = 250;
-            dt.Columns[2].Width = 250;
-            dt.Columns[3].Width = 350;
-            dt.Columns[4].Width = 400;
+            dt.Columns[0].Width = 100;
+            dt.Columns[1].Width = 200;
+            dt.Columns[2].Width = 100;
+            dt.Columns[3].Width = 200;
+            dt.Columns[4].Width = 100;
+            dt.Columns[5].Width = 100;
+            dt.Columns[6].Width = 200;
+            dt.Columns[7].Width = 100;
+            dt.Columns[8].Width = 100;
 
             dt.BackgroundColor = Color.LightBlue;
             dt.GridColor = Color.Gray;
