@@ -72,7 +72,7 @@
             textBox2.Location = new Point(201, 150);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(196, 27);
-            textBox2.TabIndex = 12;
+            textBox2.TabIndex = 1;
             // 
             // label1
             // 
@@ -89,7 +89,7 @@
             textBox1.Location = new Point(201, 105);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(196, 27);
-            textBox1.TabIndex = 13;
+            textBox1.TabIndex = 0;
             // 
             // button4
             // 
@@ -102,7 +102,7 @@
             button4.Margin = new Padding(0);
             button4.Name = "button4";
             button4.Size = new Size(223, 51);
-            button4.TabIndex = 8;
+            button4.TabIndex = 2;
             button4.Text = "Đăng nhập";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
@@ -127,7 +127,7 @@
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(110, 51);
-            button1.TabIndex = 9;
+            button1.TabIndex = 3;
             button1.Text = "Đăng ký";
             button1.UseVisualStyleBackColor = false;
             // 

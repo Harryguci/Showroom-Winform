@@ -31,12 +31,17 @@ namespace ShowroomData
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+
+            lblHeadingPage.Text = "Danh sách nhân viên";
+            lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
+                lblHeadingPage.Location.Y);
         }
 
         private void Form1_Resize(object? sender, EventArgs e)
         {
             flowLayoutPanel1.Size = new Size(Math.Min(Math.Max(Width / 5, 100), 250),
                 flowLayoutPanel1.Size.Height);
+
             var childs = flowLayoutPanel1.Controls;
             for (int i = 0; i < childs.Count; i++)
             {
@@ -63,7 +68,7 @@ namespace ShowroomData
         {
             CreateEmployeeForm createForm = new CreateEmployeeForm();
             createForm.Show();
-            
+
         }
 
         private void changeSizeFormBtn_Click(object sender, EventArgs e)
