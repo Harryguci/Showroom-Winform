@@ -152,9 +152,9 @@ namespace ShowroomData
 
         private void Layout_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có muốn thoát", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
             {
-                Dispose();
+                e.Cancel = true;
             }
         }
 
