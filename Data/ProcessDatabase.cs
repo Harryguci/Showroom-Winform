@@ -11,9 +11,6 @@ namespace ShowroomData
 {
     internal class ProcessDatabase
     {
-        // Data Source=(Local);Initial Catalog=ShowroomAuto;User ID=sa;Password=123456
-        // Integrated Security=True;Encrypt=True;TrustServerCertificate=True;
-
         private string connString = "Data Source=(Local);Initial Catalog=ShowroomAuto;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;User ID=sa;Password=123456";
         private SqlConnection conn;
 

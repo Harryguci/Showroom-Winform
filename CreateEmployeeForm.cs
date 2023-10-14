@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,47 +13,17 @@ namespace ShowroomData
 {
     public partial class CreateEmployeeForm : Form
     {
+        private ProcessDatabase processDb = new ProcessDatabase();
+
         public CreateEmployeeForm()
         {
             InitializeComponent();
-
+            
             //
             // Enable resizing form size (without border)
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
-        }
-
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    LoadData();
-
-            //    btnConnect.Text = "Refresh";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "ERROR");
-            //    Debug.WriteLine(ex.Message);
-            //}
-        }
-
-        private void closeFormBtn_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo)
-                == DialogResult.Yes)
-            {
-                Dispose();
-            }
-        }
-
-        private void hideFormBtn_Click(object sender, EventArgs e)
-            => WindowState = FormWindowState.Minimized;
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -110,6 +81,46 @@ namespace ShowroomData
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void CreateEmployeeForm_Resize(object sender, EventArgs e)
+        {
+            lblHeading.Location = new Point((panel1.Width - lblHeading.Width) / 2,
+                lblHeading.Location.Y);
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            TextBox[] textBoxes = { textBox1, textBox2, textBox3, textBox4 };
+            for (int i = 0; i < textBoxes.Length; i++)
+                textBoxes[i].Text = string.Empty;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var curr = new
+            {
+                id = textBox1.Text,
+                lastName = textBox3.Text,
+                firstName = textBox2.Text,
+                sdt = textBox4.Text,
+                birth = dateTimePicker1.Value.ToString("yyyy-MM-dd")
+            };
+            // Handle Create
+            string query = $"Insert Employees Values(N'{curr.id}',N'{curr.firstName}'," +
+                $"N'{curr.lastName}',N'{curr.sdt}'),N'{curr.birth}'";
+
+            processDb.UpdateData(query);
+
+            // Earse current data
+            TextBox[] textBoxes = { textBox1, textBox2, textBox3, textBox4 };
+            for (int i = 0; i < textBoxes.Length; i++)
+                textBoxes[i].Text = string.Empty;
         }
         //
         //

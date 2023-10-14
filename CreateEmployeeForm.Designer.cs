@@ -33,6 +33,7 @@
             pictureBox1 = new PictureBox();
             button1 = new Button();
             panel1 = new Panel();
+            lblHeading = new Label();
             label1 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
@@ -44,10 +45,12 @@
             label5 = new Label();
             dateTimePicker1 = new DateTimePicker();
             panel3 = new Panel();
+            button2 = new Button();
             button5 = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -60,7 +63,7 @@
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(136, 500);
-            flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.TabIndex = 10;
             // 
             // panel2
             // 
@@ -92,7 +95,7 @@
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(136, 51);
-            button1.TabIndex = 2;
+            button1.TabIndex = 10;
             button1.Text = "Quay lại";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -100,11 +103,22 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblHeading);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(664, 100);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 100;
+            // 
+            // lblHeading
+            // 
+            lblHeading.AutoSize = true;
+            lblHeading.Font = new Font("Roboto", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeading.Location = new Point(224, 35);
+            lblHeading.Name = "lblHeading";
+            lblHeading.Size = new Size(236, 33);
+            lblHeading.TabIndex = 100;
+            lblHeading.Text = "Tạo mới nhân viên";
             // 
             // label1
             // 
@@ -117,10 +131,11 @@
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Location = new Point(132, 34);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(295, 27);
-            textBox1.TabIndex = 3;
+            textBox1.TabIndex = 10;
             // 
             // label2
             // 
@@ -136,7 +151,7 @@
             textBox2.Location = new Point(132, 89);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(295, 27);
-            textBox2.TabIndex = 3;
+            textBox2.TabIndex = 0;
             // 
             // label3
             // 
@@ -152,7 +167,7 @@
             textBox3.Location = new Point(132, 151);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(295, 27);
-            textBox3.TabIndex = 3;
+            textBox3.TabIndex = 2;
             // 
             // label4
             // 
@@ -169,6 +184,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(295, 27);
             textBox4.TabIndex = 3;
+            textBox4.KeyPress += textBox4_KeyPress;
             // 
             // label5
             // 
@@ -189,6 +205,7 @@
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(button2);
             panel3.Controls.Add(button5);
             panel3.Controls.Add(dateTimePicker1);
             panel3.Controls.Add(textBox2);
@@ -203,7 +220,23 @@
             panel3.Location = new Point(230, 116);
             panel3.Name = "panel3";
             panel3.Size = new Size(461, 372);
-            panel3.TabIndex = 5;
+            panel3.TabIndex = 100;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.ActiveCaption;
+            button2.BackgroundImageLayout = ImageLayout.None;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(263, 318);
+            button2.Margin = new Padding(0);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 38);
+            button2.TabIndex = 6;
+            button2.Text = "Nhập mới";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
             // 
             // button5
             // 
@@ -212,13 +245,14 @@
             button5.FlatStyle = FlatStyle.Popup;
             button5.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button5.ForeColor = Color.White;
-            button5.Location = new Point(181, 324);
+            button5.Location = new Point(131, 318);
             button5.Margin = new Padding(0);
             button5.Name = "button5";
             button5.Size = new Size(121, 38);
-            button5.TabIndex = 6;
-            button5.Text = "Send";
+            button5.TabIndex = 5;
+            button5.Text = "Tạo";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // CreateEmployeeForm
             // 
@@ -233,9 +267,12 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a employee";
             MouseDown += Form_MouseDown;
+            Resize += CreateEmployeeForm_Resize;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ResumeLayout(false);
@@ -260,5 +297,7 @@
         private DateTimePicker dateTimePicker1;
         private Panel panel3;
         private Button button5;
+        private Label lblHeading;
+        private Button button2;
     }
 }
