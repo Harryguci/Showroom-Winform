@@ -85,11 +85,11 @@
             button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
             button1.Location = new Point(0, 128);
-            button1.Margin = new Padding(0);
+            button1.Margin = new Padding(0, 0, 0, 30);
             button1.Name = "button1";
             button1.Size = new Size(136, 51);
             button1.TabIndex = 2;
-            button1.Text = "Tất cả";
+            button1.Text = "Làm mới";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -100,7 +100,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 179);
+            button2.Location = new Point(0, 209);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(136, 51);
@@ -116,7 +116,7 @@
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 230);
+            button3.Location = new Point(0, 260);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
             button3.Size = new Size(136, 51);
@@ -131,7 +131,7 @@
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 281);
+            button4.Location = new Point(0, 311);
             button4.Margin = new Padding(0);
             button4.Name = "button4";
             button4.Size = new Size(136, 51);
@@ -169,8 +169,8 @@
             // 
             // Layout
             // 
-            AutoScaleDimensions = new SizeF(9F, 19F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1100, 544);
             Controls.Add(panel3);
             Controls.Add(panel1);

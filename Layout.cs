@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShowroomData.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,11 @@ using System.Windows.Forms;
 
 namespace ShowroomData
 {
+
     public partial class Layout : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
+        private DataGridView dt = new DataGridView();
 
         public Layout()
         {
@@ -35,6 +38,12 @@ namespace ShowroomData
             lblHeadingPage.Text = "Danh sách nhân viên";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                 lblHeadingPage.Location.Y);
+        }
+
+        public void RefeshData()
+        {
+            ShowEmployData();
+            dt.Refresh();
         }
 
         private void Form1_Resize(object? sender, EventArgs e)
@@ -66,7 +75,7 @@ namespace ShowroomData
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            CreateEmployeeForm createForm = new CreateEmployeeForm();
+            CreateEmployeeForm createForm = new CreateEmployeeForm(this);
             createForm.Show();
 
         }
@@ -86,8 +95,7 @@ namespace ShowroomData
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
+            RefeshData();
         }
 
         private void ShowEmployData(string type = "all")
@@ -98,7 +106,6 @@ namespace ShowroomData
                 query = "select * from employees";
             }
 
-            DataGridView dt = new DataGridView();
             dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dt.Dock = DockStyle.Fill;
             dt.Location = new Point(136, 100);
@@ -110,34 +117,76 @@ namespace ShowroomData
 
 
             panel3.Controls.Add(dt);
+            try
+            {
+                DataTable dtEmployee = processDb.GetData(query);
+                dt.DataSource = dtEmployee;
 
-            DataTable dtEmployee = processDb.GetData(query);
-            dt.DataSource = dtEmployee;
-            //Định dạng dataGrid
-            dt.Columns[0].HeaderText = "Mã nhân viên";
-            dt.Columns[1].HeaderText = "Họ";
-            dt.Columns[2].HeaderText = "Tên";
-            dt.Columns[3].HeaderText = "Ngày sinh";
-            dt.Columns[4].HeaderText = "CCCD";
-            dt.Columns[5].HeaderText = "Vị trí";
-            dt.Columns[6].HeaderText = "Ngày bắt đầu";
-            dt.Columns[7].HeaderText = "Lương";
-            dt.Columns[8].HeaderText = "Email";
+                //Định dạng dataGrid
+                ColumnObject[] colFormat = {
+                new ColumnObject
+                {
+                    Name = "Mã nhân viên",
+                    Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Họ",
+                    Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "Tên",
+                    Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Ngày sinh",
+                    Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "CCCD",
+                    Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Vị trí",
+                    Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Ngày bắt đầu",
+                    Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "Lương",
+                    Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Email",
+                    Width = 100
+                }
+            };
 
-            dt.Columns[0].Width = 100;
-            dt.Columns[1].Width = 200;
-            dt.Columns[2].Width = 100;
-            dt.Columns[3].Width = 200;
-            dt.Columns[4].Width = 100;
-            dt.Columns[5].Width = 100;
-            dt.Columns[6].Width = 200;
-            dt.Columns[7].Width = 100;
-            dt.Columns[8].Width = 100;
+                for (int i = 0; i < colFormat.Length; i++)
+                {
+                    dt.Columns[i].HeaderText = colFormat[i].Name;
+                    dt.Columns[i].Width = colFormat[i].Width;
+                }
 
-            dt.BackgroundColor = Color.LightBlue;
-            dt.GridColor = Color.Gray;
+                dt.BackgroundColor = Color.LightBlue;
+                dt.GridColor = Color.Gray;
 
-            dtEmployee.Dispose();
+                dtEmployee.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                Dispose();
+            }
         }
 
         private void Layout_Load(object sender, EventArgs e)
@@ -152,7 +201,7 @@ namespace ShowroomData
 
         private void Layout_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát", 
+            if (MessageBox.Show("Bạn có muốn thoát",
                 "Thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 e.Cancel = true;

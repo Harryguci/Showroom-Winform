@@ -97,7 +97,7 @@ namespace ShowroomData
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            CreateEmployeeForm createForm = new CreateEmployeeForm();
+            CreateEmployeeForm createForm = new CreateEmployeeForm(this);
             createForm.Show();
         }
 

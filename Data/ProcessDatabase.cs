@@ -21,6 +21,7 @@ namespace ShowroomData
 
         public void Connect()
         {
+            conn = new SqlConnection(connString);
             if (conn.State != System.Data.ConnectionState.Open)
                 conn.Open();
         }

@@ -8,17 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ShowroomData
 {
     public partial class CreateEmployeeForm : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
+        private Layout? parent;
 
-        public CreateEmployeeForm()
+        public CreateEmployeeForm(Form? _parent)
         {
             InitializeComponent();
-            
+
+
+            if (_parent != null && _parent.GetType() == typeof(Layout))
+                parent = (Layout?)_parent;
+
             //
             // Enable resizing form size (without border)
             //
@@ -32,38 +38,6 @@ namespace ShowroomData
         }
 
         //
-        // Handle Resizing Form
-        //
-        private const int cGrip = 16;      // Grip size
-        private const int cCaption = 32;   // Caption bar height;
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
-            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
-            rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
-            e.Graphics.FillRectangle(Brushes.DarkBlue, rc);
-        }
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == 0x84)
-            {  // Trap WM_NCHITTEST
-                Point pos = new Point(m.LParam.ToInt32());
-                pos = this.PointToClient(pos);
-                if (pos.Y < cCaption)
-                {
-                    m.Result = (IntPtr)2;  // HTCAPTION
-                    return;
-                }
-                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
-                {
-                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
-                    return;
-                }
-            }
-            base.WndProc(ref m);
-        }
-
-        //
         // [Handle Dragging the Form]
         //
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -74,6 +48,10 @@ namespace ShowroomData
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+
+        //
+        // [Handle Events]
+        //
         private void Form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -103,6 +81,10 @@ namespace ShowroomData
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Tạo mới nhân viên này?", "Thông báo",
+                MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
             var curr = new
             {
                 id = textBox1.Text,
@@ -112,8 +94,9 @@ namespace ShowroomData
                 birth = dateTimePicker1.Value.ToString("yyyy-MM-dd")
             };
             // Handle Create
-            string query = $"Insert Employees Values(N'{curr.id}',N'{curr.firstName}'," +
-                $"N'{curr.lastName}',N'{curr.sdt}'),N'{curr.birth}'";
+            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, SaleId) " +
+                $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', " +
+                $"N'',N'','{DateTime.Now.ToString("yyyy-MM-dd")}',5500000, N'', NULL)";
 
             processDb.UpdateData(query);
 
@@ -121,6 +104,36 @@ namespace ShowroomData
             TextBox[] textBoxes = { textBox1, textBox2, textBox3, textBox4 };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
+            textBox1.Text = CreateId();
+
+            // Update the data grid view in The list Form
+            if (parent != null)
+                parent.RefeshData();
+        }
+
+        private string CreateId()
+        {
+            DataTable tb = processDb.GetData("Select Top 1 EmployeeId From Employees Order By EmployeeId DESC");
+            string? id = tb.Rows[0]["EmployeeId"].ToString();
+
+            if (id != null)
+            {
+                int count = Convert.ToInt32(id.Substring(1, id.Length - 1));
+                id = Convert.ToString(count + 1);
+
+                while (id.Length < 3) id = "0" + id;
+                id = "e" + id;
+            }
+            else
+            {
+                id = "E001";
+            }
+            return id;
+        }
+
+        private void CreateEmployeeForm_Load(object sender, EventArgs e)
+        {
+            textBox1.Text = CreateId();
         }
         //
         //

@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using ShowroomData.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace ShowroomData
 {
@@ -35,19 +39,6 @@ namespace ShowroomData
             }
         }
 
-        private void createBtn_Click(object sender, EventArgs e)
-        {
-            CreateEmployeeForm createForm = new CreateEmployeeForm();
-            createForm.Show();
-        }
-
-        private void changeSizeFormBtn_Click(object sender, EventArgs e)
-        {
-            WindowState = WindowState == FormWindowState.Maximized
-                ? FormWindowState.Normal : FormWindowState.Maximized;
-            ClientSize = new Size(1000, 500);
-        }
-
         private void Layout_Resize(object sender, EventArgs e)
         {
             panel1.Location = new Point((Width - panel1.Width) / 2, panel1.Location.Y);
@@ -74,22 +65,61 @@ namespace ShowroomData
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form1 form1 = new Form1();
-            form1.Show();
-        }
-
         private void Layout2_Load(object sender, EventArgs e)
         {
+            try
+            {
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                string json = File.ReadAllText(Path.Combine(
+                    Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
+                    "Data", "login_cookie.json"));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+
+                var cookieData = JsonConvert.DeserializeObject<SimpleAccountInfo>(json);
+                if (cookieData != null)
+                {
+                    textBox1.Text = cookieData.Username;
+                    textBox2.Text = cookieData.Password;
+                }
+            }
+            catch
+            {
+                ;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Layout layout = new Layout();
             layout.Show();
-            layout.FormClosed += (s, args) => this.Close();
+
+            Hide(); // Hide the current Form.
+
+            layout.FormClosed += (s, args) => Close();
+        }
+
+        private void Layout2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                // Write data to Data/login_cookie.json
+                var curr = new
+                {
+                    username = textBox1.Text,
+                    password = textBox2.Text,
+                };
+
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(
+                    Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
+                    "Data", "login_cookie.json")))
+                {
+
+                    outputFile.WriteLine(JsonConvert.SerializeObject(curr));
+                }
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            }
         }
     }
 }

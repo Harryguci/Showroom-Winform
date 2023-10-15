@@ -37,6 +37,7 @@
             label2 = new Label();
             button1 = new Button();
             panel2 = new Panel();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox1);
@@ -98,7 +100,7 @@
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(61, 219);
+            button4.Location = new Point(56, 250);
             button4.Margin = new Padding(0);
             button4.Name = "button4";
             button4.Size = new Size(223, 51);
@@ -123,7 +125,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.HotTrack;
-            button1.Location = new Point(287, 219);
+            button1.Location = new Point(282, 250);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(110, 51);
@@ -141,6 +143,16 @@
             panel2.Size = new Size(444, 117);
             panel2.TabIndex = 9;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(56, 206);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(154, 23);
+            checkBox1.TabIndex = 10;
+            checkBox1.Text = "Ghi nhớ mật khẩu";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Layout2
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -152,6 +164,7 @@
             Name = "Layout2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Management System";
+            FormClosing += Layout2_FormClosing;
             Load += Layout2_Load;
             Resize += Layout_Resize;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -171,5 +184,6 @@
         private Label label2;
         public Button button1;
         private Panel panel2;
+        private CheckBox checkBox1;
     }
 }

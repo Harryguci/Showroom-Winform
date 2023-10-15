@@ -266,6 +266,7 @@
             Name = "CreateEmployeeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a employee";
+            Load += CreateEmployeeForm_Load;
             MouseDown += Form_MouseDown;
             Resize += CreateEmployeeForm_Resize;
             flowLayoutPanel1.ResumeLayout(false);
