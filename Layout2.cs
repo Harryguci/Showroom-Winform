@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -110,14 +111,18 @@ namespace ShowroomData
                     password = textBox2.Text,
                 };
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(
-                    Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
-                    "Data", "login_cookie.json")))
+                if (File.Exists(curr.username))
                 {
-                    outputFile.WriteLine(JsonConvert.SerializeObject(curr));
+                    #pragma warning disable CS8602 // Dereference of a possibly null reference.
+                    using (StreamWriter outputFile = new StreamWriter(Path.Combine(
+                        Directory.GetParent(Directory.GetCurrentDirectory())
+                        .Parent.Parent.FullName,
+                        "Data", "login_cookie.json")))
+                    {
+                        outputFile.WriteLine(JsonConvert.SerializeObject(curr));
+                    }
+                    #pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
         }
 

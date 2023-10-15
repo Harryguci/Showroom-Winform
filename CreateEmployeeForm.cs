@@ -17,10 +17,10 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
 
+        // Constructor
         public CreateEmployeeForm(Form? _parent)
         {
             InitializeComponent();
-
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout?)_parent;
@@ -30,35 +30,15 @@ namespace ShowroomData
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+            comboBox1.Text = "--- Chọn ---";
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
-
-        //
-        // [Handle Dragging the Form]
-        //
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
 
         //
         // [Handle Events]
         //
-        private void Form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
+            Dispose();
         }
 
         private void CreateEmployeeForm_Resize(object sender, EventArgs e)
@@ -69,49 +49,91 @@ namespace ShowroomData
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+            e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void btnClean_Click(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { textBox1, textBox2, textBox3, textBox4 };
+            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
+
+            txtId.Text = AutoCreateId();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void createBtn_Click(object sender, EventArgs e)
         {
+            if (!ValidateForm()) return;
+
             if (MessageBox.Show("Tạo mới nhân viên này?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
-
             var curr = new
             {
-                id = textBox1.Text,
-                lastName = textBox3.Text,
-                firstName = textBox2.Text,
-                sdt = textBox4.Text,
-                birth = dateTimePicker1.Value.ToString("yyyy-MM-dd")
+                id = txtId.Text,
+                lastName = txtLastname.Text.Trim(),
+                firstName = txtFirstname.Text.Trim(),
+                sdt = txtPhone.Text.Trim(),
+                birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
+                start = DateTime.Now.ToString("yyyy-MM-dd"),
+                salary = Convert.ToInt32(txtSalary.Text.Trim()),
+                position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
+                cccd = txtCCCD.Text.Trim(),
+                email = txtEmail.Text.Trim()
             };
+
             // Handle Create
             string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, SaleId) " +
                 $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', " +
-                $"N'',N'','{DateTime.Now.ToString("yyyy-MM-dd")}',5500000, N'', NULL)";
+                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', NULL)";
 
+            // Excute the query
             processDb.UpdateData(query);
 
             // Earse current data
-            TextBox[] textBoxes = { textBox1, textBox2, textBox3, textBox4 };
-            for (int i = 0; i < textBoxes.Length; i++)
-                textBoxes[i].Text = string.Empty;
-            textBox1.Text = CreateId();
+            CleanForm();
 
             // Update the data grid view in The list Form
             if (parent != null)
                 parent.RefeshData();
         }
 
-        private string CreateId()
+        private void CreateEmployeeForm_Load(object sender, EventArgs e)
+            => txtId.Text = AutoCreateId();
+
+        //
+        // [Helper Methods]
+        //
+        private bool ValidateForm()
+        {
+            var curr = new
+            {
+                lastName = txtLastname.Text.Trim(),
+                firstName = txtFirstname.Text.Trim(),
+                sdt = txtPhone.Text.Trim(),
+                position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
+            };
+
+
+            if (curr.firstName.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập tên");
+                return false;
+            }
+            if (curr.lastName.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập họ");
+                return false;
+            }
+            if (curr.position.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải chọn vị trí");
+                return false;
+            }
+
+            return true;
+        }
+        private string AutoCreateId()
         {
             DataTable tb = processDb.GetData("Select Top 1 EmployeeId From Employees Order By EmployeeId DESC");
             string? id = tb.Rows[0]["EmployeeId"].ToString();
@@ -130,13 +152,29 @@ namespace ShowroomData
             }
             return id;
         }
-
-        private void CreateEmployeeForm_Load(object sender, EventArgs e)
+        private void CleanForm()
         {
-            textBox1.Text = CreateId();
+            // Earse current data
+            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone, txtCCCD, txtEmail, txtSalary };
+            for (int i = 0; i < textBoxes.Length; i++)
+                textBoxes[i].Text = string.Empty;
+
+            txtId.Text = AutoCreateId();
+
+            comboBox1.Text = "--- Chọn ----";
+            birthDateTimePicker.Value = DateTime.Now;
+            rdbFemale.Checked = rdbMale.Checked = false;
+
         }
-        //
-        //
-        //
+
+        private void helpBtn_Click(object sender, EventArgs e)
+        {
+            HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
+                "- Bắt buộc nhập họ, tên\n" +
+                "- Bắt buộc chọn 1 vị trí\n" +
+                "- Số điện thoại, CCCD, lương chỉ có thể nhập số");
+
+            helperDialog.Show();
+        }
     }
 }
