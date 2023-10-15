@@ -99,7 +99,7 @@ namespace ShowroomData
             layout.FormClosed += (s, args) => Close();
         }
 
-        private void Layout2_FormClosing(object sender, FormClosingEventArgs e)
+        private void RememberLoginInfo()
         {
             if (checkBox1.Checked)
             {
@@ -115,11 +115,15 @@ namespace ShowroomData
                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
                     "Data", "login_cookie.json")))
                 {
-
                     outputFile.WriteLine(JsonConvert.SerializeObject(curr));
                 }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
+        }
+
+        private void Layout2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            RememberLoginInfo();
         }
     }
 }
