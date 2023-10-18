@@ -1,40 +1,57 @@
-﻿using ShowroomData.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ShowroomData.Models;
+using ShowroomData.Util;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ShowroomData
 {
-    public partial class Layout : Form
+    public partial class ListForm : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
-        private string listType = "all";
-        private List<Button>? buttons;
+        private string listType = "employees";
 
-        public Layout(string listType = "employees")
+        public ListForm(string _listType = "employees")
         {
             InitializeComponent();
             HandleGUI();
 
+
+            listType = _listType;
             //
-            // [Add Form events]
+            // [Add Form events]b
             //
             Resize += Form1_Resize;
+
+            //
+            //  [Render GridView]
+            //
+            RenderDataToGridView();
+
+            dt.SelectionChanged += (sender, args) =>
+            {
+                if (dt.SelectedRows.Count > 0)
+                {
+                    btnUpdateInfo.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnUpdateInfo.BackColor = Color.FromArgb(50, 50, 150);
+                    btnDelete.BackColor = Color.FromArgb(50, 50, 150);
+                }
+                else
+                {
+                    btnUpdateInfo.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnUpdateInfo.BackColor = Color.FromArgb(50, 50, 100);
+                    btnDelete.BackColor = Color.FromArgb(50, 50, 100);
+                }
+            };
         }
 
         public void HandleGUI()
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.Location = new Point(0, 0);
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
+            WindowState = FormWindowState.Maximized;
+            Location = new Point(0, 0);
+            Size = Screen.PrimaryScreen.WorkingArea.Size;
 
             lblHeadingPage.Text = "Danh sách nhân viên";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
@@ -43,10 +60,13 @@ namespace ShowroomData
 
         public void RefeshData()
         {
-            ShowEmployData();
+            RenderDataToGridView();
             dt.Refresh();
         }
 
+        //
+        // [Handle Events]
+        //
         private void Form1_Resize(object? sender, EventArgs e)
         {
             flowLayoutPanel1.Size = new Size(Math.Min(Math.Max(Width / 5, 100), 250),
@@ -62,9 +82,6 @@ namespace ShowroomData
                 pictureBox1.Top);
         }
 
-        //
-        // [Handle Events]
-        //
         private void closeFormBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo)
@@ -76,9 +93,15 @@ namespace ShowroomData
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            CreateEmployeeForm createForm = new CreateEmployeeForm(this);
-            createForm.Show();
+            if (listType == ListType.EMPLOYEES)
+            {
+                CreateEmployeeForm createForm = new CreateEmployeeForm(this);
+                createForm.Show();
+            }
+            else if (listType == ListType.PRODUCTS)
+            {
 
+            }
         }
 
         private void changeSizeFormBtn_Click(object sender, EventArgs e)
@@ -99,14 +122,32 @@ namespace ShowroomData
             RefeshData();
         }
 
-        private void ShowEmployData(string type = "all")
+        private void RenderDataToGridView(string type = "all", string whereCondition = "", int limits = 1000)
         {
             string query = "";
-            if (type == "employees")
+            string table = string.Empty;
+            ColumnObject[] colFormat;
+
+            if (listType == ListType.EMPLOYEES)
             {
-                query = "select * from employees";
+                table = TableName.EMPLOYEES;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.EMPLOYEES_COLS;
             }
-            
+            else
+            {
+                colFormat = ColumnObject.PRODUCT_COLS;
+            }
+
+            if (type == "all")
+            {
+                query = $"select Top {limits} * from {table}";
+            }
+            else if (whereCondition != string.Empty)
+            {
+                query = $"select Top {limits} * from {table} where {whereCondition}";
+            }
+
             dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dt.Dock = DockStyle.Fill;
             dt.Location = new Point(136, 100);
@@ -116,60 +157,11 @@ namespace ShowroomData
             dt.TabIndex = 2;
             dt.CellValueChanged += dt_CellValueChanged;
             panelContent.Controls.Add(dt);
-            
+
             try
             {
-                DataTable dtEmployee = processDb.GetData(query);
-                dt.DataSource = dtEmployee;
-
-                //Định dạng dataGrid
-                ColumnObject[] colFormat = {
-                new ColumnObject
-                {
-                    Name = "Mã nhân viên",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Họ",
-                    Width = 200
-                },
-                new ColumnObject
-                {
-                    Name = "Tên",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Ngày sinh",
-                    Width = 200
-                },
-                new ColumnObject
-                {
-                    Name = "CCCD",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Vị trí",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Ngày bắt đầu",
-                    Width = 200
-                },
-                new ColumnObject
-                {
-                    Name = "Lương",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Email",
-                    Width = 100
-                }
-            };
+                DataTable dtResult = processDb.GetData(query);
+                dt.DataSource = dtResult;
 
                 for (int i = 0; i < colFormat.Length; i++)
                 {
@@ -180,7 +172,7 @@ namespace ShowroomData
                 dt.BackgroundColor = Color.LightBlue;
                 dt.GridColor = Color.Gray;
 
-                dtEmployee.Dispose();
+                dtResult.Dispose();
             }
             catch (Exception ex)
             {
@@ -191,7 +183,7 @@ namespace ShowroomData
 
         private void Layout_Load(object sender, EventArgs e)
         {
-            ShowEmployData();
+            RenderDataToGridView(type: "all");
         }
 
         private void dt_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
@@ -211,6 +203,39 @@ namespace ShowroomData
         private void Layout_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
+        }
+
+        private void updateInfoBtn_Click(object sender, EventArgs e)
+        {
+            if (dt.SelectedRows.Count <= 0) return;
+            if (listType == ListType.EMPLOYEES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+#pragma warning disable CS8604 // Possible null reference argument.
+                Employee employee = new Employee(
+                    employeeId: selected[0].Value.ToString(),
+                    firstname: selected[1].Value.ToString(),
+                    lastname: selected[2].Value.ToString()
+                )
+                {
+                    DateBirth = (DateTime?)selected[3].Value,
+                    Cccd = (string)selected[4].Value,
+                    Position = (string?)selected[5].Value,
+                    StartDate = (DateTime?)selected[6].Value,
+                    Salary = Convert.ToInt32(selected[7].Value),
+                    Email = (string)selected[8].Value,
+                    SaleId = (string)selected[9].Value,
+                };
+#pragma warning restore CS8604 // Possible null reference argument.
+
+                UpdateInfoForm updateInfoForm = new UpdateInfoForm(employee, this);
+                updateInfoForm.Show();
+            }
+            else if (listType == ListType.PRODUCTS)
+            {
+
+            }
         }
     }
 }

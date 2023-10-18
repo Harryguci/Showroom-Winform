@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿
+using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,5 +54,19 @@ namespace ShowroomData
             cmd.Dispose();
         }
 
+
+        public DataTable Run(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                conn.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    return dataTable;
+                }
+            }
+        }
     }
 }

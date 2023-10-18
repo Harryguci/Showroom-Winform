@@ -25,6 +25,7 @@ namespace ShowroomData
 
         public void HandleGUI()
         {
+            FormBorderStyle = FormBorderStyle.None;
             //
         }
 
@@ -46,6 +47,7 @@ namespace ShowroomData
             pictureBox1.Location = new Point((panel2.Width - pictureBox1.Width) / 2, pictureBox1.Location.Y);
         }
 
+        #region Handle Dragging the from
         //
         // [Handle Dragging the Form]
         //
@@ -66,11 +68,12 @@ namespace ShowroomData
             }
         }
 
+        #endregion
+
         private void Layout2_Load(object sender, EventArgs e)
         {
             try
             {
-
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 string json = File.ReadAllText(Path.Combine(
                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
@@ -92,12 +95,23 @@ namespace ShowroomData
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Layout layout = new Layout();
-            layout.Show();
+            #region SHOW LIST LAYOUT
+            //Layout layout = new Layout();
+            //layout.Show();
+
+            //Hide(); // Hide the current Form.
+
+            //layout.FormClosed += (s, args) => Close();
+            #endregion
+
+            #region SHOW LIST FORM
+            ListForm employeeListForm = new ListForm(_listType: "employees");
+            employeeListForm.Show();
 
             Hide(); // Hide the current Form.
 
-            layout.FormClosed += (s, args) => Close();
+            employeeListForm.FormClosed += (s, args) => Close();
+            #endregion
         }
 
         private void RememberLoginInfo()
@@ -113,7 +127,7 @@ namespace ShowroomData
 
                 if (File.Exists(curr.username))
                 {
-                    #pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     using (StreamWriter outputFile = new StreamWriter(Path.Combine(
                         Directory.GetParent(Directory.GetCurrentDirectory())
                         .Parent.Parent.FullName,
@@ -121,7 +135,7 @@ namespace ShowroomData
                     {
                         outputFile.WriteLine(JsonConvert.SerializeObject(curr));
                     }
-                    #pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
             }
         }
@@ -129,6 +143,11 @@ namespace ShowroomData
         private void Layout2_FormClosing(object sender, FormClosingEventArgs e)
         {
             RememberLoginInfo();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
