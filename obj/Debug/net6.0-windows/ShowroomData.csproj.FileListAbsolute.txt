@@ -1,3 +1,55 @@
+<<<<<<< HEAD
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ShowroomData.exe
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ShowroomData.deps.json
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ShowroomData.runtimeconfig.json
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ShowroomData.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ShowroomData.pdb
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Azure.Core.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Azure.Identity.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.Data.SqlClient.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.Identity.Client.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Abstractions.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Logging.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Tokens.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.IdentityModel.Tokens.Jwt.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.Memory.Data.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.Runtime.Caching.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.AssemblyReference.cache
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Component1.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CreateEmployeeForm.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Form1.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.HelperDialog.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout2.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout3.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Properties.Resources.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.GenerateResource.cache
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.AssemblyInfoInputs.cache
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.AssemblyInfo.cs
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.CoreCompileInputs.cache
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.CopyComplete
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\refint\ShowroomData.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.pdb
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.genruntimeconfig.cache
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ref\ShowroomData.dll
+=======
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\bin\Debug\net6.0-windows\ShowroomData.exe
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\bin\Debug\net6.0-windows\ShowroomData.deps.json
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\bin\Debug\net6.0-windows\ShowroomData.runtimeconfig.json
@@ -50,7 +102,19 @@ F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Helper
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.ListForm.resources
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.UpdateInfoForm.resources
 <<<<<<< HEAD
+<<<<<<< HEAD
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Layout3.resources
 =======
 >>>>>>> parent of 0c99da3 (Merge new code)
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.NotificationForm.resources
+=======
+F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.NotificationForm.resources
+<<<<<<< HEAD
+=======
+>>>>>>> e020f34365a44e1a81422df35eab77de67ca7273
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ListForm.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.UpdateInfoForm.resources
+>>>>>>> 6c5082edc9276bea21429382ae8133246ba6e0e1
+>>>>>>> 2e5b74af0c59b4f1022f9681bf78519d7ed5d775
+F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Layout3.resources
+>>>>>>> dc346e980c0e9cd0b150ab2dedd05bfdab739ec8

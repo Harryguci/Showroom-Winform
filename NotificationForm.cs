@@ -65,7 +65,11 @@ namespace ShowroomData
                 // 
                 // pictureBox1
                 // 
+<<<<<<< HEAD
                 // _pictureBox.Image = Properties.Resources.notification_icon;
+=======
+                _pictureBox.Image = Properties.Resources.notification_icon;
+>>>>>>> dc346e980c0e9cd0b150ab2dedd05bfdab739ec8
                 _pictureBox.Location = new Point(9, 9);
                 _pictureBox.Name = "pictureBox1";
                 _pictureBox.Size = new Size(44, 40);
