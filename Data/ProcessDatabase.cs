@@ -13,7 +13,8 @@ namespace ShowroomData
 {
     internal class ProcessDatabase
     {
-        private string connString = "Data Source=(Local);Initial Catalog=ShowroomAuto;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;User ID=sa;Password=123456";
+        //Data Source=LAPTOP-PG9M4REB\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True
+        private string connString = "Data Source=LAPTOP-PG9M4REB\\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;User ID=sa;Password=123";
         private SqlConnection conn;
 
         public ProcessDatabase()
@@ -59,8 +60,13 @@ namespace ShowroomData
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
+<<<<<<< HEAD
                 conn.Open();
                 using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+=======
+                connection.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
+>>>>>>> fb1a3db17375f003e63ccd3577eaaa215d683848
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
