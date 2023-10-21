@@ -101,10 +101,9 @@ F:\C-Sharp\BT_LON_LTTQ\ShowroomData\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.HelperDialog.resources
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.ListForm.resources
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.UpdateInfoForm.resources
-<<<<<<< HEAD
 F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.NotificationForm.resources
-=======
 >>>>>>> e020f34365a44e1a81422df35eab77de67ca7273
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ListForm.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.UpdateInfoForm.resources
 >>>>>>> 6c5082edc9276bea21429382ae8133246ba6e0e1
+F:\C-Sharp\BT_LON_LTTQ\ShowroomData\obj\Debug\net6.0-windows\ShowroomData.Layout3.resources

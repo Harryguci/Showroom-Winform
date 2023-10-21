@@ -110,14 +110,10 @@ namespace ShowroomData
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-<<<<<<< HEAD
-            #region SHOW LIST FORM
             ListForm employeeListForm = new ListForm(ListType: "employees");
             employeeListForm.Show();
-=======
                 Layout layout = new Layout();
                 layout.Show();
->>>>>>> 6c5082edc9276bea21429382ae8133246ba6e0e1
 
                 Hide(); // Hide the current Form.
 
