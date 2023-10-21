@@ -59,8 +59,8 @@ namespace ShowroomData
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
-                conn.Open();
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                connection.Open();
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
                 {
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);

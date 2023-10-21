@@ -10,14 +10,14 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
         private string listType = "employees";
-
-        public ListForm(string _listType = "employees")
+        private NotificationForm? notificationForm;
+        public ListForm(string ListType = "employees")
         {
             InitializeComponent();
             HandleGUI();
 
 
-            listType = _listType;
+            listType = ListType;
             //
             // [Add Form events]b
             //
@@ -56,6 +56,8 @@ namespace ShowroomData
             lblHeadingPage.Text = "Danh sách nhân viên";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                 lblHeadingPage.Location.Y);
+
+            Refresh();
         }
 
         public void RefeshData()
@@ -225,7 +227,7 @@ namespace ShowroomData
                     StartDate = (DateTime?)selected[6].Value,
                     Salary = Convert.ToInt32(selected[7].Value),
                     Email = (string)selected[8].Value,
-                    SaleId = (string)selected[9].Value,
+                    SaleId = selected[9].Value != null ? (string)selected[9].Value : "",
                 };
 #pragma warning restore CS8604 // Possible null reference argument.
 
@@ -235,6 +237,70 @@ namespace ShowroomData
             else if (listType == ListType.PRODUCTS)
             {
 
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // Show Notification Dialog
+            Point p = ((Button)sender).Location;
+            p = new Point(p.X - 20, p.Y + 50);
+            notificationForm = new NotificationForm(location: p);
+            notificationForm.Show();
+        }
+
+        private void ListForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (notificationForm != null) notificationForm.Close();
+        }
+
+        private void ListForm_Click(object sender, EventArgs e)
+        {
+            if (notificationForm != null) notificationForm.Close();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            HelperDialog helperDialog = HelperDialog.Create("DASHBOARD", "Show the dashboard");
+
+            helperDialog.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dt.SelectedRows.Count <= 0) return;
+            
+            if (listType == ListType.EMPLOYEES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+                if (selected == null) return;
+#pragma warning disable CS8604 // Possible null reference argument.
+                Employee employee = new Employee(
+                    employeeId: selected[0].Value != null ? selected[0].Value.ToString() : "",
+                    firstname: selected[1].Value != null ? selected[1].Value.ToString() : "",
+                    lastname: selected[2].Value != null ? selected[2].Value.ToString() : ""
+                )
+                {
+                    DateBirth = selected[3].Value != null ? (DateTime?)selected[3].Value : null,
+                    Cccd = selected[4].Value != null ? (string?)selected[4].Value : "",
+                    Position = selected[5].Value != null ? (string?)selected[5].Value : "",
+                    StartDate = selected[6].Value != null ? (DateTime?)selected[6].Value : null,
+                    Salary = selected[7].Value != null ? Convert.ToInt32(selected[7].Value) : 0,
+                    Email = selected[8].Value != null ? (string?)selected[8].Value : "",
+                    SaleId = selected[9].Value != null ? (string?)selected[9].Value : "",
+                };
+#pragma warning restore CS8604 // Possible null reference argument.
+
+                if (MessageBox.Show($"Bạn có chắc muốn xóa nhân viên {employee.Firstname} {employee.Lastname}, " +
+                    $"Mã nhân viên: {employee.EmployeeId}?", 
+                    "Thông báo", MessageBoxButtons.YesNo)
+                == DialogResult.No) return;
+
+                processDb.Run($"Delete From Employees where EmployeeId = N'{employee.EmployeeId}'");
+            }
+            else if (listType == ListType.PRODUCTS)
+            {
+                // TODO
             }
         }
     }

@@ -105,7 +105,7 @@ namespace ShowroomData
             #endregion
 
             #region SHOW LIST FORM
-            ListForm employeeListForm = new ListForm(_listType: "employees");
+            ListForm employeeListForm = new ListForm(ListType: "employees");
             employeeListForm.Show();
 
             Hide(); // Hide the current Form.
