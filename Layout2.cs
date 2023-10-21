@@ -25,6 +25,7 @@ namespace ShowroomData
 
         public void HandleGUI()
         {
+            FormBorderStyle = FormBorderStyle.None;
             //
         }
 
@@ -46,6 +47,7 @@ namespace ShowroomData
             pictureBox1.Location = new Point((panel2.Width - pictureBox1.Width) / 2, pictureBox1.Location.Y);
         }
 
+        #region Handle Dragging the from
         //
         // [Handle Dragging the Form]
         //
@@ -66,11 +68,12 @@ namespace ShowroomData
             }
         }
 
+        #endregion
+
         private void Layout2_Load(object sender, EventArgs e)
         {
             try
             {
-
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 string json = File.ReadAllText(Path.Combine(
                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName,

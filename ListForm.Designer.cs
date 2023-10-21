@@ -1,6 +1,6 @@
 ﻿namespace ShowroomData
 {
-    partial class Layout
+    partial class ListForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,10 +31,10 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnRefresh = new Button();
+            btnCreate = new Button();
+            btnUpdateInfo = new Button();
+            btnDelete = new Button();
             panel1 = new Panel();
             lblHeadingPage = new Label();
             panelContent = new Panel();
@@ -48,10 +48,10 @@
             // 
             flowLayoutPanel1.BackColor = Color.MidnightBlue;
             flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.Controls.Add(button1);
-            flowLayoutPanel1.Controls.Add(button2);
-            flowLayoutPanel1.Controls.Add(button3);
-            flowLayoutPanel1.Controls.Add(button4);
+            flowLayoutPanel1.Controls.Add(btnRefresh);
+            flowLayoutPanel1.Controls.Add(btnCreate);
+            flowLayoutPanel1.Controls.Add(btnUpdateInfo);
+            flowLayoutPanel1.Controls.Add(btnDelete);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -77,67 +77,70 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnRefresh
             // 
-            button1.BackColor = Color.FromArgb(50, 50, 150);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 128);
-            button1.Margin = new Padding(0, 0, 0, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 51);
-            button1.TabIndex = 2;
-            button1.Text = "Làm mới";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnRefresh.BackColor = Color.FromArgb(50, 50, 150);
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(0, 128);
+            btnRefresh.Margin = new Padding(0, 0, 0, 30);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(136, 51);
+            btnRefresh.TabIndex = 2;
+            btnRefresh.Text = "Làm mới";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += button1_Click;
             // 
-            // button2
+            // btnCreate
             // 
-            button2.BackColor = Color.FromArgb(50, 50, 150);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 209);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Size = new Size(136, 51);
-            button2.TabIndex = 3;
-            button2.Text = "Tạo mới";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += createBtn_Click;
+            btnCreate.BackColor = Color.FromArgb(50, 50, 150);
+            btnCreate.FlatAppearance.BorderSize = 0;
+            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.ForeColor = Color.White;
+            btnCreate.Location = new Point(0, 209);
+            btnCreate.Margin = new Padding(0);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(136, 51);
+            btnCreate.TabIndex = 3;
+            btnCreate.Text = "Tạo mới";
+            btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += createBtn_Click;
             // 
-            // button3
+            // btnUpdateInfo
             // 
-            button3.BackColor = Color.FromArgb(50, 50, 150);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 260);
-            button3.Margin = new Padding(0);
-            button3.Name = "button3";
-            button3.Size = new Size(136, 51);
-            button3.TabIndex = 4;
-            button3.Text = "Sửa";
-            button3.UseVisualStyleBackColor = true;
+            btnUpdateInfo.BackColor = Color.FromArgb(50, 50, 100);
+            btnUpdateInfo.Enabled = false;
+            btnUpdateInfo.FlatAppearance.BorderSize = 0;
+            btnUpdateInfo.FlatStyle = FlatStyle.Flat;
+            btnUpdateInfo.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnUpdateInfo.ForeColor = Color.White;
+            btnUpdateInfo.Location = new Point(0, 260);
+            btnUpdateInfo.Margin = new Padding(0);
+            btnUpdateInfo.Name = "btnUpdateInfo";
+            btnUpdateInfo.Size = new Size(136, 51);
+            btnUpdateInfo.TabIndex = 4;
+            btnUpdateInfo.Text = "Sửa";
+            btnUpdateInfo.UseVisualStyleBackColor = false;
+            btnUpdateInfo.Click += updateInfoBtn_Click;
             // 
-            // button4
+            // btnDelete
             // 
-            button4.BackColor = Color.FromArgb(50, 50, 150);
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 311);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Size = new Size(136, 51);
-            button4.TabIndex = 5;
-            button4.Text = "Xóa";
-            button4.UseVisualStyleBackColor = true;
+            btnDelete.BackColor = Color.FromArgb(50, 50, 100);
+            btnDelete.Enabled = false;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.ForeColor = Color.White;
+            btnDelete.Location = new Point(0, 311);
+            btnDelete.Margin = new Padding(0);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(136, 51);
+            btnDelete.TabIndex = 5;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -167,7 +170,7 @@
             panelContent.Size = new Size(964, 444);
             panelContent.TabIndex = 2;
             // 
-            // Layout
+            // ListForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -176,7 +179,7 @@
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "Layout";
+            Name = "ListForm";
             Text = "Showroom - Management System";
             FormClosing += Layout_FormClosing;
             FormClosed += Layout_FormClosed;
@@ -196,10 +199,10 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnRefresh;
+        private Button btnCreate;
+        private Button btnUpdateInfo;
+        private Button btnDelete;
         private Label lblHeadingPage;
         private Panel panelContent;
     }

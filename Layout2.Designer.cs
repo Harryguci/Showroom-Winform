@@ -150,6 +150,7 @@
             // 
             panel2.BackColor = Color.MidnightBlue;
             panel2.Controls.Add(pictureBox1);
+        
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
