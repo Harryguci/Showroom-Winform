@@ -1,6 +1,6 @@
 ﻿namespace ShowroomData
 {
-    partial class CreateEmployeeForm
+    partial class UpdateInfoForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -49,7 +49,7 @@
             label5 = new Label();
             birthDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
-            comboBox1 = new ComboBox();
+            cbPosition = new ComboBox();
             label10 = new Label();
             label9 = new Label();
             grbGender = new GroupBox();
@@ -146,6 +146,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(928, 100);
             panel1.TabIndex = 100;
+            panel1.Paint += panel1_Paint;
             panel1.MouseDown += Form_MouseDown;
             // 
             // flowLayoutPanel2
@@ -157,7 +158,7 @@
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(928, 33);
-            flowLayoutPanel2.TabIndex = 102;
+            flowLayoutPanel2.TabIndex = 101;
             flowLayoutPanel2.MouseDown += Form_MouseDown;
             // 
             // button1
@@ -192,11 +193,11 @@
             // 
             lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Roboto", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(355, 57);
+            lblHeading.Location = new Point(316, 53);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(236, 33);
+            lblHeading.Size = new Size(300, 33);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Tạo mới nhân viên";
+            lblHeading.Text = "Sửa thông tin nhân viên";
             // 
             // label1
             // 
@@ -283,7 +284,7 @@
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel3.Controls.Add(comboBox1);
+            panel3.Controls.Add(cbPosition);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(grbGender);
@@ -310,14 +311,14 @@
             panel3.Size = new Size(634, 512);
             panel3.TabIndex = 100;
             // 
-            // comboBox1
+            // cbPosition
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "NV bán hàng", "NV bảo trì", "NV phục vụ", "Quản lý" });
-            comboBox1.Location = new Point(423, 370);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(178, 27);
-            comboBox1.TabIndex = 12;
+            cbPosition.FormattingEnabled = true;
+            cbPosition.Items.AddRange(new object[] { "NV bán hàng", "NV bảo trì", "NV phục vụ", "Quản lý" });
+            cbPosition.Location = new Point(423, 370);
+            cbPosition.Name = "cbPosition";
+            cbPosition.Size = new Size(178, 27);
+            cbPosition.TabIndex = 12;
             // 
             // label10
             // 
@@ -398,7 +399,7 @@
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
             btnCreate.TabIndex = 5;
-            btnCreate.Text = "Tạo";
+            btnCreate.Text = "Lưu";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += createBtn_Click;
             // 
@@ -453,7 +454,7 @@
             label6.TabIndex = 2;
             label6.Text = "CCCD";
             // 
-            // CreateEmployeeForm
+            // UpdateInfoForm
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -462,7 +463,7 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "CreateEmployeeForm";
+            Name = "UpdateInfoForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a employee";
             Load += CreateEmployeeForm_Load;
@@ -513,7 +514,7 @@
         private TextBox txtEmail;
         private Label label9;
         private Label label10;
-        private ComboBox comboBox1;
+        private ComboBox cbPosition;
         private Button helpBtn;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;

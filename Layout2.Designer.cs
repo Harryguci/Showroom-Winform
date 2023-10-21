@@ -30,6 +30,7 @@
         {
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            checkBox1 = new CheckBox();
             textBox2 = new TextBox();
             label1 = new Label();
             textBox1 = new TextBox();
@@ -37,7 +38,7 @@
             label2 = new Label();
             button1 = new Button();
             panel2 = new Panel();
-            checkBox1 = new CheckBox();
+            btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -66,6 +67,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(444, 392);
             panel1.TabIndex = 8;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(56, 206);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(154, 23);
+            checkBox1.TabIndex = 10;
+            checkBox1.Text = "Ghi nhớ mật khẩu";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -137,21 +148,28 @@
             // 
             panel2.BackColor = Color.MidnightBlue;
             panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(btnClose);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(444, 117);
             panel2.TabIndex = 9;
             // 
-            // checkBox1
+            // btnClose
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(56, 206);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(154, 23);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Ghi nhớ mật khẩu";
-            checkBox1.UseVisualStyleBackColor = true;
+            btnClose.BackColor = Color.MidnightBlue;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(393, 9);
+            btnClose.Margin = new Padding(0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(42, 29);
+            btnClose.TabIndex = 3;
+            btnClose.Text = "X";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // Layout2
             // 
@@ -185,5 +203,6 @@
         public Button button1;
         private Panel panel2;
         private CheckBox checkBox1;
+        public Button btnClose;
     }
 }

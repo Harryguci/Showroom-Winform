@@ -1,44 +1,41 @@
-﻿using ShowroomData.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ShowroomData.Models;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ShowroomData
 {
-    public partial class CreateEmployeeForm : Form
+    public partial class UpdateInfoForm : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
 
         // Constructor
-        public CreateEmployeeForm(Form? _parent)
+        public UpdateInfoForm(Employee employee, Form? _parent)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
-            //if (_parent != null && _parent.GetType() == typeof(Layout))
-            //    parent = (Layout?)_parent;
-
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
-
-
             //
             // Enable resizing form size (without border)
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
-            comboBox1.Text = "--- Chọn ---";
+            cbPosition.Text = "--- Chọn ---";
+
+            //
+            // Fill the data of the employee which you want to change info.
+            //
+            txtId.Text = employee.EmployeeId;
+            txtFirstname.Text = employee.Firstname;
+            txtLastname.Text = employee.Lastname;
+            txtCCCD.Text = employee.Cccd;
+            txtSalary.Text = employee.Salary.ToString();
+            birthDateTimePicker.Value = employee.DateBirth != null ? employee.DateBirth.Value : DateTime.Now;
+            txtEmail.Text = employee.Email;
+            cbPosition.Text = employee.Position;
         }
 
-        #region Handle Form Dragging
+        #region HANDLE FORM DRAGGING
 
         //
         // [Handle Dragging the Form]
@@ -82,11 +79,7 @@ namespace ShowroomData
 
         private void btnClean_Click(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone };
-            for (int i = 0; i < textBoxes.Length; i++)
-                textBoxes[i].Text = string.Empty;
-
-            txtId.Text = AutoCreateId();
+            // TODO: reset values
         }
 
         private void createBtn_Click(object sender, EventArgs e)
@@ -105,7 +98,7 @@ namespace ShowroomData
                 birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
                 salary = Convert.ToInt32(txtSalary.Text.Trim()),
-                position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
+                position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim()
             };
@@ -120,15 +113,12 @@ namespace ShowroomData
 
             // Earse current data
             CleanForm();
-
-            // Refresh Data
-            if (parent == null) return;
-            parent.RefeshData();
-            parent.Refresh();
         }
 
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
-            => txtId.Text = AutoCreateId();
+        {
+            // ToDo
+        }
 
         //
         // [Helper Methods]
@@ -140,7 +130,7 @@ namespace ShowroomData
                 lastName = txtLastname.Text.Trim(),
                 firstName = txtFirstname.Text.Trim(),
                 sdt = txtPhone.Text.Trim(),
-                position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
+                position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
             };
 
 
@@ -162,37 +152,18 @@ namespace ShowroomData
 
             return true;
         }
-        private string AutoCreateId()
-        {
-            DataTable tb = processDb.GetData("Select Top 1 EmployeeId From Employees Order By EmployeeId DESC");
-            string? id = tb.Rows[0]["EmployeeId"].ToString();
-
-            if (id != null)
-            {
-                int count = Convert.ToInt32(id.Substring(1, id.Length - 1));
-                id = Convert.ToString(count + 1);
-
-                while (id.Length < 3) id = "0" + id;
-                id = "e" + id;
-            }
-            else
-            {
-                id = "E001";
-            }
-            return id;
-        }
         private void CleanForm()
         {
-            // Earse current data
-            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone, txtCCCD, txtEmail, txtSalary };
-            for (int i = 0; i < textBoxes.Length; i++)
-                textBoxes[i].Text = string.Empty;
+            // // Earse current data
+            // System.Windows.Forms.TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone, txtCCCD, txtEmail, txtSalary };
+            // for (int i = 0; i < textBoxes.Length; i++)
+            //     textBoxes[i].Text = string.Empty;
 
-            txtId.Text = AutoCreateId();
+            //// txtId.Text = AutoCreateId();
 
-            comboBox1.Text = "--- Chọn ----";
-            birthDateTimePicker.Value = DateTime.Now;
-            rdbFemale.Checked = rdbMale.Checked = false;
+            // cbPosition.Text = "--- Chọn ----";
+            // birthDateTimePicker.Value = DateTime.Now;
+            // rdbFemale.Checked = rdbMale.Checked = false;
 
         }
 
@@ -206,15 +177,20 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo",
-                MessageBoxButtons.YesNo) == DialogResult.Yes) Close();
+            if (MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
+                == DialogResult.Yes) Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }
