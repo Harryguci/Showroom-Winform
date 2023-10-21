@@ -95,23 +95,52 @@ namespace ShowroomData
 
         private void button4_Click(object sender, EventArgs e)
         {
-            #region SHOW LIST LAYOUT
-            //Layout layout = new Layout();
-            //layout.Show();
+            string username = textBox1.Text;
+            string password = textBox2.Text;
 
-            //Hide(); // Hide the current Form.
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập và mật khẩu.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            //layout.FormClosed += (s, args) => Close();
-            #endregion
+            if (Authenticate(username, password))
+            {
+                MessageBox.Show("Đăng nhập thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+<<<<<<< HEAD
             #region SHOW LIST FORM
             ListForm employeeListForm = new ListForm(ListType: "employees");
             employeeListForm.Show();
+=======
+                Layout layout = new Layout();
+                layout.Show();
+>>>>>>> 6c5082edc9276bea21429382ae8133246ba6e0e1
 
-            Hide(); // Hide the current Form.
+                Hide(); // Hide the current Form.
 
-            employeeListForm.FormClosed += (s, args) => Close();
-            #endregion
+                layout.FormClosed += (s, args) => Close();
+            }
+            else
+            {
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác.", "Thông báo", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private bool Authenticate(string username, string password)
+        {
+            string validUsername = "admin";
+            string validPassword = "123456";
+
+            if (username == validUsername && password == validPassword)
+            {
+                return true; 
+            }
+
+            return false;
         }
 
         private void RememberLoginInfo()
@@ -145,9 +174,14 @@ namespace ShowroomData
             RememberLoginInfo();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Close();
+            Layout3 layout3 = new Layout3();
+            layout3.Show();
+
+            Hide();
+
+            layout3.FormClosed += (s, args) => Close();
         }
     }
 }
