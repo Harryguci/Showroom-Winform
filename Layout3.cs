@@ -1,19 +1,12 @@
-<<<<<<< HEAD
 ﻿using Microsoft.Data.SqlClient;
 using System;
-=======
-﻿using System;
->>>>>>> origin/login
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-<<<<<<< HEAD
 using System.Text.RegularExpressions;
-=======
->>>>>>> origin/login
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,15 +14,11 @@ namespace ShowroomData
 {
     public partial class Layout3 : Form
     {
-<<<<<<< HEAD
         private ProcessDatabase processDb = new ProcessDatabase();
-=======
->>>>>>> origin/login
         public Layout3()
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -75,7 +64,5 @@ namespace ShowroomData
                 return;
             }
         }
-=======
->>>>>>> origin/login
     }
 }
