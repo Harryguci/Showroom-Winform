@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
@@ -17,6 +18,7 @@ namespace ShowroomData
 {
     public partial class Layout2 : Form
     {
+        private ProcessDatabase _ProcessDatabase = new ProcessDatabase();
         public Layout2()
         {
             InitializeComponent();
@@ -96,6 +98,21 @@ namespace ShowroomData
         private void button4_Click(object sender, EventArgs e)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            string username= "john_doe2";
+            string password= "password1";
+
+            //string username = textBox1.Text;
+            //string password = textBox2.Text;
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Tên đăng nhập và mật khẩu không được để trống.");
+                return;
+            }
+          
+
+>>>>>>> origin/login
             #region SHOW LIST LAYOUT
             //Layout layout = new Layout();
             //layout.Show();
@@ -104,7 +121,9 @@ namespace ShowroomData
 
             //layout.FormClosed += (s, args) => Close();
             #endregion
+            // check login 
 
+<<<<<<< HEAD
             #region SHOW LIST FORM
             ListForm employeeListForm = new ListForm(_listType: "employees");
             employeeListForm.Show();
@@ -157,8 +176,45 @@ namespace ShowroomData
 
             return false;
 >>>>>>> fb1a3db17375f003e63ccd3577eaaa215d683848
-        }
+=======
 
+            if (CheckLogin(username, password))
+            {
+                #region SHOW LIST FORM
+                ListForm employeeListForm = new ListForm(_listType: "employees");
+                employeeListForm.Show();
+
+                Hide(); // Hide the current Form.
+
+                employeeListForm.FormClosed += (s, args) => Close();
+                #endregion
+            }
+            else
+            {
+                MessageBox.Show("Thong tin tai khoan mat khau khong chinh xac!!!", "Thong bao!!!", MessageBoxButtons.OK);
+            }
+
+>>>>>>> origin/login
+        }
+        private bool CheckLogin(string username, string password)
+        {
+            string query = "SELECT * FROM Login_check('" + username + "','" + password + "')";
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = _ProcessDatabase.GetData(query);
+                if (dt.Rows.Count > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", MessageBoxButtons.OK);
+                throw;
+            }
+            return false;
+        }
         private void RememberLoginInfo()
         {
             if (checkBox1.Checked)
@@ -204,6 +260,27 @@ namespace ShowroomData
 
             layout3.FormClosed += (s, args) => Close();
 >>>>>>> fb1a3db17375f003e63ccd3577eaaa215d683848
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '_' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '_' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

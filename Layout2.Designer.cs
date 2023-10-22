@@ -78,10 +78,14 @@
             checkBox1.Location = new Point(56, 206);
             checkBox1.Name = "checkBox1";
 <<<<<<< HEAD
+<<<<<<< HEAD
             checkBox1.Size = new Size(154, 23);
 =======
             checkBox1.Size = new Size(224, 33);
 >>>>>>> fb1a3db17375f003e63ccd3577eaaa215d683848
+=======
+            checkBox1.Size = new Size(154, 24);
+>>>>>>> origin/login
             checkBox1.TabIndex = 10;
             checkBox1.Text = "Ghi nhớ mật khẩu";
             checkBox1.UseVisualStyleBackColor = true;
@@ -92,16 +96,25 @@
             textBox2.ImeMode = ImeMode.NoControl;
             textBox2.Location = new Point(201, 150);
             textBox2.Name = "textBox2";
+<<<<<<< HEAD
             textBox2.PasswordChar = '*';
             textBox2.Size = new Size(196, 35);
+=======
+            textBox2.Size = new Size(196, 26);
+>>>>>>> origin/login
             textBox2.TabIndex = 1;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(56, 108);
             label1.Name = "label1";
+<<<<<<< HEAD
             label1.Size = new Size(175, 29);
+=======
+            label1.Size = new Size(116, 20);
+>>>>>>> origin/login
             label1.TabIndex = 10;
             label1.Text = "Tên đăng nhập";
             // 
@@ -110,8 +123,13 @@
             textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.Location = new Point(201, 105);
             textBox1.Name = "textBox1";
+<<<<<<< HEAD
             textBox1.Size = new Size(196, 35);
+=======
+            textBox1.Size = new Size(196, 26);
+>>>>>>> origin/login
             textBox1.TabIndex = 0;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // button4
             // 
@@ -134,7 +152,11 @@
             label2.AutoSize = true;
             label2.Location = new Point(56, 152);
             label2.Name = "label2";
+<<<<<<< HEAD
             label2.Size = new Size(109, 29);
+=======
+            label2.Size = new Size(75, 20);
+>>>>>>> origin/login
             label2.TabIndex = 11;
             label2.Text = "Mật khẩu";
             // 
@@ -175,7 +197,7 @@
             btnClose.BackColor = Color.MidnightBlue;
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClose.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClose.ForeColor = Color.White;
             btnClose.Location = new Point(393, 9);
             btnClose.Margin = new Padding(0);
@@ -194,7 +216,11 @@
             // 
             // Layout2
             // 
+<<<<<<< HEAD
             AutoScaleDimensions = new SizeF(14F, 29F);
+=======
+            AutoScaleDimensions = new SizeF(9F, 20F);
+>>>>>>> origin/login
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(444, 513);
             Controls.Add(panel2);

@@ -13,8 +13,13 @@ namespace ShowroomData
 {
     internal class ProcessDatabase
     {
+<<<<<<< HEAD
         //Data Source=LAPTOP-PG9M4REB\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True
         private string connString = "Data Source=LAPTOP-PG9M4REB\\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;User ID=sa;Password=123";
+=======
+        //Data Source=LAPTOP-PG9M4REB\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True;User ID=sa;Encrypt=True;Trust Server Certificate=True
+        private string connString = "Data Source=LAPTOP-PG9M4REB\\SQLEXPRESS;Initial Catalog=ShowroomAuto;Integrated Security=True;User ID=sa;Password=123;Encrypt=True;Trust Server Certificate=True";
+>>>>>>> origin/login
         private SqlConnection conn;
 
         public ProcessDatabase()
