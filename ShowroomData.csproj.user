@@ -19,6 +19,9 @@
     <Compile Update="Layout2.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Layout3.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ListForm.cs">
       <SubType>Form</SubType>
     </Compile>

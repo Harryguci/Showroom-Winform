@@ -73,7 +73,7 @@
             checkBox1.AutoSize = true;
             checkBox1.Location = new Point(56, 206);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(154, 23);
+            checkBox1.Size = new Size(154, 24);
             checkBox1.TabIndex = 10;
             checkBox1.Text = "Ghi nhớ mật khẩu";
             checkBox1.UseVisualStyleBackColor = true;
@@ -84,15 +84,16 @@
             textBox2.ImeMode = ImeMode.NoControl;
             textBox2.Location = new Point(201, 150);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(196, 27);
+            textBox2.Size = new Size(196, 26);
             textBox2.TabIndex = 1;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(56, 108);
             label1.Name = "label1";
-            label1.Size = new Size(116, 19);
+            label1.Size = new Size(116, 20);
             label1.TabIndex = 10;
             label1.Text = "Tên đăng nhập";
             // 
@@ -101,15 +102,16 @@
             textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.Location = new Point(201, 105);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(196, 27);
+            textBox1.Size = new Size(196, 26);
             textBox1.TabIndex = 0;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // button4
             // 
             button4.BackColor = Color.FromArgb(50, 50, 150);
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
             button4.Location = new Point(56, 250);
             button4.Margin = new Padding(0);
@@ -125,7 +127,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(56, 152);
             label2.Name = "label2";
-            label2.Size = new Size(76, 19);
+            label2.Size = new Size(75, 20);
             label2.TabIndex = 11;
             label2.Text = "Mật khẩu";
             // 
@@ -134,7 +136,7 @@
             button1.BackColor = Color.Snow;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.HotTrack;
             button1.Location = new Point(282, 250);
             button1.Margin = new Padding(0);
@@ -143,6 +145,7 @@
             button1.TabIndex = 3;
             button1.Text = "Đăng ký";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panel2
             // 
@@ -160,7 +163,7 @@
             btnClose.BackColor = Color.MidnightBlue;
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClose.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClose.ForeColor = Color.White;
             btnClose.Location = new Point(393, 9);
             btnClose.Margin = new Padding(0);
@@ -173,12 +176,12 @@
             // 
             // Layout2
             // 
-            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(444, 513);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Layout2";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Management System";

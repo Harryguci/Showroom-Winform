@@ -132,7 +132,7 @@ namespace ShowroomData
                 new ColumnObject
                 {
                     Name = "Họ",
-                    Width = 200
+                    Width = 100
                 },
                 new ColumnObject
                 {
@@ -143,6 +143,11 @@ namespace ShowroomData
                 {
                     Name = "Ngày sinh",
                     Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "Giới tính",
+                    Width = 50
                 },
                 new ColumnObject
                 {
@@ -167,6 +172,10 @@ namespace ShowroomData
                 new ColumnObject
                 {
                     Name = "Email",
+                    Width = 100
+                },new ColumnObject
+                {
+                    Name = "SaleId",
                     Width = 100
                 }
             };
