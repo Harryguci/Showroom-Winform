@@ -86,8 +86,12 @@ D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomDat
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.HelperDialog.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout2.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Layout3.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ListForm.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Properties.Resources.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.PurchaseInvoice.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.SaleInvoice.resources
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Schedule.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.UpdateInfoForm.resources
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.GenerateResource.cache
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.GeneratedMSBuildEditorConfig.editorconfig
@@ -100,3 +104,4 @@ D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\refint\Show
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.pdb
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.genruntimeconfig.cache
 D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ref\ShowroomData.dll
+D:\Kì I - Năm 3\LTTQ\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Source.resources

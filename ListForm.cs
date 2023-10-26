@@ -1,5 +1,6 @@
 ﻿using ShowroomData.Models;
 using ShowroomData.Util;
+using ShowroomManagement.Models;
 using System.Data;
 using System.Diagnostics;
 
@@ -9,15 +10,16 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
-        private string listType = "employees";
+        private string listType = "products";
 
         public ListForm(string _listType = "employees")
         {
             InitializeComponent();
+            listType = _listType;
             HandleGUI();
 
 
-            listType = _listType;
+            
             //
             // [Add Form events]b
             //
@@ -52,8 +54,48 @@ namespace ShowroomData
             WindowState = FormWindowState.Maximized;
             Location = new Point(0, 0);
             Size = Screen.PrimaryScreen.WorkingArea.Size;
-
-            lblHeadingPage.Text = "Danh sách nhân viên";
+            string title = "";
+            if (listType == "employees")
+            {
+                title = "nhân viên";
+            } else if (listType == "products")
+            {
+                title = "sản phẩm";
+            }
+            else if (listType == "customers")
+            {
+                title = "khách hàng";
+            }
+            else if (listType == "purchaseinvoice")
+            {
+                title = "hóa đơn mua";
+            }
+            else if (listType == "salesinvoice")
+            {
+                title = "hóa đơn bán";
+            }
+            else if (listType == "salestargets")
+            {
+                title = "KPI tháng";
+            }
+            else if (listType == "devices")
+            {
+                title = "thiết bị";
+            }
+            else if (listType == "testdrive")
+            {
+                title = "chạy thử xe";
+            }
+            else if (listType == "source")
+            {
+                title = "nhà cung cấp";
+            }
+            else
+            {
+                title = "tài khoản nội bộ";
+            }
+            
+            lblHeadingPage.Text = $"Danh sách {title}";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                 lblHeadingPage.Location.Y);
         }
@@ -127,18 +169,70 @@ namespace ShowroomData
             string query = "";
             string table = string.Empty;
             ColumnObject[] colFormat;
-
+            #region COLUMOBJ
             if (listType == ListType.EMPLOYEES)
             {
                 table = TableName.EMPLOYEES;
                 //Định dạng dataGrid
                 colFormat = ColumnObject.EMPLOYEES_COLS;
             }
-            else
+            else if (listType == ListType.PRODUCTS)
             {
+                table = TableName.PRODUCTS;
+                //Định dạng dataGrid
                 colFormat = ColumnObject.PRODUCT_COLS;
             }
+            else if (listType == ListType.CUSTOMERS)
+            {
+                table = TableName.CUSTOMERS;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.CUSTOMERS_COLS;
+            }
+            else if (listType == ListType.PURCHASEINVOICES)
+            {
+                table = TableName.PURCHASEINVOICES;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.PURCHASEINVOICES_COLS;
+            }
+            else if (listType == ListType.SALEINVOICES)
+            {
+                table = TableName.SALEINVOICES;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.SALEINVOICES_COLS;
+            }
+            else if (listType == ListType.SALESTARGETS)
+            {
+                table = TableName.SALESTARGETS;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.SALETARGETS_COLS;
+            }
+            else if (listType == ListType.DEVICES)
+            {
+                table = TableName.DEVICES;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.DEVICES_COLS;
+            }
+            else if (listType == ListType.TESTDRIVE)
+            {
+                table = TableName.TESTDRIVE;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.TESTDRIVE_COLS;
+            }
+            else if (listType == ListType.ACCOUNT)
+            {
+                table = TableName.ACCOUNT;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.ACCOUNT_COLS;
+            }
+            else
+            {
+                table = TableName.SOURCE;
+                //Định dạng dataGrid
+                colFormat = ColumnObject.SOURCE_COLS;
+            } 
+            
 
+            #endregion
             if (type == "all")
             {
                 query = $"select Top {limits} * from {table}";
@@ -213,12 +307,11 @@ namespace ShowroomData
                 var selected = dt.SelectedRows[0].Cells;
 
 #pragma warning disable CS8604 // Possible null reference argument.
-                Employee employee = new Employee(
-                    employeeId: selected[0].Value.ToString(),
-                    firstname: selected[1].Value.ToString(),
-                    lastname: selected[2].Value.ToString()
-                )
+                Employee employee = new Employee()
                 {
+                    EmployeeId= selected[0].Value.ToString(),
+                    Firstname= selected[1].Value.ToString(),
+                    Lastname= selected[2].Value.ToString(),
                     DateBirth = (DateTime?)selected[3].Value,
                     Cccd = (string)selected[4].Value,
                     Position = (string?)selected[5].Value,
@@ -226,15 +319,32 @@ namespace ShowroomData
                     Salary = Convert.ToInt32(selected[7].Value),
                     Email = (string)selected[8].Value,
                     SaleId = (string)selected[9].Value,
+                    Deleted = (bool?)selected[10].Value
                 };
 #pragma warning restore CS8604 // Possible null reference argument.
 
                 UpdateInfoForm updateInfoForm = new UpdateInfoForm(employee, this);
                 updateInfoForm.Show();
             }
-            else if (listType == ListType.PRODUCTS)
+            else if (listType == ListType.CUSTOMERS)
             {
+                var selected = dt.SelectedRows[0].Cells;
 
+                Customer customer = new Customer()
+                {
+                    ClientId = selected[0].Value.ToString(),
+                    Firstname = selected[1].Value.ToString(),
+                    Lastname = selected[2].Value.ToString(),
+                    DateBirth = (DateTime?)selected[3].Value,
+                    Gender = (bool)selected[4].Value,
+                    Cccd = (string)selected[5].Value,
+                    Email = (string)selected[6].Value,
+                    Address = (string)selected[7].Value,
+                    Deleted = (bool)selected[8].Value
+                };
+
+               /* UpdateInfoForm updateInfoForm = new UpdateInfoForm(customer, this);
+                updateInfoForm.Show();*/
             }
         }
     }
