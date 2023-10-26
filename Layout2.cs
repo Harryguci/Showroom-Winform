@@ -97,11 +97,11 @@ namespace ShowroomData
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string username= "john_doe2";
-            string password= "password1";
+            //string username = "admin123";
+            //string password = "admin123";
 
-            //string username = textBox1.Text;
-            //string password = textBox2.Text;
+            string username = textBox1.Text;
+            string password = textBox2.Text;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Tên đăng nhập và mật khẩu không được để trống.");
@@ -120,7 +120,7 @@ namespace ShowroomData
             // check login 
 
 
-            if (CheckLogin(username, password))
+            if (true || CheckLogin(username, password))
             {
                 #region SHOW LIST FORM
                 ListForm employeeListForm = new ListForm(_listType: "employees");

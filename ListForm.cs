@@ -225,7 +225,7 @@ namespace ShowroomData
                     StartDate = (DateTime?)selected[6].Value,
                     Salary = Convert.ToInt32(selected[7].Value),
                     Email = (string)selected[8].Value,
-                    SaleId = (string)selected[9].Value,
+                    SaleId = (string)selected[9].Value
                 };
 #pragma warning restore CS8604 // Possible null reference argument.
 

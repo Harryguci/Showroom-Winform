@@ -24,6 +24,7 @@ namespace ShowroomData.Models
         public string? Position { get; set; }
         public DateTime? StartDate { get; set; }
         public int? Salary { get; set; }
+        public bool Gender { get; set; }
         public string? Email { get; set; }
         public string? SaleId { get; set; }
     }
