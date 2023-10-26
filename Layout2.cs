@@ -97,11 +97,9 @@ namespace ShowroomData
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //string username = "admin123";
-            //string password = "admin123";
-
             string username = textBox1.Text;
             string password = textBox2.Text;
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Tên đăng nhập và mật khẩu không được để trống.");
@@ -123,12 +121,10 @@ namespace ShowroomData
             if (true || CheckLogin(username, password))
             {
                 #region SHOW LIST FORM
-                ListForm employeeListForm = new ListForm(_listType: "employees");
-                employeeListForm.Show();
-
+                ListForm form = new ListForm("source");
+                form.Show();
                 Hide(); // Hide the current Form.
-
-                employeeListForm.FormClosed += (s, args) => Close();
+                form.FormClosed += (s, args) => Close();
                 #endregion
             }
             else
@@ -210,7 +206,12 @@ namespace ShowroomData
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Layout3 layout3 = new Layout3();
+            layout3.Show();
 
+            Hide();
+
+            layout3.FormClosed += (s, args) => Close();
         }
     }
 }

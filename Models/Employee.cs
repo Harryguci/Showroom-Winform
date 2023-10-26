@@ -10,11 +10,9 @@ namespace ShowroomData.Models
     {
         public string EmployeeId { get; set; }
 
-        public Employee(string employeeId, string firstname, string lastname)
+        public Employee()
         {
-            EmployeeId = employeeId;
-            Firstname = firstname;
-            Lastname = lastname;
+          EmployeeId = Firstname = Lastname = string.Empty;
         }
 
         public string Firstname { get; set; }
@@ -27,5 +25,7 @@ namespace ShowroomData.Models
         public bool Gender { get; set; }
         public string? Email { get; set; }
         public string? SaleId { get; set; }
+        public bool ? Deleted { get; set; }
+
     }
 }

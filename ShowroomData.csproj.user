@@ -25,6 +25,18 @@
     <Compile Update="ListForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PurchaseInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SaleInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Schedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Source.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UpdateInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
