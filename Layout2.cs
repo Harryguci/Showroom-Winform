@@ -105,7 +105,7 @@ namespace ShowroomData
                 MessageBox.Show("Tên đăng nhập và mật khẩu không được để trống.");
                 return;
             }
-          
+
 
             #region SHOW LIST LAYOUT
             //Layout layout = new Layout();
@@ -118,7 +118,7 @@ namespace ShowroomData
             // check login 
 
 
-            if (true || CheckLogin(username, password))
+            if (CheckLogin(username, password))
             {
                 #region SHOW LIST FORM
                 Home form = new Home();
@@ -129,7 +129,8 @@ namespace ShowroomData
             }
             else
             {
-                MessageBox.Show("Thong tin tai khoan mat khau khong chinh xac!!!", "Thong bao!!!", MessageBoxButtons.OK);
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!",
+                    "Thông báo", MessageBoxButtons.OK);
             }
 
         }
@@ -163,9 +164,12 @@ namespace ShowroomData
                     password = textBox2.Text,
                 };
 
-                if (File.Exists(curr.username))
-                {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
+                if (File.Exists(Path.Combine(
+                        Directory.GetParent(Directory.GetCurrentDirectory())
+                        .Parent.Parent.FullName,
+                        "Data", "login_cookie.json")))
+                {
                     using (StreamWriter outputFile = new StreamWriter(Path.Combine(
                         Directory.GetParent(Directory.GetCurrentDirectory())
                         .Parent.Parent.FullName,

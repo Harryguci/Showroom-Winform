@@ -37,27 +37,27 @@
             lblHeadingPage = new Label();
             panelContent = new Panel();
             panel3 = new Panel();
-            button4 = new Button();
-            button3 = new Button();
+            btnReset = new Button();
+            btnSave = new Button();
             groupBox1 = new GroupBox();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
-            textBox8 = new TextBox();
-            textBox7 = new TextBox();
+            txtAddress = new TextBox();
+            txtEmail = new TextBox();
             label8 = new Label();
             label7 = new Label();
-            textBox6 = new TextBox();
+            txtCccd = new TextBox();
             label6 = new Label();
-            textBox5 = new TextBox();
+            txtPhoneNumber = new TextBox();
             label5 = new Label();
-            textBox4 = new TextBox();
             label4 = new Label();
-            textBox3 = new TextBox();
+            txtFirstName = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            txtLastName = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txtId = new TextBox();
             label1 = new Label();
+            dtpBirth = new DateTimePicker();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -163,24 +163,24 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(button4);
-            panel3.Controls.Add(button3);
+            panel3.Controls.Add(dtpBirth);
+            panel3.Controls.Add(btnReset);
+            panel3.Controls.Add(btnSave);
             panel3.Controls.Add(groupBox1);
-            panel3.Controls.Add(textBox8);
-            panel3.Controls.Add(textBox7);
+            panel3.Controls.Add(txtAddress);
+            panel3.Controls.Add(txtEmail);
             panel3.Controls.Add(label8);
             panel3.Controls.Add(label7);
-            panel3.Controls.Add(textBox6);
+            panel3.Controls.Add(txtCccd);
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(textBox5);
+            panel3.Controls.Add(txtPhoneNumber);
             panel3.Controls.Add(label5);
-            panel3.Controls.Add(textBox4);
             panel3.Controls.Add(label4);
-            panel3.Controls.Add(textBox3);
+            panel3.Controls.Add(txtFirstName);
             panel3.Controls.Add(label3);
-            panel3.Controls.Add(textBox2);
+            panel3.Controls.Add(txtLastName);
             panel3.Controls.Add(label2);
-            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(txtId);
             panel3.Controls.Add(label1);
             panel3.Location = new Point(70, 45);
             panel3.Name = "panel3";
@@ -188,23 +188,24 @@
             panel3.TabIndex = 0;
             panel3.MouseDown += Form_MouseDown;
             // 
-            // button4
+            // btnReset
             // 
-            button4.Location = new Point(425, 477);
-            button4.Name = "button4";
-            button4.Size = new Size(134, 45);
-            button4.TabIndex = 3;
-            button4.Text = "Đặt lại";
-            button4.UseVisualStyleBackColor = true;
+            btnReset.Location = new Point(425, 477);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(134, 45);
+            btnReset.TabIndex = 3;
+            btnReset.Text = "Đặt lại";
+            btnReset.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnSave
             // 
-            button3.Location = new Point(226, 477);
-            button3.Name = "button3";
-            button3.Size = new Size(134, 45);
-            button3.TabIndex = 3;
-            button3.Text = "Lưu";
-            button3.UseVisualStyleBackColor = true;
+            btnSave.Location = new Point(226, 477);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(134, 45);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Lưu";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += HandleSaveChange_Click;
             // 
             // groupBox1
             // 
@@ -239,20 +240,20 @@
             radioButton1.Text = "Nam";
             radioButton1.UseVisualStyleBackColor = true;
             // 
-            // textBox8
+            // txtAddress
             // 
-            textBox8.Location = new Point(541, 244);
-            textBox8.Multiline = true;
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(220, 165);
-            textBox8.TabIndex = 1;
+            txtAddress.Location = new Point(541, 244);
+            txtAddress.Multiline = true;
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(220, 165);
+            txtAddress.TabIndex = 1;
             // 
-            // textBox7
+            // txtEmail
             // 
-            textBox7.Location = new Point(140, 382);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(220, 27);
-            textBox7.TabIndex = 1;
+            txtEmail.Location = new Point(140, 382);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(220, 27);
+            txtEmail.TabIndex = 1;
             // 
             // label8
             // 
@@ -272,12 +273,12 @@
             label7.TabIndex = 0;
             label7.Text = "Email";
             // 
-            // textBox6
+            // txtCccd
             // 
-            textBox6.Location = new Point(541, 177);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(220, 27);
-            textBox6.TabIndex = 1;
+            txtCccd.Location = new Point(541, 177);
+            txtCccd.Name = "txtCccd";
+            txtCccd.Size = new Size(220, 27);
+            txtCccd.TabIndex = 1;
             // 
             // label6
             // 
@@ -288,12 +289,12 @@
             label6.TabIndex = 0;
             label6.Text = "CCCD";
             // 
-            // textBox5
+            // txtPhoneNumber
             // 
-            textBox5.Location = new Point(541, 106);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(220, 27);
-            textBox5.TabIndex = 1;
+            txtPhoneNumber.Location = new Point(541, 106);
+            txtPhoneNumber.Name = "txtPhoneNumber";
+            txtPhoneNumber.Size = new Size(220, 27);
+            txtPhoneNumber.TabIndex = 1;
             // 
             // label5
             // 
@@ -304,13 +305,6 @@
             label5.TabIndex = 0;
             label5.Text = "SĐT";
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(541, 43);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(220, 27);
-            textBox4.TabIndex = 1;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -320,12 +314,12 @@
             label4.TabIndex = 0;
             label4.Text = "Ngày Sinh";
             // 
-            // textBox3
+            // txtFirstName
             // 
-            textBox3.Location = new Point(140, 177);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(220, 27);
-            textBox3.TabIndex = 1;
+            txtFirstName.Location = new Point(140, 177);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(220, 27);
+            txtFirstName.TabIndex = 1;
             // 
             // label3
             // 
@@ -336,12 +330,12 @@
             label3.TabIndex = 0;
             label3.Text = "Tên";
             // 
-            // textBox2
+            // txtLastName
             // 
-            textBox2.Location = new Point(140, 106);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(220, 27);
-            textBox2.TabIndex = 1;
+            txtLastName.Location = new Point(140, 106);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(220, 27);
+            txtLastName.TabIndex = 1;
             // 
             // label2
             // 
@@ -352,12 +346,13 @@
             label2.TabIndex = 0;
             label2.Text = "Họ";
             // 
-            // textBox1
+            // txtId
             // 
-            textBox1.Location = new Point(140, 40);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(220, 27);
-            textBox1.TabIndex = 1;
+            txtId.Enabled = false;
+            txtId.Location = new Point(140, 40);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(220, 27);
+            txtId.TabIndex = 1;
             // 
             // label1
             // 
@@ -367,6 +362,13 @@
             label1.Size = new Size(24, 19);
             label1.TabIndex = 0;
             label1.Text = "ID";
+            // 
+            // dtpBirth
+            // 
+            dtpBirth.Location = new Point(541, 40);
+            dtpBirth.Name = "dtpBirth";
+            dtpBirth.Size = new Size(220, 27);
+            dtpBirth.TabIndex = 4;
             // 
             // CreateUpdateCustomer
             // 
@@ -404,25 +406,25 @@
         private Panel panelContent;
         private Panel panel3;
         private GroupBox groupBox1;
-        private TextBox textBox6;
+        private TextBox txtCccd;
         private Label label6;
-        private TextBox textBox5;
+        private TextBox txtPhoneNumber;
         private Label label5;
-        private TextBox textBox4;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox txtFirstName;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox txtLastName;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtId;
         private Label label1;
-        private Button button3;
+        private Button btnSave;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
-        private TextBox textBox8;
-        private TextBox textBox7;
+        private TextBox txtAddress;
+        private TextBox txtEmail;
         private Label label8;
         private Label label7;
-        private Button button4;
+        private Button btnReset;
+        private DateTimePicker dtpBirth;
     }
 }

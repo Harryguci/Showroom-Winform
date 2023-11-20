@@ -1,6 +1,8 @@
-﻿using ShowroomData.Models;
+﻿using Microsoft.VisualBasic;
+using ShowroomData.Models;
 using ShowroomData.Util;
 using ShowroomManagement.Models;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 
@@ -156,7 +158,8 @@ namespace ShowroomData
             else if (listType == ListType.PRODUCTS)
             {
 
-            } else if (listType == ListType.CUSTOMERS)
+            }
+            else if (listType == ListType.CUSTOMERS)
             {
                 CreateUpdateCustomer form = new CreateUpdateCustomer(this);
                 form.Show();
@@ -263,7 +266,7 @@ namespace ShowroomData
             dt.Dock = DockStyle.Fill;
             dt.Location = new Point(136, 100);
             dt.Name = "dataGridView1";
-            dt.RowTemplate.Height = 25;
+            dt.RowTemplate.Height = 35;
             dt.Size = new Size(664, 400);
             dt.TabIndex = 2;
             dt.CellValueChanged += dt_CellValueChanged;
@@ -304,11 +307,11 @@ namespace ShowroomData
 
         private void Layout_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát",
-                "Thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
+            //if (MessageBox.Show("Bạn có muốn thoát",
+            //    "Thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
+            //{
+            //    e.Cancel = true;
+            //}
         }
 
         private void Layout_FormClosed(object sender, FormClosedEventArgs e)
@@ -361,13 +364,45 @@ namespace ShowroomData
                     Deleted = (bool)(selected[9].Value),
                 };
 
-                
+                CreateUpdateCustomer updateForm = new CreateUpdateCustomer(this, title: "Cập nhật khách hàng", customer);
+                updateForm.Show();
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dt.SelectedRows.Count <= 0) return;
+            if (listType == ListType.EMPLOYEES)
+            {
+
+                var employeeId = dt.SelectedRows[0].Cells[0].Value;
+                var employeeFullname = (string)dt.SelectedRows[0].Cells[2].Value + ' ' + dt.SelectedRows[0].Cells[1].Value;
+
+                if (MessageBox.Show($"Bạn chắc chắn muốn xóa nhân viên {employeeFullname} ({employeeId})",
+                    "Thông báo",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.No) return;
+
+                processDb.UpdateData($"Update Account SET EmployeeId = NULL WHERE Account.EmployeeId = N'{employeeId}'");
+                processDb.UpdateData($"UPDATE TestDrive SET EmployeeId = NULL WHERE TestDrive.EmployeeId = N'{employeeId}'");
+                processDb.UpdateData($"UPDATE SalesInvoices SET EmployeeId = NULL WHERE SalesInvoices.EmployeeId = N'{employeeId}'");
+                processDb.UpdateData($"UPDATE SalesTargets SET EmployeeId = NULL WHERE SalesTargets.EmployeeId = N'{employeeId}'");
+                processDb.UpdateData($"UPDATE TASKS SET EmployeeId = NULL WHERE TASKS.EmployeeId = N'{employeeId}'");
+                processDb.UpdateData($"DELETE Employees Where Employees.EmployeeId = N'{employeeId}'");
+                RefeshData();
+            }
+            else if (listType == ListType.CUSTOMERS)
+            {
+                var customerId = dt.SelectedRows[0].Cells[0].Value;
+
+
+            }
+
         }
     }
 }

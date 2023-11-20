@@ -36,9 +36,9 @@
             btnUpdateInfo = new Button();
             btnDelete = new Button();
             panel1 = new Panel();
+            button1 = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
-            button1 = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -142,6 +142,7 @@
             btnDelete.TabIndex = 5;
             btnDelete.Text = "Xóa";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // panel1
             // 
@@ -154,13 +155,27 @@
             panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackgroundImage = Properties.Resources.back;
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(916, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(45, 39);
+            button1.TabIndex = 2;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHeadingPage.Location = new Point(390, 53);
+            lblHeadingPage.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeadingPage.Location = new Point(388, 37);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(105, 27);
+            lblHeadingPage.Size = new Size(150, 38);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
@@ -171,17 +186,6 @@
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(964, 444);
             panelContent.TabIndex = 2;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.Location = new Point(917, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(47, 38);
-            button1.TabIndex = 2;
-            button1.Text = "<";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
             // 
             // ListForm
             // 

@@ -1,15 +1,4 @@
-﻿using ShowroomData.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+﻿using System.Data;
 
 namespace ShowroomData
 {
@@ -107,13 +96,14 @@ namespace ShowroomData
                 salary = Convert.ToInt32(txtSalary.Text.Trim()),
                 position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
                 cccd = txtCCCD.Text.Trim(),
-                email = txtEmail.Text.Trim()
+                email = txtEmail.Text.Trim(),
+                gender = (rdbMale.Checked ? 1 : 0)
             };
 
             // Handle Create
-            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, SaleId) " +
+            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, PhoneNumber, Gender, Deleted, Url_image) " +
                 $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', " +
-                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', NULL)";
+                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', '{curr.sdt}', {curr.gender}, 0, '')";
 
             // Excute the query
             processDb.UpdateData(query);
@@ -173,7 +163,7 @@ namespace ShowroomData
                 id = Convert.ToString(count + 1);
 
                 while (id.Length < 3) id = "0" + id;
-                id = "e" + id;
+                id = "E" + id;
             }
             else
             {

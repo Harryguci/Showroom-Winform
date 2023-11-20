@@ -92,7 +92,7 @@
             panel2.Location = new Point(3, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(133, 122);
-            panel2.TabIndex = 0;
+            panel2.TabIndex = 100;
             // 
             // pictureBox1
             // 
@@ -115,7 +115,7 @@
             btnBack.Margin = new Padding(0, 0, 0, 30);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(136, 51);
-            btnBack.TabIndex = 10;
+            btnBack.TabIndex = 13;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -131,7 +131,7 @@
             helpBtn.Margin = new Padding(0, 0, 0, 10);
             helpBtn.Name = "helpBtn";
             helpBtn.Size = new Size(136, 51);
-            helpBtn.TabIndex = 11;
+            helpBtn.TabIndex = 14;
             helpBtn.Text = "Trợ giúp";
             helpBtn.UseVisualStyleBackColor = true;
             helpBtn.Click += helpBtn_Click;
@@ -213,7 +213,7 @@
             txtId.Location = new Point(132, 34);
             txtId.Name = "txtId";
             txtId.Size = new Size(469, 27);
-            txtId.TabIndex = 10;
+            txtId.TabIndex = 0;
             // 
             // label2
             // 
@@ -229,7 +229,7 @@
             txtLastname.Location = new Point(132, 89);
             txtLastname.Name = "txtLastname";
             txtLastname.Size = new Size(202, 27);
-            txtLastname.TabIndex = 0;
+            txtLastname.TabIndex = 1;
             // 
             // label3
             // 
@@ -278,7 +278,7 @@
             birthDateTimePicker.Location = new Point(176, 238);
             birthDateTimePicker.Name = "birthDateTimePicker";
             birthDateTimePicker.Size = new Size(317, 27);
-            birthDateTimePicker.TabIndex = 4;
+            birthDateTimePicker.TabIndex = 6;
             // 
             // panel3
             // 
@@ -317,7 +317,7 @@
             comboBox1.Location = new Point(423, 370);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(178, 27);
-            comboBox1.TabIndex = 12;
+            comboBox1.TabIndex = 10;
             // 
             // label10
             // 
@@ -344,7 +344,7 @@
             grbGender.Location = new Point(399, 143);
             grbGender.Name = "grbGender";
             grbGender.Size = new Size(202, 77);
-            grbGender.TabIndex = 11;
+            grbGender.TabIndex = 100;
             grbGender.TabStop = false;
             grbGender.Text = "Giới tính";
             // 
@@ -354,7 +354,7 @@
             rdbFemale.Location = new Point(103, 39);
             rdbFemale.Name = "rdbFemale";
             rdbFemale.Size = new Size(48, 23);
-            rdbFemale.TabIndex = 0;
+            rdbFemale.TabIndex = 5;
             rdbFemale.TabStop = true;
             rdbFemale.Text = "Nữ";
             rdbFemale.UseVisualStyleBackColor = true;
@@ -365,7 +365,7 @@
             rdbMale.Location = new Point(6, 39);
             rdbMale.Name = "rdbMale";
             rdbMale.Size = new Size(61, 23);
-            rdbMale.TabIndex = 0;
+            rdbMale.TabIndex = 4;
             rdbMale.TabStop = true;
             rdbMale.Text = "Nam";
             rdbMale.UseVisualStyleBackColor = true;
@@ -381,7 +381,7 @@
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
-            btnClean.TabIndex = 6;
+            btnClean.TabIndex = 12;
             btnClean.Text = "Nhập mới";
             btnClean.UseVisualStyleBackColor = false;
             btnClean.Click += btnClean_Click;
@@ -397,7 +397,7 @@
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
-            btnCreate.TabIndex = 5;
+            btnCreate.TabIndex = 11;
             btnCreate.Text = "Tạo";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += createBtn_Click;
@@ -407,14 +407,14 @@
             txtEmail.Location = new Point(132, 370);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(178, 27);
-            txtEmail.TabIndex = 3;
+            txtEmail.TabIndex = 9;
             // 
             // txtSalary
             // 
             txtSalary.Location = new Point(423, 300);
             txtSalary.Name = "txtSalary";
             txtSalary.Size = new Size(178, 27);
-            txtSalary.TabIndex = 3;
+            txtSalary.TabIndex = 8;
             txtSalary.Text = " ";
             txtSalary.KeyPress += textBox4_KeyPress;
             // 
@@ -423,7 +423,7 @@
             txtCCCD.Location = new Point(132, 300);
             txtCCCD.Name = "txtCCCD";
             txtCCCD.Size = new Size(178, 27);
-            txtCCCD.TabIndex = 3;
+            txtCCCD.TabIndex = 7;
             txtCCCD.KeyPress += textBox4_KeyPress;
             // 
             // label7

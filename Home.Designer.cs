@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
@@ -44,6 +45,7 @@
             btnCustomers = new Button();
             btnInvoices = new Button();
             btnServices = new Button();
+            toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -158,10 +160,10 @@
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Roboto", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHeadingPage.Location = new Point(382, 77);
+            lblHeadingPage.Font = new Font("Lobster", 50F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeadingPage.Location = new Point(325, 27);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(185, 48);
+            lblHeadingPage.Size = new Size(280, 100);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
@@ -189,58 +191,89 @@
             // 
             // btnProducts
             // 
+            btnProducts.AllowDrop = true;
+            btnProducts.BackgroundImage = Properties.Resources.product;
+            btnProducts.BackgroundImageLayout = ImageLayout.Zoom;
+            btnProducts.FlatAppearance.BorderSize = 0;
+            btnProducts.FlatStyle = FlatStyle.Flat;
+            btnProducts.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProducts.ForeColor = SystemColors.ButtonHighlight;
+            btnProducts.ImageAlign = ContentAlignment.TopCenter;
             btnProducts.Location = new Point(20, 20);
             btnProducts.Margin = new Padding(20);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(177, 150);
             btnProducts.TabIndex = 0;
-            btnProducts.Text = "Products";
+            toolTip1.SetToolTip(btnProducts, "Sản phẩm");
             btnProducts.UseVisualStyleBackColor = true;
             btnProducts.Click += HandleChangeForm;
             // 
             // btnEmployees
             // 
+            btnEmployees.BackgroundImage = Properties.Resources.employees;
+            btnEmployees.BackgroundImageLayout = ImageLayout.Zoom;
+            btnEmployees.FlatAppearance.BorderSize = 0;
+            btnEmployees.FlatStyle = FlatStyle.Flat;
             btnEmployees.Location = new Point(237, 20);
             btnEmployees.Margin = new Padding(20);
             btnEmployees.Name = "btnEmployees";
             btnEmployees.Size = new Size(177, 150);
             btnEmployees.TabIndex = 0;
-            btnEmployees.Text = "Employees";
+            toolTip1.SetToolTip(btnEmployees, "Nhân viên");
             btnEmployees.UseVisualStyleBackColor = true;
             btnEmployees.Click += HandleChangeForm;
             // 
             // btnCustomers
             // 
+            btnCustomers.BackgroundImage = Properties.Resources.customers;
+            btnCustomers.BackgroundImageLayout = ImageLayout.Zoom;
+            btnCustomers.FlatAppearance.BorderSize = 0;
+            btnCustomers.FlatStyle = FlatStyle.Flat;
             btnCustomers.Location = new Point(454, 20);
             btnCustomers.Margin = new Padding(20);
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Size = new Size(177, 150);
             btnCustomers.TabIndex = 0;
-            btnCustomers.Text = "Customers";
+            toolTip1.SetToolTip(btnCustomers, "Khách hàng");
             btnCustomers.UseVisualStyleBackColor = true;
             btnCustomers.Click += HandleChangeForm;
             // 
             // btnInvoices
             // 
+            btnInvoices.BackgroundImage = Properties.Resources.invoices;
+            btnInvoices.BackgroundImageLayout = ImageLayout.Zoom;
+            btnInvoices.FlatAppearance.BorderSize = 0;
+            btnInvoices.FlatStyle = FlatStyle.Flat;
             btnInvoices.Location = new Point(671, 20);
             btnInvoices.Margin = new Padding(20);
             btnInvoices.Name = "btnInvoices";
             btnInvoices.Size = new Size(177, 150);
             btnInvoices.TabIndex = 0;
-            btnInvoices.Text = "Invoices";
+            toolTip1.SetToolTip(btnInvoices, "Hóa đơn");
             btnInvoices.UseVisualStyleBackColor = true;
             btnInvoices.Click += HandleChangeForm;
             // 
             // btnServices
             // 
+            btnServices.BackgroundImage = Properties.Resources.sources;
+            btnServices.BackgroundImageLayout = ImageLayout.Zoom;
+            btnServices.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnServices.FlatAppearance.BorderSize = 0;
+            btnServices.FlatStyle = FlatStyle.Flat;
             btnServices.Location = new Point(20, 210);
             btnServices.Margin = new Padding(20);
             btnServices.Name = "btnServices";
             btnServices.Size = new Size(177, 150);
             btnServices.TabIndex = 0;
-            btnServices.Text = "Sources";
+            toolTip1.SetToolTip(btnServices, "Nguồn cung");
             btnServices.UseVisualStyleBackColor = true;
             btnServices.Click += HandleChangeForm;
+            // 
+            // toolTip1
+            // 
+            toolTip1.BackColor = Color.DeepSkyBlue;
+            toolTip1.ForeColor = Color.White;
+            toolTip1.ToolTipIcon = ToolTipIcon.Info;
             // 
             // Home
             // 
@@ -281,5 +314,6 @@
         private Button btnCustomers;
         private Button btnInvoices;
         private Button btnServices;
+        private ToolTip toolTip1;
     }
 }
