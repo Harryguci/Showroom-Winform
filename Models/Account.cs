@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace ShowroomManagement.Models
+namespace ShowroomData.Models
 {
     public class Account
     {
@@ -13,7 +14,8 @@ namespace ShowroomManagement.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string? EmployeeId { get; set; }
-        public int? Level { get; set; } = 0;
+        public string? ClientId { get; set; }
+        public int? Level_account { get; set; } = 0;
         public bool? Deleted { get; set; } = false;
         public DateTime? CreateAt { get; set; }
         public DateTime? DeleteAt { get; set; }

@@ -121,7 +121,7 @@ namespace ShowroomData
             if (true || CheckLogin(username, password))
             {
                 #region SHOW LIST FORM
-                ListForm form = new ListForm("source");
+                Home form = new Home();
                 form.Show();
                 Hide(); // Hide the current Form.
                 form.FormClosed += (s, args) => Close();

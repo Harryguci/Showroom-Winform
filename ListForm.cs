@@ -19,7 +19,7 @@ namespace ShowroomData
             HandleGUI();
 
 
-            
+
             //
             // [Add Form events]b
             //
@@ -51,6 +51,7 @@ namespace ShowroomData
 
         public void HandleGUI()
         {
+            FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Location = new Point(0, 0);
             Size = Screen.PrimaryScreen.WorkingArea.Size;
@@ -58,7 +59,8 @@ namespace ShowroomData
             if (listType == "employees")
             {
                 title = "nhân viên";
-            } else if (listType == "products")
+            }
+            else if (listType == "products")
             {
                 title = "sản phẩm";
             }
@@ -94,10 +96,21 @@ namespace ShowroomData
             {
                 title = "tài khoản nội bộ";
             }
-            
+
             lblHeadingPage.Text = $"Danh sách {title}";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                 lblHeadingPage.Location.Y);
+
+            Button btnExit = new Button();
+            btnExit.Text = "<";
+            btnExit.Location = new Point(Width - 3, 3);
+            btnExit.Size = new Size(50, 50);
+            btnExit.Click += (sender, args) =>
+            {
+                Close();
+            };
+
+            panel1.Controls.Add(btnExit);
         }
 
         public void RefeshData()
@@ -143,6 +156,10 @@ namespace ShowroomData
             else if (listType == ListType.PRODUCTS)
             {
 
+            } else if (listType == ListType.CUSTOMERS)
+            {
+                CreateUpdateCustomer form = new CreateUpdateCustomer(this);
+                form.Show();
             }
         }
 
@@ -229,8 +246,8 @@ namespace ShowroomData
                 table = TableName.SOURCE;
                 //Định dạng dataGrid
                 colFormat = ColumnObject.SOURCE_COLS;
-            } 
-            
+            }
+
 
             #endregion
             if (type == "all")
@@ -306,22 +323,22 @@ namespace ShowroomData
             {
                 var selected = dt.SelectedRows[0].Cells;
 
-#pragma warning disable CS8604 // Possible null reference argument.
                 Employee employee = new Employee()
                 {
-                    EmployeeId= selected[0].Value.ToString(),
-                    Firstname= selected[1].Value.ToString(),
-                    Lastname= selected[2].Value.ToString(),
-                    DateBirth = (DateTime?)selected[3].Value,
-                    Cccd = (string)selected[4].Value,
-                    Position = (string?)selected[5].Value,
-                    StartDate = (DateTime?)selected[6].Value,
-                    Salary = Convert.ToInt32(selected[7].Value),
-                    Email = (string)selected[8].Value,
-                    SaleId = (string)selected[9].Value,
-                    Deleted = (bool?)selected[10].Value
+                    EmployeeId = (string)selected[0].Value,
+                    Firstname = (string)selected[1].Value,
+                    Lastname = (string)selected[2].Value,
+                    DateBirth = (DateTime)selected[3].Value,
+                    PhoneNumber = (string)selected[4].Value,
+                    Gender = (bool)selected[5].Value,
+                    Cccd = (string)selected[6].Value,
+                    Position = (string)selected[7].Value,
+                    StartDate = (DateTime)selected[8].Value,
+                    Salary = (int)selected[9].Value,
+                    Email = (string)selected[10].Value,
+                    Deleted = (bool)selected[11].Value,
+                    Url_image = (string)selected[12].Value,
                 };
-#pragma warning restore CS8604 // Possible null reference argument.
 
                 UpdateInfoForm updateInfoForm = new UpdateInfoForm(employee, this);
                 updateInfoForm.Show();
@@ -332,20 +349,25 @@ namespace ShowroomData
 
                 Customer customer = new Customer()
                 {
-                    ClientId = selected[0].Value.ToString(),
-                    Firstname = selected[1].Value.ToString(),
-                    Lastname = selected[2].Value.ToString(),
-                    DateBirth = (DateTime?)selected[3].Value,
-                    Gender = (bool)selected[4].Value,
-                    Cccd = (string)selected[5].Value,
-                    Email = (string)selected[6].Value,
-                    Address = (string)selected[7].Value,
-                    Deleted = (bool)selected[8].Value
+                    ClientId = (string)selected[0].Value,
+                    Firstname = (string)selected[1].Value,
+                    Lastname = (string)selected[2].Value,
+                    DateBirth = (DateTime)selected[3].Value,
+                    PhoneNumber = (string)selected[4].Value,
+                    Gender = (bool)selected[5].Value,
+                    Cccd = (string)selected[6].Value,
+                    Email = (string)selected[7].Value,
+                    Address = (string)selected[8].Value,
+                    Deleted = (bool)(selected[9].Value),
                 };
 
-               /* UpdateInfoForm updateInfoForm = new UpdateInfoForm(customer, this);
-                updateInfoForm.Show();*/
+                
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

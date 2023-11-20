@@ -38,6 +38,7 @@
             panel1 = new Panel();
             lblHeadingPage = new Label();
             panelContent = new Panel();
+            button1 = new Button();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -145,6 +146,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
@@ -156,7 +158,7 @@
             // 
             lblHeadingPage.AutoSize = true;
             lblHeadingPage.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHeadingPage.Location = new Point(390, 31);
+            lblHeadingPage.Location = new Point(390, 53);
             lblHeadingPage.Name = "lblHeadingPage";
             lblHeadingPage.Size = new Size(105, 27);
             lblHeadingPage.TabIndex = 1;
@@ -169,6 +171,17 @@
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(964, 444);
             panelContent.TabIndex = 2;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Location = new Point(917, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(47, 38);
+            button1.TabIndex = 2;
+            button1.Text = "<";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // ListForm
             // 
@@ -205,5 +218,6 @@
         private Button btnDelete;
         private Label lblHeadingPage;
         private Panel panelContent;
+        private Button button1;
     }
 }

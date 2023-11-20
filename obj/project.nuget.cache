@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ofX+s89mx0+jhSpqlrTcWy4rYS1NXgrhwPDgJoDAPsf8/R0fe6hc8hR/3psAmEPTKKoVSj8BQccxw2dmcTsOIQ==",
+  "dgSpecHash": "Q+RGOKWTe1Iwb5sW59dirIlFX838goDqyWTXvi+JnhynOs0WTylMZzfEEOBsH2DGFSBfAiGRmSXgWWvHGA2N3A==",
   "success": true,
-  "projectFilePath": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj",
+  "projectFilePath": "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\ShowroomData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\T&H\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\T&H\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

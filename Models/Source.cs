@@ -1,4 +1,4 @@
-﻿namespace ShowroomManagement.Models
+﻿namespace ShowroomData.Models
 {
     public class Source
     {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj": {}
+    "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\ShowroomData.csproj": {}
   },
   "projects": {
-    "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj": {
+    "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\ShowroomData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj",
+        "projectUniqueName": "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\ShowroomData.csproj",
         "projectName": "ShowroomData",
-        "projectPath": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj",
+        "projectPath": "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\ShowroomData.csproj",
         "packagesPath": "C:\\Users\\T&H\\.nuget\\packages\\",
-        "outputPath": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\obj\\",
+        "outputPath": "E:\\Projects\\LTR-Truc-quan\\BTL\\Showroom-Winform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\T&H\\AppData\\Roaming\\NuGet\\NuGet.Config",
