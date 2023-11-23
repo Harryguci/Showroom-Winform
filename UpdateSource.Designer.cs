@@ -1,6 +1,6 @@
 ﻿namespace ShowroomData
 {
-    partial class Source
+    partial class UpdateSource
     {
         /// <summary>
         ///  Required designer variable.
@@ -38,11 +38,11 @@
             button1 = new Button();
             button2 = new Button();
             lblHeading = new Label();
+            panel3 = new Panel();
+            txtNameSuppliers = new TextBox();
             label1 = new Label();
             txtIdSuppliers = new TextBox();
             label2 = new Label();
-            txtNameSuppliers = new TextBox();
-            panel3 = new Panel();
             btnClean = new Button();
             btnCreate = new Button();
             flowLayoutPanel1.SuspendLayout();
@@ -62,7 +62,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 427);
+            flowLayoutPanel1.Size = new Size(136, 413);
             flowLayoutPanel1.TabIndex = 10;
             // 
             // panel2
@@ -136,7 +136,7 @@
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(928, 33);
-            flowLayoutPanel2.TabIndex = 102;
+            flowLayoutPanel2.TabIndex = 101;
             // 
             // button1
             // 
@@ -170,58 +170,58 @@
             // 
             lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(276, 57);
+            lblHeading.Location = new Point(316, 53);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(436, 46);
+            lblHeading.Size = new Size(396, 46);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Tạo mới nhà cung cấp";
+            lblHeading.Text = "Sửa thông tin nguồn";
+            // 
+            // panel3
+            // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(txtNameSuppliers);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(txtIdSuppliers);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(btnClean);
+            panel3.Controls.Add(btnCreate);
+            panel3.Location = new Point(286, 116);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(634, 285);
+            panel3.TabIndex = 100;
+            // 
+            // txtNameSuppliers
+            // 
+            txtNameSuppliers.Location = new Point(243, 109);
+            txtNameSuppliers.Name = "txtNameSuppliers";
+            txtNameSuppliers.Size = new Size(355, 35);
+            txtNameSuppliers.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(36, 54);
+            label1.Location = new Point(33, 45);
             label1.Name = "label1";
             label1.Size = new Size(184, 29);
-            label1.TabIndex = 2;
+            label1.TabIndex = 12;
             label1.Text = "ID nhà cung cấp";
             // 
             // txtIdSuppliers
             // 
             txtIdSuppliers.Enabled = false;
-            txtIdSuppliers.Location = new Point(246, 51);
+            txtIdSuppliers.Location = new Point(243, 42);
             txtIdSuppliers.Name = "txtIdSuppliers";
             txtIdSuppliers.Size = new Size(355, 35);
-            txtIdSuppliers.TabIndex = 10;
+            txtIdSuppliers.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(36, 121);
+            label2.Location = new Point(33, 112);
             label2.Name = "label2";
             label2.Size = new Size(204, 29);
-            label2.TabIndex = 2;
+            label2.TabIndex = 13;
             label2.Text = "Tên nhà cung cấp";
-            // 
-            // txtNameSuppliers
-            // 
-            txtNameSuppliers.Location = new Point(246, 118);
-            txtNameSuppliers.Name = "txtNameSuppliers";
-            txtNameSuppliers.Size = new Size(355, 35);
-            txtNameSuppliers.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel3.Controls.Add(btnClean);
-            panel3.Controls.Add(btnCreate);
-            panel3.Controls.Add(txtNameSuppliers);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(txtIdSuppliers);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(286, 116);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(634, 299);
-            panel3.TabIndex = 100;
             // 
             // btnClean
             // 
@@ -230,7 +230,7 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 220);
+            btnClean.Location = new Point(281, 191);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -246,28 +246,28 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 220);
+            btnCreate.Location = new Point(149, 191);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
             btnCreate.TabIndex = 5;
-            btnCreate.Text = "Tạo";
+            btnCreate.Text = "Lưu";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
-            // Source
+            // UpdateSource
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 427);
+            ClientSize = new Size(1064, 413);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "Source";
+            Name = "UpdateSource";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Showroom - Create a invoice";
-            Load += Source_Load;
+            Text = "Showroom - Update a source";
+            Load += UpdateSource_Load;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -286,10 +286,6 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Button btnBack;
-        private Label label1;
-        private TextBox txtIdSuppliers;
-        private Label label2;
-        private TextBox txtNameSuppliers;
         private Panel panel3;
         private Button btnCreate;
         private Label lblHeading;
@@ -298,5 +294,9 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
+        private TextBox txtNameSuppliers;
+        private Label label1;
+        private TextBox txtIdSuppliers;
+        private Label label2;
     }
 }

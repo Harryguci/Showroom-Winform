@@ -18,14 +18,13 @@ namespace ShowroomData.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public DateTime? DateBirth { get; set; }
+        public string? Phone { get; set; }
         public string? Cccd { get; set; }
         public string? Position { get; set; }
         public DateTime? StartDate { get; set; }
         public int? Salary { get; set; }
         public bool Gender { get; set; }
         public string? Email { get; set; }
-        public string? SaleId { get; set; }
         public bool ? Deleted { get; set; }
-
     }
 }

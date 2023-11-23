@@ -78,7 +78,6 @@ namespace ShowroomData
         {
             CreateEmployeeForm createForm = new CreateEmployeeForm(this);
             createForm.Show();
-
         }
 
         private void changeSizeFormBtn_Click(object sender, EventArgs e)
@@ -106,7 +105,7 @@ namespace ShowroomData
             {
                 query = "select * from employees";
             }
-            
+
             dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dt.Dock = DockStyle.Fill;
             dt.Location = new Point(136, 100);
@@ -116,7 +115,7 @@ namespace ShowroomData
             dt.TabIndex = 2;
             dt.CellValueChanged += dt_CellValueChanged;
             panelContent.Controls.Add(dt);
-            
+
             try
             {
                 DataTable dtEmployee = processDb.GetData(query);

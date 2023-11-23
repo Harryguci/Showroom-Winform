@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace ShowroomData
 {
-    public partial class Source : Form
+    public partial class CreateSource : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
 
-        public Source(/*Form? _parent*/)
+        public CreateSource(Form? _parent)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             //if (_parent != null && _parent.GetType() == typeof(Layout))
             //    parent = (Layout?)_parent;
 
-            /*if (_parent != null && _parent.GetType() == typeof(Layout))
-                parent = (Layout)_parent;*/
+            if (_parent != null && _parent.GetType() == typeof(Layout))
+                parent = (Layout)_parent;
 
 
             //

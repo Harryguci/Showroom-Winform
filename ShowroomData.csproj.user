@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Component1.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="CreateEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateDevice.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form1.cs">
@@ -25,19 +34,49 @@
     <Compile Update="ListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="PurchaseInvoice.cs">
+    <Compile Update="CreateProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SaleInvoice.cs">
+    <Compile Update="CreatePurchaseInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Schedule.cs">
+    <Compile Update="CreateSaleInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Source.cs">
+    <Compile Update="CreateSaleTarget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateDevice.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UpdateInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdatePurchaseInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateSaleInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateSaleTarget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateTestDrive.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

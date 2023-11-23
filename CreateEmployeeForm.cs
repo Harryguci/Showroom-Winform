@@ -17,6 +17,7 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
+        private int temp = 0;
 
         // Constructor
         public CreateEmployeeForm(Form? _parent)
@@ -75,7 +76,27 @@ namespace ShowroomData
                 lblHeading.Location.Y);
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+
+            if (txtPhone.Text.Length >= 10 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCCCD_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+
+            if (txtCCCD.Text.Length >= 12 && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
@@ -104,16 +125,16 @@ namespace ShowroomData
                 sdt = txtPhone.Text.Trim(),
                 birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                salary = Convert.ToInt32(txtSalary.Text.Trim()),
                 position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
                 cccd = txtCCCD.Text.Trim(),
+                gender = temp,
                 email = txtEmail.Text.Trim()
             };
 
             // Handle Create
-            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, SaleId) " +
-                $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', " +
-                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', NULL)";
+            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, PhoneNumber, Gender, CCCD, Position, StartDate, Salary, Email, Deleted) " +
+                $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', '{curr.sdt}', " +
+                $"'{curr.gender}', N'{curr.cccd}',N'{curr.position}', '{curr.start}', 0, N'{curr.email}', 0)";
 
             // Excute the query
             processDb.UpdateData(query);
@@ -128,19 +149,36 @@ namespace ShowroomData
         }
 
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
-            => txtId.Text = AutoCreateId();
+        {
+            txtId.Text = AutoCreateId();
+        }
+
 
         //
         // [Helper Methods]
         //
         private bool ValidateForm()
         {
+            if (rdbMale.Checked)
+            {
+                temp = 1;
+            }
+            else
+            {
+                temp = 0;
+            }
+
             var curr = new
             {
                 lastName = txtLastname.Text.Trim(),
                 firstName = txtFirstname.Text.Trim(),
                 sdt = txtPhone.Text.Trim(),
                 position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
+                cccd = txtCCCD.Text.Trim(),
+                birthday = birthDateTimePicker.Value,
+                start = DateTime.Now.ToString("yyyy-MM-dd"),
+                gender = temp,
+                email = txtEmail.Text.Trim()
             };
 
 
@@ -157,6 +195,29 @@ namespace ShowroomData
             if (curr.position.Length <= 0)
             {
                 MessageBox.Show("Bạn phải chọn vị trí");
+                return false;
+            }
+            if (curr.cccd.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập số căn cước công dân");
+                return false;
+            }
+            if (curr.email.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập email");
+                return false;
+            }
+            if (curr.sdt.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập số điện thoại");
+                return false;
+            }
+
+            DateTime currentDate = DateTime.Now;
+            DateTime minimumBirthDate = currentDate.AddYears(-18);
+            if (curr.birthday > minimumBirthDate)
+            {
+                MessageBox.Show("Bạn phải đủ 18 tuổi để tiếp tục.");
                 return false;
             }
 
@@ -181,10 +242,11 @@ namespace ShowroomData
             }
             return id;
         }
+
         private void CleanForm()
         {
             // Earse current data
-            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone, txtCCCD, txtEmail, txtSalary };
+            TextBox[] textBoxes = { txtLastname, txtFirstname, txtPhone, txtCCCD, txtEmail };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
@@ -199,7 +261,7 @@ namespace ShowroomData
         private void helpBtn_Click(object sender, EventArgs e)
         {
             HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
-                "- Bắt buộc nhập họ, tên\n" +
+                "- Bắt buộc nhập đầy đủ thông tin\n" +
                 "- Bắt buộc chọn 1 vị trí\n" +
                 "- Số điện thoại, CCCD, lương chỉ có thể nhập số");
 

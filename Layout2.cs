@@ -105,27 +105,23 @@ namespace ShowroomData
                 MessageBox.Show("Tên đăng nhập và mật khẩu không được để trống.");
                 return;
             }
-          
-
-            #region SHOW LIST LAYOUT
-            //Layout layout = new Layout();
-            //layout.Show();
-
-            //Hide(); // Hide the current Form.
-
-            //layout.FormClosed += (s, args) => Close();
-            #endregion
-            // check login 
-
+           
 
             if (true || CheckLogin(username, password))
             {
-                #region SHOW LIST FORM
-                ListForm form = new ListForm("source");
+                /*#region SHOW LIST FORM
+                ListForm form = new ListForm("employees");
                 form.Show();
                 Hide(); // Hide the current Form.
                 form.FormClosed += (s, args) => Close();
-                #endregion
+                #endregion*/
+
+                Admin admin = new Admin();
+                admin.Show();
+
+                Hide();
+
+                admin.FormClosed += (s, args) => Close();
             }
             else
             {

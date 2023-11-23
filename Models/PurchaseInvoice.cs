@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ShowroomManagement.Models
+namespace ShowroomData.Models
 {
     public class PurchaseInvoice
     {
@@ -12,7 +14,7 @@ namespace ShowroomManagement.Models
         public string InEnterId { get; set; }
         public string SourceId { get; set; }
         public string ProductID { get; set; }
-        public DateTime EnteredDate { get; set; }
+        public DateTime? EnteredDate { get; set; }
         public int? QuantityPurchase { get; set; }
         public string? Status { get; set; }
         public bool? Deleted { get; set; }

@@ -35,6 +35,7 @@
             btnCreate = new Button();
             btnUpdateInfo = new Button();
             btnDelete = new Button();
+            btnBack = new Button();
             panel1 = new Panel();
             lblHeadingPage = new Label();
             panelContent = new Panel();
@@ -52,6 +53,7 @@
             flowLayoutPanel1.Controls.Add(btnCreate);
             flowLayoutPanel1.Controls.Add(btnUpdateInfo);
             flowLayoutPanel1.Controls.Add(btnDelete);
+            flowLayoutPanel1.Controls.Add(btnBack);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -82,7 +84,7 @@
             btnRefresh.BackColor = Color.FromArgb(50, 50, 150);
             btnRefresh.FlatAppearance.BorderSize = 0;
             btnRefresh.FlatStyle = FlatStyle.Flat;
-            btnRefresh.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRefresh.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnRefresh.ForeColor = Color.White;
             btnRefresh.Location = new Point(0, 128);
             btnRefresh.Margin = new Padding(0, 0, 0, 30);
@@ -98,7 +100,7 @@
             btnCreate.BackColor = Color.FromArgb(50, 50, 150);
             btnCreate.FlatAppearance.BorderSize = 0;
             btnCreate.FlatStyle = FlatStyle.Flat;
-            btnCreate.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(0, 209);
             btnCreate.Margin = new Padding(0);
@@ -115,7 +117,7 @@
             btnUpdateInfo.Enabled = false;
             btnUpdateInfo.FlatAppearance.BorderSize = 0;
             btnUpdateInfo.FlatStyle = FlatStyle.Flat;
-            btnUpdateInfo.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnUpdateInfo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnUpdateInfo.ForeColor = Color.White;
             btnUpdateInfo.Location = new Point(0, 260);
             btnUpdateInfo.Margin = new Padding(0);
@@ -132,7 +134,7 @@
             btnDelete.Enabled = false;
             btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnDelete.ForeColor = Color.White;
             btnDelete.Location = new Point(0, 311);
             btnDelete.Margin = new Padding(0);
@@ -141,6 +143,23 @@
             btnDelete.TabIndex = 5;
             btnDelete.Text = "Xóa";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(50, 50, 150);
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.ForeColor = Color.White;
+            btnBack.Location = new Point(0, 362);
+            btnBack.Margin = new Padding(0);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(136, 51);
+            btnBack.TabIndex = 3;
+            btnBack.Text = "Quay lại";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // panel1
             // 
@@ -155,10 +174,10 @@
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeadingPage.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point);
             lblHeadingPage.Location = new Point(390, 31);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(105, 27);
+            lblHeadingPage.Size = new Size(150, 37);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
@@ -172,13 +191,13 @@
             // 
             // ListForm
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1100, 544);
             Controls.Add(panelContent);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
-            Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "ListForm";
             Text = "Showroom - Management System";
             FormClosing += Layout_FormClosing;
@@ -205,5 +224,6 @@
         private Button btnDelete;
         private Label lblHeadingPage;
         private Panel panelContent;
+        private Button btnBack;
     }
 }

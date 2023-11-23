@@ -11,11 +11,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ShowroomData
 {
-    public partial class Schedule : Form
+    public partial class CreateSchedule : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
-        public Schedule(Form? _parent)
+        public CreateSchedule(Form? _parent)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -192,9 +192,6 @@ namespace ShowroomData
             };
 
             // Handle Create
-            /*string query = $"INSERT INTO TestDrive (DriveId, EmployeeId, ClientId, BookDate, Note, Status) " +
-                $"VALUES (N'{curr.id}',N'{curr.idEmployees}',N'{curr.idClients}','{curr.bookdate}', " +
-                $"N'{curr.note}',N'{curr.status}', NULL)";*/
             String query = "INSERT INTO TestDrive (DriveId, EmployeeId, ClientId, BookDate, Note, Status)\r\nVALUES\r\n  " +
                 "  (N'" + curr.id + "', N'" + curr.idEmployees + "', N'" + curr.idClients + "', '" + curr.bookdate + "', N'" + curr.note + "', N'" + curr.status + "')  ";
 

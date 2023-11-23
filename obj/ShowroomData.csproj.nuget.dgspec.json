@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj": {}
+    "D:\\Kì I - Năm 3\\LTTQ\\BTL\\Showroom-Winform\\ShowroomData.csproj": {}
   },
   "projects": {
-    "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj": {
+    "D:\\Kì I - Năm 3\\LTTQ\\BTL\\Showroom-Winform\\ShowroomData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj",
+        "projectUniqueName": "D:\\Kì I - Năm 3\\LTTQ\\BTL\\Showroom-Winform\\ShowroomData.csproj",
         "projectName": "ShowroomData",
-        "projectPath": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\ShowroomData.csproj",
-        "packagesPath": "C:\\Users\\T&H\\.nuget\\packages\\",
-        "outputPath": "F:\\C-Sharp\\BT_LON_LTTQ\\LTTQ\\Showroom-Winform\\obj\\",
+        "projectPath": "D:\\Kì I - Năm 3\\LTTQ\\BTL\\Showroom-Winform\\ShowroomData.csproj",
+        "packagesPath": "C:\\Users\\cuong\\.nuget\\packages\\",
+        "outputPath": "D:\\Kì I - Năm 3\\LTTQ\\BTL\\Showroom-Winform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\T&H\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cuong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

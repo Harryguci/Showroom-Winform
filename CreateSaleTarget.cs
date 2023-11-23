@@ -7,15 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace ShowroomData
 {
-    public partial class SaleInvoice : Form
+    public partial class CreateSaleTarget : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
-        public SaleInvoice(Form? _parent)
+        public CreateSaleTarget(Form? _parent)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -33,7 +32,7 @@ namespace ShowroomData
             SetStyle(ControlStyles.ResizeRedraw, true);
         }
 
-        // Constructor
+
 
         #region Handle Form Dragging
 
@@ -62,7 +61,7 @@ namespace ShowroomData
         // [Handle Events]
         //
 
-        private void SaleInvoiceForm_Resize(object sender, EventArgs e)
+        private void SaleTargetForm_Resize(object sender, EventArgs e)
         {
             lblHeading.Location = new Point((panel1.Width - lblHeading.Width) / 2,
                 lblHeading.Location.Y);
@@ -70,20 +69,20 @@ namespace ShowroomData
 
         private string AutoCreateId()
         {
-            DataTable tb = processDb.GetData("Select Top 1 InSaleId From SalesInvoices Order By InSaleId DESC");
-            string? id = tb.Rows[0]["InSaleId"].ToString();
+            DataTable tb = processDb.GetData("Select Top 1 SaleId From SalesTargets Order By SaleId DESC");
+            string? id = tb.Rows[0]["SaleId"].ToString();
 
             if (id != null)
             {
-                int count = Convert.ToInt32(id.Substring(2, id.Length - 2));
+                int count = Convert.ToInt32(id.Substring(1, id.Length - 1));
                 id = Convert.ToString(count + 1);
 
                 while (id.Length < 3) id = "0" + id;
-                id = "IS" + id;
+                id = "S" + id;
             }
             else
             {
-                id = "IS001";
+                id = "S001";
             }
             return id;
         }
@@ -95,30 +94,24 @@ namespace ShowroomData
         {
             var curr = new
             {
-                idClients = txtIdClients.Text.Trim(),
-                idProducts = txtIdProducts.Text.Trim(),
-                quantity = txtQuantity.Text.Trim(),
+                target = txtTarget.Text.Trim(),
+                idEmployee = txtIdEmployee.Text.Trim(),
                 status = txtStatus.Text.Trim()
             };
 
-            if (curr.idClients.Length <= 0)
+            if (curr.target.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập id khách hàng");
+                MessageBox.Show("Bạn phải nhập mục tiêu");
                 return false;
             }
-            if (curr.idProducts.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập id sản phẩm");
-                return false;
-            }
-            if (curr.quantity.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập số lượng");
-                return false;
-            }
-            if (curr.quantity.Length <= 0)
+            if (curr.status.Length <= 0)
             {
                 MessageBox.Show("Bạn phải nhập trạng thái");
+                return false;
+            }
+            if (curr.idEmployee.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập mã nhân viên");
                 return false;
             }
 
@@ -128,20 +121,16 @@ namespace ShowroomData
         private void CleanForm()
         {
             // Earse current data
-            TextBox[] textBoxes = { txtIdClients, txtIdProducts, txtQuantity, txtStatus };
+            TextBox[] textBoxes = { txtTarget, txtStatus, txtIdEmployee };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
-            txtIdInvoices.Text = AutoCreateId();
-            dayDateTimePicker.Value = DateTime.Now;
+            txtId.Text = AutoCreateId();
+            startDateTimePicker.Value = DateTime.Now;
+            endDateTimePicker.Value = DateTime.Now;
         }
 
-        private void SaleInvoice_Load(object sender, EventArgs e)
-        {
-            txtIdInvoices.Text = AutoCreateId();
-        }
-
-        private void txtQuantity_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void txtTarget_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -149,48 +138,29 @@ namespace ShowroomData
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo",
-                MessageBoxButtons.YesNo) == DialogResult.Yes) Close();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void helpBtn_Click_1(object sender, EventArgs e)
-        {
-            HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
-                "- Bắt buộc nhập đầy đủ thông tin\n" +
-                "- Số lượng chỉ có thể nhập số");
-
-            helperDialog.Show();
-        }
-
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void btnCreate_Click_1(object sender, EventArgs e)
         {
             if (!ValidateForm()) return;
 
-            if (MessageBox.Show("Tạo mới hóa đơn này?", "Thông báo",
+            if (MessageBox.Show("Tạo mới mục tiêu này?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
             var curr = new
             {
-                id = txtIdInvoices.Text,
-                idClients = txtIdClients.Text.Trim(),
-                idProducts = txtIdProducts.Text.Trim(),
-                day = dayDateTimePicker.Value.ToString("yyyy-MM-dd"),
+                id = txtId.Text,
+                target = txtTarget.Text.Trim(),
+                startDay = startDateTimePicker.Value.ToString("yyyy-MM-dd"),
+                endDay = endDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                quantity = txtQuantity.Text.Trim(),
-                status = txtStatus.Text.Trim()
+                status = txtStatus.Text.Trim(),
+                idEmployee = txtIdEmployee.Text.Trim(),
+                reward = txtReward.Text.Trim()
             };
 
             // Handle Create
-            string query = $"INSERT INTO SalesInvoices (InSaleId, ClientId, ProductId, Date, QuantitySale, Status) " +
-                $"VALUES (N'{curr.id}',N'{curr.idClients}',N'{curr.idProducts}','{curr.day}', " +
-                $"N'{curr.quantity}',N'{curr.status}')";
+            string query = $"INSERT INTO SalesTargets (SaleId, EmployeeId, StartDate, EndDate, Total, Target, Status, Reward) " +
+                $"VALUES (N'{curr.id}', N'{curr.idEmployee}', N'{curr.startDay}', N'{curr.endDay}', 0, N'{curr.target}', " +
+                $"N'{curr.status}', N'{curr.reward}')";
 
             // Excute the query
             processDb.UpdateData(query);
@@ -204,18 +174,45 @@ namespace ShowroomData
             parent.Refresh();
         }
 
-        private void btnClean_Click_1(object sender, EventArgs e)
+        private void btnClean_Click(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { txtIdClients, txtIdProducts, txtQuantity, txtStatus };
+            TextBox[] textBoxes = { txtTarget, txtStatus, txtIdEmployee };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
-            txtIdInvoices.Text = AutoCreateId();
+            txtId.Text = AutoCreateId();
+            txtReward.Text = "0.03";
         }
 
-        private void btnBack_Click_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void helpBtn_Click(object sender, EventArgs e)
+        {
+            HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
+                "- Bắt buộc nhập đầy đủ thông tin\n" +
+                "- Mục tiêu chỉ có thể nhập số");
+
+            helperDialog.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo",
+                MessageBoxButtons.YesNo) == DialogResult.Yes) Close();
+        }
+
+        private void SaleTarget_Load(object sender, EventArgs e)
+        {
+            txtId.Text = AutoCreateId();
+            txtReward.Text = "0.03";
         }
     }
 }
