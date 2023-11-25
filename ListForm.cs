@@ -352,19 +352,22 @@ namespace ShowroomData
 
                 Customer customer = new Customer()
                 {
-                    ClientId = (string)selected[0].Value,
-                    Firstname = (string)selected[1].Value,
-                    Lastname = (string)selected[2].Value,
+                    ClientId = (string)selected[0].EditedFormattedValue,
+                    Firstname = (string)selected[1].EditedFormattedValue,
+                    Lastname = (string)selected[2].EditedFormattedValue,
                     DateBirth = (DateTime)selected[3].Value,
-                    PhoneNumber = (string)selected[4].Value,
-                    Gender = (bool)selected[5].Value,
-                    Cccd = (string)selected[6].Value,
-                    Email = (string)selected[7].Value,
-                    Address = (string)selected[8].Value,
-                    Deleted = (bool)(selected[9].Value),
+                    PhoneNumber = (string)selected[4].EditedFormattedValue,
+                    Gender = (bool)selected[5].EditedFormattedValue,
+                    Cccd = (string)selected[6].EditedFormattedValue,
+                    Email = (string)selected[7].EditedFormattedValue,
+                    Address = (string)selected[8].EditedFormattedValue,
+                    Deleted = (bool)(selected[9].EditedFormattedValue),
                 };
 
                 CreateUpdateCustomer updateForm = new CreateUpdateCustomer(this, title: "Cập nhật khách hàng", customer);
+                updateForm.FormClosed += (e, args) => {
+                    RefeshData();
+                };
                 updateForm.Show();
             }
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
@@ -39,6 +40,7 @@
             button1 = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
+            component11 = new Component1(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -223,5 +225,6 @@
         private Label lblHeadingPage;
         private Panel panelContent;
         private Button button1;
+        private Component1 component11;
     }
 }

@@ -24,7 +24,7 @@ namespace ShowroomData
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            
+
         }
 
         private void panelContent_Resize(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace ShowroomData
             flowLayoutPanel2.Width = panelContent.Width - 100;
             flowLayoutPanel2.Height = panelContent.Height - 100;
 
-            int minWidth = Math.Max(flowLayoutPanel2.Width / 5 - 100, 200);
+            int minWidth = Math.Max(flowLayoutPanel2.Width / 3 - 100, 200);
             minWidth = Math.Min(250, minWidth);
 
             Size btnSize = new Size(minWidth, minWidth);

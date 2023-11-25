@@ -123,7 +123,7 @@ namespace ShowroomData
         {
             string id = txtId.Text.Trim();
 
-            var response = _processDatabase.GetData($"SELECT TOP 1 FROM Customers WHERE ClientId = '{id}'");
+            var response = _processDatabase.GetData($"SELECT TOP 1 ClientId FROM Customers WHERE ClientId = '{id}'");
 
             return response.Rows.Count > 0;
         }
@@ -174,8 +174,8 @@ namespace ShowroomData
                     "Thông báo",
                     MessageBoxButtons.YesNo) == DialogResult.No)
                     return;
-                var query = $"UPDATE Customers SET FirstName = N'{curr.FirstName}', LastName = N'{curr.LastName}', PhoneNumber = '{curr.PhoneNumber}', Gender = '{(curr.Gender ? 1 : 0)}', CCCD  = '{curr.Cccd}', Email='{curr.Email}', Address='{curr.Address}', DateBirth={curr.DateBirth}" +
-                    $" Where Customers.ClientId = 'C014'";
+                var query = $"UPDATE Customers SET FirstName = N'{curr.FirstName}', LastName = N'{curr.LastName}', PhoneNumber = '{curr.PhoneNumber}', Gender = '{(curr.Gender ? 1 : 0)}', CCCD  = '{curr.Cccd}', Email='{curr.Email}', Address=N'{curr.Address}', DateBirth={curr.DateBirth}" +
+                    $" Where Customers.ClientId = '{curr.Id}'";
 
                 _processDatabase.UpdateData(query);
             }
@@ -183,7 +183,7 @@ namespace ShowroomData
             {
                 // handle create
                 var query = $"Insert Into Customers (\"ClientId\", \"FirstName\", \"LastName\", \"DateBirth\", \"PhoneNumber\", \"Gender\", \"CCCD\", \"Email\", \"Address\", \"Deleted\") " +
-                    $"Values ('C015', N'{curr.FirstName}', N'{curr.LastName}', '{curr.DateBirth}', '{curr.PhoneNumber}', {(curr.Gender ? 1 : 0)}, '{curr.Cccd}', '{curr.Email}', '{curr.Address}', 0)";
+                    $"Values ('{curr.Id}', N'{curr.FirstName}', N'{curr.LastName}', '{curr.DateBirth}', '{curr.PhoneNumber}', {(curr.Gender ? 1 : 0)}, '{curr.Cccd}', '{curr.Email}', N'{curr.Address}', 0)";
 
                 // Excute the query
                 _processDatabase.UpdateData(query);

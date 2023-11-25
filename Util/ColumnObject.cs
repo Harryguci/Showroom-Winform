@@ -159,7 +159,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Địa chỉ",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {

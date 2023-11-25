@@ -99,7 +99,7 @@
             button1.Name = "button1";
             button1.Size = new Size(136, 51);
             button1.TabIndex = 2;
-            button1.Text = "Làm mới";
+            button1.Text = "Tài khoản";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -114,7 +114,7 @@
             button2.Name = "button2";
             button2.Size = new Size(136, 51);
             button2.TabIndex = 3;
-            button2.Text = "Tạo mới";
+            button2.Text = "Lịch làm việc";
             button2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -129,7 +129,7 @@
             button3.Name = "button3";
             button3.Size = new Size(136, 51);
             button3.TabIndex = 4;
-            button3.Text = "Sửa";
+            button3.Text = "Báo cáo";
             button3.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -144,7 +144,7 @@
             button4.Name = "button4";
             button4.Size = new Size(136, 51);
             button4.TabIndex = 5;
-            button4.Text = "Xóa";
+            button4.Text = "Tin tức";
             button4.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -284,7 +284,11 @@
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximumSize = new Size(1560, 1032);
+            MinimumSize = new Size(190, 40);
             Name = "Home";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Management System";
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);

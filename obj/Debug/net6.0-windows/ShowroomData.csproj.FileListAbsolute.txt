@@ -112,3 +112,5 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Showroom
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ref\ShowroomData.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Home.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CreateUpdateCustomer.resources
+E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ReaLTaiizor.dll
+E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Dashboard.resources
