@@ -40,7 +40,7 @@ namespace ShowroomData
                 txtCccd.Text = customer.Cccd;
                 dtpBirth.Value = customer.DateBirth;
 
-                if (customer.Gender) radioButton1.Checked = true;
+                if (customer.Gender != null && customer.Gender.Value) radioButton1.Checked = true;
                 else radioButton2.Checked = true;
             }
         }

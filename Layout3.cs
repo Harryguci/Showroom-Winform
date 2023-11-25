@@ -28,8 +28,8 @@ namespace ShowroomData
         private void button2_Click(object sender, EventArgs e)
         {
             Dispose();
-            Layout2 layout2 = new Layout2();
-            layout2.Show();
+            Layout2 login = new Layout2();
+            login.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualBasic;
+﻿using Microsoft.Data.SqlClient;
 using ShowroomData.Models;
 using ShowroomData.Util;
-using ShowroomManagement.Models;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 
@@ -19,11 +17,8 @@ namespace ShowroomData
             InitializeComponent();
             listType = _listType;
             HandleGUI();
-
-
-
             //
-            // [Add Form events]b
+            // [Add Form events]
             //
             Resize += Form1_Resize;
 
@@ -70,11 +65,11 @@ namespace ShowroomData
             {
                 title = "khách hàng";
             }
-            else if (listType == "purchaseinvoice")
+            else if (listType == "purchaseinvoices")
             {
                 title = "hóa đơn mua";
             }
-            else if (listType == "salesinvoice")
+            else if (listType == "salesinvoices")
             {
                 title = "hóa đơn bán";
             }
@@ -157,12 +152,43 @@ namespace ShowroomData
             }
             else if (listType == ListType.PRODUCTS)
             {
-
+                CreateProduct createProduct = new CreateProduct(this);
+                createProduct.Show();
             }
             else if (listType == ListType.CUSTOMERS)
             {
                 CreateUpdateCustomer form = new CreateUpdateCustomer(this);
                 form.Show();
+            }
+            else if (listType == ListType.DEVICES)
+            {
+                CreateDevice createDevice = new CreateDevice(this);
+                createDevice.Show();
+            }
+            else if (listType == ListType.PURCHASEINVOICES)
+            {
+                CreatePurchaseInvoice createPurchaseInvoice = new CreatePurchaseInvoice(this);
+                createPurchaseInvoice.Show();
+            }
+            else if (listType == ListType.SALEINVOICES)
+            {
+                CreateSaleInvoice createSaleInvoice = new CreateSaleInvoice(this);
+                createSaleInvoice.Show();
+            }
+            else if (listType == ListType.SALESTARGETS)
+            {
+                CreateSaleTarget createSaleTarget = new CreateSaleTarget(this);
+                createSaleTarget.Show();
+            }
+            else if (listType == ListType.SOURCE)
+            {
+                CreateSource createSource = new CreateSource(this);
+                createSource.Show();
+            }
+            else
+            {
+                CreateSchedule createSchedule = new CreateSchedule(this);
+                createSchedule.Show();
             }
         }
 
@@ -254,13 +280,9 @@ namespace ShowroomData
 
             #endregion
             if (type == "all")
-            {
                 query = $"select Top {limits} * from {table}";
-            }
             else if (whereCondition != string.Empty)
-            {
                 query = $"select Top {limits} * from {table} where {whereCondition}";
-            }
 
             dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dt.Dock = DockStyle.Fill;
@@ -322,6 +344,7 @@ namespace ShowroomData
         private void updateInfoBtn_Click(object sender, EventArgs e)
         {
             if (dt.SelectedRows.Count <= 0) return;
+
             if (listType == ListType.EMPLOYEES)
             {
                 var selected = dt.SelectedRows[0].Cells;
@@ -332,7 +355,7 @@ namespace ShowroomData
                     Firstname = (string)selected[1].Value,
                     Lastname = (string)selected[2].Value,
                     DateBirth = (DateTime)selected[3].Value,
-                    PhoneNumber = (string)selected[4].Value,
+                    Phone = (string)selected[4].Value,
                     Gender = (bool)selected[5].Value,
                     Cccd = (string)selected[6].Value,
                     Position = (string)selected[7].Value,
@@ -365,47 +388,356 @@ namespace ShowroomData
                 };
 
                 CreateUpdateCustomer updateForm = new CreateUpdateCustomer(this, title: "Cập nhật khách hàng", customer);
-                updateForm.FormClosed += (e, args) => {
+                updateForm.FormClosed += (e, args) =>
+                {
                     RefeshData();
                 };
                 updateForm.Show();
             }
+            else if (listType == ListType.PRODUCTS)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Products products = new Products()
+                {
+                    Serial = (string)selected[1].Value,
+                    ProductName = (string)selected[0].Value,
+                    PurchasePrice = (int)selected[2].Value,
+                    SalePrice = (int)selected[3].Value,
+                    Quantity = (int)selected[4].Value,
+                    Status = (string)selected[5].Value,
+                    Deleted = (bool?)selected[6].Value
+                };
+
+                UpdateProduct updateProduct = new UpdateProduct(products, this);
+                updateProduct.Show();
+            }
+            else if (listType == ListType.PURCHASEINVOICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                PurchaseInvoice purchaseInvoice = new PurchaseInvoice()
+                {
+                    InEnterId = (string)selected[0].Value,
+                    SourceId = (string)selected[1].Value,
+                    ProductId = (string)selected[2].Value,
+                    EnteredDate = (DateTime?)selected[3].Value,
+                    QuantityPurchase = (int)selected[4].Value,
+                    Status = (string)selected[5].Value,
+                    Deleted = (bool)selected[6].Value
+                };
+
+                UpdatePurchaseInvoice updatePurchaseInvoice = new UpdatePurchaseInvoice(purchaseInvoice, this);
+                updatePurchaseInvoice.Show();
+            }
+            else if (listType == ListType.SALEINVOICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                SalesInvoice salesInvoice = new SalesInvoice()
+                {
+                    InSaleId = (string)selected[0].Value,
+                    ClientId = (string)selected[1].Value,
+                    EmployeeId = (string)selected[2].Value,
+                    ProductId = (string)selected[3].Value,
+                    SaleDate = (DateTime?)selected[4].Value,
+                    QuantitySale = (int)selected[5].Value,
+                    Status = (string)selected[6].Value,
+                    Deleted = (bool)selected[7].Value
+                };
+
+                UpdateSaleInvoice updateSaleInvoice = new UpdateSaleInvoice(salesInvoice, this);
+                updateSaleInvoice.Show();
+            }
+            else if (listType == ListType.SALESTARGETS)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                SalesTarget salesTarget = new SalesTarget()
+                {
+                    SaleId = (string)selected[0].Value,
+                    EmployeeId = (string)selected[1].Value,
+                    StartDate = (DateTime)selected[2].Value,
+                    EndDate = (DateTime)selected[3].Value,
+                    Total = (int)selected[4].Value,
+                    Target = (int)selected[5].Value,
+                    Status = (string)selected[6].Value,
+                    Reward = (double)selected[7].Value,
+                };
+
+                UpdateSaleTarget updateSaleTarget = new UpdateSaleTarget(salesTarget, this);
+                updateSaleTarget.Show();
+            }
+            else if (listType == ListType.SOURCE)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Source source = new Source()
+                {
+                    SourceId = (string)selected[0].Value,
+                    Name = (string)selected[1].Value
+                };
+
+                UpdateSource updateSource = new UpdateSource(source, this);
+                updateSource.Show();
+            }
+            else if (listType == ListType.DEVICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Device device = new Device()
+                {
+                    DeviceId = (string)selected[0].Value,
+                    DeviceName = (string)selected[1].Value,
+                    DateEntry = (DateTime)selected[2].Value,
+                    Price = (int)selected[3].Value,
+                    Status = (string)selected[4].Value
+                };
+
+                UpdateDevice updateDevice = new UpdateDevice(device, this);
+                updateDevice.Show();
+            }
+            else
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                TestDrive testDrive = new TestDrive()
+                {
+                    DriveId = (string)selected[0].Value,
+                    ClientId = (string)selected[1].Value,
+                    EmployeeId = (string)selected[2].Value,
+                    BookDate = (DateTime)selected[3].Value,
+                    Note = (string)selected[4].Value,
+                    Status = (string)selected[5].Value
+                };
+
+                UpdateTestDrive updateTestDrive = new UpdateTestDrive(testDrive, this);
+                updateTestDrive.Show();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (listType == ListType.EMPLOYEES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Employee employee = new Employee()
+                {
+                    EmployeeId = (string)selected[0].Value,
+                    Firstname = (string)selected[1].Value,
+                    Lastname = (string)selected[2].Value,
+                    DateBirth = (DateTime?)selected[3].Value,
+                    Phone = (string)selected[4].Value,
+                    Gender = (bool)selected[5].Value,
+                    Cccd = (string)selected[6].Value,
+                    Position = (string?)selected[7].Value,
+                    StartDate = (DateTime?)selected[8].Value,
+                    Salary = Convert.ToInt32(selected[9].Value),
+                    Email = (string)selected[10].Value,
+                    Deleted = (bool)selected[11].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM Employees WHERE EmployeeId = N'{employee.EmployeeId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.CUSTOMERS)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Customer customer = new Customer()
+                {
+                    ClientId = (string)selected[0].Value,
+                    Firstname = (string)selected[1].Value,
+                    Lastname = (string)selected[2].Value,
+                    DateBirth = (DateTime)selected[3].Value,
+                    Phone = (string)selected[4].Value,
+                    Gender = (bool)selected[5].Value,
+                    Cccd = (string)selected[6].Value,
+                    Email = (string)selected[7].Value,
+                    Address = (string)selected[8].Value,
+                    Deleted = (bool?)selected[9].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM Customers WHERE ClientId = N'{customer.ClientId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.PRODUCTS)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Products products = new Products()
+                {
+                    Serial = (string)selected[1].Value,
+                    ProductName = (string)selected[0].Value,
+                    PurchasePrice = (int)selected[2].Value,
+                    SalePrice = (int)selected[3].Value,
+                    Quantity = (int)selected[4].Value,
+                    Status = (string)selected[5].Value,
+                    Deleted = (bool?)selected[6].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM Products WHERE Serial = N'{products.Serial}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.PURCHASEINVOICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                PurchaseInvoice purchaseInvoice = new PurchaseInvoice()
+                {
+                    InEnterId = (string)selected[0].Value,
+                    SourceId = (string)selected[1].Value,
+                    ProductId = (string)selected[2].Value,
+                    EnteredDate = (DateTime?)selected[3].Value,
+                    QuantityPurchase = (int)selected[4].Value,
+                    Status = (string)selected[5].Value,
+                    Deleted = (bool)selected[6].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa hóa đơn này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM PurchaseInvoices WHERE InEnterId = N'{purchaseInvoice.InEnterId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.SALEINVOICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                SalesInvoice salesInvoice = new SalesInvoice()
+                {
+                    InSaleId = (string)selected[0].Value,
+                    ClientId = (string)selected[1].Value,
+                    EmployeeId = (string)selected[2].Value,
+                    ProductId = (string)selected[3].Value,
+                    SaleDate = (DateTime?)selected[4].Value,
+                    QuantitySale = (int)selected[5].Value,
+                    Status = (string)selected[6].Value,
+                    Deleted = (bool)selected[7].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa hóa đơn này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM SalesInvoices WHERE InSaleId = N'{salesInvoice.InSaleId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.SALESTARGETS)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                SalesTarget salesTarget = new SalesTarget()
+                {
+                    SaleId = (string)selected[0].Value,
+                    EmployeeId = selected[1].Value.ToString(),
+                    StartDate = (DateTime?)selected[2].Value,
+                    EndDate = (DateTime?)selected[3].Value,
+                    Total = (int)selected[4].Value,
+                    Target = (int)selected[5].Value,
+                    Status = (string)selected[6].Value,
+                    Reward = (double)selected[7].Value,
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa mục tiêu này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM SalesTargets WHERE SaleId = N'{salesTarget.SaleId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.SOURCE)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Source source = new Source()
+                {
+                    SourceId = (string)selected[0].Value,
+                    Name = (string)selected[1].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhà cung cấp này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM Source WHERE SourceId = N'{source.SourceId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else if (listType == ListType.DEVICES)
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                Device device = new Device()
+                {
+                    DeviceId = (string)selected[0].Value,
+                    DeviceName = (string)selected[1].Value,
+                    DateEntry = (DateTime?)selected[2].Value,
+                    Price = (int)selected[3].Value,
+                    Status = (string)selected[4].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa thiết bị này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM Devices WHERE DeviceId = N'{device.DeviceId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+            else
+            {
+                var selected = dt.SelectedRows[0].Cells;
+
+                TestDrive testDrive = new TestDrive()
+                {
+                    DriveId = (string)selected[0].Value,
+                    ClientId = (string)selected[1].Value,
+                    EmployeeId = (string)selected[2].Value,
+                    BookDate = (DateTime)selected[3].Value,
+                    Note = (string)selected[4].Value,
+                    Status = (string)selected[5].Value
+                };
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa lịch lái thử này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string query = $"DELETE FROM TestDrive WHERE DriveId = N'{testDrive.DriveId}'";
+                    processDb.UpdateData(query);
+                }
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Close();
+            Home.ActiveForm.Show();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dt.SelectedRows.Count <= 0) return;
-            if (listType == ListType.EMPLOYEES)
-            {
-
-                var employeeId = dt.SelectedRows[0].Cells[0].Value;
-                var employeeFullname = (string)dt.SelectedRows[0].Cells[2].Value + ' ' + dt.SelectedRows[0].Cells[1].Value;
-
-                if (MessageBox.Show($"Bạn chắc chắn muốn xóa nhân viên {employeeFullname} ({employeeId})",
-                    "Thông báo",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.No) return;
-
-                processDb.UpdateData($"Update Account SET EmployeeId = NULL WHERE Account.EmployeeId = N'{employeeId}'");
-                processDb.UpdateData($"UPDATE TestDrive SET EmployeeId = NULL WHERE TestDrive.EmployeeId = N'{employeeId}'");
-                processDb.UpdateData($"UPDATE SalesInvoices SET EmployeeId = NULL WHERE SalesInvoices.EmployeeId = N'{employeeId}'");
-                processDb.UpdateData($"UPDATE SalesTargets SET EmployeeId = NULL WHERE SalesTargets.EmployeeId = N'{employeeId}'");
-                processDb.UpdateData($"UPDATE TASKS SET EmployeeId = NULL WHERE TASKS.EmployeeId = N'{employeeId}'");
-                processDb.UpdateData($"DELETE Employees Where Employees.EmployeeId = N'{employeeId}'");
-                RefeshData();
-            }
-            else if (listType == ListType.CUSTOMERS)
-            {
-                var customerId = dt.SelectedRows[0].Cells[0].Value;
-
-
-            }
-
         }
     }
 }

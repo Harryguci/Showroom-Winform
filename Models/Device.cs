@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ShowroomData.Models
 {
     public class Device
     {
-        public Device(string deviceId, string deviceName)
+        public Device()
         {
-            DeviceId = deviceId;
-            DeviceName = deviceName;
+            DeviceId = DeviceName = string.Empty;
         }
         public string DeviceId { get; set; }
         public string DeviceName { get; set; }

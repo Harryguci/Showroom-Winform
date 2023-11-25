@@ -106,26 +106,19 @@ namespace ShowroomData
                 return;
             }
 
-
-            #region SHOW LIST LAYOUT
-            //Layout layout = new Layout();
-            //layout.Show();
-
-            //Hide(); // Hide the current Form.
-
-            //layout.FormClosed += (s, args) => Close();
-            #endregion
-            // check login 
-
-
             if (CheckLogin(username, password))
             {
-                #region SHOW LIST FORM
                 Home form = new Home();
                 form.Show();
                 Hide(); // Hide the current Form.
                 form.FormClosed += (s, args) => Close();
-                #endregion
+
+                //Admin admin = new Admin();
+                //admin.Show();
+
+                //Hide();
+
+                // admin.FormClosed += (s, args) => Close();
             }
             else
             {

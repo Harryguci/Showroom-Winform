@@ -35,7 +35,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "SĐT",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -82,17 +82,17 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Tên sản phẩm",
-                    Width = 100
-                },
-                new ColumnObject
-                {
-                    Name = "Serial",
                     Width = 200
                 },
                 new ColumnObject
                 {
-                    Name = "Product price",
+                    Name = "Serial",
                     Width = 100
+                },
+                new ColumnObject
+                {
+                    Name = "Product price",
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -107,12 +107,12 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 100
+                    Width = 200
                 },
                  new ColumnObject
                 {
                     Name = "Deleted",
-                    Width = 50
+                    Width = 100
                 }
             };
         public static ColumnObject[] CUSTOMERS_COLS = {
@@ -129,7 +129,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Họ",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -144,7 +144,7 @@ namespace ShowroomData.Util
                  new ColumnObject
                 {
                     Name = "Giới tính",
-                    Width = 50
+                    Width = 100
                 },
                 new ColumnObject
                 {
@@ -154,17 +154,17 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Email",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
                     Name = "Địa chỉ",
                     Width = 200
-                },
+                },          
                 new ColumnObject
                 {
                     Name = "Deleted",
-                    Width = 50
+                    Width = 100
                 }
             };
         public static ColumnObject[] PURCHASEINVOICES_COLS = {
@@ -196,12 +196,12 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
                     Name = "Deleted",
-                    Width = 50
+                    Width = 100
                 }
             };
         public static ColumnObject[] SALEINVOICES_COLS = {
@@ -213,6 +213,11 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Mã khách hàng",
+                    Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "Mã nhân viên",
                     Width = 200
                 },
                 new ColumnObject
@@ -233,18 +238,23 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
                     Name = "Deleted",
-                    Width = 50
+                    Width = 100
                 }
             };
         public static ColumnObject[] SALETARGETS_COLS = {
                 new ColumnObject
                 {
                     Name = "Mã bán hàng",
+                    Width = 200
+                },
+                new ColumnObject
+                {
+                    Name = "Mã nhân viên",
                     Width = 200
                 },
                 new ColumnObject
@@ -270,7 +280,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {

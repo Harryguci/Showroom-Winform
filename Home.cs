@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using ShowroomData.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,28 +42,35 @@ namespace ShowroomData
 
             btnCustomers.Size = btnSize;
             btnEmployees.Size = btnSize;
-            btnInvoices.Size = btnSize;
+            btnPuchaInvoices.Size = btnSize;
             btnProducts.Size = btnSize;
+            btnSource.Size = btnSize;
+            btnPuchaInvoices.Size = btnSize;
             btnServices.Size = btnSize;
+            btnSaleInvoice.Size = btnSize;
         }
         private void HandleChangeForm(object sender, EventArgs e)
         {
             string? formName = null;
             if (sender.Equals(btnCustomers))
             {
-                formName = "customers";
+                formName = TableName.CUSTOMERS;
             }
             else if (sender.Equals(btnEmployees))
             {
-                formName = "employees";
+                formName = TableName.EMPLOYEES;
             }
-            else if (sender.Equals(btnServices))
+            else if (sender.Equals(btnSource))
             {
-                formName = "services";
+                formName = TableName.SOURCE;
             }
-            else if (sender.Equals(btnInvoices))
+            else if (sender.Equals(btnPuchaInvoices))
             {
-                formName = "purchaseInvoice";
+                formName = TableName.PURCHASEINVOICES;
+            }
+            else if (sender.Equals(btnProducts))
+            {
+                formName = TableName.PRODUCTS;
             }
 
             if (formName == null) formName = "employees";

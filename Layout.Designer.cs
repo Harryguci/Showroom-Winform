@@ -82,7 +82,7 @@
             button1.BackColor = Color.FromArgb(50, 50, 150);
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
             button1.Location = new Point(0, 128);
             button1.Margin = new Padding(0, 0, 0, 30);
@@ -98,7 +98,7 @@
             button2.BackColor = Color.FromArgb(50, 50, 150);
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.White;
             button2.Location = new Point(0, 209);
             button2.Margin = new Padding(0);
@@ -114,7 +114,7 @@
             button3.BackColor = Color.FromArgb(50, 50, 150);
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
             button3.Location = new Point(0, 260);
             button3.Margin = new Padding(0);
@@ -129,7 +129,7 @@
             button4.BackColor = Color.FromArgb(50, 50, 150);
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
             button4.Location = new Point(0, 311);
             button4.Margin = new Padding(0);
@@ -152,10 +152,10 @@
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHeadingPage.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point);
             lblHeadingPage.Location = new Point(390, 31);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(105, 27);
+            lblHeadingPage.Size = new Size(150, 37);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
@@ -169,13 +169,13 @@
             // 
             // Layout
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1100, 544);
             Controls.Add(panelContent);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
-            Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Layout";
             Text = "Showroom - Management System";
             FormClosing += Layout_FormClosing;

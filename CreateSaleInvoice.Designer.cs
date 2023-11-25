@@ -1,6 +1,6 @@
 ﻿namespace ShowroomData
 {
-    partial class PurchaseInvoice
+    partial class CreateSaleInvoice
     {
         /// <summary>
         ///  Required designer variable.
@@ -41,7 +41,7 @@
             label1 = new Label();
             txtIdInvoices = new TextBox();
             label2 = new Label();
-            txtIdSuppliers = new TextBox();
+            txtIdClients = new TextBox();
             label3 = new Label();
             txtIdProducts = new TextBox();
             label5 = new Label();
@@ -53,6 +53,8 @@
             label4 = new Label();
             txtStatus = new TextBox();
             txtQuantity = new TextBox();
+            txtIdEmployee = new TextBox();
+            label7 = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -106,7 +108,7 @@
             btnBack.TabIndex = 10;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
+            btnBack.Click += btnBack_Click_1;
             // 
             // helpBtn
             // 
@@ -122,7 +124,7 @@
             helpBtn.TabIndex = 11;
             helpBtn.Text = "Trợ giúp";
             helpBtn.UseVisualStyleBackColor = true;
-            helpBtn.Click += helpBtn_Click;
+            helpBtn.Click += helpBtn_Click_1;
             // 
             // panel1
             // 
@@ -158,7 +160,7 @@
             button1.TabIndex = 0;
             button1.Text = "X";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += button1_Click_1;
             // 
             // button2
             // 
@@ -172,7 +174,7 @@
             button2.TabIndex = 0;
             button2.Text = "-";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += button2_Click_1;
             // 
             // lblHeading
             // 
@@ -180,14 +182,14 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(355, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(348, 46);
+            lblHeading.Size = new Size(337, 46);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Tạo hóa đơn mua";
+            lblHeading.Text = "Tạo hóa đơn bán";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(42, 37);
+            label1.Location = new Point(42, 33);
             label1.Name = "label1";
             label1.Size = new Size(129, 29);
             label1.TabIndex = 2;
@@ -196,31 +198,31 @@
             // txtIdInvoices
             // 
             txtIdInvoices.Enabled = false;
-            txtIdInvoices.Location = new Point(227, 34);
+            txtIdInvoices.Location = new Point(212, 30);
             txtIdInvoices.Name = "txtIdInvoices";
-            txtIdInvoices.Size = new Size(374, 35);
-            txtIdInvoices.TabIndex = 10;
+            txtIdInvoices.Size = new Size(389, 35);
+            txtIdInvoices.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(42, 104);
+            label2.Location = new Point(42, 97);
             label2.Name = "label2";
-            label2.Size = new Size(184, 29);
+            label2.Size = new Size(164, 29);
             label2.TabIndex = 2;
-            label2.Text = "ID nhà cung cấp";
+            label2.Text = "ID khách hàng";
             // 
-            // txtIdSuppliers
+            // txtIdClients
             // 
-            txtIdSuppliers.Location = new Point(227, 101);
-            txtIdSuppliers.Name = "txtIdSuppliers";
-            txtIdSuppliers.Size = new Size(374, 35);
-            txtIdSuppliers.TabIndex = 0;
+            txtIdClients.Location = new Point(212, 94);
+            txtIdClients.Name = "txtIdClients";
+            txtIdClients.Size = new Size(389, 35);
+            txtIdClients.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(42, 174);
+            label3.Location = new Point(43, 214);
             label3.Name = "label3";
             label3.Size = new Size(146, 29);
             label3.TabIndex = 2;
@@ -228,15 +230,15 @@
             // 
             // txtIdProducts
             // 
-            txtIdProducts.Location = new Point(227, 171);
+            txtIdProducts.Location = new Point(212, 211);
             txtIdProducts.Name = "txtIdProducts";
-            txtIdProducts.Size = new Size(374, 35);
-            txtIdProducts.TabIndex = 2;
+            txtIdProducts.Size = new Size(389, 35);
+            txtIdProducts.TabIndex = 3;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(43, 245);
+            label5.Location = new Point(43, 279);
             label5.Name = "label5";
             label5.Size = new Size(128, 29);
             label5.TabIndex = 2;
@@ -244,9 +246,9 @@
             // 
             // dayDateTimePicker
             // 
-            dayDateTimePicker.Location = new Point(227, 240);
+            dayDateTimePicker.Location = new Point(212, 274);
             dayDateTimePicker.Name = "dayDateTimePicker";
-            dayDateTimePicker.Size = new Size(374, 35);
+            dayDateTimePicker.Size = new Size(389, 35);
             dayDateTimePicker.TabIndex = 4;
             // 
             // panel3
@@ -255,7 +257,7 @@
             panel3.Controls.Add(btnClean);
             panel3.Controls.Add(btnCreate);
             panel3.Controls.Add(dayDateTimePicker);
-            panel3.Controls.Add(txtIdSuppliers);
+            panel3.Controls.Add(txtIdClients);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label5);
@@ -264,6 +266,8 @@
             panel3.Controls.Add(label2);
             panel3.Controls.Add(txtStatus);
             panel3.Controls.Add(txtQuantity);
+            panel3.Controls.Add(txtIdEmployee);
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(txtIdProducts);
             panel3.Controls.Add(label3);
             panel3.Location = new Point(286, 116);
@@ -285,7 +289,7 @@
             btnClean.TabIndex = 6;
             btnClean.Text = "Nhập mới";
             btnClean.UseVisualStyleBackColor = false;
-            btnClean.Click += btnClean_Click;
+            btnClean.Click += btnClean_Click_1;
             // 
             // btnCreate
             // 
@@ -301,12 +305,12 @@
             btnCreate.TabIndex = 5;
             btnCreate.Text = "Tạo";
             btnCreate.UseVisualStyleBackColor = false;
-            btnCreate.Click += btnCreate_Click_1;
+            btnCreate.Click += btnCreate_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(43, 382);
+            label6.Location = new Point(43, 401);
             label6.Name = "label6";
             label6.Size = new Size(121, 29);
             label6.TabIndex = 2;
@@ -315,7 +319,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(43, 313);
+            label4.Location = new Point(43, 338);
             label4.Name = "label4";
             label4.Size = new Size(109, 29);
             label4.TabIndex = 2;
@@ -323,20 +327,36 @@
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(227, 379);
+            txtStatus.Location = new Point(212, 398);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(374, 35);
-            txtStatus.TabIndex = 2;
+            txtStatus.Size = new Size(389, 35);
+            txtStatus.TabIndex = 6;
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(227, 310);
+            txtQuantity.Location = new Point(212, 338);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(173, 35);
-            txtQuantity.TabIndex = 2;
-            txtQuantity.KeyPress += txtQuantity_KeyPress;
+            txtQuantity.TabIndex = 5;
+            txtQuantity.KeyPress += txtQuantity_KeyPress_1;
             // 
-            // PurchaseInvoice
+            // txtIdEmployee
+            // 
+            txtIdEmployee.Location = new Point(212, 154);
+            txtIdEmployee.Name = "txtIdEmployee";
+            txtIdEmployee.Size = new Size(389, 35);
+            txtIdEmployee.TabIndex = 2;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(42, 157);
+            label7.Name = "label7";
+            label7.Size = new Size(144, 29);
+            label7.TabIndex = 2;
+            label7.Text = "ID nhân viên";
+            // 
+            // CreateSaleInvoice
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -345,10 +365,10 @@
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "PurchaseInvoice";
+            Name = "CreateSaleInvoice";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a invoice";
-            Load += PurchaseInvoice_Load;
+            Load += SaleInvoice_Load;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -370,7 +390,7 @@
         private Label label1;
         private TextBox txtIdInvoices;
         private Label label2;
-        private TextBox txtIdSuppliers;
+        private TextBox txtIdClients;
         private Label label3;
         private TextBox txtIdProducts;
         private Label label5;
@@ -387,5 +407,7 @@
         private Label label4;
         private TextBox txtStatus;
         private TextBox txtQuantity;
+        private TextBox txtIdEmployee;
+        private Label label7;
     }
 }

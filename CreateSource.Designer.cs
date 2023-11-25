@@ -1,6 +1,6 @@
 ﻿namespace ShowroomData
 {
-    partial class Schedule
+    partial class CreateSource
     {
         /// <summary>
         ///  Required designer variable.
@@ -38,19 +38,11 @@
             button1 = new Button();
             button2 = new Button();
             lblHeading = new Label();
-            panel3 = new Panel();
-            bookdateDateTimePicker = new DateTimePicker();
-            txtIdEmployees = new TextBox();
-            label6 = new Label();
-            label4 = new Label();
-            label5 = new Label();
             label1 = new Label();
-            txtId = new TextBox();
+            txtIdSuppliers = new TextBox();
             label2 = new Label();
-            txtStatus = new TextBox();
-            txtNote = new TextBox();
-            txtIdClients = new TextBox();
-            label3 = new Label();
+            txtNameSuppliers = new TextBox();
+            panel3 = new Panel();
             btnClean = new Button();
             btnCreate = new Button();
             flowLayoutPanel1.SuspendLayout();
@@ -70,7 +62,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 640);
+            flowLayoutPanel1.Size = new Size(136, 427);
             flowLayoutPanel1.TabIndex = 10;
             // 
             // panel2
@@ -178,130 +170,58 @@
             // 
             lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(355, 57);
+            lblHeading.Location = new Point(276, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(294, 46);
+            lblHeading.Size = new Size(436, 46);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Tạo lịch lái thử";
-            // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel3.Controls.Add(bookdateDateTimePicker);
-            panel3.Controls.Add(txtIdEmployees);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(txtId);
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(txtStatus);
-            panel3.Controls.Add(txtNote);
-            panel3.Controls.Add(txtIdClients);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(btnClean);
-            panel3.Controls.Add(btnCreate);
-            panel3.Location = new Point(286, 116);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
-            panel3.TabIndex = 100;
-            // 
-            // bookdateDateTimePicker
-            // 
-            bookdateDateTimePicker.Location = new Point(205, 246);
-            bookdateDateTimePicker.Name = "bookdateDateTimePicker";
-            bookdateDateTimePicker.Size = new Size(320, 35);
-            bookdateDateTimePicker.TabIndex = 21;
-            // 
-            // txtIdEmployees
-            // 
-            txtIdEmployees.Location = new Point(208, 108);
-            txtIdEmployees.Name = "txtIdEmployees";
-            txtIdEmployees.Size = new Size(389, 35);
-            txtIdEmployees.TabIndex = 11;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(39, 389);
-            label6.Name = "label6";
-            label6.Size = new Size(121, 29);
-            label6.TabIndex = 12;
-            label6.Text = "Trạng thái";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(39, 320);
-            label4.Name = "label4";
-            label4.Size = new Size(94, 29);
-            label4.TabIndex = 13;
-            label4.Text = "Ghi chú";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(39, 252);
-            label5.Name = "label5";
-            label5.Size = new Size(138, 29);
-            label5.TabIndex = 14;
-            label5.Text = "Ngày lái thử";
+            lblHeading.Text = "Tạo mới nhà cung cấp";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(38, 44);
+            label1.Location = new Point(36, 54);
             label1.Name = "label1";
-            label1.Size = new Size(36, 29);
-            label1.TabIndex = 15;
-            label1.Text = "ID";
+            label1.Size = new Size(184, 29);
+            label1.TabIndex = 2;
+            label1.Text = "ID nhà cung cấp";
             // 
-            // txtId
+            // txtIdSuppliers
             // 
-            txtId.Enabled = false;
-            txtId.Location = new Point(208, 41);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(389, 35);
-            txtId.TabIndex = 22;
+            txtIdSuppliers.Enabled = false;
+            txtIdSuppliers.Location = new Point(246, 51);
+            txtIdSuppliers.Name = "txtIdSuppliers";
+            txtIdSuppliers.Size = new Size(355, 35);
+            txtIdSuppliers.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(38, 111);
+            label2.Location = new Point(36, 121);
             label2.Name = "label2";
-            label2.Size = new Size(144, 29);
-            label2.TabIndex = 16;
-            label2.Text = "ID nhân viên";
+            label2.Size = new Size(204, 29);
+            label2.TabIndex = 2;
+            label2.Text = "Tên nhà cung cấp";
             // 
-            // txtStatus
+            // txtNameSuppliers
             // 
-            txtStatus.Location = new Point(205, 386);
-            txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(392, 35);
-            txtStatus.TabIndex = 17;
+            txtNameSuppliers.Location = new Point(246, 118);
+            txtNameSuppliers.Name = "txtNameSuppliers";
+            txtNameSuppliers.Size = new Size(355, 35);
+            txtNameSuppliers.TabIndex = 1;
             // 
-            // txtNote
+            // panel3
             // 
-            txtNote.Location = new Point(205, 320);
-            txtNote.Name = "txtNote";
-            txtNote.Size = new Size(392, 35);
-            txtNote.TabIndex = 18;
-            // 
-            // txtIdClients
-            // 
-            txtIdClients.Location = new Point(205, 178);
-            txtIdClients.Name = "txtIdClients";
-            txtIdClients.Size = new Size(392, 35);
-            txtIdClients.TabIndex = 19;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(38, 181);
-            label3.Name = "label3";
-            label3.Size = new Size(164, 29);
-            label3.TabIndex = 20;
-            label3.Text = "ID khách hàng";
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(btnClean);
+            panel3.Controls.Add(btnCreate);
+            panel3.Controls.Add(txtNameSuppliers);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(txtIdSuppliers);
+            panel3.Controls.Add(label2);
+            panel3.Location = new Point(286, 116);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(634, 299);
+            panel3.TabIndex = 100;
             // 
             // btnClean
             // 
@@ -310,7 +230,7 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(264, 220);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -326,7 +246,7 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 454);
+            btnCreate.Location = new Point(132, 220);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -335,19 +255,19 @@
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
-            // Schedule
+            // CreateSource
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1064, 427);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Name = "Schedule";
+            Name = "CreateSource";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Showroom - Create a calendar";
-            Load += Schedule_Load;
+            Text = "Showroom - Create a source";
+            Load += Source_Load;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -366,6 +286,10 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Button btnBack;
+        private Label label1;
+        private TextBox txtIdSuppliers;
+        private Label label2;
+        private TextBox txtNameSuppliers;
         private Panel panel3;
         private Button btnCreate;
         private Label lblHeading;
@@ -374,17 +298,5 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
-        private DateTimePicker bookdateDateTimePicker;
-        private TextBox txtIdEmployees;
-        private Label label6;
-        private Label label4;
-        private Label label5;
-        private Label label1;
-        private TextBox txtId;
-        private Label label2;
-        private TextBox txtStatus;
-        private TextBox txtNote;
-        private TextBox txtIdClients;
-        private Label label3;
     }
 }

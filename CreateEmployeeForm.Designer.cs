@@ -58,10 +58,7 @@
             btnClean = new Button();
             btnCreate = new Button();
             txtEmail = new TextBox();
-            txtSalary = new TextBox();
             txtCCCD = new TextBox();
-            label7 = new Label();
-            label8 = new Label();
             label6 = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -109,7 +106,7 @@
             btnBack.BackColor = Color.FromArgb(50, 50, 150);
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBack.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBack.ForeColor = Color.White;
             btnBack.Location = new Point(0, 128);
             btnBack.Margin = new Padding(0, 0, 0, 30);
@@ -125,7 +122,7 @@
             helpBtn.BackColor = Color.FromArgb(50, 50, 150);
             helpBtn.FlatAppearance.BorderSize = 0;
             helpBtn.FlatStyle = FlatStyle.Flat;
-            helpBtn.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            helpBtn.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             helpBtn.ForeColor = Color.White;
             helpBtn.Location = new Point(0, 209);
             helpBtn.Margin = new Padding(0, 0, 0, 10);
@@ -191,10 +188,10 @@
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Roboto", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(355, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(236, 33);
+            lblHeading.Size = new Size(364, 46);
             lblHeading.TabIndex = 100;
             lblHeading.Text = "Tạo mới nhân viên";
             // 
@@ -203,7 +200,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(24, 19);
+            label1.Size = new Size(36, 29);
             label1.TabIndex = 2;
             label1.Text = "ID";
             // 
@@ -212,15 +209,14 @@
             txtId.Enabled = false;
             txtId.Location = new Point(132, 34);
             txtId.Name = "txtId";
-            txtId.Size = new Size(469, 27);
-            txtId.TabIndex = 0;
+            txtId.Size = new Size(469, 35);
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(42, 92);
             label2.Name = "label2";
-            label2.Size = new Size(29, 19);
+            label2.Size = new Size(44, 29);
             label2.TabIndex = 2;
             label2.Text = "Họ";
             // 
@@ -234,17 +230,17 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(378, 97);
+            label3.Location = new Point(345, 95);
             label3.Name = "label3";
-            label3.Size = new Size(35, 19);
+            label3.Size = new Size(56, 29);
             label3.TabIndex = 2;
             label3.Text = "Tên";
             // 
             // txtFirstname
             // 
-            txtFirstname.Location = new Point(430, 92);
+            txtFirstname.Location = new Point(407, 92);
             txtFirstname.Name = "txtFirstname";
-            txtFirstname.Size = new Size(171, 27);
+            txtFirstname.Size = new Size(194, 35);
             txtFirstname.TabIndex = 2;
             // 
             // label4
@@ -252,7 +248,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(42, 169);
             label4.Name = "label4";
-            label4.Size = new Size(40, 19);
+            label4.Size = new Size(62, 29);
             label4.TabIndex = 2;
             label4.Text = "SDT";
             // 
@@ -260,16 +256,16 @@
             // 
             txtPhone.Location = new Point(132, 166);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(245, 27);
+            txtPhone.Size = new Size(217, 35);
             txtPhone.TabIndex = 3;
-            txtPhone.KeyPress += textBox4_KeyPress;
+            txtPhone.KeyPress += txtPhone_KeyPress;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Location = new Point(42, 244);
             label5.Name = "label5";
-            label5.Size = new Size(80, 19);
+            label5.Size = new Size(119, 29);
             label5.TabIndex = 2;
             label5.Text = "Ngày sinh";
             // 
@@ -294,10 +290,7 @@
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(txtEmail);
-            panel3.Controls.Add(txtSalary);
             panel3.Controls.Add(txtCCCD);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(label8);
             panel3.Controls.Add(txtPhone);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(txtId);
@@ -324,16 +317,16 @@
             label10.AutoSize = true;
             label10.Location = new Point(341, 373);
             label10.Name = "label10";
-            label10.Size = new Size(41, 19);
+            label10.Size = new Size(60, 29);
             label10.TabIndex = 1;
             label10.Text = "Vị trí";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(43, 373);
+            label9.Location = new Point(42, 309);
             label9.Name = "label9";
-            label9.Size = new Size(49, 19);
+            label9.Size = new Size(74, 29);
             label9.TabIndex = 1;
             label9.Text = "Email";
             // 
@@ -375,7 +368,7 @@
             btnClean.BackColor = SystemColors.ActiveCaption;
             btnClean.BackgroundImageLayout = ImageLayout.None;
             btnClean.FlatStyle = FlatStyle.Popup;
-            btnClean.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
             btnClean.Location = new Point(264, 454);
             btnClean.Margin = new Padding(0);
@@ -391,7 +384,7 @@
             btnCreate.BackColor = SystemColors.MenuHighlight;
             btnCreate.BackgroundImageLayout = ImageLayout.None;
             btnCreate.FlatStyle = FlatStyle.Popup;
-            btnCreate.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(132, 454);
             btnCreate.Margin = new Padding(0);
@@ -404,64 +397,46 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(132, 370);
+            txtEmail.Location = new Point(132, 306);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(178, 27);
             txtEmail.TabIndex = 9;
             // 
             // txtSalary
             // 
-            txtSalary.Location = new Point(423, 300);
-            txtSalary.Name = "txtSalary";
-            txtSalary.Size = new Size(178, 27);
-            txtSalary.TabIndex = 8;
-            txtSalary.Text = " ";
-            txtSalary.KeyPress += textBox4_KeyPress;
+            //txtSalary.Location = new Point(423, 300);
+            //txtSalary.Name = "txtSalary";
+            //txtSalary.Size = new Size(178, 27);
+            //txtSalary.TabIndex = 8;
+            //txtSalary.Text = " ";
+            //txtSalary.KeyPress += textBox4_KeyPress;
             // 
             // txtCCCD
             // 
-            txtCCCD.Location = new Point(132, 300);
+            txtCCCD.Location = new Point(132, 370);
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(178, 27);
+            txtCCCD.Size = new Size(178, 35);
             txtCCCD.TabIndex = 7;
-            txtCCCD.KeyPress += textBox4_KeyPress;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(42, 363);
-            label7.Name = "label7";
-            label7.Size = new Size(13, 19);
-            label7.TabIndex = 2;
-            label7.Text = " ";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(342, 303);
-            label8.Name = "label8";
-            label8.Size = new Size(55, 19);
-            label8.TabIndex = 2;
-            label8.Text = "Lương";
+            txtCCCD.KeyPress += txtCCCD_KeyPress;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(43, 303);
+            label6.Location = new Point(42, 373);
             label6.Name = "label6";
-            label6.Size = new Size(50, 19);
+            label6.Size = new Size(81, 29);
             label6.TabIndex = 2;
             label6.Text = "CCCD";
             // 
             // CreateEmployeeForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 640);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
-            Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "CreateEmployeeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Create a employee";
@@ -507,9 +482,6 @@
         private RadioButton rdbMale;
         private TextBox txtCCCD;
         private Label label6;
-        private Label label7;
-        private TextBox txtSalary;
-        private Label label8;
         private TextBox txtEmail;
         private Label label9;
         private Label label10;

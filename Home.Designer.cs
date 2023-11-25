@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
@@ -43,7 +44,9 @@
             btnProducts = new Button();
             btnEmployees = new Button();
             btnCustomers = new Button();
-            btnInvoices = new Button();
+            btnPuchaInvoices = new Button();
+            btnSaleInvoice = new Button();
+            btnSource = new Button();
             btnServices = new Button();
             toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
@@ -65,7 +68,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 599);
+            flowLayoutPanel1.Size = new Size(136, 701);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -154,7 +157,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(964, 179);
+            panel1.Size = new Size(1055, 179);
             panel1.TabIndex = 1;
             // 
             // lblHeadingPage
@@ -173,7 +176,7 @@
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(136, 179);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(964, 420);
+            panelContent.Size = new Size(1055, 522);
             panelContent.TabIndex = 2;
             panelContent.Resize += panelContent_Resize;
             // 
@@ -182,17 +185,19 @@
             flowLayoutPanel2.Controls.Add(btnProducts);
             flowLayoutPanel2.Controls.Add(btnEmployees);
             flowLayoutPanel2.Controls.Add(btnCustomers);
-            flowLayoutPanel2.Controls.Add(btnInvoices);
+            flowLayoutPanel2.Controls.Add(btnPuchaInvoices);
+            flowLayoutPanel2.Controls.Add(btnSaleInvoice);
+            flowLayoutPanel2.Controls.Add(btnSource);
             flowLayoutPanel2.Controls.Add(btnServices);
             flowLayoutPanel2.Location = new Point(42, 30);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(891, 369);
+            flowLayoutPanel2.Size = new Size(1001, 462);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // btnProducts
             // 
             btnProducts.AllowDrop = true;
-            btnProducts.BackgroundImage = Properties.Resources.product;
+            btnProducts.BackgroundImage = (Image)resources.GetObject("btnProducts.BackgroundImage");
             btnProducts.BackgroundImageLayout = ImageLayout.Zoom;
             btnProducts.FlatAppearance.BorderSize = 0;
             btnProducts.FlatStyle = FlatStyle.Flat;
@@ -238,34 +243,65 @@
             btnCustomers.UseVisualStyleBackColor = true;
             btnCustomers.Click += HandleChangeForm;
             // 
-            // btnInvoices
+            // btnPuchaInvoices
             // 
-            btnInvoices.BackgroundImage = Properties.Resources.invoices;
-            btnInvoices.BackgroundImageLayout = ImageLayout.Zoom;
-            btnInvoices.FlatAppearance.BorderSize = 0;
-            btnInvoices.FlatStyle = FlatStyle.Flat;
-            btnInvoices.Location = new Point(671, 20);
-            btnInvoices.Margin = new Padding(20);
-            btnInvoices.Name = "btnInvoices";
-            btnInvoices.Size = new Size(177, 150);
-            btnInvoices.TabIndex = 0;
-            toolTip1.SetToolTip(btnInvoices, "Hóa đơn");
-            btnInvoices.UseVisualStyleBackColor = true;
-            btnInvoices.Click += HandleChangeForm;
+            btnPuchaInvoices.BackgroundImage = Properties.Resources.invoices;
+            btnPuchaInvoices.BackgroundImageLayout = ImageLayout.Zoom;
+            btnPuchaInvoices.FlatAppearance.BorderSize = 0;
+            btnPuchaInvoices.FlatStyle = FlatStyle.Flat;
+            btnPuchaInvoices.Location = new Point(671, 20);
+            btnPuchaInvoices.Margin = new Padding(20);
+            btnPuchaInvoices.Name = "btnPuchaInvoices";
+            btnPuchaInvoices.Size = new Size(177, 150);
+            btnPuchaInvoices.TabIndex = 0;
+            toolTip1.SetToolTip(btnPuchaInvoices, "Hóa đơn");
+            btnPuchaInvoices.UseVisualStyleBackColor = true;
+            btnPuchaInvoices.Click += HandleChangeForm;
+            // 
+            // btnSaleInvoice
+            // 
+            btnSaleInvoice.BackgroundImage = (Image)resources.GetObject("btnSaleInvoice.BackgroundImage");
+            btnSaleInvoice.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSaleInvoice.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnSaleInvoice.FlatAppearance.BorderSize = 0;
+            btnSaleInvoice.FlatStyle = FlatStyle.Flat;
+            btnSaleInvoice.Location = new Point(20, 210);
+            btnSaleInvoice.Margin = new Padding(20);
+            btnSaleInvoice.Name = "btnSaleInvoice";
+            btnSaleInvoice.Size = new Size(177, 150);
+            btnSaleInvoice.TabIndex = 0;
+            toolTip1.SetToolTip(btnSaleInvoice, "Hóa đơn bán");
+            btnSaleInvoice.UseVisualStyleBackColor = true;
+            btnSaleInvoice.Click += HandleChangeForm;
+            // 
+            // btnSource
+            // 
+            btnSource.BackgroundImage = Properties.Resources.sources;
+            btnSource.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSource.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnSource.FlatAppearance.BorderSize = 0;
+            btnSource.FlatStyle = FlatStyle.Flat;
+            btnSource.Location = new Point(237, 210);
+            btnSource.Margin = new Padding(20);
+            btnSource.Name = "btnSource";
+            btnSource.Size = new Size(177, 150);
+            btnSource.TabIndex = 0;
+            toolTip1.SetToolTip(btnSource, "Nguồn cung");
+            btnSource.UseVisualStyleBackColor = true;
+            btnSource.Click += HandleChangeForm;
             // 
             // btnServices
             // 
-            btnServices.BackgroundImage = Properties.Resources.sources;
+            btnServices.BackgroundImage = (Image)resources.GetObject("btnServices.BackgroundImage");
             btnServices.BackgroundImageLayout = ImageLayout.Zoom;
             btnServices.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnServices.FlatAppearance.BorderSize = 0;
             btnServices.FlatStyle = FlatStyle.Flat;
-            btnServices.Location = new Point(20, 210);
+            btnServices.Location = new Point(454, 210);
             btnServices.Margin = new Padding(20);
             btnServices.Name = "btnServices";
             btnServices.Size = new Size(177, 150);
             btnServices.TabIndex = 0;
-            toolTip1.SetToolTip(btnServices, "Nguồn cung");
             btnServices.UseVisualStyleBackColor = true;
             btnServices.Click += HandleChangeForm;
             // 
@@ -279,7 +315,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1100, 599);
+            ClientSize = new Size(1191, 701);
             Controls.Add(panelContent);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
@@ -316,8 +352,10 @@
         private Button btnProducts;
         private Button btnEmployees;
         private Button btnCustomers;
-        private Button btnInvoices;
-        private Button btnServices;
+        private Button btnPuchaInvoices;
+        private Button btnSource;
         private ToolTip toolTip1;
+        private Button btnSaleInvoice;
+        private Button btnServices;
     }
 }

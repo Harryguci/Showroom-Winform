@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace ShowroomData
 {
-    public partial class PurchaseInvoice : Form
+    public partial class CreateDevice : Form
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
-        public PurchaseInvoice(Form? _parent)
+
+        public CreateDevice(Form? _parent)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -32,7 +33,6 @@ namespace ShowroomData
             SetStyle(ControlStyles.ResizeRedraw, true);
         }
 
-        // Constructor
 
         #region Handle Form Dragging
 
@@ -61,7 +61,7 @@ namespace ShowroomData
         // [Handle Events]
         //
 
-        private void PurchaseInvoiceForm_Resize(object sender, EventArgs e)
+        private void DiviceForm_Resize(object sender, EventArgs e)
         {
             lblHeading.Location = new Point((panel1.Width - lblHeading.Width) / 2,
                 lblHeading.Location.Y);
@@ -69,20 +69,20 @@ namespace ShowroomData
 
         private string AutoCreateId()
         {
-            DataTable tb = processDb.GetData("Select Top 1 InEnterId From PurchaseInvoices Order By InEnterId DESC");
-            string? id = tb.Rows[0]["InEnterId"].ToString();
+            DataTable tb = processDb.GetData("Select Top 1 DeviceId From Devices Order By DeviceId DESC");
+            string? id = tb.Rows[0]["DeviceId"].ToString();
 
             if (id != null)
             {
-                int count = Convert.ToInt32(id.Substring(2, id.Length - 2));
+                int count = Convert.ToInt32(id.Substring(1, id.Length - 1));
                 id = Convert.ToString(count + 1);
 
                 while (id.Length < 3) id = "0" + id;
-                id = "IE" + id;
+                id = "D" + id;
             }
             else
             {
-                id = "IE001";
+                id = "D001";
             }
             return id;
         }
@@ -94,28 +94,22 @@ namespace ShowroomData
         {
             var curr = new
             {
-                idSuppliers = txtIdSuppliers.Text.Trim(),
-                idProducts = txtIdProducts.Text.Trim(),
-                quantity = txtQuantity.Text.Trim(),
+                nameDevice = txtName.Text.Trim(),
+                price = txtPrice.Text.Trim(),
                 status = txtStatus.Text.Trim()
             };
 
-            if (curr.idSuppliers.Length <= 0)
+            if (curr.nameDevice.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập id nhà cung cấp");
+                MessageBox.Show("Bạn phải nhập tên thiêt bị");
                 return false;
             }
-            if (curr.idProducts.Length <= 0)
+            if (curr.price.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập id sản phẩm");
+                MessageBox.Show("Bạn phải nhập giá thiết bị");
                 return false;
             }
-            if (curr.quantity.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập số lượng");
-                return false;
-            }
-            if (curr.quantity.Length <= 0)
+            if (curr.status.Length <= 0)
             {
                 MessageBox.Show("Bạn phải nhập trạng thái");
                 return false;
@@ -127,15 +121,20 @@ namespace ShowroomData
         private void CleanForm()
         {
             // Earse current data
-            TextBox[] textBoxes = { txtIdSuppliers, txtIdProducts, txtQuantity, txtStatus };
+            TextBox[] textBoxes = { txtName, txtPrice, txtStatus };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
-            txtIdInvoices.Text = AutoCreateId();
+            txtId.Text = AutoCreateId();
             dayDateTimePicker.Value = DateTime.Now;
         }
 
-        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -143,33 +142,27 @@ namespace ShowroomData
             }
         }
 
-        private void PurchaseInvoice_Load(object sender, EventArgs e)
-        {
-            txtIdInvoices.Text = AutoCreateId();
-        }
-
-        private void btnCreate_Click_1(object sender, EventArgs e)
+        private void btnCreate_Click(object sender, EventArgs e)
         {
             if (!ValidateForm()) return;
 
-            if (MessageBox.Show("Tạo mới hóa đơn này?", "Thông báo",
+            if (MessageBox.Show("Tạo mới thiết bị này?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
             var curr = new
             {
-                id = txtIdInvoices.Text,
-                idSuppliers = txtIdSuppliers.Text.Trim(),
-                idProducts = txtIdProducts.Text.Trim(),
+                id = txtId.Text,
+                nameDevice = txtName.Text.Trim(),
                 day = dayDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                quantity = txtQuantity.Text.Trim(),
+                price = txtPrice.Text.Trim(),
                 status = txtStatus.Text.Trim()
             };
 
             // Handle Create
-            string query = $"INSERT INTO PurchaseInvoices (InEnterId, SourceId, ProductId, Date, QuantityPurchase, Status) " +
-                $"VALUES (N'{curr.id}',N'{curr.idSuppliers}',N'{curr.idProducts}','{curr.day}', " +
-                $"N'{curr.quantity}',N'{curr.status}')";
+            string query = $"INSERT INTO Devices (DeviceId, Name, DateEntry, Price, Status) " +
+                $"VALUES (N'{curr.id}',N'{curr.nameDevice}',N'{curr.day}', " +
+                $"N'{curr.price}',N'{curr.status}')";
 
             // Excute the query
             processDb.UpdateData(query);
@@ -183,21 +176,26 @@ namespace ShowroomData
             parent.Refresh();
         }
 
-        private void btnClean_Click(object sender, EventArgs e)
+        private void Device_Load(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { txtIdSuppliers, txtIdProducts, txtQuantity, txtStatus };
+            txtId.Text = AutoCreateId();
+        }
+
+        private void btnClean_Click_1(object sender, EventArgs e)
+        {
+            TextBox[] textBoxes = { txtName, txtPrice, txtStatus };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
-            txtIdInvoices.Text = AutoCreateId();
+            txtId.Text = AutoCreateId();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void btnBack_Click_1(object sender, EventArgs e)
         {
             Dispose();
         }
 
-        private void helpBtn_Click(object sender, EventArgs e)
+        private void helpBtn_Click_1(object sender, EventArgs e)
         {
             HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
                 "- Bắt buộc nhập đầy đủ thông tin\n" +
@@ -206,15 +204,15 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.Yes) Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
         }
     }
 }

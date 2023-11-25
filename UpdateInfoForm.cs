@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic;
 using ShowroomData.Models;
-using System.Collections.Generic;
-using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ShowroomData
 {
@@ -28,12 +24,14 @@ namespace ShowroomData
             //
             // Fill the data of the employee which you want to change info.
             //
+            bool temp = employee.Gender != null && employee.Gender.Value;
             txtId.Text = employee.EmployeeId;
-            txtFirstname.Text = employee.Firstname;
-            txtLastname.Text = employee.Lastname;
+            txtLastName.Text = employee.Lastname;
+            txtFirstName.Text = employee.Firstname;
+            txtPhone.Text = employee.Phone;
             txtCCCD.Text = employee.Cccd;
-            txtPhone.Text = employee.PhoneNumber;
-            txtSalary.Text = employee.Salary.ToString();
+            txtPhone.Text = employee.Phone;
+            //txtSalary.Text = employee.Salary.ToString();
             birthDateTimePicker.Value = employee.DateBirth != null ? employee.DateBirth.Value : DateTime.Now;
             txtEmail.Text = employee.Email;
             cbPosition.Text = employee.Position;
@@ -80,9 +78,30 @@ namespace ShowroomData
                 lblHeading.Location.Y);
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtCCCD_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Hủy bỏ ký tự không hợp lệ
+            }
+
+            if (txtCCCD.Text.Length >= 12 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Hủy bỏ ký tự không hợp lệ
+            }
+
+            if (txtCCCD.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private void btnClean_Click(object sender, EventArgs e)
@@ -100,13 +119,12 @@ namespace ShowroomData
 
             var curr = new
             {
-                id = txtId.Text,
-                lastName = txtLastname.Text.Trim(),
-                firstName = txtFirstname.Text.Trim(),
-                sdt = txtPhone.Text.Trim(),
+                id = txtId.Text.Trim(),
+                firstName = txtFirstName.Text.Trim(),
+                lastName = txtLastName.Text.Trim(),
                 birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                salary = Convert.ToInt32(txtSalary.Text.Trim()),
+                phone = txtPhone.Text.Trim(),
                 position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
@@ -117,13 +135,12 @@ namespace ShowroomData
             query += $"SET FirstName = N'{curr.firstName}',";
             query += $"LastName = N'{curr.lastName}',";
             query += $"DateBirth = '{curr.birth}',";
-            query += $"PhoneNumber = '{curr.sdt}',";
+            query += $"PhoneNumber = '{curr.phone}',";
             query += $"Gender = '{curr.gender}',";
             query += $"CCCD = '{curr.cccd}',";
             query += $"Position = N'{curr.position}',";
             query += $"StartDate = '{curr.start}',";
             query += $"Email = '{curr.email}',";
-            query += $"Salary = '{curr.salary}',";
             query += $"Deleted = 0,";
             query += $"Url_image = ''";
             query += $" WHERE EmployeeId = N'{curr.id}'";
@@ -140,6 +157,8 @@ namespace ShowroomData
 
             // Earse current data
             CleanForm();
+
+            Dispose();
         }
 
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
@@ -155,12 +174,12 @@ namespace ShowroomData
             var curr = new
             {
                 id = txtId.Text,
-                lastName = txtLastname.Text.Trim(),
-                firstName = txtFirstname.Text.Trim(),
+                lastName = txtLastName.Text.Trim(),
+                firstName = txtFirstName.Text.Trim(),
                 sdt = txtPhone.Text.Trim(),
-                birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
+                birth = birthDateTimePicker.Value,
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                salary = Convert.ToInt32(txtSalary.Text.Trim()),
+                //salary = Convert.ToInt32(txtSalary.Text.Trim()),
                 position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
@@ -189,6 +208,14 @@ namespace ShowroomData
             if (curr.sdt.Max() > '9' || curr.sdt.Min() < '0')
             {
                 MessageBox.Show("SĐT chỉ bao gồm các chữ số");
+                return false;
+            }
+
+            DateTime currentDate = DateTime.Now;
+            DateTime minimumBirthDate = currentDate.AddYears(-18);
+            if (curr.birth > minimumBirthDate)
+            {
+                MessageBox.Show("Bạn phải đủ 18 tuổi để tiếp tục.");
                 return false;
             }
 
