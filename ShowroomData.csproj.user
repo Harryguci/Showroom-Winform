@@ -61,6 +61,9 @@
     <Compile Update="ListForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ProductsGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UpdateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>

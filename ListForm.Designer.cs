@@ -42,10 +42,12 @@
             lblHeadingPage = new Label();
             panelContent = new Panel();
             component11 = new Component1(components);
+            panelFooter = new Panel();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            panelContent.SuspendLayout();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -182,7 +184,7 @@
             button1.BackgroundImageLayout = ImageLayout.Zoom;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(916, 12);
+            button1.Location = new Point(961, 12);
             button1.Name = "button1";
             button1.Size = new Size(45, 39);
             button1.TabIndex = 2;
@@ -201,15 +203,24 @@
             // 
             // panelContent
             // 
+            panelContent.Controls.Add(panelFooter);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(136, 100);
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(964, 444);
             panelContent.TabIndex = 2;
             // 
+            // panelFooter
+            // 
+            panelFooter.Dock = DockStyle.Bottom;
+            panelFooter.Location = new Point(0, 316);
+            panelFooter.Name = "panelFooter";
+            panelFooter.Size = new Size(964, 128);
+            panelFooter.TabIndex = 0;
+            // 
             // ListForm
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1100, 544);
             Controls.Add(panelContent);
@@ -220,13 +231,14 @@
             Text = "Showroom - Management System";
             FormClosing += Layout_FormClosing;
             FormClosed += Layout_FormClosed;
-            Load += Layout_Load;
+            Load += Form_Load;
             Resize += Layout_Resize;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panelContent.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -245,5 +257,6 @@
         private Button button1;
         private Component1 component11;
         private Button btnBack;
+        private Panel panelFooter;
     }
 }

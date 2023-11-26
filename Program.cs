@@ -6,7 +6,7 @@ namespace ShowroomData
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Layout2());
+            Application.Run(new Home());
         }
     }
 }

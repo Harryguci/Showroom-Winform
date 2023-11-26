@@ -51,6 +51,20 @@ namespace ShowroomData
         }
         private void HandleChangeForm(object sender, EventArgs e)
         {
+            if (sender == btnProducts)
+            {
+                ProductsGrid productsGrid = new ProductsGrid();
+
+                productsGrid.FormClosed += (sender, args) => {
+                    Show();
+                };
+
+                Hide();
+                productsGrid.Show();
+
+                return;   
+            }
+
             string? formName = null;
             if (sender.Equals(btnCustomers))
             {
