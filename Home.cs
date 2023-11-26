@@ -35,8 +35,8 @@ namespace ShowroomData
             flowLayoutPanel2.Width = panelContent.Width - 100;
             flowLayoutPanel2.Height = panelContent.Height - 100;
 
-            int minWidth = Math.Max(flowLayoutPanel2.Width / 3 - 100, 200);
-            minWidth = Math.Min(250, minWidth);
+            int minWidth = Math.Max(flowLayoutPanel2.Width / 4 - 40, 200);
+            //minWidth = Math.Min(250, minWidth);
 
             Size btnSize = new Size(minWidth, minWidth);
 
@@ -46,26 +46,13 @@ namespace ShowroomData
             btnProducts.Size = btnSize;
             btnSource.Size = btnSize;
             btnPuchaInvoices.Size = btnSize;
-            btnServices.Size = btnSize;
+            btnDevices.Size = btnSize;
             btnSaleInvoice.Size = btnSize;
         }
         private void HandleChangeForm(object sender, EventArgs e)
         {
-            if (sender == btnProducts)
-            {
-                ProductsGrid productsGrid = new ProductsGrid();
-
-                productsGrid.FormClosed += (sender, args) => {
-                    Show();
-                };
-
-                Hide();
-                productsGrid.Show();
-
-                return;   
-            }
-
             string? formName = null;
+
             if (sender.Equals(btnCustomers))
             {
                 formName = TableName.CUSTOMERS;
@@ -84,7 +71,22 @@ namespace ShowroomData
             }
             else if (sender.Equals(btnProducts))
             {
-                formName = TableName.PRODUCTS;
+                // formName = TableName.PRODUCTS;
+                ProductsGrid productsGrid = new ProductsGrid();
+
+                productsGrid.FormClosed += (sender, args) =>
+                {
+                    Show();
+                };
+
+                Hide();
+                productsGrid.Show();
+
+                return;
+            }
+            else if (sender.Equals(btnDevices))
+            {
+                formName = TableName.DEVICES;
             }
 
             if (formName == null) formName = "employees";
@@ -93,6 +95,18 @@ namespace ShowroomData
             form.Show();
             Hide(); // Hide the current Form.
             form.FormClosed += (s, args) => Show();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Layout2 login = new Layout2();
+            login.FormClosed += (sender, args) =>
+            {
+                Close();
+            };
+
+            Hide();
+            login.Show();
         }
     }
 }

@@ -38,6 +38,7 @@
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
+            btnLogout = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
             flowLayoutPanel2 = new FlowLayoutPanel();
@@ -47,7 +48,7 @@
             btnPuchaInvoices = new Button();
             btnSaleInvoice = new Button();
             btnSource = new Button();
-            btnServices = new Button();
+            btnDevices = new Button();
             toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -153,12 +154,29 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1055, 179);
             panel1.TabIndex = 1;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnLogout.BackgroundImage = Properties.Resources.logout;
+            btnLogout.BackgroundImageLayout = ImageLayout.Zoom;
+            btnLogout.FlatAppearance.BorderColor = Color.White;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Location = new Point(997, 12);
+            btnLogout.Margin = new Padding(5);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(46, 51);
+            btnLogout.TabIndex = 2;
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // lblHeadingPage
             // 
@@ -188,7 +206,7 @@
             flowLayoutPanel2.Controls.Add(btnPuchaInvoices);
             flowLayoutPanel2.Controls.Add(btnSaleInvoice);
             flowLayoutPanel2.Controls.Add(btnSource);
-            flowLayoutPanel2.Controls.Add(btnServices);
+            flowLayoutPanel2.Controls.Add(btnDevices);
             flowLayoutPanel2.Location = new Point(42, 30);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(1001, 462);
@@ -290,20 +308,20 @@
             btnSource.UseVisualStyleBackColor = true;
             btnSource.Click += HandleChangeForm;
             // 
-            // btnServices
+            // btnDevices
             // 
-            btnServices.BackgroundImage = (Image)resources.GetObject("btnServices.BackgroundImage");
-            btnServices.BackgroundImageLayout = ImageLayout.Zoom;
-            btnServices.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
-            btnServices.FlatAppearance.BorderSize = 0;
-            btnServices.FlatStyle = FlatStyle.Flat;
-            btnServices.Location = new Point(454, 210);
-            btnServices.Margin = new Padding(20);
-            btnServices.Name = "btnServices";
-            btnServices.Size = new Size(177, 150);
-            btnServices.TabIndex = 0;
-            btnServices.UseVisualStyleBackColor = true;
-            btnServices.Click += HandleChangeForm;
+            btnDevices.BackgroundImage = (Image)resources.GetObject("btnDevices.BackgroundImage");
+            btnDevices.BackgroundImageLayout = ImageLayout.Zoom;
+            btnDevices.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnDevices.FlatAppearance.BorderSize = 0;
+            btnDevices.FlatStyle = FlatStyle.Flat;
+            btnDevices.Location = new Point(454, 210);
+            btnDevices.Margin = new Padding(20);
+            btnDevices.Name = "btnDevices";
+            btnDevices.Size = new Size(177, 150);
+            btnDevices.TabIndex = 0;
+            btnDevices.UseVisualStyleBackColor = true;
+            btnDevices.Click += HandleChangeForm;
             // 
             // toolTip1
             // 
@@ -356,6 +374,7 @@
         private Button btnSource;
         private ToolTip toolTip1;
         private Button btnSaleInvoice;
-        private Button btnServices;
+        private Button btnDevices;
+        private Button btnLogout;
     }
 }

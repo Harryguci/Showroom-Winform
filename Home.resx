@@ -121,7 +121,7 @@
   <data name="btnProducts.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEo3SURBVHhe7Z0J
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEo3SURBVHhe7Z0J
         mBzFebCF7SROnAQ7jh0fSWzHSfwnJrtLFNtxbAdiY3YXBAjDaLpHtwQSAkkzIwlk7uUyBtvch7mNuQ9z
         CgwGhE50gySEBOhA6AIJaSV0X7P1V/XWGmn0rbbn6J6e6fd9nveBB6Tp6qqu76vqo6obAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -447,7 +447,7 @@
   <data name="btnSaleInvoice.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAE5cSURBVHhe7b15
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAE5cSURBVHhe7b15
         lBRXfufbXsbbeLzN2B7bx/aZmWc/H4+PZ3w87495Xp49tiR3tyVAEu1utaRuCbEIxCKxCIGEJLR3t/at
         1VpaQlJrAySxb6KoKigQOyqKqmKpfWUtqIWqSqp+L25yUSfFL4rMyszIuBGfzzkfCzdUZCQR/L6/iLhx
         71cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -785,10 +785,10 @@
         AAAAAIg5X/nK/w+bn4KfA/azIwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnServices.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnDevices.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAHMHSURBVHhe7d0F
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAHMHSURBVHhe7d0F
         uFTV3gZwTx84HLq7u7u7QRAkpEsQRAQJwaBUUBEwUUS6y+7ubr3eq/dTr3HtuFevRa7vv0aPjviembVn
         z57Z8b7P83u+EGb2Xmuz1392rHUSwzAME7gUE73EInFQvCX+K46Kb8XfxG4xUeg/yzAMwzCMB1NCDBfr
         xTtCWfCzuE5UEAzDMAzDuDyNxDLxsjgm0OBuhb5CMEkwDMMwDOOy6EF/pbD6K9+Ka0SqYBiGYRgmickV
