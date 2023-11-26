@@ -72,3 +72,4 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Showroom
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.genruntimeconfig.cache
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ref\ShowroomData.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ProductsGrid.resources
+E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Report.resources

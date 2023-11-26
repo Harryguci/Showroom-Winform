@@ -12,12 +12,13 @@ namespace ShowroomData
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+            tabControl1.SelectedIndexChanged += tabPage_ChangeFocus;
         }
 
-        private Panel CreateOneProductCard(string? title = "Default Name", 
+        private FlowLayoutPanel CreateOneProductCard(string? title = "Default Name",
             string? url = "",
-            string? id = "", 
-            int? saletPrice = 0, 
+            string? id = "",
+            int? saletPrice = 0,
             int? purchasePrice = 0)
         {
             Panel panel0 = new Panel();
@@ -26,7 +27,14 @@ namespace ShowroomData
             Label labelPurchasePrice = new Label();
 
             PictureBox pictureBox0 = new PictureBox();
-            flowLayoutPanel1.SuspendLayout();
+
+            if (tabControl1.SelectedTab == tabPage1) flowLayoutPanel1.SuspendLayout();
+            else if (tabControl1.SelectedTab == tabPage2) flowLayoutPanel2.SuspendLayout();
+            else if (tabControl1.SelectedTab == tabPage3) flowLayoutPanel3.SuspendLayout();
+            else if (tabControl1.SelectedTab == tabPage4) flowLayoutPanel4.SuspendLayout();
+            else if (tabControl1.SelectedTab == tabPage5) flowLayoutPanel5.SuspendLayout();
+            else if (tabControl1.SelectedTab == tabPage6) flowLayoutPanel6.SuspendLayout();
+
             panel0.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox0).BeginInit();
             // 
@@ -97,20 +105,74 @@ namespace ShowroomData
             ((System.ComponentModel.ISupportInitialize)pictureBox0).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
+
+            if (tabControl1.SelectedTab == tabPage1) flowLayoutPanel1.ResumeLayout(false);
+            else if (tabControl1.SelectedTab == tabPage2) flowLayoutPanel2.ResumeLayout(false);
+            else if (tabControl1.SelectedTab == tabPage3) flowLayoutPanel3.ResumeLayout(false);
+            else if (tabControl1.SelectedTab == tabPage4) flowLayoutPanel4.ResumeLayout(false);
+            else if (tabControl1.SelectedTab == tabPage5) flowLayoutPanel5.ResumeLayout(false);
+            else if (tabControl1.SelectedTab == tabPage6) flowLayoutPanel6.ResumeLayout(false);
+
             panel0.ResumeLayout(false);
             panel0.PerformLayout();
 
-            flowLayoutPanel1.Controls.Add(panel0);
-            return panel0;
+            if (tabControl1.SelectedTab == tabPage1) flowLayoutPanel1.Controls.Add(panel0);
+            else if (tabControl1.SelectedTab == tabPage2) flowLayoutPanel2.Controls.Add(panel0);
+            else if (tabControl1.SelectedTab == tabPage3) flowLayoutPanel3.Controls.Add(panel0);
+            else if (tabControl1.SelectedTab == tabPage4) flowLayoutPanel4.Controls.Add(panel0);
+            else if (tabControl1.SelectedTab == tabPage5) flowLayoutPanel5.Controls.Add(panel0);
+            else if (tabControl1.SelectedTab == tabPage6) flowLayoutPanel6.Controls.Add(panel0);
+
+            if (tabControl1.SelectedTab == tabPage1)
+                return flowLayoutPanel1;
+            else if (tabControl1.SelectedTab == tabPage2)
+                return flowLayoutPanel2;
+            else if (tabControl1.SelectedTab == tabPage3)
+                return flowLayoutPanel3;
+            else if (tabControl1.SelectedTab == tabPage4)
+                return flowLayoutPanel4;
+            else if (tabControl1.SelectedTab == tabPage5)
+                return flowLayoutPanel5;
+            else if (tabControl1.SelectedTab == tabPage6)
+                return flowLayoutPanel6;
+            else return flowLayoutPanel1;
         }
 
-        private void ProductsGrid_Load(object sender, EventArgs e)
+        private void LoadTabData()
         {
-            var query = processDb.GetData($"SELECT * FROM PRODUCTS");
+            DataTable query;
+            string qName = textBox1.Text.ToLower().Trim();
+            string qColor = comboBox1.Text.ToLower().Trim();
+            int qCost = Convert.ToInt32(txtSalePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
+                : txtSalePriceMin.Text.ToLower().Trim());
+            int qPurchaseCost = Convert.ToInt32(txtPurchasePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
+                : txtPurchasePriceMin.Text.ToLower());
+
+            int qMaxCost = Convert.ToInt32(txtSalePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
+                : txtSalePriceMax.Text.ToLower().Trim());
+            int qPurchaseMaxCost = Convert.ToInt32(txtPurchasePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
+                : txtPurchasePriceMax.Text.ToLower());
+
+            if (qMaxCost == 0) qMaxCost = 99999;
+            if (qPurchaseMaxCost == 0) qPurchaseMaxCost = 99999;
+
+            if (tabControl1.SelectedTab == tabPage1) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{qName}%'");
+            else if (tabControl1.SelectedTab == tabPage2) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{tabPage2.Text.ToLower().Trim()}%'");
+            else if (tabControl1.SelectedTab == tabPage3) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{tabPage3.Text.ToLower().Trim()}%'");
+            else if (tabControl1.SelectedTab == tabPage4) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{tabPage4.Text.ToLower().Trim()}%'");
+            else if (tabControl1.SelectedTab == tabPage5) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{tabPage5.Text.ToLower().Trim()}%'");
+            else if (tabControl1.SelectedTab == tabPage6) query = processDb.GetData($"SELECT * FROM PRODUCTS WHERE ProductName Like N'%{tabPage6.Text.ToLower().Trim()}%'");
+            else query = processDb.GetData($"SELECT * FROM PRODUCTS");
 
             if (query.Rows.Count > 0)
             {
+                flowLayoutPanel1.Controls.Clear();
+                flowLayoutPanel2.Controls.Clear();
+                flowLayoutPanel3.Controls.Clear();
+                flowLayoutPanel4.Controls.Clear();
+                flowLayoutPanel5.Controls.Clear();
+                flowLayoutPanel6.Controls.Clear();
+
                 foreach (DataRow row in query.Rows)
                 {
                     string? id = row.Field<string>("Serial");
@@ -126,14 +188,29 @@ namespace ShowroomData
                         Deleted = row.Field<bool>("Deleted")
                     };
 
+                    if (product.ProductName != null
+                        && !product.ProductName.ToLower().Contains(qName))
+                        continue;
+
+                    if (product.SalePrice < qCost || product.SalePrice > qMaxCost) continue;
+                    if (product.PurchasePrice < qPurchaseCost || product.PurchasePrice > qPurchaseMaxCost) continue;
+
                     var imgs = processDb.GetData($"SELECT * FROM " +
                         $"Product_Images Where Serial = N'{product.Serial}'");
+
                     string? url = imgs.Rows[0].Field<string>("Url_image");
 
 
-                    CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
+                    CreateOneProductCard(title: product.ProductName,
+                        url: url, id: product.Serial, saletPrice: product.SalePrice,
+                        purchasePrice: product.PurchasePrice);
                 }
             }
+        }
+
+        private void ProductsGrid_Load(object sender, EventArgs e)
+        {
+            LoadTabData();
         }
 
         private void ProductsGrid_Resize(object sender, EventArgs e)
@@ -142,6 +219,10 @@ namespace ShowroomData
             tabControl1.Location = new Point(300, 0);
             panel1.Size = new Size(300, Height);
             flowLayoutPanel1.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
+            flowLayoutPanel2.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
+            flowLayoutPanel3.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
+            flowLayoutPanel4.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
+            flowLayoutPanel5.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
             pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, pictureBox1.Top);
 
             textBox1.Size = txtSalePriceMin.Size = txtSalePriceMax.Size =
@@ -164,97 +245,7 @@ namespace ShowroomData
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string qName = textBox1.Text.ToLower().Trim();
-                string qColor = comboBox1.Text.ToLower().Trim();
-                int qCost = Convert.ToInt32(txtSalePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
-                    : txtSalePriceMin.Text.ToLower().Trim());
-                int qPurchaseCost = Convert.ToInt32(txtPurchasePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
-                    : txtPurchasePriceMin.Text.ToLower());
-
-                int qMaxCost = Convert.ToInt32(txtSalePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
-                    : txtSalePriceMax.Text.ToLower().Trim());
-                int qPurchaseMaxCost = Convert.ToInt32(txtPurchasePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
-                    : txtPurchasePriceMax.Text.ToLower());
-
-                if (qMaxCost == 0) qMaxCost = 99999;
-                if (qPurchaseMaxCost == 0) qPurchaseMaxCost = 99999;
-
-                DataTable query = processDb.GetData($"SELECT * FROM Products Where " +
-                        $"ProductName Like N'%{qName}%' " +
-                        $"AND SalePrice >= {qCost} " +
-                        $"AND SalePrice < {qMaxCost} " +
-                        $"AND PurchasePrice >= {qPurchaseCost} " +
-                        $"AND PurchasePrice < {qPurchaseMaxCost}");
-
-                flowLayoutPanel1.Controls.Clear();
-
-                if (query.Rows.Count > 0)
-                {
-                    foreach (DataRow row in query.Rows)
-                    {
-                        string? id = row.Field<string>("Serial");
-
-                        var product = new Products()
-                        {
-                            Serial = row.Field<string>("Serial") ?? "",
-                            ProductName = row.Field<string>("ProductName") ?? "",
-                            PurchasePrice = row.Field<int>("PurchasePrice"),
-                            SalePrice = row.Field<int>("SalePrice"),
-                            Quantity = row.Field<int>("Quantity"),
-                            Status = row.Field<string>("Status"),
-                            Deleted = row.Field<bool>("Deleted")
-                        };
-
-                        var imgs = processDb.GetData($"SELECT * FROM " +
-                            $"Product_Images Where Serial = N'{product.Serial}'");
-                        string? url = imgs.Rows[0].Field<string>("Url_image");
-
-                        CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial,
-                            saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
-                    }
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Giá không hợp lệ: " + ex.Message);
-            }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string q = textBox1.Text.ToLower().Trim();
-
-            var query = processDb.GetData($"SELECT * FROM Products Where ProductName Like N'%{q}%'");
-
-            flowLayoutPanel1.Controls.Clear();
-
-            if (query.Rows.Count > 0)
-            {
-                foreach (DataRow row in query.Rows)
-                {
-                    string? id = row.Field<string>("Serial");
-
-                    var product = new Products()
-                    {
-                        Serial = row.Field<string>("Serial"),
-                        ProductName = row.Field<string>("ProductName"),
-                        PurchasePrice = row.Field<int>("PurchasePrice"),
-                        SalePrice = row.Field<int>("SalePrice"),
-                        Quantity = row.Field<int>("Quantity"),
-                        Status = row.Field<string>("Status"),
-                        Deleted = row.Field<bool>("Deleted")
-                    };
-
-                    var imgs = processDb.GetData($"SELECT * FROM " +
-                        $"Product_Images Where Serial = N'{product.Serial}'");
-                    string? url = imgs.Rows[0].Field<string>("Url_image");
-
-
-                    CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
-                }
-            }
+            LoadTabData();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -272,6 +263,16 @@ namespace ShowroomData
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void tabPage_ChangeFocus(object? sender, EventArgs e)
+        {
+            LoadTabData();
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            LoadTabData();
         }
     }
 }

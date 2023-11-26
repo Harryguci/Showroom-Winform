@@ -32,9 +32,15 @@
             tabPage1 = new TabPage();
             flowLayoutPanel1 = new FlowLayoutPanel();
             tabPage2 = new TabPage();
+            flowLayoutPanel2 = new FlowLayoutPanel();
             tabPage3 = new TabPage();
+            flowLayoutPanel3 = new FlowLayoutPanel();
             tabPage4 = new TabPage();
+            flowLayoutPanel4 = new FlowLayoutPanel();
             tabPage5 = new TabPage();
+            flowLayoutPanel5 = new FlowLayoutPanel();
+            tabPage6 = new TabPage();
+            flowLayoutPanel6 = new FlowLayoutPanel();
             panel1 = new Panel();
             btnBack = new Button();
             btnShowList = new Button();
@@ -55,6 +61,11 @@
             pictureBox1 = new PictureBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -66,6 +77,7 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage6);
             tabControl1.Location = new Point(206, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -94,6 +106,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(flowLayoutPanel2);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -102,8 +115,18 @@
             tabPage2.Text = "Mercedes";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.AutoScroll = true;
+            flowLayoutPanel2.BackColor = Color.White;
+            flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(1166, 787);
+            flowLayoutPanel2.TabIndex = 0;
+            // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(flowLayoutPanel3);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
@@ -112,8 +135,18 @@
             tabPage3.Text = "Toyota";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel3
+            // 
+            flowLayoutPanel3.AutoScroll = true;
+            flowLayoutPanel3.BackColor = Color.White;
+            flowLayoutPanel3.Location = new Point(0, 0);
+            flowLayoutPanel3.Name = "flowLayoutPanel3";
+            flowLayoutPanel3.Size = new Size(1166, 787);
+            flowLayoutPanel3.TabIndex = 0;
+            // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(flowLayoutPanel4);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
@@ -122,12 +155,54 @@
             tabPage4.Text = "Ford";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel4
+            // 
+            flowLayoutPanel4.AutoScroll = true;
+            flowLayoutPanel4.BackColor = Color.White;
+            flowLayoutPanel4.Location = new Point(0, 0);
+            flowLayoutPanel4.Name = "flowLayoutPanel4";
+            flowLayoutPanel4.Size = new Size(1166, 787);
+            flowLayoutPanel4.TabIndex = 0;
+            // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(flowLayoutPanel5);
             tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
             tabPage5.Size = new Size(1054, 787);
-            tabPage5.TabIndex = 2;
+            tabPage5.TabIndex = 1;
+            tabPage5.Text = "Audi";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel5
+            // 
+            flowLayoutPanel5.AutoScroll = true;
+            flowLayoutPanel5.BackColor = Color.White;
+            flowLayoutPanel5.Location = new Point(0, 0);
+            flowLayoutPanel5.Name = "flowLayoutPanel5";
+            flowLayoutPanel5.Size = new Size(1166, 787);
+            flowLayoutPanel5.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(flowLayoutPanel6);
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(1054, 787);
+            tabPage6.TabIndex = 1;
+            tabPage6.Text = "Kia";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel6
+            // 
+            flowLayoutPanel6.AutoScroll = true;
+            flowLayoutPanel6.BackColor = Color.White;
+            flowLayoutPanel6.Location = new Point(0, 0);
+            flowLayoutPanel6.Name = "flowLayoutPanel6";
+            flowLayoutPanel6.Size = new Size(1166, 787);
+            flowLayoutPanel6.TabIndex = 0;
             // 
             // panel1
             // 
@@ -321,7 +396,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(169, 23);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += btnSearch_Click;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // label1
             // 
@@ -358,6 +433,11 @@
             Resize += ProductsGrid_Resize;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage6.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -369,10 +449,16 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanel3;
+        private FlowLayoutPanel flowLayoutPanel4;
+        private FlowLayoutPanel flowLayoutPanel5;
+        private FlowLayoutPanel flowLayoutPanel6;
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
         private TabPage tabPage5;
+        private TabPage tabPage6;
         private Panel panel1;
         private PictureBox pictureBox1;
         private ComboBox comboBox1;
