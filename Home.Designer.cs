@@ -135,6 +135,7 @@
             button3.TabIndex = 4;
             button3.Text = "Báo cáo";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += btnShowReport_Click;
             // 
             // button4
             // 

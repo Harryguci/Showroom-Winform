@@ -10,11 +10,15 @@ namespace ShowroomData
         public ProductsGrid()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
         }
 
-        private Panel CreateProductCard(string? title = "Default Name", string? url = "",
-            string? id = "", int? saletPrice = 0, int? purchasePrice = 0)
+        private Panel CreateOneProductCard(string? title = "Default Name", 
+            string? url = "",
+            string? id = "", 
+            int? saletPrice = 0, 
+            int? purchasePrice = 0)
         {
             Panel panel0 = new Panel();
             Label label0 = new Label();
@@ -127,7 +131,7 @@ namespace ShowroomData
                     string? url = imgs.Rows[0].Field<string>("Url_image");
 
 
-                    CreateProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
+                    CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
                 }
             }
         }
@@ -140,17 +144,22 @@ namespace ShowroomData
             flowLayoutPanel1.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
             pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, pictureBox1.Top);
 
-            textBox1.Size = textBox2.Size =
+            textBox1.Size = txtSalePriceMin.Size = txtSalePriceMax.Size =
+                txtPurchasePriceMin.Size = txtPurchasePriceMax.Size =
                 comboBox1.Size = new Size(panel1.Width - 30, textBox1.Height);
 
+            btnSearch.Size = new Size(panel1.Width - btnReset.Width - 40, btnSearch.Height);
 
             btnBack.Size = new Size(panel1.Width, btnBack.Height);
             btnShowList.Size = new Size(panel1.Width, btnShowList.Height);
+
+            btnBack.Location = new Point(0, Height - btnShowList.Height * 2 - 10);
+            btnShowList.Location = new Point(0, Height - btnShowList.Height - 10);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox2.Text = comboBox1.Text = string.Empty;
+            textBox1.Text = txtSalePriceMin.Text = comboBox1.Text = string.Empty;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -159,10 +168,25 @@ namespace ShowroomData
             {
                 string qName = textBox1.Text.ToLower().Trim();
                 string qColor = comboBox1.Text.ToLower().Trim();
-                int qCost = Convert.ToInt32(textBox2.Text.ToLower().Trim());
-                var query = processDb.GetData($"SELECT * FROM Products Where " +
-                    $"ProductName Like N'%{qName}%' " +
-                    $"AND SalePrice < {qCost}");
+                int qCost = Convert.ToInt32(txtSalePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
+                    : txtSalePriceMin.Text.ToLower().Trim());
+                int qPurchaseCost = Convert.ToInt32(txtPurchasePriceMin.Text.ToLower().Trim().Length == 0 ? "0"
+                    : txtPurchasePriceMin.Text.ToLower());
+
+                int qMaxCost = Convert.ToInt32(txtSalePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
+                    : txtSalePriceMax.Text.ToLower().Trim());
+                int qPurchaseMaxCost = Convert.ToInt32(txtPurchasePriceMax.Text.ToLower().Trim().Length == 0 ? "0"
+                    : txtPurchasePriceMax.Text.ToLower());
+
+                if (qMaxCost == 0) qMaxCost = 99999;
+                if (qPurchaseMaxCost == 0) qPurchaseMaxCost = 99999;
+
+                DataTable query = processDb.GetData($"SELECT * FROM Products Where " +
+                        $"ProductName Like N'%{qName}%' " +
+                        $"AND SalePrice >= {qCost} " +
+                        $"AND SalePrice < {qMaxCost} " +
+                        $"AND PurchasePrice >= {qPurchaseCost} " +
+                        $"AND PurchasePrice < {qPurchaseMaxCost}");
 
                 flowLayoutPanel1.Controls.Clear();
 
@@ -187,14 +211,14 @@ namespace ShowroomData
                             $"Product_Images Where Serial = N'{product.Serial}'");
                         string? url = imgs.Rows[0].Field<string>("Url_image");
 
-                        CreateProductCard(title: product.ProductName, url: url, id: product.Serial,
+                        CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial,
                             saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
                     }
                 }
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("Giá không hợp lệ");
+                MessageBox.Show("Giá không hợp lệ: " + ex.Message);
             }
         }
 
@@ -228,7 +252,7 @@ namespace ShowroomData
                     string? url = imgs.Rows[0].Field<string>("Url_image");
 
 
-                    CreateProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
+                    CreateOneProductCard(title: product.ProductName, url: url, id: product.Serial, saletPrice: product.SalePrice, purchasePrice: product.PurchasePrice);
                 }
             }
         }

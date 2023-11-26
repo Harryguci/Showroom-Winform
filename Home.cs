@@ -36,18 +36,13 @@ namespace ShowroomData
             flowLayoutPanel2.Height = panelContent.Height - 100;
 
             int minWidth = Math.Max(flowLayoutPanel2.Width / 4 - 40, 200);
-            //minWidth = Math.Min(250, minWidth);
 
             Size btnSize = new Size(minWidth, minWidth);
+            btnCustomers.Size = btnEmployees.Size = btnPuchaInvoices.Size
+                = btnProducts.Size = btnSource.Size = btnPuchaInvoices.Size
+                = btnDevices.Size = btnSaleInvoice.Size = btnSize;
 
-            btnCustomers.Size = btnSize;
-            btnEmployees.Size = btnSize;
-            btnPuchaInvoices.Size = btnSize;
-            btnProducts.Size = btnSize;
-            btnSource.Size = btnSize;
-            btnPuchaInvoices.Size = btnSize;
-            btnDevices.Size = btnSize;
-            btnSaleInvoice.Size = btnSize;
+
         }
         private void HandleChangeForm(object sender, EventArgs e)
         {
@@ -107,6 +102,11 @@ namespace ShowroomData
 
             Hide();
             login.Show();
+        }
+
+        private void btnShowReport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
