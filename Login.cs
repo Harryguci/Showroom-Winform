@@ -1,18 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ShowroomData.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.LinkLabel;
 
 namespace ShowroomData
 {
@@ -95,7 +83,7 @@ namespace ShowroomData
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
@@ -123,7 +111,7 @@ namespace ShowroomData
             else
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!",
-                    "Thông báo", MessageBoxButtons.OK);
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -141,7 +129,7 @@ namespace ShowroomData
             }
             catch (Exception e)
             {
-                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
             return false;
@@ -187,7 +175,13 @@ namespace ShowroomData
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '_' && e.KeyChar != (char)Keys.Back)
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnLogin_Click(btnLogin, e);
+            }
+            if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '_'
+                && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -195,6 +189,11 @@ namespace ShowroomData
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnLogin_Click(btnLogin, e);
+            }
             if (!char.IsLetterOrDigit(e.KeyChar) && e.KeyChar != '_' && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;

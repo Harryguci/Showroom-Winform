@@ -99,7 +99,7 @@
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.White;
-            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Location = new Point(0, 1);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1166, 787);
             flowLayoutPanel1.TabIndex = 0;
@@ -427,9 +427,9 @@
             ClientSize = new Size(1174, 815);
             Controls.Add(panel1);
             Controls.Add(tabControl1);
-            WindowState = FormWindowState.Maximized;
             Name = "ProductsGrid";
             Text = "ProductsGrid";
+            WindowState = FormWindowState.Maximized;
             Load += ProductsGrid_Load;
             Resize += ProductsGrid_Resize;
             tabControl1.ResumeLayout(false);

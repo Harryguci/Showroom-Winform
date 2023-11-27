@@ -34,7 +34,7 @@
             textBox2 = new TextBox();
             label1 = new Label();
             textBox1 = new TextBox();
-            button4 = new Button();
+            btnLogin = new Button();
             label2 = new Label();
             button1 = new Button();
             panel2 = new Panel();
@@ -53,6 +53,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseClick += Form_MouseDown;
             // 
             // panel1
             // 
@@ -60,13 +61,14 @@
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(button4);
+            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(button1);
             panel1.Location = new Point(0, 123);
             panel1.Name = "panel1";
             panel1.Size = new Size(444, 392);
             panel1.TabIndex = 8;
+            panel1.MouseClick += Form_MouseDown;
             // 
             // checkBox1
             // 
@@ -106,21 +108,21 @@
             textBox1.TabIndex = 0;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
-            // button4
+            // btnLogin
             // 
-            button4.BackColor = Color.FromArgb(50, 50, 150);
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(56, 250);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Size = new Size(223, 51);
-            button4.TabIndex = 2;
-            button4.Text = "Đăng nhập";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            btnLogin.BackColor = Color.FromArgb(50, 50, 150);
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.Location = new Point(56, 250);
+            btnLogin.Margin = new Padding(0);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(223, 51);
+            btnLogin.TabIndex = 2;
+            btnLogin.Text = "Đăng nhập";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // label2
             // 
@@ -157,6 +159,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(444, 117);
             panel2.TabIndex = 9;
+            panel2.MouseClick += Form_MouseDown;
             // 
             // btnClose
             // 
@@ -201,7 +204,7 @@
         private TextBox textBox2;
         private Label label1;
         private TextBox textBox1;
-        private Button button4;
+        private Button btnLogin;
         private Label label2;
         public Button button1;
         private Panel panel2;

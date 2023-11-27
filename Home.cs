@@ -82,6 +82,10 @@ namespace ShowroomData
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Bạn có chắc muốn đăng xuất?", "Thông báo",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.No) return;
+
             Layout2 login = new Layout2();
             login.FormClosed += (sender, args) =>
             {
