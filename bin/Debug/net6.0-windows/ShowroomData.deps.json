@@ -9,8 +9,7 @@
       "ShowroomData/1.0.0": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.1",
-          "Newtonsoft.Json": "13.0.3",
-          "ReaLTaiizor": "3.7.9.7"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "ShowroomData.dll": {}
@@ -228,14 +227,6 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "13.0.0.0",
             "fileVersion": "13.0.3.27908"
-          }
-        }
-      },
-      "ReaLTaiizor/3.7.9.7": {
-        "runtime": {
-          "lib/net6.0-windows7.0/ReaLTaiizor.dll": {
-            "assemblyVersion": "3.7.9.7",
-            "fileVersion": "3.7.9.7"
           }
         }
       },
@@ -492,13 +483,6 @@
       "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
-    },
-    "ReaLTaiizor/3.7.9.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ekYSthDIri4toQUi6uyLBxTVhlvz/VMTbYIhQ27imo5VQRvZi3H9bUkR1kJsWCxlFhCQXsfWjHReDZh/AsII8w==",
-      "path": "realtaiizor/3.7.9.7",
-      "hashPath": "realtaiizor.3.7.9.7.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "type": "package",

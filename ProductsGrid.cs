@@ -212,11 +212,12 @@ namespace ShowroomData
             tabControl1.Size = new Size(Width - 300, Height);
             tabControl1.Location = new Point(300, 0);
             panel1.Size = new Size(300, Height);
-            flowLayoutPanel1.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
-            flowLayoutPanel2.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
-            flowLayoutPanel3.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
-            flowLayoutPanel4.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
-            flowLayoutPanel5.Size = new Size(tabControl1.Width - 100, tabControl1.Height - 100);
+            flowLayoutPanel1.Size = new Size(tabControl1.Width, tabControl1.Height);
+            flowLayoutPanel2.Size = new Size(tabControl1.Width, tabControl1.Height);
+            flowLayoutPanel3.Size = new Size(tabControl1.Width, tabControl1.Height);
+            flowLayoutPanel4.Size = new Size(tabControl1.Width, tabControl1.Height);
+            flowLayoutPanel5.Size = new Size(tabControl1.Width, tabControl1.Height);
+            flowLayoutPanel6.Size = new Size(tabControl1.Width, tabControl1.Height);
             pictureBox1.Location = new Point((panel1.Width - pictureBox1.Width) / 2, pictureBox1.Top);
 
             textBox1.Size = txtSalePriceMin.Size = txtSalePriceMax.Size =

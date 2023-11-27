@@ -17,7 +17,6 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsof
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Tokens.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
-E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\ReaLTaiizor.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.IdentityModel.Tokens.Jwt.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\bin\Debug\net6.0-windows\System.Memory.Data.dll
@@ -42,7 +41,6 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Showroom
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CreateSchedule.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CreateSource.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CreateUpdateCustomer.resources
-E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Dashboard.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Form1.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.HelperDialog.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Home.resources

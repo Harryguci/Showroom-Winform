@@ -38,11 +38,13 @@
             btnDelete = new Button();
             btnBack = new Button();
             panel1 = new Panel();
+            btnSmallBack = new Button();
             button1 = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
             panelFooter = new Panel();
             component11 = new Component1(components);
+            toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -169,6 +171,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnSmallBack);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
@@ -176,6 +179,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
+            // 
+            // btnSmallBack
+            // 
+            btnSmallBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSmallBack.BackgroundImage = Properties.Resources.back;
+            btnSmallBack.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSmallBack.FlatAppearance.BorderSize = 0;
+            btnSmallBack.FlatStyle = FlatStyle.Flat;
+            btnSmallBack.Location = new Point(916, 12);
+            btnSmallBack.Name = "btnSmallBack";
+            btnSmallBack.Size = new Size(36, 39);
+            btnSmallBack.TabIndex = 3;
+            toolTip1.SetToolTip(btnSmallBack, "Quay lại");
+            btnSmallBack.UseVisualStyleBackColor = true;
+            btnSmallBack.Click += btnBack_Click;
             // 
             // button1
             // 
@@ -194,10 +212,10 @@
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeadingPage.Location = new Point(388, 37);
+            lblHeadingPage.Font = new Font("Rockwell", 30F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeadingPage.Location = new Point(389, 26);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(150, 38);
+            lblHeadingPage.Size = new Size(208, 50);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
@@ -258,5 +276,7 @@
         private Component1 component11;
         private Button btnBack;
         private Panel panelFooter;
+        private Button btnSmallBack;
+        private ToolTip toolTip1;
     }
 }

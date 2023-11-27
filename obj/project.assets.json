@@ -323,22 +323,6 @@
           }
         }
       },
-      "ReaLTaiizor/3.7.9.7": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0-windows7.0/ReaLTaiizor.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0-windows7.0/ReaLTaiizor.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WindowsForms"
-        ]
-      },
       "System.Configuration.ConfigurationManager/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -1238,32 +1222,6 @@
         "packageIcon.png"
       ]
     },
-    "ReaLTaiizor/3.7.9.7": {
-      "sha512": "ekYSthDIri4toQUi6uyLBxTVhlvz/VMTbYIhQ27imo5VQRvZi3H9bUkR1kJsWCxlFhCQXsfWjHReDZh/AsII8w==",
-      "type": "package",
-      "path": "realtaiizor/3.7.9.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE",
-        "README.MD",
-        "Taiizor.png",
-        "lib/net48/ReaLTaiizor.dll",
-        "lib/net48/ReaLTaiizor.xml",
-        "lib/net481/ReaLTaiizor.dll",
-        "lib/net481/ReaLTaiizor.xml",
-        "lib/net6.0-windows7.0/ReaLTaiizor.dll",
-        "lib/net6.0-windows7.0/ReaLTaiizor.xml",
-        "lib/net7.0-windows7.0/ReaLTaiizor.dll",
-        "lib/net7.0-windows7.0/ReaLTaiizor.xml",
-        "lib/net8.0-windows7.0/ReaLTaiizor.dll",
-        "lib/net8.0-windows7.0/ReaLTaiizor.xml",
-        "lib/netcoreapp3.1/ReaLTaiizor.dll",
-        "lib/netcoreapp3.1/ReaLTaiizor.xml",
-        "realtaiizor.3.7.9.7.nupkg.sha512",
-        "realtaiizor.nuspec"
-      ]
-    },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "sha512": "jXw9MlUu/kRfEU0WyTptAVueupqIeE3/rl0EZDMlf8pcvJnitQ8HeVEp69rZdaStXwTV72boi/Bhw8lOeO+U2w==",
       "type": "package",
@@ -2085,8 +2043,7 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "Microsoft.Data.SqlClient >= 5.1.1",
-      "Newtonsoft.Json >= 13.0.3",
-      "ReaLTaiizor >= 3.7.9.7"
+      "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
@@ -2135,10 +2092,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
-          },
-          "ReaLTaiizor": {
-            "target": "Package",
-            "version": "[3.7.9.7, )"
           }
         },
         "imports": [
