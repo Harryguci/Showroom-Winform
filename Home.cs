@@ -36,6 +36,7 @@ namespace ShowroomData
             flowLayoutPanel2.Height = panelContent.Height - 100;
 
             int minWidth = Math.Max(flowLayoutPanel2.Width / 4 - 40, 200);
+            minWidth = Math.Min(250, minWidth);
 
             Size btnSize = new Size(minWidth, minWidth);
             btnCustomers.Size = btnEmployees.Size = btnPuchaInvoices.Size
@@ -49,30 +50,20 @@ namespace ShowroomData
             string? formName = null;
 
             if (sender.Equals(btnCustomers))
-            {
                 formName = TableName.CUSTOMERS;
-            }
             else if (sender.Equals(btnEmployees))
-            {
                 formName = TableName.EMPLOYEES;
-            }
             else if (sender.Equals(btnSource))
-            {
                 formName = TableName.SOURCE;
-            }
             else if (sender.Equals(btnPuchaInvoices))
-            {
                 formName = TableName.PURCHASEINVOICES;
-            }
             else if (sender.Equals(btnProducts))
             {
                 // formName = TableName.PRODUCTS;
                 ProductsGrid productsGrid = new ProductsGrid();
 
                 productsGrid.FormClosed += (sender, args) =>
-                {
                     Show();
-                };
 
                 Hide();
                 productsGrid.Show();
@@ -80,11 +71,8 @@ namespace ShowroomData
                 return;
             }
             else if (sender.Equals(btnDevices))
-            {
                 formName = TableName.DEVICES;
-            }
-
-            if (formName == null) formName = "employees";
+            else formName = "employees";
 
             ListForm form = new ListForm(formName);
             form.Show();
@@ -106,7 +94,16 @@ namespace ShowroomData
 
         private void btnShowReport_Click(object sender, EventArgs e)
         {
-            
+            Report report = new Report();
+            report.FormClosed += (sender, args) => Show();
+
+            Hide();
+            report.Show();
+        }
+
+        private void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Show a search form");
         }
     }
 }

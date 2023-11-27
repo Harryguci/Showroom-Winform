@@ -175,12 +175,10 @@ namespace ShowroomData
 
                 foreach (DataRow row in query.Rows)
                 {
-                    string? id = row.Field<string>("Serial");
-
                     var product = new Products()
                     {
-                        Serial = row.Field<string>("Serial"),
-                        ProductName = row.Field<string>("ProductName"),
+                        Serial = row.Field<string>("Serial") ?? "",
+                        ProductName = row.Field<string>("ProductName") ?? "",
                         PurchasePrice = row.Field<int>("PurchasePrice"),
                         SalePrice = row.Field<int>("SalePrice"),
                         Quantity = row.Field<int>("Quantity"),
@@ -188,10 +186,7 @@ namespace ShowroomData
                         Deleted = row.Field<bool>("Deleted")
                     };
 
-                    if (product.ProductName != null
-                        && !product.ProductName.ToLower().Contains(qName))
-                        continue;
-
+                    if (!product.ProductName.ToLower().Contains(qName)) continue;
                     if (product.SalePrice < qCost || product.SalePrice > qMaxCost) continue;
                     if (product.PurchasePrice < qPurchaseCost || product.PurchasePrice > qPurchaseMaxCost) continue;
 
@@ -199,7 +194,6 @@ namespace ShowroomData
                         $"Product_Images Where Serial = N'{product.Serial}'");
 
                     string? url = imgs.Rows[0].Field<string>("Url_image");
-
 
                     CreateOneProductCard(title: product.ProductName,
                         url: url, id: product.Serial, saletPrice: product.SalePrice,
@@ -238,7 +232,7 @@ namespace ShowroomData
             btnShowList.Location = new Point(0, Height - btnShowList.Height - 10);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
             textBox1.Text = txtSalePriceMin.Text = comboBox1.Text = string.Empty;
         }
@@ -248,7 +242,7 @@ namespace ShowroomData
             LoadTabData();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnShowList_Click(object sender, EventArgs e)
         {
             ListForm listForm = new ListForm(ListType.PRODUCTS);
             listForm.FormClosed += (sender, args) =>

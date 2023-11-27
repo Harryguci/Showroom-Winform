@@ -258,7 +258,7 @@
             btnShowList.TabIndex = 5;
             btnShowList.Text = "Danh sách";
             btnShowList.UseVisualStyleBackColor = false;
-            btnShowList.Click += button3_Click;
+            btnShowList.Click += btnShowList_Click;
             // 
             // btnSearch
             // 
@@ -286,7 +286,7 @@
             btnReset.TabIndex = 4;
             btnReset.Text = "Đặt lại";
             btnReset.UseVisualStyleBackColor = false;
-            btnReset.Click += button1_Click;
+            btnReset.Click += btnReset_Click;
             // 
             // comboBox1
             // 
@@ -427,6 +427,7 @@
             ClientSize = new Size(1174, 815);
             Controls.Add(panel1);
             Controls.Add(tabControl1);
+            WindowState = FormWindowState.Maximized;
             Name = "ProductsGrid";
             Text = "ProductsGrid";
             Load += ProductsGrid_Load;

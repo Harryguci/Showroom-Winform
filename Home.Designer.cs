@@ -38,6 +38,7 @@
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
+            btnSearchAll = new Button();
             btnLogout = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
@@ -155,6 +156,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnSearchAll);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
@@ -162,6 +164,22 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1055, 179);
             panel1.TabIndex = 1;
+            // 
+            // btnSearchAll
+            // 
+            btnSearchAll.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSearchAll.BackgroundImage = Properties.Resources.magnifying_glass;
+            btnSearchAll.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSearchAll.FlatAppearance.BorderSize = 0;
+            btnSearchAll.FlatStyle = FlatStyle.Flat;
+            btnSearchAll.Location = new Point(942, 17);
+            btnSearchAll.Margin = new Padding(5);
+            btnSearchAll.Name = "btnSearchAll";
+            btnSearchAll.Padding = new Padding(10);
+            btnSearchAll.Size = new Size(45, 41);
+            btnSearchAll.TabIndex = 3;
+            btnSearchAll.UseVisualStyleBackColor = true;
+            btnSearchAll.Click += btnSearchAll_Click;
             // 
             // btnLogout
             // 
@@ -377,5 +395,6 @@
         private Button btnSaleInvoice;
         private Button btnDevices;
         private Button btnLogout;
+        private Button btnSearchAll;
     }
 }

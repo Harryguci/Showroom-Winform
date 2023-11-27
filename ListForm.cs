@@ -97,17 +97,6 @@ namespace ShowroomData
             lblHeadingPage.Text = $"Danh sách {title}";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                 lblHeadingPage.Location.Y);
-
-            Button btnExit = new Button();
-            btnExit.Text = "<";
-            btnExit.Location = new Point(Width - 3, 3);
-            btnExit.Size = new Size(50, 50);
-            btnExit.Click += (sender, args) =>
-            {
-                Close();
-            };
-
-            panel1.Controls.Add(btnExit);
         }
 
         public void RefeshData()

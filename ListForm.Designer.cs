@@ -41,8 +41,8 @@
             button1 = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
-            component11 = new Component1(components);
             panelFooter = new Panel();
+            component11 = new Component1(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
