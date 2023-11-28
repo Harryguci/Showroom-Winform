@@ -331,6 +331,10 @@ namespace ShowroomData
 
                 if (month != null && year != null)
                     t += $" AND YEAR(SalesTargets.EndDate) = {year} AND MONTH(SalesTargets.EndDate) = {month}";
+                else if (year != null)
+                    t += $" WHERE YEAR(SalesTargets.EndDate) = {year}";
+                else if (month != null)
+                    t += $" WHERE MONTH(SalesTargets.EndDate) = {month}";
 
                 query = processDb.GetData(t);
             }
@@ -345,7 +349,10 @@ namespace ShowroomData
                 if (year != null && month != null)
                 {
                     t += $" WHERE YEAR(SalesTargets.EndDate) = {year} AND MONTH(SalesTargets.EndDate) = {month}";
-                }
+                } else if (year != null)
+                    t += $" WHERE YEAR(SalesTargets.EndDate) = {year}";
+                else if (month != null)
+                    t += $" WHERE MONTH(SalesTargets.EndDate) = {month}";
 
                 query = processDb.GetData(t);
             }
