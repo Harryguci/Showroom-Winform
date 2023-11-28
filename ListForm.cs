@@ -1,6 +1,7 @@
 ﻿using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
+using System.Windows.Forms;
 
 namespace ShowroomData
 {
@@ -74,8 +75,9 @@ namespace ShowroomData
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Location = new Point(0, 0);
+            AutoScroll = true;
             Size = Screen.PrimaryScreen.WorkingArea.Size;
-
+            panelContent.AutoScroll = true;
             //this.DoubleBuffered = true;
             //this.SetStyle(ControlStyles.ResizeRedraw, true);
 
@@ -219,6 +221,7 @@ namespace ShowroomData
         {
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                lblHeadingPage.Location.Y);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -295,38 +298,77 @@ namespace ShowroomData
 
 
             #endregion
+
             if (type == "all")
                 query = $"select Top {limits} * from {table}";
             else if (whereCondition != string.Empty)
                 query = $"select Top {limits} * from {table} where {whereCondition}";
 
             dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dt.Dock = DockStyle.Fill;
-            dt.Location = new Point(136, 100);
+
+            //dt.Dock = DockStyle.Top;
+            dt.Location = new Point(0, 0);
+            dt.Size = new Size(panelContent.Width - 50, panelContent.Height - panelFooter.Height - 50);
+            dt.AutoSize = false; // set the AutoSize property to false
+            dt.ScrollBars = ScrollBars.Both;
             dt.Name = "dataGridView1";
             dt.RowTemplate.Height = 35;
-            dt.Size = new Size(664, 400);
             dt.TabIndex = 2;
             dt.CellValueChanged += dt_CellValueChanged;
-
+            panelContent.AutoScroll = true;
             panelContent.Controls.Add(dt);
-
             try
             {
                 DataTable dtResult = processDb.GetData(query);
+                dtResult.Columns.Add("gendertext");
+                var colGenderRaw = dtResult.Columns["Gender"];
+                var colGenderText = dtResult.Columns["gendertext"];
+                dtResult.Columns[dtResult.Columns.IndexOf(colGenderText)]
+                    .SetOrdinal(dtResult.Columns.IndexOf(colGenderRaw));
+
 
                 dt.DataSource = dtResult;
 
+                #region HANDLE_DISPLAY_GENDER
+
+                int genderIndex = -1;
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    if (dt.Columns[i].Name.ToLower() == "gender")
+                    {
+                        genderIndex = i;
+                        break;
+                    }
+                }
+
+                if (genderIndex >= 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        if (dt.Rows[i].Cells[genderIndex].Value != null
+                            && (bool)dt.Rows[i].Cells[genderIndex].Value)
+                        {
+                            dt.Rows[i].Cells[dt.Columns.IndexOf(dt.Columns["gendertext"])].Value = "Nam";
+                        }
+                        else if (dt.Rows[i].Cells[genderIndex].Value != null
+                            && (bool)dt.Rows[i].Cells[genderIndex].Value == false)
+                        {
+                            dt.Rows[i].Cells[dt.Columns.IndexOf(dt.Columns["gendertext"])].Value = "Nữ";
+                        }
+                    }
+                }
+
+                #endregion
                 for (int i = 0; i < colFormat.Length; i++)
                 {
                     dt.Columns[i].HeaderText = colFormat[i].Name;
                     dt.Columns[i].Width = colFormat[i].Width;
                 }
-
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     if (dt.Columns[i].Name.ToLower() == "deleted"
-                        || dt.Columns[i].Name.ToLower() == "url_image")
+                        || dt.Columns[i].Name.ToLower() == "url_image"
+                        || dt.Columns[i].Name.ToLower() == "gender")
                     {
                         dt.Columns[i].Visible = false;
                     }
@@ -334,18 +376,19 @@ namespace ShowroomData
 
                 // Added Formating for dataGridView Cells Formating
                 dt.CellFormatting += dt_CellFormating;
-
+                
                 // Styles
-                dt.BackgroundColor = Color.White;
+                dt.BackgroundColor = Color.FromArgb(200, 200, 255);
                 dt.BorderStyle = BorderStyle.None;
-
+                dt.GridColor = Color.FromArgb(230, 230, 255);
+                
                 dt.EnableHeadersVisualStyles = false;
                 // Create a DataGridViewCellStyle object for the header
                 DataGridViewCellStyle style = new DataGridViewCellStyle();
                 style.BackColor = Color.FromArgb(50, 50, 150); // Set the background color
                 style.ForeColor = Color.White; // Set the foreground color
                 style.Font = new Font("Roboto", 12f, FontStyle.Bold); // Set the font style
-
+                
                 // Apply the style to the header
                 dt.ColumnHeadersDefaultCellStyle = style;
                 dt.ReadOnly = true;
@@ -366,18 +409,23 @@ namespace ShowroomData
                 return;
             }
 
-            if (e.GetType() == typeof(bool) && (bool?)e.Value == true)
+            if (e.Value.GetType() == typeof(bool) && (bool?)e.Value == true)
             {
                 e.CellStyle.BackColor = Color.FromArgb(245, 245, 255);
             }
-            else if (e.GetType() == typeof(bool) && (bool?)e.Value == false)
+            else if (e.Value.GetType() == typeof(bool) && (bool?)e.Value == false)
             {
                 e.CellStyle.BackColor = Color.FromArgb(255, 245, 245);
             }
 
-            if (e.Value.GetType() == typeof(string) && (string)e.Value == "Available")
+            if (e.Value.GetType() == typeof(string))
             {
-                e.Value = "Sẵn";
+                if ((string)e.Value == "Available")
+                    e.Value = "Sẵn";
+                else if ((string)e.Value == "Sales")
+                    e.Value = "NV Sale";
+                else if ((string)e.Value == "Sales Manager")
+                    e.Value = "Quản lý";
             }
         }
 
@@ -412,22 +460,25 @@ namespace ShowroomData
             if (listType == ListType.EMPLOYEES)
             {
                 var selected = dt.SelectedRows[0].Cells;
+                var id = (string)selected[0].Value;
+                var query = processDb.GetData($"SELECT * FROM EMPLOYEES WHERE EMPLOYEEID = N'{id.Trim()}'");
+                if (query.Rows.Count <= 0) return;
 
                 Employee employee = new Employee()
                 {
-                    EmployeeId = (string)selected[0].Value,
-                    Firstname = (string)selected[1].Value,
-                    Lastname = (string)selected[2].Value,
-                    DateBirth = (DateTime)selected[3].Value,
-                    Phone = (string)selected[4].Value,
-                    Gender = (bool)selected[5].Value,
-                    Cccd = (string)selected[6].Value,
-                    Position = (string)selected[7].Value,
-                    StartDate = (DateTime)selected[8].Value,
-                    Salary = (int)selected[9].Value,
-                    Email = (string)selected[10].Value,
-                    Deleted = (bool)selected[11].Value,
-                    Url_image = (string)selected[12].Value,
+                    EmployeeId = query.Rows[0].Field<string>("EmployeeId")??"",
+                    Firstname = query.Rows[0].Field<string>("Firstname") ?? "",
+                    Lastname = query.Rows[0].Field<string>("Lastname") ?? "",
+                    DateBirth = query.Rows[0].Field<DateTime>("DateBirth"),
+                    Phone = query.Rows[0].Field<string>("PhoneNumber"),
+                    Gender = query.Rows[0].Field<bool>("Gender"),
+                    Cccd = query.Rows[0].Field<string>("CCCD"),
+                    Position = query.Rows[0].Field<string>("Position"),
+                    StartDate = query.Rows[0].Field<DateTime>("StartDate"),
+                    Salary = query.Rows[0].Field<int>("Salary"),
+                    Email = query.Rows[0].Field<string>("Email"),
+                    Deleted = query.Rows[0].Field<bool>("Deleted"),
+                    Url_image = query.Rows[0].Field<string>("Url_image"),
                 };
 
                 UpdateInfoForm updateInfoForm = new UpdateInfoForm(employee, this);
@@ -436,19 +487,23 @@ namespace ShowroomData
             else if (listType == ListType.CUSTOMERS)
             {
                 var selected = dt.SelectedRows[0].Cells;
+                var id = (string)selected[0].Value;
+                var query = processDb.GetData($"SELECT * FROM CUSTOMERS WHERE EMPLOYEEID = N'{id.Trim()}'");
+                var response = query.Rows[0];
+                if (query.Rows.Count <= 0) return;
 
                 Customer customer = new Customer()
                 {
-                    ClientId = (string)selected[0].EditedFormattedValue,
-                    Firstname = (string)selected[1].EditedFormattedValue,
-                    Lastname = (string)selected[2].EditedFormattedValue,
-                    DateBirth = (DateTime)selected[3].Value,
-                    PhoneNumber = (string)selected[4].EditedFormattedValue,
-                    Gender = (bool)selected[5].EditedFormattedValue,
-                    Cccd = (string)selected[6].EditedFormattedValue,
-                    Email = (string)selected[7].EditedFormattedValue,
-                    Address = (string)selected[8].EditedFormattedValue,
-                    Deleted = (bool)(selected[9].EditedFormattedValue),
+                    ClientId = response.Field<string>("ClientId") ??"",
+                    Firstname = response.Field<string>("Firstname") ?? "",
+                    Lastname = response.Field<string>("Lastname") ?? "",
+                    DateBirth = response.Field<DateTime>("DateBirth"),
+                    PhoneNumber = response.Field<string>("PhoneNumber") ?? "",
+                    Gender = response.Field<bool>("Gender"),
+                    Cccd = response.Field<string>("CCCD") ?? "",
+                    Email = response.Field<string>("Email") ?? "",
+                    Address = response.Field<string>("Address") ?? "",
+                    Deleted = response.Field<bool>("Deleted"),
                 };
 
                 CreateUpdateCustomer updateForm = new CreateUpdateCustomer(this, title: "Cập nhật khách hàng", customer);

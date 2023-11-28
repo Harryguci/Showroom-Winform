@@ -42,6 +42,10 @@ namespace ShowroomData.Util
                     Name = "Giới tính",
                     Width = 90
                 },
+                new ColumnObject{
+                    Name = "Giới tính",
+                    Width = 100
+                },
                 new ColumnObject
                 {
                     Name = "CCCD",
@@ -76,7 +80,7 @@ namespace ShowroomData.Util
                 {
                     Name = "URL",
                     Width = 200
-                }
+                },
             };
         public static ColumnObject[] PRODUCT_COLS = {
                 new ColumnObject
@@ -139,7 +143,12 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "SĐT",
-                    Width = 200,
+                    Width = 250,
+                },
+                 new ColumnObject
+                {
+                    Name = "Giới tính",
+                    Width = 90
                 },
                  new ColumnObject
                 {
@@ -149,7 +158,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "CCCD",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {

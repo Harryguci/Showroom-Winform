@@ -243,6 +243,7 @@
             // panelContent
             // 
             panelContent.AutoScroll = true;
+            panelContent.BackColor = Color.White;
             panelContent.Controls.Add(panelFooter);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(136, 100);
@@ -253,6 +254,7 @@
             // 
             // panelFooter
             // 
+            panelFooter.BackColor = Color.White;
             panelFooter.Dock = DockStyle.Bottom;
             panelFooter.Location = new Point(0, 316);
             panelFooter.Name = "panelFooter";
