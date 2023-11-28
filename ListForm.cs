@@ -320,11 +320,16 @@ namespace ShowroomData
             try
             {
                 DataTable dtResult = processDb.GetData(query);
-                dtResult.Columns.Add("gendertext");
                 var colGenderRaw = dtResult.Columns["Gender"];
-                var colGenderText = dtResult.Columns["gendertext"];
-                dtResult.Columns[dtResult.Columns.IndexOf(colGenderText)]
-                    .SetOrdinal(dtResult.Columns.IndexOf(colGenderRaw));
+                if (colGenderRaw != null)
+                {
+                    dtResult.Columns.Add("gendertext");
+                    var colGenderText = dtResult.Columns["gendertext"];
+
+                    dtResult.Columns[dtResult.Columns.IndexOf(colGenderText)]
+                        .SetOrdinal(dtResult.Columns.IndexOf(colGenderRaw));
+
+                }
 
 
                 dt.DataSource = dtResult;
@@ -376,19 +381,19 @@ namespace ShowroomData
 
                 // Added Formating for dataGridView Cells Formating
                 dt.CellFormatting += dt_CellFormating;
-                
+
                 // Styles
                 dt.BackgroundColor = Color.FromArgb(200, 200, 255);
                 dt.BorderStyle = BorderStyle.None;
                 dt.GridColor = Color.FromArgb(230, 230, 255);
-                
+
                 dt.EnableHeadersVisualStyles = false;
                 // Create a DataGridViewCellStyle object for the header
                 DataGridViewCellStyle style = new DataGridViewCellStyle();
                 style.BackColor = Color.FromArgb(50, 50, 150); // Set the background color
                 style.ForeColor = Color.White; // Set the foreground color
                 style.Font = new Font("Roboto", 12f, FontStyle.Bold); // Set the font style
-                
+
                 // Apply the style to the header
                 dt.ColumnHeadersDefaultCellStyle = style;
                 dt.ReadOnly = true;
@@ -466,7 +471,7 @@ namespace ShowroomData
 
                 Employee employee = new Employee()
                 {
-                    EmployeeId = query.Rows[0].Field<string>("EmployeeId")??"",
+                    EmployeeId = query.Rows[0].Field<string>("EmployeeId") ?? "",
                     Firstname = query.Rows[0].Field<string>("Firstname") ?? "",
                     Lastname = query.Rows[0].Field<string>("Lastname") ?? "",
                     DateBirth = query.Rows[0].Field<DateTime>("DateBirth"),
@@ -494,7 +499,7 @@ namespace ShowroomData
 
                 Customer customer = new Customer()
                 {
-                    ClientId = response.Field<string>("ClientId") ??"",
+                    ClientId = response.Field<string>("ClientId") ?? "",
                     Firstname = response.Field<string>("Firstname") ?? "",
                     Lastname = response.Field<string>("Lastname") ?? "",
                     DateBirth = response.Field<DateTime>("DateBirth"),
