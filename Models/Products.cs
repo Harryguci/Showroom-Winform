@@ -19,7 +19,7 @@ namespace ShowroomData.Models
         public int? Quantity { get; set; }
         public string? Status { get; set; }
         public bool? Deleted { get; set; } = false;
-        public List<ProductImages>? ImageUrls { get; set; }
+        public List<ProductImages> ImageUrls { get; set; } = new List<ProductImages>();
         public Products()
         {
             Serial = string.Empty;

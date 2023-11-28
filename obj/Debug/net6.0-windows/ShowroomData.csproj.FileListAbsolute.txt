@@ -73,3 +73,4 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Showroom
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.Report.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.csproj.ResolveComReference.cache
+E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.SearchAll.resources

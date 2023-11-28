@@ -346,7 +346,6 @@
             // 
             toolTip1.BackColor = Color.DeepSkyBlue;
             toolTip1.ForeColor = Color.White;
-            toolTip1.ToolTipIcon = ToolTipIcon.Info;
             // 
             // Home
             // 

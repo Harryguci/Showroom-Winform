@@ -129,7 +129,8 @@ namespace ShowroomData
             }
             catch (Exception e)
             {
-                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
             return false;

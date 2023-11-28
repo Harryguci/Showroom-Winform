@@ -83,6 +83,16 @@ namespace ShowroomData.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clipart742441 {
+            get {
+                object obj = ResourceManager.GetObject("clipart742441", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap customers {
             get {
                 object obj = ResourceManager.GetObject("customers", resourceCulture);
@@ -136,6 +146,16 @@ namespace ShowroomData.Properties {
         internal static System.Drawing.Bitmap magnifying_glass {
             get {
                 object obj = ResourceManager.GetObject("magnifying-glass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngaaa_com_4834605 {
+            get {
+                object obj = ResourceManager.GetObject("pngaaa.com-4834605", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

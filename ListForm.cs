@@ -1,8 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-using ShowroomData.Models;
+﻿using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
-using System.Diagnostics;
 
 namespace ShowroomData
 {
@@ -10,7 +8,7 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
-        private string listType = "products";
+        private string listType = ListType.EMPLOYEES;
 
         public ListForm(string _listType = "employees")
         {
@@ -281,11 +279,13 @@ namespace ShowroomData
             dt.Size = new Size(664, 400);
             dt.TabIndex = 2;
             dt.CellValueChanged += dt_CellValueChanged;
+
             panelContent.Controls.Add(dt);
 
             try
             {
                 DataTable dtResult = processDb.GetData(query);
+
                 dt.DataSource = dtResult;
 
                 for (int i = 0; i < colFormat.Length; i++)
@@ -294,8 +294,32 @@ namespace ShowroomData
                     dt.Columns[i].Width = colFormat[i].Width;
                 }
 
-                dt.BackgroundColor = Color.LightBlue;
-                dt.GridColor = Color.Gray;
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    if (dt.Columns[i].Name.ToLower() == "deleted"
+                        || dt.Columns[i].Name.ToLower() == "url_image")
+                    {
+                        dt.Columns[i].Visible = false;
+                    }
+                }
+
+                // Added Formating for dataGridView Cells Formating
+                dt.CellFormatting += dt_CellFormating;
+
+                // Styles
+                dt.BackgroundColor = Color.White;
+                dt.BorderStyle = BorderStyle.None;
+
+                dt.EnableHeadersVisualStyles = false;
+                // Create a DataGridViewCellStyle object for the header
+                DataGridViewCellStyle style = new DataGridViewCellStyle();
+                style.BackColor = Color.FromArgb(50, 50, 150); // Set the background color
+                style.ForeColor = Color.White; // Set the foreground color
+                style.Font = new Font("Roboto", 12f, FontStyle.Bold); // Set the font style
+
+                // Apply the style to the header
+                dt.ColumnHeadersDefaultCellStyle = style;
+                dt.ReadOnly = true;
 
                 dtResult.Dispose();
             }
@@ -303,6 +327,28 @@ namespace ShowroomData
             {
                 MessageBox.Show(ex.Message, "Error");
                 Dispose();
+            }
+        }
+
+        private void dt_CellFormating(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value == null)
+            {
+                return;
+            }
+
+            if (e.GetType() == typeof(bool) && (bool?)e.Value == true)
+            {
+                e.CellStyle.BackColor = Color.FromArgb(245, 245, 255);
+            }
+            else if (e.GetType() == typeof(bool) && (bool?)e.Value == false)
+            {
+                e.CellStyle.BackColor = Color.FromArgb(255, 245, 245);
+            }
+
+            if (e.Value.GetType() == typeof(string) && (string)e.Value == "Available")
+            {
+                e.Value = "Sẵn";
             }
         }
 
@@ -719,12 +765,6 @@ namespace ShowroomData
         }
 
         private void btnBack_Click(object sender, EventArgs e)
-        {
-            Close();
-            Home.ActiveForm.Show();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
         {
             Close();
         }

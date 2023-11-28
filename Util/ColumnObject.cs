@@ -30,32 +30,32 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Ngày sinh",
-                    Width = 100
+                    Width = 150
                 },
                 new ColumnObject
                 {
                     Name = "SĐT",
-                    Width = 200
+                    Width = 100
                 },
                 new ColumnObject
                 {
                     Name = "Giới tính",
-                    Width = 50
+                    Width = 90
                 },
                 new ColumnObject
                 {
                     Name = "CCCD",
-                    Width = 100
+                    Width = 150
                 },
                 new ColumnObject
                 {
                     Name = "Vị trí",
-                    Width = 100
+                    Width = 150
                 },
                 new ColumnObject
                 {
                     Name = "Ngày bắt đầu",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -65,7 +65,7 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Email",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -144,7 +144,7 @@ namespace ShowroomData.Util
                  new ColumnObject
                 {
                     Name = "Giới tính",
-                    Width = 100
+                    Width = 90
                 },
                 new ColumnObject
                 {

@@ -39,12 +39,12 @@
             btnBack = new Button();
             panel1 = new Panel();
             btnSmallBack = new Button();
-            button1 = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
             panelFooter = new Panel();
             component11 = new Component1(components);
             toolTip1 = new ToolTip(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -172,7 +172,6 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Controls.Add(btnSmallBack);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
@@ -195,32 +194,20 @@
             btnSmallBack.UseVisualStyleBackColor = true;
             btnSmallBack.Click += btnBack_Click;
             // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.BackgroundImage = Properties.Resources.back;
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(961, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(45, 39);
-            button1.TabIndex = 2;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
-            // 
             // lblHeadingPage
             // 
             lblHeadingPage.AutoSize = true;
-            lblHeadingPage.Font = new Font("Rockwell", 30F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeadingPage.Font = new Font("Roboto", 30F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeadingPage.ForeColor = Color.FromArgb(50, 50, 150);
             lblHeadingPage.Location = new Point(389, 26);
             lblHeadingPage.Name = "lblHeadingPage";
-            lblHeadingPage.Size = new Size(208, 50);
+            lblHeadingPage.Size = new Size(188, 48);
             lblHeadingPage.TabIndex = 1;
             lblHeadingPage.Text = "Welcome";
             // 
             // panelContent
             // 
+            panelContent.AutoScroll = true;
             panelContent.Controls.Add(panelFooter);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(136, 100);
@@ -236,10 +223,17 @@
             panelFooter.Size = new Size(964, 128);
             panelFooter.TabIndex = 0;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // ListForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScroll = true;
+            BackColor = Color.White;
             ClientSize = new Size(1100, 544);
             Controls.Add(panelContent);
             Controls.Add(panel1);
@@ -272,11 +266,12 @@
         private Button btnDelete;
         private Label lblHeadingPage;
         private Panel panelContent;
-        private Button button1;
+        //private Button button1;
         private Component1 component11;
         private Button btnBack;
         private Panel panelFooter;
         private Button btnSmallBack;
         private ToolTip toolTip1;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

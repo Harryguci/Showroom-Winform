@@ -36,7 +36,7 @@ namespace ShowroomData
             flowLayoutPanel2.Height = panelContent.Height - 100;
 
             int minWidth = Math.Max(flowLayoutPanel2.Width / 4 - 40, 200);
-            minWidth = Math.Min(250, minWidth);
+            minWidth = Math.Min(200, minWidth);
 
             Size btnSize = new Size(minWidth, minWidth);
             btnCustomers.Size = btnEmployees.Size = btnPuchaInvoices.Size
@@ -107,7 +107,8 @@ namespace ShowroomData
 
         private void btnSearchAll_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Show a search form");
+            SearchAll searchForm = new SearchAll();
+            searchForm.ShowDialog();
         }
     }
 }

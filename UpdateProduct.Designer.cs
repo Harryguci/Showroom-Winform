@@ -41,6 +41,10 @@
             label1 = new Label();
             txtName = new TextBox();
             panel3 = new Panel();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
+            pictureBox2 = new PictureBox();
             label4 = new Label();
             label5 = new Label();
             label3 = new Label();
@@ -59,6 +63,7 @@
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -132,7 +137,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(928, 100);
+            panel1.Size = new Size(1085, 100);
             panel1.TabIndex = 100;
             // 
             // flowLayoutPanel2
@@ -143,7 +148,7 @@
             flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(928, 33);
+            flowLayoutPanel2.Size = new Size(1085, 33);
             flowLayoutPanel2.TabIndex = 101;
             // 
             // button1
@@ -151,7 +156,7 @@
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
-            button1.Location = new Point(879, 0);
+            button1.Location = new Point(1036, 0);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(49, 33);
@@ -165,7 +170,7 @@
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
-            button2.Location = new Point(830, 0);
+            button2.Location = new Point(987, 0);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(49, 33);
@@ -180,7 +185,7 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(316, 53);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(462, 46);
+            lblHeading.Size = new Size(320, 31);
             lblHeading.TabIndex = 100;
             lblHeading.Text = "Sửa thông tin sản phẩm";
             // 
@@ -189,7 +194,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(166, 29);
+            label1.Size = new Size(110, 20);
             label1.TabIndex = 2;
             label1.Text = "Tên sản phẩm";
             // 
@@ -197,12 +202,16 @@
             // 
             txtName.Location = new Point(214, 34);
             txtName.Name = "txtName";
-            txtName.Size = new Size(387, 35);
+            txtName.Size = new Size(387, 26);
             txtName.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(button5);
+            panel3.Controls.Add(button4);
+            panel3.Controls.Add(button3);
+            panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label3);
@@ -217,17 +226,61 @@
             panel3.Controls.Add(txtPurchasePrice);
             panel3.Controls.Add(txtId);
             panel3.Controls.Add(txtName);
-            panel3.Location = new Point(286, 116);
+            panel3.Location = new Point(182, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
+            panel3.Size = new Size(1010, 512);
             panel3.TabIndex = 100;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(978, 172);
+            button5.Name = "button5";
+            button5.Size = new Size(29, 56);
+            button5.TabIndex = 9;
+            button5.Text = ">";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(619, 172);
+            button4.Name = "button4";
+            button4.Size = new Size(29, 56);
+            button4.TabIndex = 9;
+            button4.Text = "<";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.FromArgb(50, 50, 150);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(654, 410);
+            button3.Margin = new Padding(0);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 36);
+            button3.TabIndex = 8;
+            button3.Text = "Đổi ảnh";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(654, 34);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(318, 370);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Location = new Point(42, 381);
             label4.Name = "label4";
-            label4.Size = new Size(121, 29);
+            label4.Size = new Size(80, 20);
             label4.TabIndex = 1;
             label4.Text = "Trạng thái";
             // 
@@ -236,7 +289,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(43, 311);
             label5.Name = "label5";
-            label5.Size = new Size(109, 29);
+            label5.Size = new Size(72, 20);
             label5.TabIndex = 1;
             label5.Text = "Số lượng";
             // 
@@ -245,7 +298,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(43, 244);
             label3.Name = "label3";
-            label3.Size = new Size(96, 29);
+            label3.Size = new Size(65, 20);
             label3.TabIndex = 1;
             label3.Text = "Giá bán";
             // 
@@ -254,7 +307,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(42, 172);
             label2.Name = "label2";
-            label2.Size = new Size(102, 29);
+            label2.Size = new Size(69, 20);
             label2.TabIndex = 1;
             label2.Text = "Giá mua";
             // 
@@ -263,7 +316,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(43, 104);
             label9.Name = "label9";
-            label9.Size = new Size(156, 29);
+            label9.Size = new Size(105, 20);
             label9.TabIndex = 1;
             label9.Text = "Mã sản phẩm";
             // 
@@ -297,13 +350,13 @@
             btnCreate.TabIndex = 5;
             btnCreate.Text = "Lưu";
             btnCreate.UseVisualStyleBackColor = false;
-            btnCreate.Click += btnCreate_Click_1;
+            btnCreate.Click += btnCreate_Click;
             // 
             // txtQuantity
             // 
             txtQuantity.Location = new Point(214, 308);
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(156, 35);
+            txtQuantity.Size = new Size(156, 26);
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
@@ -311,14 +364,14 @@
             // 
             txtStatus.Location = new Point(214, 378);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(387, 35);
+            txtStatus.Size = new Size(387, 26);
             txtStatus.TabIndex = 5;
             // 
             // txtSalePrice
             // 
             txtSalePrice.Location = new Point(214, 241);
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(387, 35);
+            txtSalePrice.Size = new Size(387, 26);
             txtSalePrice.TabIndex = 3;
             txtSalePrice.KeyPress += txtSalePrice_KeyPress;
             // 
@@ -326,7 +379,7 @@
             // 
             txtPurchasePrice.Location = new Point(214, 169);
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(387, 35);
+            txtPurchasePrice.Size = new Size(387, 26);
             txtPurchasePrice.TabIndex = 2;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
@@ -335,14 +388,14 @@
             txtId.Enabled = false;
             txtId.Location = new Point(214, 101);
             txtId.Name = "txtId";
-            txtId.Size = new Size(387, 35);
+            txtId.Size = new Size(387, 26);
             txtId.TabIndex = 1;
             // 
             // UpdateProduct
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1221, 640);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -359,6 +412,7 @@
             flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -389,5 +443,9 @@
         private TextBox txtSalePrice;
         private TextBox txtPurchasePrice;
         private TextBox txtId;
+        private PictureBox pictureBox2;
+        private Button button3;
+        private Button button5;
+        private Button button4;
     }
 }
