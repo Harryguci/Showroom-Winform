@@ -179,12 +179,12 @@
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(316, 53);
+            lblHeading.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeading.Location = new Point(315, 48);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(513, 46);
+            lblHeading.Size = new Size(363, 37);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Sửa thông tin hóa đơn bán";
+            lblHeading.Text = "Thông tin hóa đơn bán";
             // 
             // panel3
             // 
@@ -214,14 +214,14 @@
             // 
             dayDateTimePicker.Location = new Point(207, 269);
             dayDateTimePicker.Name = "dayDateTimePicker";
-            dayDateTimePicker.Size = new Size(389, 35);
+            dayDateTimePicker.Size = new Size(389, 26);
             dayDateTimePicker.TabIndex = 4;
             // 
             // txtIdClients
             // 
             txtIdClients.Location = new Point(207, 89);
             txtIdClients.Name = "txtIdClients";
-            txtIdClients.Size = new Size(389, 35);
+            txtIdClients.Size = new Size(389, 26);
             txtIdClients.TabIndex = 1;
             // 
             // label6
@@ -229,7 +229,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(38, 396);
             label6.Name = "label6";
-            label6.Size = new Size(121, 29);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 12;
             label6.Text = "Trạng thái";
             // 
@@ -238,7 +238,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(38, 333);
             label4.Name = "label4";
-            label4.Size = new Size(109, 29);
+            label4.Size = new Size(72, 20);
             label4.TabIndex = 13;
             label4.Text = "Số lượng";
             // 
@@ -247,7 +247,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(38, 274);
             label5.Name = "label5";
-            label5.Size = new Size(128, 29);
+            label5.Size = new Size(85, 20);
             label5.TabIndex = 14;
             label5.Text = "Ngày nhập";
             // 
@@ -256,7 +256,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(37, 28);
             label1.Name = "label1";
-            label1.Size = new Size(129, 29);
+            label1.Size = new Size(88, 20);
             label1.TabIndex = 15;
             label1.Text = "ID hóa đơn";
             // 
@@ -265,7 +265,7 @@
             txtIdInvoices.Enabled = false;
             txtIdInvoices.Location = new Point(207, 25);
             txtIdInvoices.Name = "txtIdInvoices";
-            txtIdInvoices.Size = new Size(389, 35);
+            txtIdInvoices.Size = new Size(389, 26);
             txtIdInvoices.TabIndex = 0;
             // 
             // label2
@@ -273,7 +273,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(37, 92);
             label2.Name = "label2";
-            label2.Size = new Size(164, 29);
+            label2.Size = new Size(113, 20);
             label2.TabIndex = 16;
             label2.Text = "ID khách hàng";
             // 
@@ -281,21 +281,21 @@
             // 
             txtStatus.Location = new Point(207, 393);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(389, 35);
+            txtStatus.Size = new Size(389, 26);
             txtStatus.TabIndex = 6;
             // 
             // txtQuantity
             // 
             txtQuantity.Location = new Point(207, 333);
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(173, 35);
+            txtQuantity.Size = new Size(173, 26);
             txtQuantity.TabIndex = 5;
             // 
             // txtIdEmployee
             // 
             txtIdEmployee.Location = new Point(207, 149);
             txtIdEmployee.Name = "txtIdEmployee";
-            txtIdEmployee.Size = new Size(389, 35);
+            txtIdEmployee.Size = new Size(389, 26);
             txtIdEmployee.TabIndex = 2;
             // 
             // label7
@@ -303,7 +303,7 @@
             label7.AutoSize = true;
             label7.Location = new Point(37, 152);
             label7.Name = "label7";
-            label7.Size = new Size(144, 29);
+            label7.Size = new Size(98, 20);
             label7.TabIndex = 20;
             label7.Text = "ID nhân viên";
             // 
@@ -311,7 +311,7 @@
             // 
             txtIdProducts.Location = new Point(207, 206);
             txtIdProducts.Name = "txtIdProducts";
-            txtIdProducts.Size = new Size(389, 35);
+            txtIdProducts.Size = new Size(389, 26);
             txtIdProducts.TabIndex = 3;
             // 
             // label3
@@ -319,7 +319,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(38, 209);
             label3.Name = "label3";
-            label3.Size = new Size(146, 29);
+            label3.Size = new Size(100, 20);
             label3.TabIndex = 22;
             label3.Text = "ID sản phẩm";
             // 
@@ -357,7 +357,7 @@
             // 
             // UpdateSaleInvoice
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 640);
             Controls.Add(panel1);

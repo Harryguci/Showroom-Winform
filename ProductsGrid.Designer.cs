@@ -84,16 +84,16 @@ namespace ShowroomData
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage6);
-            tabControl1.Font = new Font("Leelawadee UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tabControl1.Font = new Font("Leelawadee UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.InActiveTab = Color.FromArgb(0, 0, 0);
             tabControl1.InActiveText = Color.FromArgb(230, 230, 230);
             tabControl1.ItemSize = new Size(54, 30);
-            tabControl1.Location = new Point(206, 0);
+            tabControl1.Location = new Point(203, 0);
             tabControl1.Margin = new Padding(0);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(0, 0);
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1062, 815);
+            tabControl1.Size = new Size(1065, 849);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -102,7 +102,7 @@ namespace ShowroomData
             tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1054, 777);
+            tabPage1.Size = new Size(1057, 811);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Tất cả";
             tabPage1.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@ namespace ShowroomData
             flowLayoutPanel1.Location = new Point(0, 1);
             flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1166, 787);
+            flowLayoutPanel1.Size = new Size(1166, 814);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // tabPage2
@@ -123,7 +123,7 @@ namespace ShowroomData
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1054, 777);
+            tabPage2.Size = new Size(1057, 811);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Mercedes";
             tabPage2.UseVisualStyleBackColor = true;
@@ -144,7 +144,7 @@ namespace ShowroomData
             tabPage3.Location = new Point(4, 34);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1054, 777);
+            tabPage3.Size = new Size(1057, 811);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Toyota";
             tabPage3.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@ namespace ShowroomData
             tabPage4.Location = new Point(4, 34);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1054, 777);
+            tabPage4.Size = new Size(1057, 811);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "Ford";
             tabPage4.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@ namespace ShowroomData
             tabPage5.Location = new Point(4, 34);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1054, 777);
+            tabPage5.Size = new Size(1057, 811);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "Audi";
             tabPage5.UseVisualStyleBackColor = true;
@@ -207,7 +207,7 @@ namespace ShowroomData
             tabPage6.Location = new Point(4, 34);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(1054, 777);
+            tabPage6.Size = new Size(1057, 811);
             tabPage6.TabIndex = 1;
             tabPage6.Text = "Kia";
             tabPage6.UseVisualStyleBackColor = true;
@@ -245,7 +245,7 @@ namespace ShowroomData
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 815);
+            panel1.Size = new Size(200, 849);
             panel1.TabIndex = 1;
             // 
             // btnBack
@@ -255,7 +255,7 @@ namespace ShowroomData
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(0, 749);
+            btnBack.Location = new Point(1, 781);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(200, 57);
             btnBack.TabIndex = 5;
@@ -270,11 +270,11 @@ namespace ShowroomData
             btnShowList.FlatStyle = FlatStyle.Flat;
             btnShowList.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnShowList.ForeColor = Color.White;
-            btnShowList.Location = new Point(0, 692);
+            btnShowList.Location = new Point(1, 724);
             btnShowList.Name = "btnShowList";
             btnShowList.Size = new Size(200, 57);
             btnShowList.TabIndex = 5;
-            btnShowList.Text = "Danh sách";
+            btnShowList.Text = "Danh sách / Tạo";
             btnShowList.UseVisualStyleBackColor = false;
             btnShowList.Click += btnShowList_Click;
             // 
@@ -453,7 +453,7 @@ namespace ShowroomData
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(60, 60, 60);
-            ClientSize = new Size(1174, 815);
+            ClientSize = new Size(1262, 849);
             Controls.Add(panel1);
             Controls.Add(tabControl1);
             Name = "ProductsGrid";

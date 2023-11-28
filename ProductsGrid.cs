@@ -277,6 +277,7 @@ namespace ShowroomData
         private void btnReset_Click(object sender, EventArgs e)
         {
             textBox1.Text = txtSalePriceMin.Text = comboBox1.Text = string.Empty;
+            LoadTabData();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

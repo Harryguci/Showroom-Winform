@@ -182,9 +182,9 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(316, 53);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(450, 46);
+            lblHeading.Size = new Size(252, 31);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Sửa mục tiêu bán hàng";
+            lblHeading.Text = "Mục tiêu bán hàng";
             // 
             // panel3
             // 
@@ -214,14 +214,14 @@
             // 
             endDateTimePicker.Location = new Point(208, 207);
             endDateTimePicker.Name = "endDateTimePicker";
-            endDateTimePicker.Size = new Size(389, 35);
+            endDateTimePicker.Size = new Size(389, 26);
             endDateTimePicker.TabIndex = 3;
             // 
             // startDateTimePicker
             // 
             startDateTimePicker.Location = new Point(208, 141);
             startDateTimePicker.Name = "startDateTimePicker";
-            startDateTimePicker.Size = new Size(389, 35);
+            startDateTimePicker.Size = new Size(389, 26);
             startDateTimePicker.TabIndex = 2;
             // 
             // label3
@@ -229,7 +229,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(39, 394);
             label3.Name = "label3";
-            label3.Size = new Size(117, 29);
+            label3.Size = new Size(79, 20);
             label3.TabIndex = 10;
             label3.Text = "Hoa hồng";
             // 
@@ -238,7 +238,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(39, 332);
             label6.Name = "label6";
-            label6.Size = new Size(121, 29);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 11;
             label6.Text = "Trạng thái";
             // 
@@ -247,7 +247,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(39, 212);
             label2.Name = "label2";
-            label2.Size = new Size(157, 29);
+            label2.Size = new Size(106, 20);
             label2.TabIndex = 12;
             label2.Text = "Ngày kết thúc";
             // 
@@ -256,7 +256,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(39, 272);
             label4.Name = "label4";
-            label4.Size = new Size(103, 29);
+            label4.Size = new Size(69, 20);
             label4.TabIndex = 13;
             label4.Text = "Mục tiêu";
             // 
@@ -265,7 +265,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(39, 146);
             label5.Name = "label5";
-            label5.Size = new Size(154, 29);
+            label5.Size = new Size(103, 20);
             label5.TabIndex = 14;
             label5.Text = "Ngày bắt đầu";
             // 
@@ -274,7 +274,7 @@
             label7.AutoSize = true;
             label7.Location = new Point(38, 86);
             label7.Name = "label7";
-            label7.Size = new Size(144, 29);
+            label7.Size = new Size(98, 20);
             label7.TabIndex = 15;
             label7.Text = "ID nhân viên";
             // 
@@ -283,7 +283,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(38, 29);
             label1.Name = "label1";
-            label1.Size = new Size(36, 29);
+            label1.Size = new Size(26, 20);
             label1.TabIndex = 16;
             label1.Text = "ID";
             // 
@@ -292,7 +292,7 @@
             txtIdEmployee.Enabled = false;
             txtIdEmployee.Location = new Point(208, 83);
             txtIdEmployee.Name = "txtIdEmployee";
-            txtIdEmployee.Size = new Size(389, 35);
+            txtIdEmployee.Size = new Size(389, 26);
             txtIdEmployee.TabIndex = 1;
             // 
             // txtId
@@ -300,14 +300,14 @@
             txtId.Enabled = false;
             txtId.Location = new Point(208, 26);
             txtId.Name = "txtId";
-            txtId.Size = new Size(389, 35);
+            txtId.Size = new Size(389, 26);
             txtId.TabIndex = 0;
             // 
             // txtStatus
             // 
             txtStatus.Location = new Point(208, 329);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(389, 35);
+            txtStatus.Size = new Size(389, 26);
             txtStatus.TabIndex = 5;
             // 
             // txtReward
@@ -315,14 +315,14 @@
             txtReward.Enabled = false;
             txtReward.Location = new Point(208, 391);
             txtReward.Name = "txtReward";
-            txtReward.Size = new Size(173, 35);
+            txtReward.Size = new Size(173, 26);
             txtReward.TabIndex = 6;
             // 
             // txtTarget
             // 
             txtTarget.Location = new Point(208, 269);
             txtTarget.Name = "txtTarget";
-            txtTarget.Size = new Size(173, 35);
+            txtTarget.Size = new Size(173, 26);
             txtTarget.TabIndex = 4;
             // 
             // btnClean
@@ -359,7 +359,7 @@
             // 
             // UpdateSaleTarget
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 640);
             Controls.Add(panel1);

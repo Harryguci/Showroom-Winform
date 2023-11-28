@@ -201,7 +201,8 @@ namespace ShowroomData
                 MessageBox.Show("Bạn phải chọn vị trí");
                 return false;
             }
-            if (!rdbMale.Checked && !rdbFemale.Checked) {
+            if (!rdbMale.Checked && !rdbFemale.Checked)
+            {
                 MessageBox.Show("Bạn phải chọn giới tính");
                 return false;
             }

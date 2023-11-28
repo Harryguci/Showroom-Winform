@@ -1,4 +1,5 @@
 ﻿using Microsoft.Identity.Client.Extensibility;
+using ShowroomData.ComponentGUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,13 @@ namespace ShowroomData
             txtYear.Text = DateTime.Now.Year.ToString();
 
             this._reportType = reportType;
+
+            RoundTextBox.SetPadding(txtYear, new Padding(5, 5, 1, 1));
+            RoundTextBox.SetPadding(txtEmployeeQuery, new Padding(5, 5, 1, 1));
+            txtEmployeeQuery.Visible = false;
+            lblEmployeeName.Visible = false;
+            lblMonth.Visible = false;
+            txtMonth.Visible = false;
 
             // Default Styles
             lblTitle.Text = "BÁO CÁO THEO THÁNG";
@@ -286,7 +294,68 @@ namespace ShowroomData
         }
         private void RenderReportEmployee()
         {
+            var qEmployee = txtEmployeeQuery.Text.Trim().ToLower();
+            DataTable query;
+            int? year = DateTime.Now.Year;
+            int? month = DateTime.Now.Month;
 
+            try
+            {
+                year = Convert.ToInt32(txtYear.Text);
+            }
+            catch
+            {
+                year = null;
+            }
+
+            try
+            {
+                month = Convert.ToInt32(txtMonth.Text);
+            }
+            catch
+            {
+                month = null;
+            }
+
+            if (qEmployee.Length > 0 && qEmployee != null)
+            {
+                var t = "SELECT EMPLOYEES.EmployeeId, EMPLOYEES.FirstName, EMPLOYEES.LastName, " +
+                    " SalesTargets.Total, SalesTargets.Target," +
+                    " SalesTargets.StartDate, SalesTargets.EndDate " +
+                    "FROM Employees JOIN SalesTargets ON" +
+                    " EMPLOYEES.EmployeeId = SalesTargets.EmployeeId" +
+                    $" WHERE " +
+                    $"(EMPLOYEES.EmployeeId LIKE N'%{qEmployee}%'" +
+                    $" OR EMPLOYEES.FirstName LIKE N'%{qEmployee}%'" +
+                    $" OR EMPLOYEES.LastName LIKE N'%{qEmployee}%')";
+
+                if (month != null && year != null)
+                    t += $" AND YEAR(SalesTargets.EndDate) = {year} AND MONTH(SalesTargets.EndDate) = {month}";
+
+                query = processDb.GetData(t);
+            }
+            else
+            {
+                var t =
+                    "SELECT EMPLOYEES.EmployeeId, EMPLOYEES.FirstName, EMPLOYEES.LastName, " +
+                    " SalesTargets.Total, SalesTargets.Target," +
+                    " SalesTargets.StartDate, SalesTargets.EndDate " +
+                    "FROM Employees JOIN SalesTargets ON" +
+                    " EMPLOYEES.EmployeeId = SalesTargets.EmployeeId";
+                if (year != null && month != null)
+                {
+                    t += $" WHERE YEAR(SalesTargets.EndDate) = {year} AND MONTH(SalesTargets.EndDate) = {month}";
+                }
+
+                query = processDb.GetData(t);
+            }
+
+            dataGridView1.DataSource = query;
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].Width = (panel1.Width - 200)
+                    / dataGridView1.Columns.Count;
+            }
         }
         private void RenderReportYear()
         {
@@ -636,6 +705,11 @@ namespace ShowroomData
 
         private void btn3Months_Click(object sender, EventArgs e)
         {
+            txtEmployeeQuery.Visible = false;
+            lblEmployeeName.Visible = false;
+            lblMonth.Visible = false;
+            txtMonth.Visible = false;
+
             _reportType = "3months";
             HandleData();
 
@@ -651,6 +725,10 @@ namespace ShowroomData
 
         private void btnChangeMonth_Click(object sender, EventArgs e)
         {
+            txtEmployeeQuery.Visible = false;
+            lblEmployeeName.Visible = false;
+            lblMonth.Visible = false;
+            txtMonth.Visible = false;
             _reportType = "month";
             HandleData();
 
@@ -666,8 +744,10 @@ namespace ShowroomData
 
         private void btnChangeYear_Click(object sender, EventArgs e)
         {
-            // MessageBox.Show("Tính năng đang nâng cấp");
-
+            txtEmployeeQuery.Visible = false;
+            lblEmployeeName.Visible = false;
+            lblMonth.Visible = false;
+            txtMonth.Visible = false;
             _reportType = "year";
             HandleData();
             // Change btn Styles
@@ -681,11 +761,28 @@ namespace ShowroomData
 
         private void btnChangeEmployee_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtEmployeeQuery.Visible = true;
+            lblEmployeeName.Visible = true;
+            lblMonth.Visible = true;
+            txtMonth.Visible = true;
+
+            _reportType = "employee";
+            RenderReportEmployee();
+
+            btnChangeMonth.BackColor = _cbtnDisable;
+            btnChange3Months.BackColor = _cbtnDisable;
+            btnChangeYear.BackColor = _cbtnDisable;
+            btnChangeSource.BackColor = _cbtnDisable;
+            btnChangeEmployee.BackColor = _cbtnActive;
         }
 
         private void btnChangeSource_Click(object sender, EventArgs e)
         {
+            txtEmployeeQuery.Visible = false;
+            lblEmployeeName.Visible = false;
+            lblMonth.Visible = false;
+            txtMonth.Visible = false;
             MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -702,6 +799,12 @@ namespace ShowroomData
                 e.Handled = true;
                 txtYear.Text = DateTime.Now.Year.ToString();
             }
+        }
+
+        private void txtEmployeeQuery_TextChanged(object sender, EventArgs e)
+        {
+            string q = txtEmployeeQuery.Text.Trim().ToLower();
+            RenderReportEmployee();
         }
     }
 }

@@ -1,14 +1,4 @@
 ﻿using ShowroomData.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ShowroomData
 {
@@ -113,14 +103,14 @@ namespace ShowroomData
             Dispose();
         }
 
-        private void btnClean_Click_1(object sender, EventArgs e)
+        private void btnClean_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnBack_Click_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            Dispose();
+            Close();
         }
 
         private void helpBtn_Click_1(object sender, EventArgs e)
@@ -131,14 +121,16 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void btnHide_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
+            if (MessageBox.Show("Bạn có muốn thoát?." +
+                "\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo",
+                MessageBoxButtons.YesNo)
                 == DialogResult.Yes) Close();
         }
 
@@ -180,11 +172,6 @@ namespace ShowroomData
             return true;
         }
         private void CleanForm()
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

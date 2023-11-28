@@ -172,9 +172,9 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(316, 53);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(396, 46);
+            lblHeading.Size = new Size(224, 31);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Sửa thông tin nguồn";
+            lblHeading.Text = "Thông tin nguồn";
             // 
             // panel3
             // 
@@ -194,7 +194,7 @@
             // 
             txtNameSuppliers.Location = new Point(243, 109);
             txtNameSuppliers.Name = "txtNameSuppliers";
-            txtNameSuppliers.Size = new Size(355, 35);
+            txtNameSuppliers.Size = new Size(355, 26);
             txtNameSuppliers.TabIndex = 1;
             // 
             // label1
@@ -202,7 +202,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(33, 45);
             label1.Name = "label1";
-            label1.Size = new Size(184, 29);
+            label1.Size = new Size(126, 20);
             label1.TabIndex = 12;
             label1.Text = "ID nhà cung cấp";
             // 
@@ -211,7 +211,7 @@
             txtIdSuppliers.Enabled = false;
             txtIdSuppliers.Location = new Point(243, 42);
             txtIdSuppliers.Name = "txtIdSuppliers";
-            txtIdSuppliers.Size = new Size(355, 35);
+            txtIdSuppliers.Size = new Size(355, 26);
             txtIdSuppliers.TabIndex = 0;
             // 
             // label2
@@ -219,7 +219,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(33, 112);
             label2.Name = "label2";
-            label2.Size = new Size(204, 29);
+            label2.Size = new Size(136, 20);
             label2.TabIndex = 13;
             label2.Text = "Tên nhà cung cấp";
             // 
@@ -257,7 +257,7 @@
             // 
             // UpdateSource
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 413);
             Controls.Add(panel1);

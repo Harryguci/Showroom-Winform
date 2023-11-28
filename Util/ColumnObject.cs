@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShowroomData.Util
+﻿namespace ShowroomData.Util
 {
     public class ColumnObject
     {
@@ -195,12 +189,12 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Ngày nhập",
-                    Width = 200
+                    Width = 250
                 },
                  new ColumnObject
                 {
                     Name = "Số lượng",
-                    Width = 50
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -237,12 +231,12 @@ namespace ShowroomData.Util
                 new ColumnObject
                 {
                     Name = "Ngày nhập",
-                    Width = 200
+                    Width = 250
                 },
                  new ColumnObject
                 {
                     Name = "Số lượng",
-                    Width = 50
+                    Width = 200
                 },
                 new ColumnObject
                 {

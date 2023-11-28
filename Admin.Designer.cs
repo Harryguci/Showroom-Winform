@@ -286,7 +286,6 @@
         private Panel panel1;
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button6;
         private Button employee;
         private Button device;
         private Button button4;

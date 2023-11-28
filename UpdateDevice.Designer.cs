@@ -176,19 +176,19 @@
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(316, 53);
+            lblHeading.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeading.Location = new Point(332, 46);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(405, 46);
+            lblHeading.Size = new Size(273, 37);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Sửa thông tin thiết bị";
+            lblHeading.Text = "Thông tin thiết bị";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(113, 29);
+            label1.Size = new Size(77, 20);
             label1.TabIndex = 2;
             label1.Text = "ID thiết bị";
             // 
@@ -197,7 +197,7 @@
             txtId.Enabled = false;
             txtId.Location = new Point(182, 34);
             txtId.Name = "txtId";
-            txtId.Size = new Size(419, 35);
+            txtId.Size = new Size(419, 26);
             txtId.TabIndex = 0;
             // 
             // label5
@@ -205,7 +205,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(42, 208);
             label5.Name = "label5";
-            label5.Size = new Size(107, 29);
+            label5.Size = new Size(72, 20);
             label5.TabIndex = 2;
             label5.Text = "Ngày thử";
             // 
@@ -213,7 +213,7 @@
             // 
             dayDateTimePicker.Location = new Point(182, 203);
             dayDateTimePicker.Name = "dayDateTimePicker";
-            dayDateTimePicker.Size = new Size(395, 35);
+            dayDateTimePicker.Size = new Size(395, 26);
             dayDateTimePicker.TabIndex = 2;
             // 
             // panel3
@@ -242,7 +242,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(42, 373);
             label4.Name = "label4";
-            label4.Size = new Size(121, 29);
+            label4.Size = new Size(80, 20);
             label4.TabIndex = 1;
             label4.Text = "Trạng thái";
             // 
@@ -251,7 +251,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(43, 115);
             label2.Name = "label2";
-            label2.Size = new Size(133, 29);
+            label2.Size = new Size(87, 20);
             label2.TabIndex = 1;
             label2.Text = "Tên thiết bị";
             // 
@@ -260,7 +260,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(43, 288);
             label9.Name = "label9";
-            label9.Size = new Size(50, 29);
+            label9.Size = new Size(34, 20);
             label9.TabIndex = 1;
             label9.Text = "Giá";
             // 
@@ -300,21 +300,21 @@
             // 
             txtName.Location = new Point(182, 112);
             txtName.Name = "txtName";
-            txtName.Size = new Size(419, 35);
+            txtName.Size = new Size(419, 26);
             txtName.TabIndex = 1;
             // 
             // txtPrice
             // 
             txtPrice.Location = new Point(182, 285);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(176, 35);
+            txtPrice.Size = new Size(176, 26);
             txtPrice.TabIndex = 3;
             // 
             // txtStatus
             // 
             txtStatus.Location = new Point(182, 370);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(419, 35);
+            txtStatus.Size = new Size(419, 26);
             txtStatus.TabIndex = 4;
             // 
             // label7
@@ -322,13 +322,13 @@
             label7.AutoSize = true;
             label7.Location = new Point(42, 363);
             label7.Name = "label7";
-            label7.Size = new Size(19, 29);
+            label7.Size = new Size(13, 20);
             label7.TabIndex = 2;
             label7.Text = " ";
             // 
             // UpdateDevice
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 640);
             Controls.Add(panel1);
