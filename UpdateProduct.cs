@@ -1,4 +1,5 @@
-﻿using ShowroomData.Models;
+﻿using ShowroomData.ComponentGUI;
+using ShowroomData.Models;
 using System.Data;
 using System.Security.Policy;
 
@@ -35,6 +36,16 @@ namespace ShowroomData
             txtSalePrice.Text = product.SalePrice.ToString();
             txtQuantity.Text = product.Quantity.ToString();
             txtStatus.Text = product.Status;
+
+            Padding p = new Padding(5, 5, 1, 1);
+            RoundTextBox.SetPadding(txtName, p);
+            RoundTextBox.SetPadding(txtId, p);
+            RoundTextBox.SetPadding(txtPurchasePrice, p);
+            RoundTextBox.SetPadding(txtSalePrice, p);
+            RoundTextBox.SetPadding(txtQuantity, p);
+            RoundTextBox.SetPadding(txtStatus, p);
+
+
             button4.Enabled = false;
 
             var imgs = processDb.GetData($"SELECT * FROM Product_Images Where Serial = N'{product.Serial}'");
@@ -159,7 +170,7 @@ namespace ShowroomData
                 List<ProductImages> imgs = currProduct.ImageUrls;
                 currProduct = new Products()
                 {
-                    ProductName = query.Rows[0].Field<string>("ProductName")??"",
+                    ProductName = query.Rows[0].Field<string>("ProductName") ?? "",
                     Serial = query.Rows[0].Field<string>("Serial") ?? "",
                     PurchasePrice = query.Rows[0].Field<int>("PurchasePrice"),
                     SalePrice = query.Rows[0].Field<int>("SalePrice"),
@@ -195,7 +206,7 @@ namespace ShowroomData
                 "- Bắt buộc nhập đầy đủ thông tin\n" +
                 "- Giá mua, giá bán, số lượng chỉ có thể nhập số");
 
-            helperDialog.Show();
+            helperDialog.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

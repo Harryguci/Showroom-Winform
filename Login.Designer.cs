@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class Layout2
     {
@@ -30,10 +32,11 @@
         {
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            btnTogglePassword = new Button();
             checkBox1 = new CheckBox();
-            textBox2 = new TextBox();
+            textBox2 = new RoundTextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            textBox1 = new RoundTextBox();
             btnLogin = new Button();
             label2 = new Label();
             button1 = new Button();
@@ -54,9 +57,12 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             pictureBox1.MouseClick += Form_MouseDown;
+            pictureBox1.MouseDown += Form_MouseDown;
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnTogglePassword);
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label1);
@@ -70,9 +76,23 @@
             panel1.TabIndex = 8;
             panel1.MouseClick += Form_MouseDown;
             // 
+            // btnTogglePassword
+            // 
+            btnTogglePassword.BackgroundImage = Properties.Resources.show;
+            btnTogglePassword.BackgroundImageLayout = ImageLayout.Zoom;
+            btnTogglePassword.FlatAppearance.BorderSize = 0;
+            btnTogglePassword.FlatStyle = FlatStyle.Flat;
+            btnTogglePassword.Location = new Point(398, 152);
+            btnTogglePassword.Name = "btnTogglePassword";
+            btnTogglePassword.Size = new Size(30, 30);
+            btnTogglePassword.TabIndex = 12;
+            btnTogglePassword.UseVisualStyleBackColor = true;
+            btnTogglePassword.Click += button2_Click;
+            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
+            checkBox1.ForeColor = Color.FromArgb(100, 100, 255);
             checkBox1.Location = new Point(56, 206);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(154, 24);
@@ -82,11 +102,17 @@
             // 
             // textBox2
             // 
+            textBox2.BackColor = Color.FromArgb(70, 70, 200);
+            textBox2.BorderRadius = 3;
             textBox2.BorderStyle = BorderStyle.FixedSingle;
+            textBox2.ForeColor = Color.White;
             textBox2.ImeMode = ImeMode.NoControl;
-            textBox2.Location = new Point(201, 150);
+            textBox2.Location = new Point(196, 150);
+            textBox2.Margin = new Padding(0);
+            textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(196, 26);
+            textBox2.PasswordChar = '*';
+            textBox2.Size = new Size(196, 36);
             textBox2.TabIndex = 1;
             textBox2.KeyPress += textBox2_KeyPress;
             // 
@@ -101,10 +127,16 @@
             // 
             // textBox1
             // 
+            textBox1.BackColor = Color.FromArgb(70, 70, 200);
+            textBox1.BorderRadius = 3;
             textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(201, 105);
+            textBox1.ForeColor = Color.White;
+            textBox1.ImeMode = ImeMode.NoControl;
+            textBox1.Location = new Point(196, 106);
+            textBox1.Margin = new Padding(0);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(196, 26);
+            textBox1.Size = new Size(196, 36);
             textBox1.TabIndex = 0;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
@@ -135,7 +167,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Snow;
+            button1.BackColor = SystemColors.ButtonFace;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -160,6 +192,7 @@
             panel2.Size = new Size(444, 117);
             panel2.TabIndex = 9;
             panel2.MouseClick += Form_MouseDown;
+            panel2.MouseDown += Form_MouseDown;
             // 
             // btnClose
             // 
@@ -181,6 +214,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(444, 513);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -201,14 +235,15 @@
         #endregion
         private PictureBox pictureBox1;
         private Panel panel1;
-        private TextBox textBox2;
         private Label label1;
-        private TextBox textBox1;
         private Button btnLogin;
         private Label label2;
         public Button button1;
         private Panel panel2;
         private CheckBox checkBox1;
         public Button btnClose;
+        private Button btnTogglePassword;
+        private RoundTextBox textBox2;
+        private RoundTextBox textBox1;
     }
 }

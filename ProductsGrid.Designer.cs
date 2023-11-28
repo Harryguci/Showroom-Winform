@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class ProductsGrid
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
+            tabControl1 = new CTabControl();
             tabPage1 = new TabPage();
             flowLayoutPanel1 = new FlowLayoutPanel();
             tabPage2 = new TabPage();
@@ -48,15 +50,15 @@
             btnReset = new Button();
             comboBox1 = new ComboBox();
             label2 = new Label();
-            txtPurchasePriceMax = new TextBox();
-            txtSalePriceMax = new TextBox();
+            txtPurchasePriceMax = new RoundTextBox();
+            txtSalePriceMax = new RoundTextBox();
             label6 = new Label();
             label4 = new Label();
-            txtPurchasePriceMin = new TextBox();
+            txtPurchasePriceMin = new RoundTextBox();
             label5 = new Label();
-            txtSalePriceMin = new TextBox();
+            txtSalePriceMin = new RoundTextBox();
             label3 = new Label();
-            textBox1 = new TextBox();
+            textBox1 = new RoundTextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             tabControl1.SuspendLayout();
@@ -72,14 +74,24 @@
             // 
             // tabControl1
             // 
+            tabControl1.ActiveText = Color.FromArgb(255, 255, 255);
+            tabControl1.Background = Color.FromArgb(30, 30, 30);
+            tabControl1.BackgroundTab = Color.FromArgb(30, 30, 30);
+            tabControl1.Border = Color.FromArgb(30, 30, 30);
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage6);
+            tabControl1.Font = new Font("Leelawadee UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tabControl1.InActiveTab = Color.FromArgb(0, 0, 0);
+            tabControl1.InActiveText = Color.FromArgb(230, 230, 230);
+            tabControl1.ItemSize = new Size(54, 30);
             tabControl1.Location = new Point(206, 0);
+            tabControl1.Margin = new Padding(0);
             tabControl1.Name = "tabControl1";
+            tabControl1.Padding = new Point(0, 0);
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(1062, 815);
             tabControl1.TabIndex = 0;
@@ -87,10 +99,10 @@
             // tabPage1
             // 
             tabPage1.Controls.Add(flowLayoutPanel1);
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1054, 787);
+            tabPage1.Size = new Size(1054, 777);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Tất cả";
             tabPage1.UseVisualStyleBackColor = true;
@@ -98,8 +110,9 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.White;
+            flowLayoutPanel1.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel1.Location = new Point(0, 1);
+            flowLayoutPanel1.Margin = new Padding(0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1166, 787);
             flowLayoutPanel1.TabIndex = 0;
@@ -107,10 +120,10 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(flowLayoutPanel2);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1054, 787);
+            tabPage2.Size = new Size(1054, 777);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Mercedes";
             tabPage2.UseVisualStyleBackColor = true;
@@ -118,8 +131,9 @@
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.AutoScroll = true;
-            flowLayoutPanel2.BackColor = Color.White;
+            flowLayoutPanel2.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel2.Location = new Point(0, 0);
+            flowLayoutPanel2.Margin = new Padding(0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(1166, 787);
             flowLayoutPanel2.TabIndex = 0;
@@ -127,39 +141,41 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(flowLayoutPanel3);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 34);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1054, 787);
-            tabPage3.TabIndex = 1;
+            tabPage3.Size = new Size(1054, 777);
+            tabPage3.TabIndex = 2;
             tabPage3.Text = "Toyota";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel3
             // 
             flowLayoutPanel3.AutoScroll = true;
-            flowLayoutPanel3.BackColor = Color.White;
+            flowLayoutPanel3.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel3.Location = new Point(0, 0);
+            flowLayoutPanel3.Margin = new Padding(0);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
             flowLayoutPanel3.Size = new Size(1166, 787);
-            flowLayoutPanel3.TabIndex = 0;
+            flowLayoutPanel3.TabIndex = 3;
             // 
             // tabPage4
             // 
             tabPage4.Controls.Add(flowLayoutPanel4);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 34);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1054, 787);
-            tabPage4.TabIndex = 1;
+            tabPage4.Size = new Size(1054, 777);
+            tabPage4.TabIndex = 4;
             tabPage4.Text = "Ford";
             tabPage4.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel4
             // 
             flowLayoutPanel4.AutoScroll = true;
-            flowLayoutPanel4.BackColor = Color.White;
+            flowLayoutPanel4.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel4.Location = new Point(0, 0);
+            flowLayoutPanel4.Margin = new Padding(0);
             flowLayoutPanel4.Name = "flowLayoutPanel4";
             flowLayoutPanel4.Size = new Size(1166, 787);
             flowLayoutPanel4.TabIndex = 0;
@@ -167,30 +183,31 @@
             // tabPage5
             // 
             tabPage5.Controls.Add(flowLayoutPanel5);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 34);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1054, 787);
-            tabPage5.TabIndex = 1;
+            tabPage5.Size = new Size(1054, 777);
+            tabPage5.TabIndex = 5;
             tabPage5.Text = "Audi";
             tabPage5.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel5
             // 
             flowLayoutPanel5.AutoScroll = true;
-            flowLayoutPanel5.BackColor = Color.White;
+            flowLayoutPanel5.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel5.Location = new Point(0, 0);
+            flowLayoutPanel5.Margin = new Padding(0);
             flowLayoutPanel5.Name = "flowLayoutPanel5";
             flowLayoutPanel5.Size = new Size(1166, 787);
-            flowLayoutPanel5.TabIndex = 0;
+            flowLayoutPanel5.TabIndex = 6;
             // 
             // tabPage6
             // 
             tabPage6.Controls.Add(flowLayoutPanel6);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 34);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(1054, 787);
+            tabPage6.Size = new Size(1054, 777);
             tabPage6.TabIndex = 1;
             tabPage6.Text = "Kia";
             tabPage6.UseVisualStyleBackColor = true;
@@ -198,8 +215,9 @@
             // flowLayoutPanel6
             // 
             flowLayoutPanel6.AutoScroll = true;
-            flowLayoutPanel6.BackColor = Color.White;
+            flowLayoutPanel6.BackColor = Color.FromArgb(30, 30, 30);
             flowLayoutPanel6.Location = new Point(0, 0);
+            flowLayoutPanel6.Margin = new Padding(0);
             flowLayoutPanel6.Name = "flowLayoutPanel6";
             flowLayoutPanel6.Size = new Size(1166, 787);
             flowLayoutPanel6.TabIndex = 0;
@@ -311,19 +329,23 @@
             // 
             // txtPurchasePriceMax
             // 
+            txtPurchasePriceMax.BorderRadius = 3;
             txtPurchasePriceMax.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtPurchasePriceMax.Location = new Point(12, 595);
+            txtPurchasePriceMax.Multiline = true;
             txtPurchasePriceMax.Name = "txtPurchasePriceMax";
-            txtPurchasePriceMax.Size = new Size(169, 23);
+            txtPurchasePriceMax.Size = new Size(169, 33);
             txtPurchasePriceMax.TabIndex = 2;
             txtPurchasePriceMax.TextChanged += btnSearch_Click;
             // 
             // txtSalePriceMax
             // 
+            txtSalePriceMax.BorderRadius = 3;
             txtSalePriceMax.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtSalePriceMax.Location = new Point(12, 450);
+            txtSalePriceMax.Multiline = true;
             txtSalePriceMax.Name = "txtSalePriceMax";
-            txtSalePriceMax.Size = new Size(169, 23);
+            txtSalePriceMax.Size = new Size(169, 33);
             txtSalePriceMax.TabIndex = 2;
             txtSalePriceMax.TextChanged += btnSearch_Click;
             // 
@@ -351,10 +373,12 @@
             // 
             // txtPurchasePriceMin
             // 
+            txtPurchasePriceMin.BorderRadius = 3;
             txtPurchasePriceMin.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtPurchasePriceMin.Location = new Point(12, 526);
+            txtPurchasePriceMin.Multiline = true;
             txtPurchasePriceMin.Name = "txtPurchasePriceMin";
-            txtPurchasePriceMin.Size = new Size(169, 23);
+            txtPurchasePriceMin.Size = new Size(169, 33);
             txtPurchasePriceMin.TabIndex = 2;
             txtPurchasePriceMin.TextChanged += btnSearch_Click;
             // 
@@ -371,10 +395,12 @@
             // 
             // txtSalePriceMin
             // 
+            txtSalePriceMin.BorderRadius = 3;
             txtSalePriceMin.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             txtSalePriceMin.Location = new Point(12, 381);
+            txtSalePriceMin.Multiline = true;
             txtSalePriceMin.Name = "txtSalePriceMin";
-            txtSalePriceMin.Size = new Size(169, 23);
+            txtSalePriceMin.Size = new Size(169, 33);
             txtSalePriceMin.TabIndex = 2;
             txtSalePriceMin.TextChanged += btnSearch_Click;
             // 
@@ -391,10 +417,12 @@
             // 
             // textBox1
             // 
+            textBox1.BorderRadius = 3;
             textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.Location = new Point(12, 244);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(169, 23);
+            textBox1.Size = new Size(169, 33);
             textBox1.TabIndex = 2;
             textBox1.TextChanged += textBox1_TextChanged_1;
             // 
@@ -418,12 +446,13 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // ProductsGrid
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(60, 60, 60);
             ClientSize = new Size(1174, 815);
             Controls.Add(panel1);
             Controls.Add(tabControl1);
@@ -446,8 +475,6 @@
         }
 
         #endregion
-
-        private TabControl tabControl1;
         private TabPage tabPage1;
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
@@ -464,19 +491,20 @@
         private PictureBox pictureBox1;
         private ComboBox comboBox1;
         private Label label2;
-        private TextBox txtSalePriceMin;
         private Label label3;
-        private TextBox textBox1;
         private Label label1;
         private Button btnReset;
         private Button btnSearch;
         private Button btnShowList;
         private Button btnBack;
-        private TextBox txtSalePriceMax;
         private Label label4;
-        private TextBox txtPurchasePriceMax;
         private Label label6;
-        private TextBox txtPurchasePriceMin;
         private Label label5;
+        private CTabControl tabControl1;
+        private RoundTextBox txtSalePriceMin;
+        private RoundTextBox textBox1;
+        private RoundTextBox txtSalePriceMax;
+        private RoundTextBox txtPurchasePriceMax;
+        private RoundTextBox txtPurchasePriceMin;
     }
 }

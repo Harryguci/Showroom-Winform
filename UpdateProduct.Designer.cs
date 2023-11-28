@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class UpdateProduct
     {
@@ -39,7 +41,7 @@
             button2 = new Button();
             lblHeading = new Label();
             label1 = new Label();
-            txtName = new TextBox();
+            txtName = new RoundTextBox();
             panel3 = new Panel();
             button5 = new Button();
             button4 = new Button();
@@ -52,11 +54,11 @@
             label9 = new Label();
             btnClean = new Button();
             btnCreate = new Button();
-            txtQuantity = new TextBox();
-            txtStatus = new TextBox();
-            txtSalePrice = new TextBox();
-            txtPurchasePrice = new TextBox();
-            txtId = new TextBox();
+            txtQuantity = new RoundTextBox();
+            txtStatus = new RoundTextBox();
+            txtSalePrice = new RoundTextBox();
+            txtPurchasePrice = new RoundTextBox();
+            txtId = new RoundTextBox();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -77,6 +79,7 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(136, 640);
             flowLayoutPanel1.TabIndex = 10;
+            flowLayoutPanel1.MouseDown += Form_MouseDown;
             // 
             // panel2
             // 
@@ -139,6 +142,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1085, 100);
             panel1.TabIndex = 100;
+            panel1.MouseDown += Form_MouseDown;
             // 
             // flowLayoutPanel2
             // 
@@ -150,10 +154,13 @@
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(1085, 33);
             flowLayoutPanel2.TabIndex = 101;
+            flowLayoutPanel2.MouseDown += Form_MouseDown;
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.ButtonFace;
             button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
             button1.Location = new Point(1036, 0);
@@ -162,12 +169,14 @@
             button1.Size = new Size(49, 33);
             button1.TabIndex = 0;
             button1.Text = "X";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
+            button2.BackColor = SystemColors.ButtonFace;
             button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
             button2.Location = new Point(987, 0);
@@ -176,18 +185,19 @@
             button2.Size = new Size(49, 33);
             button2.TabIndex = 0;
             button2.Text = "-";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHeading.Location = new Point(316, 53);
+            lblHeading.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            lblHeading.Location = new Point(336, 46);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(320, 31);
+            lblHeading.Size = new Size(321, 37);
             lblHeading.TabIndex = 100;
-            lblHeading.Text = "Sửa thông tin sản phẩm";
+            lblHeading.Text = "Thông tin sản phẩm";
+            lblHeading.MouseDown += Form_MouseDown;
             // 
             // label1
             // 
@@ -200,9 +210,12 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(214, 34);
+            txtName.BackColor = Color.White;
+            txtName.BorderRadius = 5;
+            txtName.Location = new Point(211, 34);
+            txtName.Multiline = true;
             txtName.Name = "txtName";
-            txtName.Size = new Size(387, 26);
+            txtName.Size = new Size(387, 33);
             txtName.TabIndex = 0;
             // 
             // panel3
@@ -230,25 +243,32 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1010, 512);
             panel3.TabIndex = 100;
+            panel3.MouseDown += Form_MouseDown;
             // 
             // button5
             // 
-            button5.Location = new Point(978, 172);
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Location = new Point(943, 172);
             button5.Name = "button5";
             button5.Size = new Size(29, 56);
             button5.TabIndex = 9;
             button5.Text = ">";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(619, 172);
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(654, 172);
             button4.Name = "button4";
             button4.Size = new Size(29, 56);
             button4.TabIndex = 9;
             button4.Text = "<";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // button3
@@ -256,8 +276,9 @@
             button3.BackColor = Color.FromArgb(50, 50, 150);
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(654, 410);
+            button3.Location = new Point(654, 418);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
             button3.Size = new Size(112, 36);
@@ -268,6 +289,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = SystemColors.Control;
             pictureBox2.Location = new Point(654, 34);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(318, 370);
@@ -324,7 +346,8 @@
             // 
             btnClean.BackColor = SystemColors.ActiveCaption;
             btnClean.BackgroundImageLayout = ImageLayout.None;
-            btnClean.FlatStyle = FlatStyle.Popup;
+            btnClean.FlatAppearance.BorderSize = 0;
+            btnClean.FlatStyle = FlatStyle.Flat;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
             btnClean.Location = new Point(264, 454);
@@ -340,7 +363,8 @@
             // 
             btnCreate.BackColor = SystemColors.MenuHighlight;
             btnCreate.BackgroundImageLayout = ImageLayout.None;
-            btnCreate.FlatStyle = FlatStyle.Popup;
+            btnCreate.FlatAppearance.BorderSize = 0;
+            btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(132, 454);
@@ -354,41 +378,56 @@
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(214, 308);
+            txtQuantity.BackColor = Color.White;
+            txtQuantity.BorderRadius = 5;
+            txtQuantity.Location = new Point(211, 308);
+            txtQuantity.Multiline = true;
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(156, 26);
+            txtQuantity.Size = new Size(156, 33);
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(214, 378);
+            txtStatus.BackColor = Color.White;
+            txtStatus.BorderRadius = 5;
+            txtStatus.Location = new Point(211, 378);
+            txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(387, 26);
+            txtStatus.Size = new Size(387, 33);
             txtStatus.TabIndex = 5;
             // 
             // txtSalePrice
             // 
-            txtSalePrice.Location = new Point(214, 241);
+            txtSalePrice.BackColor = Color.White;
+            txtSalePrice.BorderRadius = 5;
+            txtSalePrice.Location = new Point(211, 241);
+            txtSalePrice.Multiline = true;
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(387, 26);
+            txtSalePrice.Size = new Size(387, 33);
             txtSalePrice.TabIndex = 3;
             txtSalePrice.KeyPress += txtSalePrice_KeyPress;
             // 
             // txtPurchasePrice
             // 
-            txtPurchasePrice.Location = new Point(214, 169);
+            txtPurchasePrice.BackColor = Color.White;
+            txtPurchasePrice.BorderRadius = 5;
+            txtPurchasePrice.Location = new Point(211, 169);
+            txtPurchasePrice.Multiline = true;
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(387, 26);
+            txtPurchasePrice.Size = new Size(387, 33);
             txtPurchasePrice.TabIndex = 2;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // txtId
             // 
+            txtId.BackColor = Color.White;
+            txtId.BorderRadius = 5;
             txtId.Enabled = false;
-            txtId.Location = new Point(214, 101);
+            txtId.Location = new Point(211, 101);
+            txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(387, 26);
+            txtId.Size = new Size(387, 33);
             txtId.TabIndex = 1;
             // 
             // UpdateProduct
@@ -404,6 +443,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Update a product";
             Load += UpdateProduct_Load;
+            MouseDown += Form_MouseDown;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -424,28 +464,28 @@
         private Panel panel1;
         private Button btnBack;
         private Label label1;
-        private TextBox txtName;
         private Panel panel3;
         private Button btnCreate;
         private Label lblHeading;
         private Button btnClean;
-        private TextBox txtStatus;
         private Label label9;
         private Button helpBtn;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
         private Label label4;
-        private TextBox txtQuantity;
         private Label label2;
         private Label label5;
         private Label label3;
-        private TextBox txtSalePrice;
-        private TextBox txtPurchasePrice;
-        private TextBox txtId;
         private PictureBox pictureBox2;
         private Button button3;
         private Button button5;
         private Button button4;
+        private RoundTextBox txtName;
+        private RoundTextBox txtStatus;
+        private RoundTextBox txtQuantity;
+        private RoundTextBox txtSalePrice;
+        private RoundTextBox txtPurchasePrice;
+        private RoundTextBox txtId;
     }
 }

@@ -1,15 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ShowroomData
+﻿namespace ShowroomData
 {
     public partial class HelperDialog : Form
     {
@@ -18,9 +7,35 @@ namespace ShowroomData
         public HelperDialog(Panel _contentPanel)
         {
             InitializeComponent();
+
             contentPanel = _contentPanel;
+            contentPanel.MouseDown += Form_MouseDown;
+            contentPanel.Size = new Size(Width, contentPanel.Height);
+            contentPanel.Dock = DockStyle.Fill;
             Controls.Add(contentPanel);
+            this.FormBorderStyle = FormBorderStyle.None;
         }
+        //
+        // [Handle Dragging the Form]
+        //
+        #region Handle Form Dragging
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Form_MouseDown(object? sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        #endregion
         //
         // [Handle Events]
         //
@@ -91,6 +106,11 @@ namespace ShowroomData
             HelperDialog helperDialog = new HelperDialog(_contentPanel);
 
             return helperDialog;
+        }
+
+        private void btnClose_click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

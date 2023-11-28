@@ -1,4 +1,5 @@
-﻿using ShowroomData.Models;
+﻿using ShowroomData.ComponentGUI;
+using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
 
@@ -13,6 +14,13 @@ namespace ShowroomData
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             tabControl1.SelectedIndexChanged += tabPage_ChangeFocus;
+
+            Padding tPadding = new Padding(5, 5, 1, 1);
+            RoundTextBox.SetPadding(textBox1, tPadding);
+            RoundTextBox.SetPadding(txtPurchasePriceMax, tPadding);
+            RoundTextBox.SetPadding(txtPurchasePriceMin, tPadding);
+            RoundTextBox.SetPadding(txtSalePriceMax, tPadding);
+            RoundTextBox.SetPadding(txtSalePriceMin, tPadding);
         }
 
         private FlowLayoutPanel CreateOneProductCard(string? title = "Default Name",
@@ -25,7 +33,6 @@ namespace ShowroomData
             Label label0 = new Label();
             Label labelSalePrice = new Label();
             Label labelPurchasePrice = new Label();
-
             PictureBox pictureBox0 = new PictureBox();
 
             if (tabControl1.SelectedTab == tabPage1) flowLayoutPanel1.SuspendLayout();
@@ -40,15 +47,16 @@ namespace ShowroomData
             // 
             // panel1
             // 
-            panel0.Controls.Add(label0);
-            panel0.Controls.Add(pictureBox0);
             panel0.Controls.Add(labelSalePrice);
             panel0.Controls.Add(labelPurchasePrice);
+            panel0.Controls.Add(label0);
+            panel0.Controls.Add(pictureBox0);
             panel0.Location = new Point(3, 3);
             panel0.Name = "panel1";
             panel0.Size = new Size(Math.Max(flowLayoutPanel1.Width / 4, 200) - 10, 255);
             panel0.TabIndex = 0;
-            panel0.BackColor = Color.White;
+            panel0.BackColor = Color.FromArgb(30, 30, 30);
+            panel0.Margin = new Padding(0, 10, 0, 10);
             // 
             // label1
             // 
@@ -59,29 +67,63 @@ namespace ShowroomData
             label0.TabIndex = 1;
             label0.Text = title;
             label0.TextAlign = ContentAlignment.MiddleCenter;
-            label0.ForeColor = Color.FromArgb(50, 50, 200);
+            label0.ForeColor = Color.FromArgb(255, 255, 255);
             label0.Font = new Font("Roboto", 16, FontStyle.Bold);
+            label0.Cursor = Cursors.Hand;
+            label0.MouseHover += (label0, args) =>
+                {
+                    if (label0 == null) return;
+
+                    ((Label)label0).ForeColor = Color.FromArgb(150, 150, 255);
+                };
+            label0.MouseLeave += (label0, args) =>
+            {
+                if (label0 == null) return;
+
+                ((Label)label0).ForeColor = Color.FromArgb(255, 255, 255);
+            };
+            label0.Click += (label0, args) =>
+            {
+                var q = processDb.GetData($"SELECT * FROM PRODUCTS WHERE SERIAL = N'{id}'");
+                if (q == null || q.Rows.Count == 0) return;
+
+                Products currProduct = new Products()
+                {
+                    ProductName = q.Rows[0].Field<string>("ProductName") ?? "",
+                    Serial = q.Rows[0].Field<string>("Serial") ?? "",
+                    PurchasePrice = q.Rows[0].Field<int>("PurchasePrice"),
+                    SalePrice = q.Rows[0].Field<int>("SalePrice"),
+                    Quantity = q.Rows[0].Field<int>("Quantity"),
+                    Status = q.Rows[0].Field<string>("Status") ?? "",
+                    Deleted = q.Rows[0].Field<bool>("Deleted")
+                };
+
+                UpdateProduct detailProduct = new UpdateProduct(currProduct, this);
+                detailProduct.Show();
+            };
+
             // 
             // label2
             // 
+            int contentTop = 210;
             labelSalePrice.AutoSize = true;
-            labelSalePrice.Location = new Point(30, 220);
+            labelSalePrice.Location = new Point(panel0.Left + 50, contentTop);
             labelSalePrice.Name = "labelsale" + id;
             labelSalePrice.TabIndex = 1;
             labelSalePrice.Text = "Giá bán: " + saletPrice.ToString() + "TR.VND";
             labelSalePrice.TextAlign = ContentAlignment.MiddleCenter;
-            labelSalePrice.ForeColor = Color.FromArgb(50, 50, 210);
+            labelSalePrice.ForeColor = Color.FromArgb(255, 255, 255);
             labelSalePrice.Font = new Font("Roboto", 9, FontStyle.Regular);
             // 
             // label2
             // 
             labelPurchasePrice.AutoSize = true;
-            labelPurchasePrice.Location = new Point(30, 235);
+            labelPurchasePrice.Location = new Point(panel0.Left + 50, contentTop + 20);
             labelPurchasePrice.Name = "labelpurchase" + id;
             labelPurchasePrice.TabIndex = 1;
             labelPurchasePrice.Text = "Giá nhập: " + purchasePrice.ToString() + "TR.VND";
             labelPurchasePrice.TextAlign = ContentAlignment.MiddleCenter;
-            labelPurchasePrice.ForeColor = Color.FromArgb(50, 50, 200);
+            labelPurchasePrice.ForeColor = Color.FromArgb(255, 255, 255);
             labelPurchasePrice.Font = new Font("Roboto", 9, FontStyle.Regular);
             // 
             // pictureBox1
@@ -98,10 +140,9 @@ namespace ShowroomData
             pictureBox0.Size = new Size(panel0.Width + 20, 158);
             pictureBox0.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             pictureBox0.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox0.BackColor = Color.WhiteSmoke;
+            pictureBox0.BackColor = Color.FromArgb(0, 30, 30, 30);
             pictureBox0.TabIndex = 0;
             pictureBox0.TabStop = false;
-
             ((System.ComponentModel.ISupportInitialize)pictureBox0).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -268,6 +309,11 @@ namespace ShowroomData
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
             LoadTabData();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

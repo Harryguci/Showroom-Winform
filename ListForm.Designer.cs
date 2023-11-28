@@ -38,6 +38,8 @@
             btnDelete = new Button();
             btnBack = new Button();
             panel1 = new Panel();
+            button2 = new Button();
+            button1 = new Button();
             btnSmallBack = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
@@ -66,6 +68,7 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(136, 544);
             flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.MouseDown += Form_MouseDown;
             // 
             // panel2
             // 
@@ -75,6 +78,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(133, 122);
             panel2.TabIndex = 0;
+            panel2.MouseDown += Form_MouseDown;
             // 
             // pictureBox1
             // 
@@ -171,6 +175,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(btnSmallBack);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
@@ -178,6 +184,35 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
+            panel1.MouseDown += Form_MouseDown;
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button2.BackgroundImage = Properties.Resources.arrow_down;
+            button2.BackgroundImageLayout = ImageLayout.Zoom;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(854, 15);
+            button2.Name = "button2";
+            button2.Size = new Size(30, 30);
+            button2.TabIndex = 3;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnSmallForm_Click;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackgroundImage = Properties.Resources.increase_size_option;
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(894, 15);
+            button1.Name = "button1";
+            button1.Size = new Size(22, 22);
+            button1.TabIndex = 3;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnChangeSize_Click;
             // 
             // btnSmallBack
             // 
@@ -186,9 +221,9 @@
             btnSmallBack.BackgroundImageLayout = ImageLayout.Zoom;
             btnSmallBack.FlatAppearance.BorderSize = 0;
             btnSmallBack.FlatStyle = FlatStyle.Flat;
-            btnSmallBack.Location = new Point(916, 12);
+            btnSmallBack.Location = new Point(922, 12);
             btnSmallBack.Name = "btnSmallBack";
-            btnSmallBack.Size = new Size(36, 39);
+            btnSmallBack.Size = new Size(30, 30);
             btnSmallBack.TabIndex = 3;
             toolTip1.SetToolTip(btnSmallBack, "Quay lại");
             btnSmallBack.UseVisualStyleBackColor = true;
@@ -214,6 +249,7 @@
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(964, 444);
             panelContent.TabIndex = 2;
+            panelContent.MouseDown += Form_MouseDown;
             // 
             // panelFooter
             // 
@@ -222,6 +258,7 @@
             panelFooter.Name = "panelFooter";
             panelFooter.Size = new Size(964, 128);
             panelFooter.TabIndex = 0;
+            panelFooter.MouseDown += Form_MouseDown;
             // 
             // contextMenuStrip1
             // 
@@ -273,5 +310,7 @@
         private Button btnSmallBack;
         private ToolTip toolTip1;
         private ContextMenuStrip contextMenuStrip1;
+        private Button button1;
+        private Button button2;
     }
 }

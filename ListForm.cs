@@ -44,12 +44,41 @@ namespace ShowroomData
             };
         }
 
+        #region Handle Form Dragging
+        //
+        // [Handle Dragging the Form]
+        //
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Form_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        #endregion
+
+        //
+        // []
+        //
         public void HandleGUI()
         {
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             Location = new Point(0, 0);
             Size = Screen.PrimaryScreen.WorkingArea.Size;
+
+            //this.DoubleBuffered = true;
+            //this.SetStyle(ControlStyles.ResizeRedraw, true);
+
             string title = "";
             if (listType == "employees")
             {
@@ -767,6 +796,22 @@ namespace ShowroomData
         private void btnBack_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnChangeSize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                Size = new Size(Screen.PrimaryScreen.WorkingArea.Width - 200, Screen.PrimaryScreen.WorkingArea.Height - 200);
+                CenterToScreen();
+            }
+            else WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnSmallForm_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

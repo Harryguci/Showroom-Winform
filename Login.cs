@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ShowroomData.ComponentGUI;
 using ShowroomData.Util;
 using System.Data;
 
@@ -7,6 +8,7 @@ namespace ShowroomData
     public partial class Layout2 : Form
     {
         private ProcessDatabase _ProcessDatabase = new ProcessDatabase();
+        private string txtpassword = string.Empty;
         public Layout2()
         {
             InitializeComponent();
@@ -16,7 +18,8 @@ namespace ShowroomData
         public void HandleGUI()
         {
             FormBorderStyle = FormBorderStyle.None;
-            //
+            RoundTextBox.SetPadding(textBox1, new Padding(5,5,1,1));
+            RoundTextBox.SetPadding(textBox2, new Padding(5,5,1,1));
         }
 
         //
@@ -129,7 +132,7 @@ namespace ShowroomData
             }
             catch (Exception e)
             {
-                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi", 
+                MessageBox.Show("Gặp lỗi" + e.Message + "!!!", "Thông báo lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
@@ -203,12 +206,30 @@ namespace ShowroomData
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Layout3 layout3 = new Layout3();
-            layout3.Show();
+            Layout3 signUpForm = new Layout3();
+
+            signUpForm.FormClosed += (signUpForm, args) => {
+                Close();
+            };
+            signUpForm.Show();
 
             Hide();
 
-            layout3.FormClosed += (s, args) => Close();
+            signUpForm.FormClosed += (s, args) => Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox2.PasswordChar == '\0')
+            {
+                textBox2.PasswordChar = '*';
+                btnTogglePassword.BackgroundImage = Properties.Resources.show;
+            }
+            else
+            {
+                textBox2.PasswordChar = '\0';
+                btnTogglePassword.BackgroundImage = Properties.Resources.invisible;
+            }
         }
     }
 }

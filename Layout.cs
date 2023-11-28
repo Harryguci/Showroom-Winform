@@ -16,8 +16,6 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
-        //private string listType = "all";
-        private List<Button>? buttons;
 
         public Layout(string listType = "employees")
         {

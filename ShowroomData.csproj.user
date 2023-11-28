@@ -7,6 +7,12 @@
     <Compile Update="Component1.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="ComponentGUI\CTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ComponentGUI\RoundTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="CreateCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,7 +58,7 @@
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Layout3.cs">
+    <Compile Update="Signup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ListForm.cs">

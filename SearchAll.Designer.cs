@@ -47,6 +47,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(478, 49);
             panel1.TabIndex = 0;
+            panel1.MouseDown += Form_MouseDown;
             // 
             // textBox1
             // 
@@ -106,6 +107,7 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(478, 390);
             flowLayoutPanel1.TabIndex = 1;
+            flowLayoutPanel1.MouseDown += Form_MouseDown;
             // 
             // SearchAll
             // 
