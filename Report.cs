@@ -1,14 +1,6 @@
-﻿using Microsoft.Identity.Client.Extensibility;
-using ShowroomData.ComponentGUI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ShowroomData.ComponentGUI;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ShowroomData
@@ -61,6 +53,8 @@ namespace ShowroomData
                 RenderReportYear();
             else if (_reportType == "employee")
                 RenderReportEmployee();
+            else if (_reportType == "source")
+                RenderReportSource();
         }
 
         private void RenderReportMonths()
@@ -459,12 +453,62 @@ namespace ShowroomData
             // Apply the style to the header
             dataGridView1.ColumnHeadersDefaultCellStyle = style;
         }
+        private void RenderReportSource()
+        {
+            DataTable table = new DataTable($"Showroom Report {txtYear.Text.Trim()}");
+
+            table.Columns.Add("ĐV cung cấp", typeof(string));
+            table.Columns.Add("Mã hóa đơn nhập", typeof(string));
+            table.Columns.Add("Số lượng nhập", typeof(int));
+            table.Columns.Add("Tên sản phẩm", typeof(string));
+            table.Columns.Add("Giá nhập / 1 sản phẩm", typeof(int));
+            table.Columns.Add("Trạng thái", typeof(string));
+
+            var query = processDb.GetData($"SELECT Source.Name, PurchaseInvoices.InEnterId, PurchaseInvoices.QuantityPurchase," +
+                $" PRODUCTS.ProductName, PRODUCTS.PurchasePrice, PurchaseInvoices.Status\r\nFROM PurchaseInvoices \r\n\tJOIN Source " +
+                $"ON PurchaseInvoices.SourceId = Source.SourceId\r\n\tJOIN PRODUCTS ON PRODUCTS.Serial = PurchaseInvoices.ProductId");
+
+            foreach (DataRow row in query.Rows)
+            {
+                var curr = new {
+                    SourceName = row.Field<string>("Name"),
+                    InEnterId = row.Field<string>("InEnterId"),
+                    QuantityPurchase = row.Field<int>("QuantityPurchase"),
+                    ProductName = row.Field<string>("ProductName"),
+                    PurchasePrice = row.Field<int>("PurchasePrice"),
+                    Status = row.Field<string>("Status")
+                };
+
+                table.Rows.Add(curr.SourceName, curr.InEnterId, curr.QuantityPurchase, curr.ProductName, curr.PurchasePrice, curr.Status);
+            }
+            
+
+            dataGridView1.DataSource = table;
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].Width = (dataGridView1.Width - 100) / dataGridView1.Columns.Count;
+            }
+
+            // Styles
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.None;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            // Create a DataGridViewCellStyle object for the header
+            DataGridViewCellStyle style = new DataGridViewCellStyle();
+            style.BackColor = Color.FromArgb(50, 50, 150); // Set the background color
+            style.ForeColor = Color.White; // Set the foreground color
+            style.Font = new Font("Roboto", 12f, FontStyle.Bold); // Set the font style
+
+            // Apply the style to the header
+            dataGridView1.ColumnHeadersDefaultCellStyle = style;
+        }
         private void Report_Load(object sender, EventArgs e)
         {
             HandleData();
         }
 
-        private void txtYear_TextChanged(object sender, EventArgs e)
+        private void txtMonthYear_TextChanged(object sender, EventArgs e)
         {
             HandleData();
         }
@@ -697,12 +741,90 @@ namespace ShowroomData
                 MessageBox.Show("Lưu file thành công");
             }
         }
+        private void ExportReportSource()
+        {
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.ActiveSheet;
+
+            worksheet.Cells[2, 2] = "Báo cáo đơn vị cung cấp";
+            worksheet.Cells[2, 2].Font.Bold = true;
+            worksheet.Cells[2, 2].Font.Size = 20;
+
+            Excel.Range range = worksheet.Range[worksheet.Cells[2, 2], worksheet.Cells[2, 4]];
+
+            // Merge the cells into one
+            range.Merge();
+
+            worksheet.Cells[5, 1] = "Tên nhà cung cấp";
+            worksheet.Cells[5, 2] = "Mã hóa đơn nhập";
+            worksheet.Cells[5, 3] = "Số lượng nhập";
+            worksheet.Cells[5, 4] = "Tên sản phẩm";
+            worksheet.Cells[5, 5] = "Giá nhập / 1 sản phẩm";
+            worksheet.Cells[5, 6] = "Trạng thái";
+
+            Excel.Range headerRange = worksheet.Range["A5:F5"];
+            headerRange.Font.Bold = true;
+
+            headerRange.Interior.Color = System.Drawing.Color.LightGray;
+
+            headerRange.Font.Size = 14F;
+
+            int num = dataGridView1.Rows.Count;
+            worksheet.Range[$"A5:F{(num + 5)}"].Borders.Color = System.Drawing.Color.Black;
+
+            // Format độ rộng
+            int startColumn = 1; // Cột A
+            int endColumn = 6; // Cột G
+            int desiredWidth = 30; // Độ rộng mong muốn
+            for (int col = startColumn; col <= endColumn; col++)
+            {
+                Excel.Range column1 = (Excel.Range)worksheet.Columns[col];
+                column1.ColumnWidth = desiredWidth;
+            }
+
+            // căn chỉnh 
+            Excel.Range dataRangee = worksheet.UsedRange;
+
+            for (int col = 1; col <= dataRangee.Columns.Count; col++)
+            {
+                Excel.Range column = (Excel.Range)dataRangee.Columns[col];
+
+                // Kiểm tra nếu cột không thuộc A1, A2, A3 và nằm trong khoảng từ A đến H
+                if (column.Cells[1, 1].Address != "$A$1" && column.Cells[1, 1].Address != "$A$2" && column.Cells[1, 1].Address != "$A$3" && col >= 1 && col <= 8)
+                {
+                    column.HorizontalAlignment = Excel.Constants.xlCenter; // Căn giữa ngang
+                    column.VerticalAlignment = Excel.Constants.xlCenter; // Căn giữa dọc
+                }
+            }
+
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                {
+                    worksheet.Cells[i + 6, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files|*.xlsx";
+            saveFileDialog.Title = "Save file...";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                workbook.SaveAs(filePath);
+                workbook.Close();
+                excelApp.Quit();
+                MessageBox.Show("Lưu file thành công");
+            }
+        }
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             if (_reportType == "month") ExportReportMonth();
             else if (_reportType == "3months") ExportReport3Months();
             else if (_reportType == "year") ExportReportYear();
+            else if (_reportType == "source") ExportReportSource();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -765,7 +887,6 @@ namespace ShowroomData
             btnChangeSource.BackColor = _cbtnDisable;
             btnChangeEmployee.BackColor = _cbtnDisable;
         }
-
         private void btnChangeEmployee_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -774,6 +895,7 @@ namespace ShowroomData
             lblMonth.Visible = true;
             txtMonth.Visible = true;
 
+            lblTitle.Text = "BÁO CÁO THEO NHÂN VIÊN";
             _reportType = "employee";
             RenderReportEmployee();
 
@@ -790,10 +912,20 @@ namespace ShowroomData
             lblEmployeeName.Visible = false;
             lblMonth.Visible = false;
             txtMonth.Visible = false;
-            MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            lblTitle.Text = "BÁO CÁO THEO NHÀ CUNG CẤP";
+            _reportType = "source";
+            HandleData();
+
+            btnChangeMonth.BackColor = _cbtnDisable;
+            btnChange3Months.BackColor = _cbtnDisable;
+            btnChangeYear.BackColor = _cbtnDisable;
+            btnChangeSource.BackColor = _cbtnActive;
+            btnChangeEmployee.BackColor = _cbtnDisable;
+            // MessageBox.Show("Tính năng đang nâng cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtMonthYear_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && (e.KeyChar > '9' || e.KeyChar < '0'))
             {

@@ -114,8 +114,8 @@ namespace ShowroomData
             txtYear.Size = new Size(100, 35);
             txtYear.TabIndex = 4;
             txtYear.TextAlign = HorizontalAlignment.Center;
-            txtYear.TextChanged += txtYear_TextChanged;
-            txtYear.KeyPress += txtYear_KeyPress;
+            txtYear.TextChanged += txtMonthYear_TextChanged;
+            txtYear.KeyPress += txtMonthYear_KeyPress;
             // 
             // label3
             // 
@@ -299,8 +299,8 @@ namespace ShowroomData
             txtMonth.Size = new Size(100, 35);
             txtMonth.TabIndex = 4;
             txtMonth.TextAlign = HorizontalAlignment.Center;
-            txtMonth.TextChanged += txtYear_TextChanged;
-            txtMonth.KeyPress += txtYear_KeyPress;
+            txtMonth.TextChanged += txtMonthYear_TextChanged;
+            txtMonth.KeyPress += txtMonthYear_KeyPress;
             // 
             // lblMonth
             // 
