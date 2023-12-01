@@ -216,5 +216,77 @@ namespace ShowroomData
         {
             WindowState = FormWindowState.Minimized;
         }
+
+        private void btnCreateSource_Click(object sender, EventArgs e)
+        {
+            CreateSource createSource = new CreateSource(this, isCreateOne: true);
+            createSource.FormClosed += (f, args) =>
+            {
+                var query = processDb.GetData("SELECT TOP 1 SOURCEID FROM SOURCE ORDER BY SOURCEID DESC");
+                if (query != null && query.Rows.Count > 0)
+                    txtIdSuppliers.Text = query.Rows[0].Field<string>("SOURCEID");
+            };
+            createSource.ShowDialog();
+        }
+
+        private void txtIdSuppliers_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdSuppliers.Text.Trim().Length > 0)
+            {
+                var query = processDb.GetData($"SELECT NAME FROM SOURCE WHERE " +
+                    $"SOURCEID = N'{txtIdSuppliers.Text.ToLower().Trim()}'");
+                if (query != null
+                    && query.Rows.Count > 0)
+                {
+                    lblSourceName.Text = query.Rows[0].Field<string>("NAME");
+                    lblSourceName.ForeColor = Color.Green;
+                    lblSourceName.Font = new Font(lblSourceName.Font, FontStyle.Bold);
+                    lblSourceName.Visible = true;
+                }
+                else
+                {
+                    lblSourceName.Visible = true;
+                    lblSourceName.Text = "Không tồn tại";
+                    lblSourceName.Font = new Font(lblSourceName.Font, FontStyle.Regular);
+                    lblSourceName.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void txtIdProducts_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdProducts.Text.Trim().Length > 0)
+            {
+                var query = processDb.GetData($"SELECT PRODUCTNAME FROM PRODUCTS WHERE " +
+                    $"SERIAL = N'{txtIdProducts.Text.ToLower().Trim()}'");
+                if (query != null
+                    && query.Rows.Count > 0)
+                {
+                    lblProductName.Text = query.Rows[0].Field<string>("PRODUCTNAME");
+                    lblProductName.ForeColor = Color.Green;
+                    lblProductName.Font = new Font(lblProductName.Font, FontStyle.Bold);
+                    lblProductName.Visible = true;
+                }
+                else
+                {
+                    lblProductName.Visible = true;
+                    lblProductName.Text = "Không tồn tại";
+                    lblProductName.Font = new Font(lblProductName.Font, FontStyle.Regular);
+                    lblProductName.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void btnCreateProduct_Click(object sender, EventArgs e)
+        {
+            CreateProduct createProduct = new CreateProduct(this, isCreateOne: true);
+            createProduct.FormClosed += (f, args) =>
+            {
+                var query = processDb.GetData("SELECT TOP 1 SERIAL FROM PRODUCTS ORDER BY SERIAL DESC");
+                if (query != null && query.Rows.Count > 0)
+                    txtIdProducts.Text = query.Rows[0].Field<string>("SERIAL");
+            };
+            createProduct.ShowDialog();
+        }
     }
 }

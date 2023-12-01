@@ -224,5 +224,154 @@ namespace ShowroomData
         {
             Dispose();
         }
+
+        private void txtIdClients_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdClients.Text.Trim().Length > 0)
+            {
+                var query = processDb.GetData($"SELECT FIRSTNAME, LASTNAME FROM CUSTOMERS WHERE " +
+                    $"CLIENTID = N'{txtIdClients.Text.ToLower().Trim()}'");
+                if (query != null
+                    && query.Rows.Count > 0)
+                {
+                    lblCustomerName.Text = query.Rows[0].Field<string>("LASTNAME") + " " + query.Rows[0].Field<string>("FIRSTNAME");
+                    lblCustomerName.ForeColor = Color.Green;
+                    lblCustomerName.Font = new Font(lblCustomerName.Font, FontStyle.Bold);
+                    lblCustomerName.Visible = true;
+                }
+                else
+                {
+                    lblCustomerName.Visible = true;
+                    lblCustomerName.Text = "Không tồn tại";
+                    lblCustomerName.Font = new Font(lblCustomerName.Font, FontStyle.Regular);
+                    lblCustomerName.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void txtIdEmployee_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdEmployee.Text.Trim().Length > 0)
+            {
+                var query = processDb.GetData($"SELECT FIRSTNAME, LASTNAME FROM EMPLOYEES WHERE " +
+                    $"EmployeeId = N'{txtIdEmployee.Text.ToLower().Trim()}'");
+                if (query != null
+                    && query.Rows.Count > 0)
+                {
+                    lblEmployeeName.Text = query.Rows[0].Field<string>("LASTNAME") + " " + query.Rows[0].Field<string>("FIRSTNAME");
+                    lblEmployeeName.ForeColor = Color.Green;
+                    lblEmployeeName.Font = new Font(lblEmployeeName.Font, FontStyle.Bold);
+                    lblEmployeeName.Visible = true;
+                }
+                else
+                {
+                    lblEmployeeName.Visible = true;
+                    lblEmployeeName.Text = "Không tồn tại";
+                    lblEmployeeName.Font = new Font(lblEmployeeName.Font, FontStyle.Regular);
+                    lblEmployeeName.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void txtIdProducts_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdProducts.Text.Trim().Length > 0)
+            {
+                var query = processDb.GetData($"SELECT PRODUCTNAME FROM PRODUCTS WHERE " +
+                    $"Serial = N'{txtIdProducts.Text.ToLower().Trim()}'");
+
+                if (query != null
+                    && query.Rows.Count > 0)
+                {
+                    lblProductName.Text = query.Rows[0].Field<string>("PRODUCTNAME");
+                    lblProductName.ForeColor = Color.Green;
+                    lblProductName.Font = new Font(lblProductName.Font, FontStyle.Bold);
+                    lblProductName.Visible = true;
+                }
+                else
+                {
+                    lblProductName.Visible = true;
+                    lblProductName.Text = "Không tồn tại";
+                    lblProductName.Font = new Font(lblProductName.Font, FontStyle.Regular);
+                    lblProductName.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void btnCreateCustomer_Click(object sender, EventArgs e)
+        {
+            CreateCustomer createCustomer = new CreateCustomer(this, isCreateOne: true);
+            createCustomer.FormClosed += (f, args) =>
+            {
+                var id = processDb.GetData("SELECT CLIENTID FROM CUSTOMERS ORDER BY CLIENTID DESC");
+                if (id != null && id.Rows.Count > 0)
+                {
+                    txtIdClients.Text = id.Rows[0].Field<string>("CLIENTID");
+                }
+            };
+
+            createCustomer.ShowDialog(this);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CreateEmployeeForm createEmployeeForm = new CreateEmployeeForm(this, isCreateOne: true);
+            createEmployeeForm.FormClosed += (f, args) =>
+            {
+                var query = processDb.GetData("SELECT TOP 1 EmployeeId From Employees Order By Desc");
+                txtIdEmployee.Text = query.Rows[0].Field<string>("EmployeeId");
+            };
+            createEmployeeForm.ShowDialog(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CreateProduct createProduct = new CreateProduct(this, isCreateOne: true);
+            createProduct.FormClosed += (f, args) =>
+             {
+                 var query = processDb.GetData("SELECT TOP 1 SERIAL From PRODUCTS Order By Desc");
+                 txtIdProducts.Text = query.Rows[0].Field<string>("SERIAL");
+             };
+            createProduct.ShowDialog(this);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SearchAll searchAll = new SearchAll();
+            searchAll.filter = "customer";
+            searchAll.CanNavigate = false;
+            searchAll.FormClosing += (f, args) =>
+            {
+                if (f != null && f.GetType() == typeof(SearchAll))
+                    txtIdClients.Text = ((SearchAll)f).IdValue;
+            };
+            searchAll.ShowDialog(this);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SearchAll searchAll = new SearchAll();
+            searchAll.filter = "employee";
+            searchAll.CanNavigate = false;
+            searchAll.FormClosing += (f, args) =>
+            {
+                if (f != null && f.GetType() == typeof(SearchAll))
+                    txtIdEmployee.Text = ((SearchAll)f).IdValue;
+            };
+            searchAll.ShowDialog(this);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SearchAll searchAll = new SearchAll();
+            searchAll.filter = "product";
+            searchAll.CanNavigate = false;
+            searchAll.FormClosing += (f, args) =>
+            {
+                if (f != null && f.GetType() == typeof(SearchAll))
+                    txtIdProducts.Text = ((SearchAll)f).IdValue;
+            };
+            searchAll.ShowDialog(this);
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
+        private bool isInfoChanged = false;
 
         // Constructor
         public UpdateCustomer(Customer customer, Form? _parent)
@@ -41,6 +42,7 @@ namespace ShowroomData
             birthDateTimePicker.Value = customer.DateBirth;
             txtAddress.Text = customer.Address;
             txtEmail.Text = customer.Email;
+
             if (customer.Gender == true)
             {
                 rdbMale.Checked = true;
@@ -49,6 +51,20 @@ namespace ShowroomData
             {
                 rdbFemale.Checked = true;
             }
+
+            txtFirstname.TextChanged += InfoChanged;
+            txtEmail.TextChanged += InfoChanged;
+            txtLastname.TextChanged += InfoChanged;
+            txtCCCD.TextChanged += InfoChanged;
+            birthDateTimePicker.TextChanged += InfoChanged;
+            txtAddress.TextChanged += InfoChanged;
+            rdbFemale.CheckedChanged += InfoChanged;
+            rdbMale.CheckedChanged += InfoChanged;
+        }
+
+        private void InfoChanged(object? sender, EventArgs e)
+        {
+            isInfoChanged = true;
         }
 
 
@@ -80,7 +96,11 @@ namespace ShowroomData
         //
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Dispose();
+            if (!isInfoChanged
+                || MessageBox.Show("Bạn có muốn thoát? Thông tin chưa lưu sẽ bị xóa.",
+                "Thông báo",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Close();
         }
 
         private void UpdateCustomerForm_Resize(object sender, EventArgs e)
@@ -134,7 +154,7 @@ namespace ShowroomData
         }
         private void CleanForm()
         {
-
+            isInfoChanged = false;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -213,7 +233,11 @@ namespace ShowroomData
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
-            Dispose();
+            if (!isInfoChanged
+                || MessageBox.Show("Bạn có muốn thoát? Thông tin chưa lưu sẽ bị xóa.",
+                  "Thông báo",
+                  MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Close();
         }
 
         private void helpBtn_Click_1(object sender, EventArgs e)

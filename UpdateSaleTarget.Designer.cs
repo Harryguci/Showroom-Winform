@@ -150,7 +150,9 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.Control;
             button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
             button1.Location = new Point(879, 0);
@@ -159,12 +161,14 @@
             button1.Size = new Size(49, 33);
             button1.TabIndex = 0;
             button1.Text = "X";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
             // button2
             // 
+            button2.BackColor = SystemColors.Control;
             button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
             button2.Location = new Point(830, 0);
@@ -173,7 +177,7 @@
             button2.Size = new Size(49, 33);
             button2.TabIndex = 0;
             button2.Text = "-";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click_1;
             // 
             // lblHeading
@@ -212,6 +216,7 @@
             // 
             // endDateTimePicker
             // 
+            endDateTimePicker.Format = DateTimePickerFormat.Short;
             endDateTimePicker.Location = new Point(208, 207);
             endDateTimePicker.Name = "endDateTimePicker";
             endDateTimePicker.Size = new Size(389, 26);
@@ -219,6 +224,7 @@
             // 
             // startDateTimePicker
             // 
+            startDateTimePicker.Format = DateTimePickerFormat.Short;
             startDateTimePicker.Location = new Point(208, 141);
             startDateTimePicker.Name = "startDateTimePicker";
             startDateTimePicker.Size = new Size(389, 26);

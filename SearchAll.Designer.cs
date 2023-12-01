@@ -100,6 +100,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
             flowLayoutPanel1.Location = new Point(0, 49);

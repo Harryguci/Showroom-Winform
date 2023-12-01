@@ -17,8 +17,9 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
+        private bool _isCreateOne = false;
 
-        public CreateProduct(Form? _parent)
+        public CreateProduct(Form? _parent, bool isCreateOne = false)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -27,7 +28,7 @@ namespace ShowroomData
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
-
+            _isCreateOne = isCreateOne;
 
             //
             // Enable resizing form size (without border)
@@ -195,6 +196,8 @@ namespace ShowroomData
 
             // Earse current data
             CleanForm();
+
+            if (_isCreateOne) Close();
 
             // Refresh Data
             if (parent == null) return;

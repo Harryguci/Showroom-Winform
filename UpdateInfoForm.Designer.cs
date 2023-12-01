@@ -51,6 +51,8 @@ namespace ShowroomData
             label5 = new Label();
             birthDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
+            btnChangeAvt = new Button();
+            pictureBoxAvatar = new PictureBox();
             cbPosition = new ComboBox();
             label10 = new Label();
             label9 = new Label();
@@ -60,16 +62,17 @@ namespace ShowroomData
             btnClean = new Button();
             btnCreate = new Button();
             txtEmail = new RoundTextBox();
-            txtCCCD = new RoundTextBox();
-            label6 = new Label();
-            label7 = new Label();
             txtSalary = new RoundTextBox();
+            txtCCCD = new RoundTextBox();
+            label7 = new Label();
+            label6 = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             grbGender.SuspendLayout();
             SuspendLayout();
             // 
@@ -145,7 +148,7 @@ namespace ShowroomData
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(928, 100);
+            panel1.Size = new Size(1089, 100);
             panel1.TabIndex = 100;
             panel1.Paint += panel1_Paint;
             panel1.MouseDown += Form_MouseDown;
@@ -158,7 +161,7 @@ namespace ShowroomData
             flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(928, 33);
+            flowLayoutPanel2.Size = new Size(1089, 33);
             flowLayoutPanel2.TabIndex = 101;
             flowLayoutPanel2.MouseDown += Form_MouseDown;
             // 
@@ -167,7 +170,7 @@ namespace ShowroomData
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
-            button1.Location = new Point(879, 0);
+            button1.Location = new Point(1040, 0);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(49, 33);
@@ -181,7 +184,7 @@ namespace ShowroomData
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
-            button2.Location = new Point(830, 0);
+            button2.Location = new Point(991, 0);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(49, 33);
@@ -211,10 +214,12 @@ namespace ShowroomData
             // 
             // txtId
             // 
+            txtId.BorderRadius = 3;
             txtId.Enabled = false;
             txtId.Location = new Point(132, 34);
+            txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(469, 26);
+            txtId.Size = new Size(469, 36);
             txtId.TabIndex = 0;
             // 
             // label2
@@ -228,9 +233,11 @@ namespace ShowroomData
             // 
             // txtFirstName
             // 
+            txtFirstName.BorderRadius = 3;
             txtFirstName.Location = new Point(132, 89);
+            txtFirstName.Multiline = true;
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(202, 26);
+            txtFirstName.Size = new Size(202, 36);
             txtFirstName.TabIndex = 1;
             // 
             // label3
@@ -244,9 +251,11 @@ namespace ShowroomData
             // 
             // txtLastName
             // 
+            txtLastName.BorderRadius = 3;
             txtLastName.Location = new Point(430, 92);
+            txtLastName.Multiline = true;
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(171, 26);
+            txtLastName.Size = new Size(171, 36);
             txtLastName.TabIndex = 2;
             // 
             // label4
@@ -260,9 +269,11 @@ namespace ShowroomData
             // 
             // txtPhone
             // 
+            txtPhone.BorderRadius = 3;
             txtPhone.Location = new Point(132, 166);
+            txtPhone.Multiline = true;
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(245, 26);
+            txtPhone.Size = new Size(245, 36);
             txtPhone.TabIndex = 3;
             txtPhone.KeyPress += txtPhone_KeyPress;
             // 
@@ -285,6 +296,8 @@ namespace ShowroomData
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(btnChangeAvt);
+            panel3.Controls.Add(pictureBoxAvatar);
             panel3.Controls.Add(cbPosition);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label9);
@@ -306,10 +319,31 @@ namespace ShowroomData
             panel3.Controls.Add(label2);
             panel3.Controls.Add(txtLastName);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(286, 116);
+            panel3.Location = new Point(243, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 496);
+            panel3.Size = new Size(943, 496);
             panel3.TabIndex = 100;
+            // 
+            // btnChangeAvt
+            // 
+            btnChangeAvt.Location = new Point(817, 343);
+            btnChangeAvt.Name = "btnChangeAvt";
+            btnChangeAvt.Size = new Size(90, 32);
+            btnChangeAvt.TabIndex = 10;
+            btnChangeAvt.Text = "Đổi ảnh";
+            btnChangeAvt.UseVisualStyleBackColor = true;
+            btnChangeAvt.Click += btnChangeAvt_Click;
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.BackColor = Color.White;
+            pictureBoxAvatar.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxAvatar.Location = new Point(636, 37);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(271, 300);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 9;
+            pictureBoxAvatar.TabStop = false;
             // 
             // cbPosition
             // 
@@ -345,7 +379,7 @@ namespace ShowroomData
             grbGender.Location = new Point(399, 143);
             grbGender.Name = "grbGender";
             grbGender.Size = new Size(202, 77);
-            grbGender.TabIndex = 3;
+            grbGender.TabIndex = 4;
             grbGender.TabStop = false;
             grbGender.Text = "Giới tính";
             // 
@@ -355,7 +389,7 @@ namespace ShowroomData
             rdbFemale.Location = new Point(103, 39);
             rdbFemale.Name = "rdbFemale";
             rdbFemale.Size = new Size(47, 24);
-            rdbFemale.TabIndex = 0;
+            rdbFemale.TabIndex = 4;
             rdbFemale.TabStop = true;
             rdbFemale.Text = "Nữ";
             rdbFemale.UseVisualStyleBackColor = true;
@@ -366,7 +400,7 @@ namespace ShowroomData
             rdbMale.Location = new Point(6, 39);
             rdbMale.Name = "rdbMale";
             rdbMale.Size = new Size(60, 24);
-            rdbMale.TabIndex = 0;
+            rdbMale.TabIndex = 4;
             rdbMale.TabStop = true;
             rdbMale.Text = "Nam";
             rdbMale.UseVisualStyleBackColor = true;
@@ -375,7 +409,8 @@ namespace ShowroomData
             // 
             btnClean.BackColor = SystemColors.ActiveCaption;
             btnClean.BackgroundImageLayout = ImageLayout.None;
-            btnClean.FlatStyle = FlatStyle.Popup;
+            btnClean.FlatAppearance.BorderSize = 0;
+            btnClean.FlatStyle = FlatStyle.Flat;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
             btnClean.Location = new Point(480, 431);
@@ -383,7 +418,7 @@ namespace ShowroomData
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
             btnClean.TabIndex = 6;
-            btnClean.Text = "Nhập mới";
+            btnClean.Text = "Nhập lại";
             btnClean.UseVisualStyleBackColor = false;
             btnClean.Click += btnClean_Click;
             // 
@@ -391,7 +426,8 @@ namespace ShowroomData
             // 
             btnCreate.BackColor = SystemColors.MenuHighlight;
             btnCreate.BackgroundImageLayout = ImageLayout.None;
-            btnCreate.FlatStyle = FlatStyle.Popup;
+            btnCreate.FlatAppearance.BorderSize = 0;
+            btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(348, 431);
@@ -405,27 +441,32 @@ namespace ShowroomData
             // 
             // txtEmail
             // 
+            txtEmail.BorderRadius = 3;
             txtEmail.Location = new Point(132, 304);
+            txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(469, 26);
+            txtEmail.Size = new Size(469, 36);
             txtEmail.TabIndex = 6;
+            // 
+            // txtSalary
+            // 
+            txtSalary.BorderRadius = 3;
+            txtSalary.Location = new Point(131, 428);
+            txtSalary.Multiline = true;
+            txtSalary.Name = "txtSalary";
+            txtSalary.Size = new Size(178, 36);
+            txtSalary.TabIndex = 7;
+            txtSalary.KeyPress += txtCCCD_KeyPress_1;
             // 
             // txtCCCD
             // 
+            txtCCCD.BorderRadius = 3;
             txtCCCD.Location = new Point(131, 370);
+            txtCCCD.Multiline = true;
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(178, 26);
+            txtCCCD.Size = new Size(178, 36);
             txtCCCD.TabIndex = 7;
             txtCCCD.KeyPress += txtCCCD_KeyPress_1;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(42, 373);
-            label6.Name = "label6";
-            label6.Size = new Size(54, 20);
-            label6.TabIndex = 2;
-            label6.Text = "CCCD";
             // 
             // label7
             // 
@@ -436,19 +477,20 @@ namespace ShowroomData
             label7.TabIndex = 2;
             label7.Text = "Lương";
             // 
-            // txtSalary
+            // label6
             // 
-            txtSalary.Location = new Point(131, 428);
-            txtSalary.Name = "txtSalary";
-            txtSalary.Size = new Size(178, 26);
-            txtSalary.TabIndex = 7;
-            txtSalary.KeyPress += txtCCCD_KeyPress_1;
+            label6.AutoSize = true;
+            label6.Location = new Point(42, 373);
+            label6.Name = "label6";
+            label6.Size = new Size(54, 20);
+            label6.TabIndex = 2;
+            label6.Text = "CCCD";
             // 
             // UpdateInfoForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 624);
+            ClientSize = new Size(1225, 624);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -467,6 +509,7 @@ namespace ShowroomData
             flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             grbGender.ResumeLayout(false);
             grbGender.PerformLayout();
             ResumeLayout(false);
@@ -480,13 +523,9 @@ namespace ShowroomData
         private Panel panel1;
         private Button btnBack;
         private Label label1;
-        private TextBox txtId;
         private Label label2;
-        private TextBox txtFirstName;
         private Label label3;
-        private TextBox txtLastName;
         private Label label4;
-        private TextBox txtPhone;
         private Label label5;
         private DateTimePicker birthDateTimePicker;
         private Panel panel3;
@@ -496,9 +535,7 @@ namespace ShowroomData
         private GroupBox grbGender;
         private RadioButton rdbFemale;
         private RadioButton rdbMale;
-        private TextBox txtCCCD;
         private Label label6;
-        private TextBox txtEmail;
         private Label label9;
         private Label label10;
         private ComboBox cbPosition;
@@ -506,7 +543,15 @@ namespace ShowroomData
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
-        private TextBox txtSalary;
         private Label label7;
+        private RoundTextBox txtId;
+        private RoundTextBox txtFirstName;
+        private RoundTextBox txtLastName;
+        private RoundTextBox txtPhone;
+        private RoundTextBox txtCCCD;
+        private RoundTextBox txtEmail;
+        private RoundTextBox txtSalary;
+        private PictureBox pictureBoxAvatar;
+        private Button btnChangeAvt;
     }
 }

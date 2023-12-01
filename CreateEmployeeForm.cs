@@ -7,9 +7,10 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
         private int temp = 0;
+        private bool isCreateOne = false;
 
         // Constructor
-        public CreateEmployeeForm(Form? _parent)
+        public CreateEmployeeForm(Form? _parent, bool isCreateOne = false)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -26,6 +27,7 @@ namespace ShowroomData
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
             comboBox1.Text = "--- Chọn ---";
+            this.isCreateOne = isCreateOne;
         }
 
         #region Handle Form Dragging
@@ -111,25 +113,38 @@ namespace ShowroomData
                 id = txtId.Text,
                 lastName = txtLastname.Text.Trim(),
                 firstName = txtFirstname.Text.Trim(),
-                sdt = txtPhone.Text.Trim(),
+                phonenumber = txtPhone.Text.Trim(),
                 birth = birthDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
                 position = comboBox1.Text != "--- Chọn ---" ? comboBox1.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
                 salary = 0,
+                gender = rdbMale.Checked ? 1 : 0,
+                Url_image = "images//uploaded//" + Path.GetFileName(pictureBoxAvatar.ImageLocation)
             };
 
             // Handle Create
-            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, SaleId) " +
+            string query = $"INSERT INTO Employees (EmployeeId, FirstName, LastName, DateBirth, CCCD, Position, StartDate, Salary, Email, Deleted, Gender, PhoneNumber, Url_image) " +
                 $"VALUES (N'{curr.id}',N'{curr.firstName}',N'{curr.lastName}','{curr.birth}', " +
-                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', NULL)";
+                $"N'{curr.cccd}',N'{curr.position}','{curr.start}',{curr.salary}, N'{curr.email}', 0, {curr.gender}, N'{curr.phonenumber}', N'{curr.Url_image}')";
 
             // Excute the query
             processDb.UpdateData(query);
 
+            if (File.Exists(pictureBoxAvatar.ImageLocation))
+            {
+                // Copy the file to the foldersss
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "images//uploaded//");
+                Image image = Image.FromFile(pictureBoxAvatar.ImageLocation);
+                File.Copy(pictureBoxAvatar.ImageLocation, folderPath + Path.GetFileName(pictureBoxAvatar.ImageLocation), true);
+            }
+
             // Earse current data
             CleanForm();
+
+            if (isCreateOne) Close();
 
             // Refresh Data
             if (parent == null) return;
@@ -167,7 +182,8 @@ namespace ShowroomData
                 birthday = birthDateTimePicker.Value,
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
                 gender = temp,
-                email = txtEmail.Text.Trim()
+                email = txtEmail.Text.Trim(),
+                salary = txtSalary.Text.Trim(),
             };
 
 
@@ -201,12 +217,17 @@ namespace ShowroomData
                 MessageBox.Show("Bạn phải nhập số điện thoại");
                 return false;
             }
+            if (curr.salary.Length <= 0)
+            {
+                MessageBox.Show("Bạn phải nhập lương");
+                return false;
+            }
 
             DateTime currentDate = DateTime.Now;
             DateTime minimumBirthDate = currentDate.AddYears(-18);
             if (curr.birthday > minimumBirthDate)
             {
-                MessageBox.Show("Bạn phải đủ 18 tuổi để tiếp tục.");
+                MessageBox.Show("Bạn nhân viên phải trên 18 tuổi.");
                 return false;
             }
 
@@ -244,7 +265,8 @@ namespace ShowroomData
             comboBox1.Text = "--- Chọn ----";
             birthDateTimePicker.Value = DateTime.Now;
             rdbFemale.Checked = rdbMale.Checked = false;
-
+            pictureBoxAvatar.Image = null;
+            pictureBoxAvatar.ImageLocation = "";
         }
 
         private void helpBtn_Click(object sender, EventArgs e)
@@ -266,6 +288,68 @@ namespace ShowroomData
         {
             if (MessageBox.Show("Bạn có muốn thoát?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.Yes) Close();
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && (e.KeyChar > '9' || e.KeyChar < '0'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnChangeAvt_Clicked(object sender, EventArgs e)
+        {
+            // Use the open file dialog to let the user select an image file
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            openFileDialog1.Title = "Select an Image File";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Get the file name and the folder path
+                string fileName = openFileDialog1.FileName;
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "/images/uploaded/");
+
+                // Check if the file exists
+                if (File.Exists(fileName))
+                {
+                    // Check if the folder exists, if not, create it
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    // Copy the file to the folder
+                    // File.Copy(fileName, folderPath + Path.GetFileName(fileName), true);
+                    // Try to load the image from the file
+                    try
+                    {
+                        Image image = Image.FromFile(fileName);
+                        // Dispose the previous image if it exists
+                        if (pictureBoxAvatar.Image != null)
+                        {
+                            pictureBoxAvatar.Image.Dispose();
+                        }
+                        // Assign the image to the picture box
+                        pictureBoxAvatar.Image = image;
+                        pictureBoxAvatar.ImageLocation = fileName;
+
+                        btnChangeAvt.Text = "Đổi ảnh";
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any exceptions that may occur
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Show a message if the file does not exist
+                    MessageBox.Show("The file does not exist.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

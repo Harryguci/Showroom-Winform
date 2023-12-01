@@ -215,7 +215,7 @@ namespace ShowroomData
             txtName.Location = new Point(211, 34);
             txtName.Multiline = true;
             txtName.Name = "txtName";
-            txtName.Size = new Size(387, 33);
+            txtName.Size = new Size(387, 36);
             txtName.TabIndex = 0;
             // 
             // panel3
@@ -380,10 +380,11 @@ namespace ShowroomData
             // 
             txtQuantity.BackColor = Color.White;
             txtQuantity.BorderRadius = 5;
+            txtQuantity.Enabled = false;
             txtQuantity.Location = new Point(211, 308);
             txtQuantity.Multiline = true;
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(156, 33);
+            txtQuantity.Size = new Size(156, 36);
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
@@ -394,7 +395,7 @@ namespace ShowroomData
             txtStatus.Location = new Point(211, 378);
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(387, 33);
+            txtStatus.Size = new Size(387, 36);
             txtStatus.TabIndex = 5;
             // 
             // txtSalePrice
@@ -404,7 +405,7 @@ namespace ShowroomData
             txtSalePrice.Location = new Point(211, 241);
             txtSalePrice.Multiline = true;
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(387, 33);
+            txtSalePrice.Size = new Size(387, 36);
             txtSalePrice.TabIndex = 3;
             txtSalePrice.KeyPress += txtSalePrice_KeyPress;
             // 
@@ -415,7 +416,7 @@ namespace ShowroomData
             txtPurchasePrice.Location = new Point(211, 169);
             txtPurchasePrice.Multiline = true;
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(387, 33);
+            txtPurchasePrice.Size = new Size(387, 36);
             txtPurchasePrice.TabIndex = 2;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
@@ -427,7 +428,7 @@ namespace ShowroomData
             txtId.Location = new Point(211, 101);
             txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(387, 33);
+            txtId.Size = new Size(387, 36);
             txtId.TabIndex = 1;
             // 
             // UpdateProduct

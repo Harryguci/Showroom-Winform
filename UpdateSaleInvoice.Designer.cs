@@ -39,6 +39,13 @@
             button2 = new Button();
             lblHeading = new Label();
             panel3 = new Panel();
+            lblCustomerName = new Label();
+            button4 = new Button();
+            button6 = new Button();
+            button5 = new Button();
+            button3 = new Button();
+            lblProductName = new Label();
+            lblFullnameEmployee = new Label();
             dayDateTimePicker = new DateTimePicker();
             txtIdClients = new TextBox();
             label6 = new Label();
@@ -72,7 +79,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 640);
+            flowLayoutPanel1.Size = new Size(136, 740);
             flowLayoutPanel1.TabIndex = 10;
             // 
             // panel2
@@ -150,7 +157,9 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.Control;
             button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
             button1.Location = new Point(879, 0);
@@ -159,12 +168,14 @@
             button1.Size = new Size(49, 33);
             button1.TabIndex = 0;
             button1.Text = "X";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
+            button2.BackColor = SystemColors.Control;
             button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
             button2.Location = new Point(830, 0);
@@ -173,7 +184,7 @@
             button2.Size = new Size(49, 33);
             button2.TabIndex = 0;
             button2.Text = "-";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // lblHeading
@@ -189,6 +200,13 @@
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(lblCustomerName);
+            panel3.Controls.Add(button4);
+            panel3.Controls.Add(button6);
+            panel3.Controls.Add(button5);
+            panel3.Controls.Add(button3);
+            panel3.Controls.Add(lblProductName);
+            panel3.Controls.Add(lblFullnameEmployee);
             panel3.Controls.Add(dayDateTimePicker);
             panel3.Controls.Add(txtIdClients);
             panel3.Controls.Add(label6);
@@ -207,12 +225,93 @@
             panel3.Controls.Add(btnCreate);
             panel3.Location = new Point(286, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
+            panel3.Size = new Size(729, 612);
             panel3.TabIndex = 100;
+            // 
+            // lblCustomerName
+            // 
+            lblCustomerName.AutoSize = true;
+            lblCustomerName.Location = new Point(207, 124);
+            lblCustomerName.Name = "lblCustomerName";
+            lblCustomerName.Size = new Size(51, 20);
+            lblCustomerName.TabIndex = 26;
+            lblCustomerName.Text = "label8";
+            // 
+            // button4
+            // 
+            button4.BackgroundImage = Properties.Resources.tabs;
+            button4.BackgroundImageLayout = ImageLayout.Zoom;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(607, 250);
+            button4.Name = "button4";
+            button4.Size = new Size(30, 30);
+            button4.TabIndex = 25;
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button6
+            // 
+            button6.BackgroundImage = Properties.Resources.magnifying_glass;
+            button6.BackgroundImageLayout = ImageLayout.Zoom;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Location = new Point(648, 250);
+            button6.Name = "button6";
+            button6.Size = new Size(30, 30);
+            button6.TabIndex = 25;
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.BackgroundImage = Properties.Resources.magnifying_glass;
+            button5.BackgroundImageLayout = ImageLayout.Zoom;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(648, 175);
+            button5.Name = "button5";
+            button5.Size = new Size(30, 30);
+            button5.TabIndex = 25;
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // button3
+            // 
+            button3.BackgroundImage = Properties.Resources.user_avatar;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(602, 170);
+            button3.Name = "button3";
+            button3.Size = new Size(40, 40);
+            button3.TabIndex = 25;
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // lblProductName
+            // 
+            lblProductName.AutoSize = true;
+            lblProductName.Location = new Point(207, 287);
+            lblProductName.Name = "lblProductName";
+            lblProductName.Size = new Size(51, 20);
+            lblProductName.TabIndex = 24;
+            lblProductName.Text = "label8";
+            // 
+            // lblFullnameEmployee
+            // 
+            lblFullnameEmployee.AutoSize = true;
+            lblFullnameEmployee.Location = new Point(207, 199);
+            lblFullnameEmployee.Name = "lblFullnameEmployee";
+            lblFullnameEmployee.Size = new Size(51, 20);
+            lblFullnameEmployee.TabIndex = 23;
+            lblFullnameEmployee.Text = "label8";
+            lblFullnameEmployee.Visible = false;
             // 
             // dayDateTimePicker
             // 
-            dayDateTimePicker.Location = new Point(207, 269);
+            dayDateTimePicker.Format = DateTimePickerFormat.Short;
+            dayDateTimePicker.Location = new Point(207, 349);
             dayDateTimePicker.Name = "dayDateTimePicker";
             dayDateTimePicker.Size = new Size(389, 26);
             dayDateTimePicker.TabIndex = 4;
@@ -223,11 +322,12 @@
             txtIdClients.Name = "txtIdClients";
             txtIdClients.Size = new Size(389, 26);
             txtIdClients.TabIndex = 1;
+            txtIdClients.TextChanged += txtIdClients_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(38, 396);
+            label6.Location = new Point(38, 476);
             label6.Name = "label6";
             label6.Size = new Size(80, 20);
             label6.TabIndex = 12;
@@ -236,7 +336,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(38, 333);
+            label4.Location = new Point(38, 413);
             label4.Name = "label4";
             label4.Size = new Size(72, 20);
             label4.TabIndex = 13;
@@ -245,7 +345,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(38, 274);
+            label5.Location = new Point(38, 354);
             label5.Name = "label5";
             label5.Size = new Size(85, 20);
             label5.TabIndex = 14;
@@ -279,29 +379,30 @@
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(207, 393);
+            txtStatus.Location = new Point(207, 473);
             txtStatus.Name = "txtStatus";
             txtStatus.Size = new Size(389, 26);
             txtStatus.TabIndex = 6;
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(207, 333);
+            txtQuantity.Location = new Point(207, 413);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(173, 26);
             txtQuantity.TabIndex = 5;
             // 
             // txtIdEmployee
             // 
-            txtIdEmployee.Location = new Point(207, 149);
+            txtIdEmployee.Location = new Point(207, 170);
             txtIdEmployee.Name = "txtIdEmployee";
             txtIdEmployee.Size = new Size(389, 26);
             txtIdEmployee.TabIndex = 2;
+            txtIdEmployee.TextChanged += txtIdEmployee_TextChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(37, 152);
+            label7.Location = new Point(37, 173);
             label7.Name = "label7";
             label7.Size = new Size(98, 20);
             label7.TabIndex = 20;
@@ -309,15 +410,16 @@
             // 
             // txtIdProducts
             // 
-            txtIdProducts.Location = new Point(207, 206);
+            txtIdProducts.Location = new Point(206, 250);
             txtIdProducts.Name = "txtIdProducts";
             txtIdProducts.Size = new Size(389, 26);
             txtIdProducts.TabIndex = 3;
+            txtIdProducts.TextChanged += txtIdProducts_TextChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(38, 209);
+            label3.Location = new Point(37, 253);
             label3.Name = "label3";
             label3.Size = new Size(100, 20);
             label3.TabIndex = 22;
@@ -330,7 +432,7 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(264, 534);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -346,7 +448,7 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 454);
+            btnCreate.Location = new Point(132, 534);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -359,7 +461,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1064, 740);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -408,5 +510,12 @@
         private Label label7;
         private TextBox txtIdProducts;
         private Label label3;
+        private Label lblFullnameEmployee;
+        private Label lblProductName;
+        private Button button4;
+        private Button button3;
+        private Button button6;
+        private Button button5;
+        private Label lblCustomerName;
     }
 }

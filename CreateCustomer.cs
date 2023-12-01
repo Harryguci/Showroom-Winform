@@ -1,15 +1,4 @@
-﻿using ShowroomData.Util;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+﻿using System.Data;
 
 namespace ShowroomData
 {
@@ -19,13 +8,12 @@ namespace ShowroomData
         private Layout? parent;
         private int temp = 0;
 
-        public CreateCustomer(Form? _parent)
+        private bool isCreateOne = false;
+
+        public CreateCustomer(Form? _parent, bool isCreateOne = false)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
-            //if (_parent != null && _parent.GetType() == typeof(Layout))
-            //    parent = (Layout?)_parent;
-
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
 
@@ -35,6 +23,7 @@ namespace ShowroomData
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+            this.isCreateOne = isCreateOne;
         }
 
         #region Handle Form Dragging
@@ -117,11 +106,11 @@ namespace ShowroomData
                 MessageBox.Show("Bạn phải nhập địa chỉ");
                 return false;
             }
-            if (curr.email.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập email");
-                return false;
-            }
+            //if (curr.email.Length <= 0)
+            //{
+            //    MessageBox.Show("Bạn phải nhập email");
+            //    return false;
+            //}
             if (curr.phone.Length <= 0)
             {
                 MessageBox.Show("Bạn phải nhập số điện thoại");
@@ -223,10 +212,13 @@ namespace ShowroomData
             // Earse current data
             CleanForm();
 
+            if (isCreateOne) Close();
+
             // Refresh Data
             if (parent == null) return;
             parent.RefeshData();
             parent.Refresh();
+
         }
 
         private void btnClean_Click_1(object sender, EventArgs e)

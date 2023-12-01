@@ -1,5 +1,7 @@
 using ShowroomData.ComponentGUI;
 using ShowroomData.Models;
+using System.Net.Http.Headers;
+using System.Windows.Forms;
 
 namespace ShowroomData
 {
@@ -8,10 +10,12 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private ListForm? _parent;
         private bool _isUpdating = false;
+        private Employee _currEmployee;
         // Constructor
         public UpdateInfoForm(Employee employee, Form? parent)
         {
             InitializeComponent();
+            _currEmployee = employee;
             FormBorderStyle = FormBorderStyle.None;
             if (parent != null && parent.GetType() == typeof(ListForm))
                 this._parent = (ListForm)parent;
@@ -33,10 +37,12 @@ namespace ShowroomData
             txtCCCD.Text = employee.Cccd;
             txtPhone.Text = employee.Phone;
             txtSalary.Text = employee.Salary.ToString();
-            //txtSalary.Text = employee.Salary.ToString();
+            
             birthDateTimePicker.Value = employee.DateBirth != null ? employee.DateBirth.Value : DateTime.Now;
             txtEmail.Text = employee.Email;
             cbPosition.Text = employee.Position;
+            if (employee.Url_image != null && File.Exists(Path.Combine(Directory.GetCurrentDirectory(), employee.Url_image)))
+                pictureBoxAvatar.ImageLocation = Path.Combine(Directory.GetCurrentDirectory(), employee.Url_image);
 
             if (employee.Gender == true)
                 rdbMale.Checked = true;
@@ -94,7 +100,8 @@ namespace ShowroomData
                 lblHeading.Location.Y);
         }
 
-        private void textBox_textChanged(object ? sender, EventArgs e) { 
+        private void textBox_textChanged(object? sender, EventArgs e)
+        {
             _isUpdating = true;
         }
 
@@ -127,6 +134,22 @@ namespace ShowroomData
         private void btnClean_Click(object sender, EventArgs e)
         {
             // TODO: reset values
+            bool temp = _currEmployee.Gender != null && _currEmployee.Gender.Value;
+            txtId.Text = _currEmployee.EmployeeId;
+            txtLastName.Text = _currEmployee.Lastname;
+            txtFirstName.Text = _currEmployee.Firstname;
+            txtPhone.Text = _currEmployee.Phone;
+            txtCCCD.Text = _currEmployee.Cccd;
+            txtPhone.Text = _currEmployee.Phone;
+            txtSalary.Text = _currEmployee.Salary.ToString();
+            birthDateTimePicker.Value = _currEmployee.DateBirth != null ?
+                _currEmployee.DateBirth.Value : DateTime.Now;
+            txtEmail.Text = _currEmployee.Email;
+            cbPosition.Text = _currEmployee.Position;
+
+            if (_currEmployee.Gender == true)
+                rdbMale.Checked = true;
+            else rdbFemale.Checked = true;
         }
 
         private void createBtn_Click(object sender, EventArgs e)
@@ -149,7 +172,8 @@ namespace ShowroomData
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
                 salary = txtSalary.Text.Trim(),
-                gender = (rdbMale.Checked ? 1 : 0)
+                gender = (rdbMale.Checked ? 1 : 0),
+                url_image = "images//uploaded//" + Path.GetFileName(pictureBoxAvatar.ImageLocation)
             };
 
             string query = $"UPDATE Employees ";
@@ -164,7 +188,7 @@ namespace ShowroomData
             query += $"Email = '{curr.email}',";
             query += $"Deleted = 0,";
             query += $"Salary = {curr.salary},";
-            query += $"Url_image = ''";
+            query += $"Url_image = '{curr.url_image}'";
             query += $" WHERE EmployeeId = N'{curr.id}'";
 
             // Excute the query
@@ -175,11 +199,17 @@ namespace ShowroomData
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-            if (_parent != null) _parent.RefreshData();
+            if (File.Exists(pictureBoxAvatar.ImageLocation))
+            {
+                // Copy the file to the folder
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "images/uploaded/");
+                Image image = Image.FromFile(pictureBoxAvatar.ImageLocation);
+                File.Copy(pictureBoxAvatar.ImageLocation, folderPath + Path.GetFileName(pictureBoxAvatar.ImageLocation), true);
+            }
 
             // Earse current data
             CleanForm();
-
             Dispose();
         }
 
@@ -297,5 +327,59 @@ namespace ShowroomData
         {
             WindowState = FormWindowState.Minimized;
         }
+
+        private void btnChangeAvt_Click(object sender, EventArgs e)
+        {
+            // Use the open file dialog to let the user select an image file
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+            openFileDialog1.Title = "Select an Image File";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Get the file name and the folder path
+                string fileName = openFileDialog1.FileName;
+                string folderPath = Path.Combine(Directory.GetCurrentDirectory(),
+                    "/images/uploaded/");
+
+                // Check if the file exists
+                if (File.Exists(fileName))
+                {
+                    // Check if the folder exists, if not, create it
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    // Copy the file to the folder
+                    // File.Copy(fileName, folderPath + Path.GetFileName(fileName), true);
+                    // Try to load the image from the file
+                    try
+                    {
+                        Image image = Image.FromFile(fileName);
+                        // Dispose the previous image if it exists
+                        if (pictureBoxAvatar.Image != null)
+                        {
+                            pictureBoxAvatar.Image.Dispose();
+                        }
+                        // Assign the image to the picture box
+                        pictureBoxAvatar.Image = image;
+                        pictureBoxAvatar.ImageLocation = fileName;
+                        btnChangeAvt.Text = "Đổi ảnh";
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any exceptions that may occur
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Show a message if the file does not exist
+                    MessageBox.Show("The file does not exist.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
+
 }

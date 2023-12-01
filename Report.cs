@@ -30,11 +30,13 @@ namespace ShowroomData
 
             // Default Styles
             lblTitle.Text = "BÁO CÁO THEO THÁNG";
+            FormBorderStyle = FormBorderStyle.None;
             btnChangeMonth.BackColor = _cbtnActive;
             btnChange3Months.BackColor = _cbtnDisable;
             btnChangeYear.BackColor = _cbtnDisable;
             btnChangeSource.BackColor = _cbtnDisable;
             btnChangeEmployee.BackColor = _cbtnDisable;
+            btnBack.BackColor = Color.FromArgb(0, 255, 255, 255);
         }
 
         private void Report_Resize(object sender, EventArgs e)
@@ -343,7 +345,8 @@ namespace ShowroomData
                 if (year != null && month != null)
                 {
                     t += $" WHERE YEAR(SalesTargets.EndDate) = {year} AND MONTH(SalesTargets.EndDate) = {month}";
-                } else if (year != null)
+                }
+                else if (year != null)
                     t += $" WHERE YEAR(SalesTargets.EndDate) = {year}";
                 else if (month != null)
                     t += $" WHERE MONTH(SalesTargets.EndDate) = {month}";
@@ -470,7 +473,8 @@ namespace ShowroomData
 
             foreach (DataRow row in query.Rows)
             {
-                var curr = new {
+                var curr = new
+                {
                     SourceName = row.Field<string>("Name"),
                     InEnterId = row.Field<string>("InEnterId"),
                     QuantityPurchase = row.Field<int>("QuantityPurchase"),
@@ -481,7 +485,7 @@ namespace ShowroomData
 
                 table.Rows.Add(curr.SourceName, curr.InEnterId, curr.QuantityPurchase, curr.ProductName, curr.PurchasePrice, curr.Status);
             }
-            
+
 
             dataGridView1.DataSource = table;
             for (int i = 0; i < dataGridView1.Columns.Count; i++)
@@ -944,6 +948,17 @@ namespace ShowroomData
         {
             string q = txtEmployeeQuery.Text.Trim().ToLower();
             RenderReportEmployee();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SearchAll searchForm = new SearchAll();
+            searchForm.ShowDialog();
         }
     }
 }

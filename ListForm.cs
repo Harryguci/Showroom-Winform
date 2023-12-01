@@ -2,6 +2,7 @@
 using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Windows.Forms;
 
 namespace ShowroomData
@@ -434,9 +435,9 @@ namespace ShowroomData
                 dtBirthDay.Height = 100;
                 dtBirthDay.TextChanged += SearchTextBox_Changed;
 
-                RoundTextBox.SetPadding(txtEmployee, new Padding(5));
-                RoundTextBox.SetPadding(txtClient, new Padding(5));
-                RoundTextBox.SetPadding(txtProduct, new Padding(5));
+                RoundTextBox.SetPadding(txtEmployee, new Padding(5, 5, 2, 2));
+                RoundTextBox.SetPadding(txtClient, new Padding(5, 5, 2, 2));
+                RoundTextBox.SetPadding(txtProduct, new Padding(5, 5, 2, 2));
             }
         }
 
@@ -604,14 +605,15 @@ namespace ShowroomData
         }
         private void SearchTextBox_Changed(object? sender, EventArgs e)
         {
-            HandleSearch();
+            dt.DataSource = HandleSearch();
         }
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
-            var dataTable = HandleSearch();
-            if (dataTable.Rows.Count == 0)
+            dt.DataSource = HandleSearch();
+            if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Không tìm thấy kết quả nào", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -703,7 +705,7 @@ namespace ShowroomData
         {
             WindowState = WindowState == FormWindowState.Maximized
                 ? FormWindowState.Normal : FormWindowState.Maximized;
-            ClientSize = new Size(1000, 500);
+            ClientSize = new Size(PreferredSize.Width / 2, PreferredSize.Height / 2);
         }
 
         private void Layout_Resize(object sender, EventArgs e)
@@ -713,7 +715,7 @@ namespace ShowroomData
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshData();
         }
@@ -793,17 +795,6 @@ namespace ShowroomData
             else if (whereCondition != string.Empty)
                 query = $"select Top {limits} * from {table} where {whereCondition}";
 
-            //dt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            //dt.Location = new Point(0, 0);
-            //dt.Size = new Size(panelContent.Width - 50, panelContent.Height - panelFooter.Height - 50);
-            //dt.AutoSize = false; // set the AutoSize property to false
-            //dt.ScrollBars = ScrollBars.Both;
-            //dt.Name = "dataGridView1";
-            //dt.RowTemplate.Height = 35;
-            //dt.TabIndex = 2;
-            //dt.CellValueChanged += dt_CellValueChanged;
-            //panelContent.AutoScroll = true;
-            //panelContent.Controls.Add(dt);
             try
             {
                 DataTable dtResult = processDb.GetData(query);
@@ -838,15 +829,20 @@ namespace ShowroomData
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         if (dt.Rows[i].Cells[genderIndex].Value != null
+                            && dt.Rows[i].Cells[genderIndex].Value != DBNull.Value
                             && (bool)dt.Rows[i].Cells[genderIndex].Value)
                         {
                             dt.Rows[i].Cells[dt.Columns.IndexOf(dt.Columns["gendertext"])].Value = "Nam";
                         }
                         else if (dt.Rows[i].Cells[genderIndex].Value != null
+                            && dt.Rows[i].Cells[genderIndex].Value != DBNull.Value
                             && (bool)dt.Rows[i].Cells[genderIndex].Value == false)
                         {
                             dt.Rows[i].Cells[dt.Columns.IndexOf(dt.Columns["gendertext"])].Value = "Nữ";
                         }
+                        else if (dt.Rows[i].Cells[genderIndex].Value == DBNull.Value)
+                            dt.Rows[i].Cells[dt.Columns.IndexOf(dt.Columns["gendertext"])].Value = "Nữ";
+
                     }
                 }
 
@@ -866,25 +862,6 @@ namespace ShowroomData
                     }
                 }
 
-                //// Added Formating for dataGridView Cells Formating
-                //dt.CellFormatting += dt_CellFormating;
-
-                //// Styles
-                //dt.BackgroundColor = Color.FromArgb(200, 200, 255);
-                //dt.BorderStyle = BorderStyle.None;
-                //dt.GridColor = Color.FromArgb(230, 230, 255);
-
-                //dt.EnableHeadersVisualStyles = false;
-                //// Create a DataGridViewCellStyle object for the header
-                //DataGridViewCellStyle style = new DataGridViewCellStyle();
-                //style.BackColor = Color.FromArgb(50, 50, 150); // Set the background color
-                //style.ForeColor = Color.White; // Set the foreground color
-                //style.Font = new Font("Roboto", 12f, FontStyle.Bold); // Set the font style
-
-                //// Apply the style to the header
-                //dt.ColumnHeadersDefaultCellStyle = style;
-                //dt.ReadOnly = true;
-
                 dtResult.Dispose();
             }
             catch (Exception ex)
@@ -898,10 +875,15 @@ namespace ShowroomData
         {
             if (e.Value == System.DBNull.Value || e.Value == null)
             {
-                if (e.DesiredType.Name == "String")
+                if (e.DesiredType != null && e.DesiredType.Name == "String")
                 {
                     e.Value = "";
                 }
+                if (e.DesiredType != null && e.DesiredType.Name == "Boolean")
+                {
+                    e.Value = false;
+                }
+
                 return;
             }
 
@@ -935,15 +917,6 @@ namespace ShowroomData
             //savedBtn.Enabled = true;
         }
 
-        private void Layout_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //if (MessageBox.Show("Bạn có muốn thoát",
-            //    "Thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
-            //{
-            //    e.Cancel = true;
-            //}
-        }
-
         private void Layout_FormClosed(object sender, FormClosedEventArgs e)
         {
             Dispose();
@@ -958,23 +931,24 @@ namespace ShowroomData
                 var selected = dt.SelectedRows[0].Cells;
                 var id = (string)selected[0].Value;
                 var query = processDb.GetData($"SELECT * FROM EMPLOYEES WHERE EMPLOYEEID = N'{id.Trim()}'");
+                var response = query.Rows[0];
                 if (query.Rows.Count <= 0) return;
 
                 Employee employee = new Employee()
                 {
-                    EmployeeId = query.Rows[0].Field<string>("EmployeeId") ?? "",
-                    Firstname = query.Rows[0].Field<string>("Firstname") ?? "",
-                    Lastname = query.Rows[0].Field<string>("Lastname") ?? "",
-                    DateBirth = query.Rows[0].Field<DateTime>("DateBirth"),
-                    Phone = query.Rows[0].Field<string>("PhoneNumber"),
-                    Gender = query.Rows[0].Field<bool>("Gender"),
-                    Cccd = query.Rows[0].Field<string>("CCCD"),
-                    Position = query.Rows[0].Field<string>("Position"),
-                    StartDate = query.Rows[0].Field<DateTime>("StartDate"),
-                    Salary = query.Rows[0].Field<int>("Salary"),
-                    Email = query.Rows[0].Field<string>("Email"),
-                    Deleted = query.Rows[0].Field<bool>("Deleted"),
-                    Url_image = query.Rows[0].Field<string>("Url_image"),
+                    EmployeeId = response.Field<string>("EmployeeId") ?? "",
+                    Firstname = response.Field<string>("Firstname") ?? "",
+                    Lastname = response.Field<string>("Lastname") ?? "",
+                    DateBirth = response.Field<DateTime>("DateBirth"),
+                    Phone = response.Field<string>("PhoneNumber"),
+                    Gender = response.Field<bool>("Gender"),
+                    Cccd = response.Field<string>("CCCD"),
+                    Position = response.Field<string>("Position"),
+                    StartDate = response.Field<DateTime>("StartDate"),
+                    Salary = response.Field<int>("Salary"),
+                    Email = response.Field<string>("Email"),
+                    Deleted = response.Field<bool>("Deleted"),
+                    Url_image = response.Field<string>("Url_image"),
                 };
 
                 UpdateInfoForm updateInfoForm = new UpdateInfoForm(employee, this);
@@ -991,6 +965,7 @@ namespace ShowroomData
                 var id = (string)selected[0].Value;
                 var query = processDb.GetData($"SELECT * FROM CUSTOMERS WHERE ClientId = N'{id.Trim()}'");
                 var response = query.Rows[0];
+
                 if (query.Rows.Count <= 0) return;
 
                 Customer customer = new Customer()
@@ -1007,11 +982,11 @@ namespace ShowroomData
                     Deleted = response.Field<bool>("Deleted"),
                 };
 
-                CreateUpdateCustomer updateForm = new CreateUpdateCustomer(this, title: "Cập nhật khách hàng", customer);
-                //updateForm.FormClosed += (e, args) =>
-                //{
-                //    RefreshData();
-                //};
+                UpdateCustomer updateForm = new UpdateCustomer(customer, this);
+                updateForm.FormClosed += (e, args) =>
+                {
+                    RefreshData();
+                };
                 updateForm.ShowDialog(this);
             }
             else if (listType == ListType.PRODUCTS)
@@ -1075,7 +1050,7 @@ namespace ShowroomData
                     InEnterId = response.Field<string>("InEnterId") ?? "",
                     SourceId = response.Field<string>("SourceId") ?? "",
                     ProductId = response.Field<string>("ProductId") ?? "",
-                    EnteredDate = response.Field<DateTime>("EnteredDate"),
+                    EnteredDate = response.Field<DateTime>("Date"),
                     QuantityPurchase = response.Field<int>("QuantityPurchase"),
                     Status = response.Field<string>("Status") ?? "",
                     Deleted = response.Field<bool>("Deleted")
@@ -1102,12 +1077,11 @@ namespace ShowroomData
                 };
 
                 UpdateSaleInvoice updateSaleInvoice = new UpdateSaleInvoice(salesInvoice, this);
-                updateSaleInvoice.Show();
-
                 updateSaleInvoice.FormClosed += (f, args) =>
                 {
                     RefreshData();
                 };
+                updateSaleInvoice.Show();
             }
             else if (listType == ListType.SALESTARGETS)
             {
@@ -1181,21 +1155,25 @@ namespace ShowroomData
             if (listType == ListType.EMPLOYEES)
             {
                 var selected = dt.SelectedRows[0].Cells;
+                var id = (string)selected[0].Value;
+                var query = processDb.GetData($"SELECT * FROM EMPLOYEES WHERE EMPLOYEEID = N'{id.Trim()}'");
+                if (query.Rows.Count <= 0) return;
 
                 Employee employee = new Employee()
                 {
-                    EmployeeId = selected[0].Value != DBNull.Value ? (string)selected[0].Value : "",
-                    Firstname = selected[1].Value != DBNull.Value ? (string)selected[1].Value : "",
-                    Lastname = selected[2].Value != DBNull.Value ? (string)selected[2].Value : "",
-                    DateBirth = selected[3].Value != DBNull.Value ? (DateTime?)selected[3].Value : DateTime.Now,
-                    Phone = selected[4].Value != DBNull.Value ? (string)selected[4].Value : "",
-                    Gender = selected[5].Value != DBNull.Value ? (bool)selected[5].Value : true,
-                    Cccd = selected[6].Value != DBNull.Value ? (string)selected[6].Value : "",
-                    Position = selected[7].Value != DBNull.Value ? (string?)selected[7].Value : "",
-                    StartDate = selected[8].Value != DBNull.Value ? (DateTime?)selected[8].Value : DateTime.Now,
-                    Salary = selected[9].Value != DBNull.Value ? Convert.ToInt32(selected[9].Value) : 0,
-                    Email = selected[10].Value != DBNull.Value ? (string)selected[10].Value : "",
-                    Deleted = selected[11].Value != DBNull.Value ? (bool)selected[11].Value : false
+                    EmployeeId = query.Rows[0].Field<string>("EmployeeId") ?? "",
+                    Firstname = query.Rows[0].Field<string>("Firstname") ?? "",
+                    Lastname = query.Rows[0].Field<string>("Lastname") ?? "",
+                    DateBirth = query.Rows[0].Field<DateTime>("DateBirth"),
+                    Phone = query.Rows[0].Field<string>("PhoneNumber"),
+                    Gender = query.Rows[0].Field<bool>("Gender"),
+                    Cccd = query.Rows[0].Field<string>("CCCD"),
+                    Position = query.Rows[0].Field<string>("Position"),
+                    StartDate = query.Rows[0].Field<DateTime>("StartDate"),
+                    Salary = query.Rows[0].Field<int>("Salary"),
+                    Email = query.Rows[0].Field<string>("Email"),
+                    Deleted = query.Rows[0].Field<bool>("Deleted"),
+                    Url_image = query.Rows[0].Field<string>("Url_image"),
                 };
 
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này không?",
@@ -1203,8 +1181,17 @@ namespace ShowroomData
 
                 if (result == DialogResult.Yes)
                 {
-                    string query = $"DELETE FROM Employees WHERE EmployeeId = N'{employee.EmployeeId}'";
-                    processDb.UpdateData(query);
+                    processDb.UpdateData($"UPDATE account SET EmployeeId = NULL WHERE EMPLOYEEID = N'{employee.EmployeeId.Trim()}'");
+                    processDb.UpdateData($"UPDATE SalesTargets SET EMPLOYEEID = NULL WHERE EMPLOYEEID = N'{employee.EmployeeId.Trim()}'");
+                    processDb.UpdateData($"UPDATE SALESINVOICES SET EmployeeId = NULL WHERE EMPLOYEEID = N'{employee.EmployeeId.Trim()}'");
+                    try
+                    {
+                        processDb.UpdateData($"UPDATE TASKS SET EmployeeId = NULL WHERE EMPLOYEEID = N'{employee.EmployeeId.Trim()}'");
+                    }
+                    catch {; }
+
+                    string q = $"DELETE FROM Employees WHERE EmployeeId = N'{employee.EmployeeId}'";
+                    processDb.UpdateData(q);
                 }
             }
             else if (listType == ListType.CUSTOMERS)
@@ -1409,6 +1396,12 @@ namespace ShowroomData
         private void btnSmallForm_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnSmallSearch_Clicked(object sender, EventArgs e)
+        {
+            SearchAll searchForm = new SearchAll();
+            searchForm.ShowDialog();
         }
     }
 }

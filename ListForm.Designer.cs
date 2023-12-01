@@ -38,6 +38,7 @@
             btnDelete = new Button();
             btnBack = new Button();
             panel1 = new Panel();
+            btnSmallSearch = new Button();
             btnHideForm = new Button();
             btnChangeSizeForm = new Button();
             btnSmallBack = new Button();
@@ -104,7 +105,7 @@
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Làm mới";
             btnRefresh.UseVisualStyleBackColor = true;
-            btnRefresh.Click += button1_Click;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // btnCreate
             // 
@@ -175,6 +176,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnSmallSearch);
             panel1.Controls.Add(btnHideForm);
             panel1.Controls.Add(btnChangeSizeForm);
             panel1.Controls.Add(btnSmallBack);
@@ -185,6 +187,19 @@
             panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
             panel1.MouseDown += Form_MouseDown;
+            // 
+            // btnSmallSearch
+            // 
+            btnSmallSearch.BackgroundImage = Properties.Resources.magnifying_glass;
+            btnSmallSearch.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSmallSearch.FlatAppearance.BorderSize = 0;
+            btnSmallSearch.FlatStyle = FlatStyle.Flat;
+            btnSmallSearch.Location = new Point(11, 10);
+            btnSmallSearch.Name = "btnSmallSearch";
+            btnSmallSearch.Size = new Size(30, 30);
+            btnSmallSearch.TabIndex = 3;
+            btnSmallSearch.UseVisualStyleBackColor = true;
+            btnSmallSearch.Click += btnSmallSearch_Clicked;
             // 
             // btnHideForm
             // 
@@ -280,7 +295,6 @@
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "ListForm";
             Text = "Showroom - Management System";
-            FormClosing += Layout_FormClosing;
             FormClosed += Layout_FormClosed;
             Load += Form_Load;
             Resize += Layout_Resize;
@@ -314,5 +328,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private Button btnChangeSizeForm;
         private Button btnHideForm;
+        private Button btnSmallSearch;
     }
 }

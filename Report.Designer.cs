@@ -31,6 +31,7 @@ namespace ShowroomData
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnBack = new Button();
             pictureBox1 = new PictureBox();
             lblTitle = new Label();
             dataGridView1 = new DataGridView();
@@ -48,6 +49,7 @@ namespace ShowroomData
             lblEmployeeName = new Label();
             txtMonth = new RoundTextBox();
             lblMonth = new Label();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -57,12 +59,28 @@ namespace ShowroomData
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(50, 50, 150);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnBack);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1213, 138);
             panel1.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnBack.BackgroundImage = Properties.Resources.pngaaa_com_4834605;
+            btnBack.BackgroundImageLayout = ImageLayout.Zoom;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Location = new Point(1143, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(45, 40);
+            btnBack.TabIndex = 1;
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // pictureBox1
             // 
@@ -312,6 +330,20 @@ namespace ShowroomData
             lblMonth.TabIndex = 5;
             lblMonth.Text = "Tháng";
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackgroundImage = Properties.Resources.magnifying_glass;
+            button1.BackgroundImageLayout = ImageLayout.Zoom;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(1103, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(34, 40);
+            button1.TabIndex = 1;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Report
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -362,5 +394,7 @@ namespace ShowroomData
         private RoundTextBox txtYear;
         private RoundTextBox txtMonth;
         private Label lblMonth;
+        private Button btnBack;
+        private Button button1;
     }
 }

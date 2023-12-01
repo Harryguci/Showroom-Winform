@@ -251,6 +251,7 @@
             // 
             // birthDateTimePicker
             // 
+            birthDateTimePicker.Format = DateTimePickerFormat.Short;
             birthDateTimePicker.Location = new Point(176, 238);
             birthDateTimePicker.Name = "birthDateTimePicker";
             birthDateTimePicker.Size = new Size(395, 26);

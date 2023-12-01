@@ -11,6 +11,7 @@ namespace ShowroomData
         private Layout? parent;
         private int indexImage = 0;
         private Products currProduct;
+        private bool isChanged = false;
 
         // Constructor
         public UpdateProduct(Products product, Form? _parent)
@@ -36,6 +37,12 @@ namespace ShowroomData
             txtSalePrice.Text = product.SalePrice.ToString();
             txtQuantity.Text = product.Quantity.ToString();
             txtStatus.Text = product.Status;
+
+            txtName.TextChanged += InfoChanged;
+            txtPurchasePrice.TextChanged += InfoChanged;
+            txtSalePrice.TextChanged += InfoChanged;
+            txtQuantity.TextChanged += InfoChanged;
+            txtStatus.TextChanged += InfoChanged;
 
             Padding p = new Padding(5, 5, 1, 1);
             RoundTextBox.SetPadding(txtName, p);
@@ -71,6 +78,11 @@ namespace ShowroomData
                     pictureBox2.ImageLocation = url;
                 }
             }
+        }
+
+        private void InfoChanged(object? sender, EventArgs e)
+        {
+            isChanged = true;
         }
 
 
@@ -197,7 +209,13 @@ namespace ShowroomData
 
         private void btnBack_Click_2(object sender, EventArgs e)
         {
-            Close();
+            if (!isChanged)
+                Close();
+            else
+            {
+                MessageBox.Show("Bạn có muốn thoát? Thông tin chưa lưu sẽ bị xóa.", 
+                    "Thông báo", MessageBoxButtons.OK);
+            }
         }
 
         private void helpBtn_Click(object sender, EventArgs e)
@@ -216,7 +234,7 @@ namespace ShowroomData
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
+            if (!isChanged || MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
                 == DialogResult.Yes) Close();
         }
 
@@ -266,6 +284,7 @@ namespace ShowroomData
         private void CleanForm()
         {
             //TO DO
+            isChanged = false;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

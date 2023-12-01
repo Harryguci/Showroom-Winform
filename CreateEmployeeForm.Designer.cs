@@ -49,14 +49,18 @@
             label5 = new Label();
             birthDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
+            btnChangeAvt = new Button();
+            pictureBoxAvatar = new PictureBox();
             comboBox1 = new ComboBox();
             label10 = new Label();
+            label7 = new Label();
             label9 = new Label();
             grbGender = new GroupBox();
             rdbFemale = new RadioButton();
             rdbMale = new RadioButton();
             btnClean = new Button();
             btnCreate = new Button();
+            txtSalary = new TextBox();
             txtEmail = new TextBox();
             txtCCCD = new TextBox();
             label6 = new Label();
@@ -66,6 +70,7 @@
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).BeginInit();
             grbGender.SuspendLayout();
             SuspendLayout();
             // 
@@ -141,7 +146,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(928, 100);
+            panel1.Size = new Size(1144, 100);
             panel1.TabIndex = 100;
             panel1.MouseDown += Form_MouseDown;
             // 
@@ -153,7 +158,7 @@
             flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(928, 33);
+            flowLayoutPanel2.Size = new Size(1144, 33);
             flowLayoutPanel2.TabIndex = 102;
             flowLayoutPanel2.MouseDown += Form_MouseDown;
             // 
@@ -162,7 +167,7 @@
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
-            button1.Location = new Point(879, 0);
+            button1.Location = new Point(1095, 0);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(49, 33);
@@ -176,7 +181,7 @@
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
-            button2.Location = new Point(830, 0);
+            button2.Location = new Point(1046, 0);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(49, 33);
@@ -191,7 +196,7 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(355, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(364, 46);
+            lblHeading.Size = new Size(252, 31);
             lblHeading.TabIndex = 100;
             lblHeading.Text = "Tạo mới nhân viên";
             // 
@@ -200,7 +205,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(36, 29);
+            label1.Size = new Size(26, 20);
             label1.TabIndex = 2;
             label1.Text = "ID";
             // 
@@ -209,14 +214,15 @@
             txtId.Enabled = false;
             txtId.Location = new Point(132, 34);
             txtId.Name = "txtId";
-            txtId.Size = new Size(469, 35);
+            txtId.Size = new Size(469, 26);
+            txtId.TabIndex = 101;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(42, 92);
             label2.Name = "label2";
-            label2.Size = new Size(44, 29);
+            label2.Size = new Size(30, 20);
             label2.TabIndex = 2;
             label2.Text = "Họ";
             // 
@@ -224,7 +230,7 @@
             // 
             txtLastname.Location = new Point(132, 89);
             txtLastname.Name = "txtLastname";
-            txtLastname.Size = new Size(202, 27);
+            txtLastname.Size = new Size(202, 26);
             txtLastname.TabIndex = 1;
             // 
             // label3
@@ -232,7 +238,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(345, 95);
             label3.Name = "label3";
-            label3.Size = new Size(56, 29);
+            label3.Size = new Size(36, 20);
             label3.TabIndex = 2;
             label3.Text = "Tên";
             // 
@@ -240,7 +246,7 @@
             // 
             txtFirstname.Location = new Point(407, 92);
             txtFirstname.Name = "txtFirstname";
-            txtFirstname.Size = new Size(194, 35);
+            txtFirstname.Size = new Size(194, 26);
             txtFirstname.TabIndex = 2;
             // 
             // label4
@@ -248,7 +254,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(42, 169);
             label4.Name = "label4";
-            label4.Size = new Size(62, 29);
+            label4.Size = new Size(41, 20);
             label4.TabIndex = 2;
             label4.Text = "SDT";
             // 
@@ -256,7 +262,7 @@
             // 
             txtPhone.Location = new Point(132, 166);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(217, 35);
+            txtPhone.Size = new Size(217, 26);
             txtPhone.TabIndex = 3;
             txtPhone.KeyPress += txtPhone_KeyPress;
             // 
@@ -265,22 +271,25 @@
             label5.AutoSize = true;
             label5.Location = new Point(42, 244);
             label5.Name = "label5";
-            label5.Size = new Size(119, 29);
+            label5.Size = new Size(78, 20);
             label5.TabIndex = 2;
             label5.Text = "Ngày sinh";
             // 
             // birthDateTimePicker
             // 
+            birthDateTimePicker.Format = DateTimePickerFormat.Short;
             birthDateTimePicker.Location = new Point(176, 238);
             birthDateTimePicker.Name = "birthDateTimePicker";
-            birthDateTimePicker.Size = new Size(317, 27);
+            birthDateTimePicker.Size = new Size(317, 26);
             birthDateTimePicker.TabIndex = 6;
             // 
             // panel3
             // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(btnChangeAvt);
+            panel3.Controls.Add(pictureBoxAvatar);
             panel3.Controls.Add(comboBox1);
             panel3.Controls.Add(label10);
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(grbGender);
             panel3.Controls.Add(btnClean);
@@ -289,6 +298,7 @@
             panel3.Controls.Add(txtLastname);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label1);
+            panel3.Controls.Add(txtSalary);
             panel3.Controls.Add(txtEmail);
             panel3.Controls.Add(txtCCCD);
             panel3.Controls.Add(txtPhone);
@@ -298,10 +308,30 @@
             panel3.Controls.Add(label2);
             panel3.Controls.Add(txtFirstname);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(286, 116);
+            panel3.Location = new Point(227, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
+            panel3.Size = new Size(964, 512);
             panel3.TabIndex = 100;
+            // 
+            // btnChangeAvt
+            // 
+            btnChangeAvt.Location = new Point(815, 338);
+            btnChangeAvt.Name = "btnChangeAvt";
+            btnChangeAvt.Size = new Size(126, 32);
+            btnChangeAvt.TabIndex = 103;
+            btnChangeAvt.Text = "Thêm ảnh";
+            btnChangeAvt.UseVisualStyleBackColor = true;
+            btnChangeAvt.Click += btnChangeAvt_Clicked;
+            // 
+            // pictureBoxAvatar
+            // 
+            pictureBoxAvatar.BackColor = Color.White;
+            pictureBoxAvatar.Location = new Point(640, 37);
+            pictureBoxAvatar.Name = "pictureBoxAvatar";
+            pictureBoxAvatar.Size = new Size(301, 295);
+            pictureBoxAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAvatar.TabIndex = 102;
+            pictureBoxAvatar.TabStop = false;
             // 
             // comboBox1
             // 
@@ -309,24 +339,33 @@
             comboBox1.Items.AddRange(new object[] { "NV bán hàng", "NV bảo trì", "NV phục vụ", "Quản lý" });
             comboBox1.Location = new Point(423, 370);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(178, 27);
-            comboBox1.TabIndex = 10;
+            comboBox1.Size = new Size(178, 28);
+            comboBox1.TabIndex = 12;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Location = new Point(341, 373);
             label10.Name = "label10";
-            label10.Size = new Size(60, 29);
+            label10.Size = new Size(40, 20);
             label10.TabIndex = 1;
             label10.Text = "Vị trí";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(333, 306);
+            label7.Name = "label7";
+            label7.Size = new Size(54, 20);
+            label7.TabIndex = 1;
+            label7.Text = "Lương";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Location = new Point(42, 309);
             label9.Name = "label9";
-            label9.Size = new Size(74, 29);
+            label9.Size = new Size(48, 20);
             label9.TabIndex = 1;
             label9.Text = "Email";
             // 
@@ -346,7 +385,7 @@
             rdbFemale.AutoSize = true;
             rdbFemale.Location = new Point(103, 39);
             rdbFemale.Name = "rdbFemale";
-            rdbFemale.Size = new Size(48, 23);
+            rdbFemale.Size = new Size(47, 24);
             rdbFemale.TabIndex = 5;
             rdbFemale.TabStop = true;
             rdbFemale.Text = "Nữ";
@@ -357,7 +396,7 @@
             rdbMale.AutoSize = true;
             rdbMale.Location = new Point(6, 39);
             rdbMale.Name = "rdbMale";
-            rdbMale.Size = new Size(61, 23);
+            rdbMale.Size = new Size(60, 24);
             rdbMale.TabIndex = 4;
             rdbMale.TabStop = true;
             rdbMale.Text = "Nam";
@@ -374,7 +413,7 @@
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
-            btnClean.TabIndex = 12;
+            btnClean.TabIndex = 14;
             btnClean.Text = "Nhập mới";
             btnClean.UseVisualStyleBackColor = false;
             btnClean.Click += btnClean_Click;
@@ -390,33 +429,32 @@
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
-            btnCreate.TabIndex = 11;
+            btnCreate.TabIndex = 13;
             btnCreate.Text = "Tạo";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += createBtn_Click;
+            // 
+            // txtSalary
+            // 
+            txtSalary.Location = new Point(423, 303);
+            txtSalary.Name = "txtSalary";
+            txtSalary.Size = new Size(178, 26);
+            txtSalary.TabIndex = 10;
+            txtSalary.KeyPress += textBox1_KeyPress;
             // 
             // txtEmail
             // 
             txtEmail.Location = new Point(132, 306);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(178, 27);
+            txtEmail.Size = new Size(178, 26);
             txtEmail.TabIndex = 9;
-            // 
-            // txtSalary
-            // 
-            //txtSalary.Location = new Point(423, 300);
-            //txtSalary.Name = "txtSalary";
-            //txtSalary.Size = new Size(178, 27);
-            //txtSalary.TabIndex = 8;
-            //txtSalary.Text = " ";
-            //txtSalary.KeyPress += textBox4_KeyPress;
             // 
             // txtCCCD
             // 
             txtCCCD.Location = new Point(132, 370);
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(178, 35);
-            txtCCCD.TabIndex = 7;
+            txtCCCD.Size = new Size(178, 26);
+            txtCCCD.TabIndex = 11;
             txtCCCD.KeyPress += txtCCCD_KeyPress;
             // 
             // label6
@@ -424,15 +462,15 @@
             label6.AutoSize = true;
             label6.Location = new Point(42, 373);
             label6.Name = "label6";
-            label6.Size = new Size(81, 29);
+            label6.Size = new Size(54, 20);
             label6.TabIndex = 2;
             label6.Text = "CCCD";
             // 
             // CreateEmployeeForm
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1280, 640);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -451,6 +489,7 @@
             flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAvatar).EndInit();
             grbGender.ResumeLayout(false);
             grbGender.PerformLayout();
             ResumeLayout(false);
@@ -490,5 +529,9 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
+        private Label label7;
+        private TextBox txtSalary;
+        private Button btnChangeAvt;
+        private PictureBox pictureBoxAvatar;
     }
 }

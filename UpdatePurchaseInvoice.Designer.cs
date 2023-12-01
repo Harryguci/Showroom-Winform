@@ -225,6 +225,7 @@
             // 
             // dayDateTimePicker
             // 
+            dayDateTimePicker.Format = DateTimePickerFormat.Short;
             dayDateTimePicker.Location = new Point(233, 240);
             dayDateTimePicker.Name = "dayDateTimePicker";
             dayDateTimePicker.Size = new Size(368, 26);

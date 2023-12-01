@@ -14,8 +14,8 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
-
-        public CreateSource(Form? _parent)
+        private bool isCreateOne = false;
+        public CreateSource(Form? _parent, bool isCreateOne = false)
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
@@ -31,6 +31,7 @@ namespace ShowroomData
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
+            this.isCreateOne = isCreateOne;
         }
 
         // Constructor
@@ -140,6 +141,9 @@ namespace ShowroomData
 
             // Earse current data
             CleanForm();
+
+            // Check if Create one to close the form
+            if (isCreateOne) Close();
 
             // Refresh Data
             if (parent == null) return;
