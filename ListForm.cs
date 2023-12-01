@@ -194,11 +194,11 @@ namespace ShowroomData
             int x = panelFooter.Width / 3;
             int y = panelFooter.Height / 2;
 
-            if (listType == "employees" || listType == "purchaseinvoices" || listType == "customers" || listType == "salesinvoices")
+            if (listType == "employees"
+                || listType == "purchaseinvoices"
+                || listType == "customers"
+                || listType == "salesinvoices")
             {
-                //lbMain = new Label();
-                //txtMain = new RoundTextBox();
-
                 panelFooter.Controls.Add(lbMain);
                 panelFooter.Controls.Add(txtMain);
                 lbMain.Text = "Tên | Mã";
@@ -221,7 +221,6 @@ namespace ShowroomData
                 btnSearch.Location = new Point(x * 2 + 100, y / 2);
                 btnSearch.Click += BtnSearch_Click;
                 btnSearch.Font = new Font("Roboto", 12F, FontStyle.Bold);
-
             }
 
 
