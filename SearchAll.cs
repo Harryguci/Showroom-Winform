@@ -40,13 +40,20 @@ namespace ShowroomData
 
         private void SearchAll_Load(object sender, EventArgs e)
         {
-            textBox1.Focus();
+            if (filter.Contains("employee"))
+            {
+                txtSearchQ.Text = "E";
+            }
+            else if (filter.Contains("customer")) { txtSearchQ.Text = "C"; }
+            else if (filter.Contains("product")) { txtSearchQ.Text = "P"; }
+
+            txtSearchQ.Focus();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
-            string q = textBox1.Text.Trim();
+            string q = txtSearchQ.Text.Trim();
 
             if (filter == "" || filter.Contains("product"))
             {
@@ -190,17 +197,17 @@ namespace ShowroomData
                             Close();
                         };
                     else
-                    label.Click += (label, args) =>
-                    {
-                        UpdateCustomer detailForm = new UpdateCustomer(customer, this);
-                        Hide();
-                        detailForm.FormClosed += (detailForm, args) =>
+                        label.Click += (label, args) =>
                         {
-                            Show();
+                            UpdateCustomer detailForm = new UpdateCustomer(customer, this);
+                            Hide();
+                            detailForm.FormClosed += (detailForm, args) =>
+                            {
+                                Show();
+                            };
+                            detailForm.TopMost = true;
+                            detailForm.Show();
                         };
-                        detailForm.TopMost = true;
-                        detailForm.Show();
-                    };
 
                     flowLayoutPanel1.Controls.Add(label);
                 }

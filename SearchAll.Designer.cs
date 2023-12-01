@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            textBox1 = new TextBox();
+            txtSearchQ = new TextBox();
             btnClose = new Button();
             btnSearch = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -39,7 +39,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(50, 50, 150);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtSearchQ);
             panel1.Controls.Add(btnClose);
             panel1.Controls.Add(btnSearch);
             panel1.Dock = DockStyle.Top;
@@ -49,18 +49,18 @@
             panel1.TabIndex = 0;
             panel1.MouseDown += Form_MouseDown;
             // 
-            // textBox1
+            // txtSearchQ
             // 
-            textBox1.BackColor = Color.FromArgb(50, 50, 150);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(9, 17);
-            textBox1.Margin = new Padding(0);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "SEARCH...";
-            textBox1.Size = new Size(357, 16);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtSearchQ.BackColor = Color.FromArgb(50, 50, 150);
+            txtSearchQ.BorderStyle = BorderStyle.None;
+            txtSearchQ.ForeColor = Color.White;
+            txtSearchQ.Location = new Point(9, 17);
+            txtSearchQ.Margin = new Padding(0);
+            txtSearchQ.Name = "txtSearchQ";
+            txtSearchQ.PlaceholderText = "SEARCH...";
+            txtSearchQ.Size = new Size(357, 16);
+            txtSearchQ.TabIndex = 1;
+            txtSearchQ.TextChanged += textBox1_TextChanged;
             // 
             // btnClose
             // 
@@ -130,7 +130,7 @@
         #endregion
 
         private Panel panel1;
-        private TextBox textBox1;
+        private TextBox txtSearchQ;
         private Button btnSearch;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnClose;
