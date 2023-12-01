@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class UpdateInfoForm
     {
@@ -39,13 +41,13 @@
             button2 = new Button();
             lblHeading = new Label();
             label1 = new Label();
-            txtId = new TextBox();
+            txtId = new RoundTextBox();
             label2 = new Label();
-            txtFirstName = new TextBox();
+            txtFirstName = new RoundTextBox();
             label3 = new Label();
-            txtLastName = new TextBox();
+            txtLastName = new RoundTextBox();
             label4 = new Label();
-            txtPhone = new TextBox();
+            txtPhone = new RoundTextBox();
             label5 = new Label();
             birthDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
@@ -57,9 +59,11 @@
             rdbMale = new RadioButton();
             btnClean = new Button();
             btnCreate = new Button();
-            txtEmail = new TextBox();
-            txtCCCD = new TextBox();
+            txtEmail = new RoundTextBox();
+            txtCCCD = new RoundTextBox();
             label6 = new Label();
+            label7 = new Label();
+            txtSalary = new RoundTextBox();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -78,7 +82,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 640);
+            flowLayoutPanel1.Size = new Size(136, 624);
             flowLayoutPanel1.TabIndex = 10;
             flowLayoutPanel1.MouseDown += Form_MouseDown;
             // 
@@ -292,7 +296,9 @@
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(txtEmail);
+            panel3.Controls.Add(txtSalary);
             panel3.Controls.Add(txtCCCD);
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(txtPhone);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(txtId);
@@ -302,7 +308,7 @@
             panel3.Controls.Add(label3);
             panel3.Location = new Point(286, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
+            panel3.Size = new Size(634, 496);
             panel3.TabIndex = 100;
             // 
             // cbPosition
@@ -372,7 +378,7 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(480, 431);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -388,7 +394,7 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 454);
+            btnCreate.Location = new Point(348, 431);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -421,11 +427,28 @@
             label6.TabIndex = 2;
             label6.Text = "CCCD";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(42, 431);
+            label7.Name = "label7";
+            label7.Size = new Size(54, 20);
+            label7.TabIndex = 2;
+            label7.Text = "Lương";
+            // 
+            // txtSalary
+            // 
+            txtSalary.Location = new Point(131, 428);
+            txtSalary.Name = "txtSalary";
+            txtSalary.Size = new Size(178, 26);
+            txtSalary.TabIndex = 7;
+            txtSalary.KeyPress += txtCCCD_KeyPress_1;
+            // 
             // UpdateInfoForm
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1064, 624);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -483,5 +506,7 @@
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
+        private TextBox txtSalary;
+        private Label label7;
     }
 }

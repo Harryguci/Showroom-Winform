@@ -72,6 +72,8 @@ namespace ShowroomData
             }
             else if (sender.Equals(btnDevices))
                 formName = TableName.DEVICES;
+            else if (sender.Equals(btnSaleInvoice))
+                formName = TableName.SALEINVOICES;
             else formName = "employees";
 
             ListForm form = new ListForm(formName);

@@ -1,3 +1,4 @@
+using ShowroomData.ComponentGUI;
 using ShowroomData.Models;
 
 namespace ShowroomData
@@ -6,7 +7,7 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private ListForm? _parent;
-
+        private bool _isUpdating = false;
         // Constructor
         public UpdateInfoForm(Employee employee, Form? parent)
         {
@@ -31,6 +32,7 @@ namespace ShowroomData
             txtPhone.Text = employee.Phone;
             txtCCCD.Text = employee.Cccd;
             txtPhone.Text = employee.Phone;
+            txtSalary.Text = employee.Salary.ToString();
             //txtSalary.Text = employee.Salary.ToString();
             birthDateTimePicker.Value = employee.DateBirth != null ? employee.DateBirth.Value : DateTime.Now;
             txtEmail.Text = employee.Email;
@@ -39,6 +41,18 @@ namespace ShowroomData
             if (employee.Gender == true)
                 rdbMale.Checked = true;
             else rdbFemale.Checked = true;
+
+            txtId.TextChanged += textBox_textChanged;
+            txtFirstName.TextChanged += textBox_textChanged;
+            txtLastName.TextChanged += textBox_textChanged;
+            txtPhone.TextChanged += textBox_textChanged;
+            txtCCCD.TextChanged += textBox_textChanged;
+            txtSalary.TextChanged += textBox_textChanged;
+            txtEmail.TextChanged += textBox_textChanged;
+            birthDateTimePicker.TextChanged += textBox_textChanged;
+            cbPosition.TextChanged += textBox_textChanged;
+            rdbFemale.CheckedChanged += (rdb, args) => _isUpdating = true;
+            rdbMale.CheckedChanged += (rdb, args) => _isUpdating = true;
         }
 
         #region HANDLE FORM DRAGGING
@@ -69,13 +83,19 @@ namespace ShowroomData
         //
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Dispose();
+            if (!_isUpdating || MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?",
+                "Thông báo", MessageBoxButtons.YesNo)
+                == DialogResult.Yes) Close();
         }
 
         private void CreateEmployeeForm_Resize(object sender, EventArgs e)
         {
             lblHeading.Location = new Point((panel1.Width - lblHeading.Width) / 2,
                 lblHeading.Location.Y);
+        }
+
+        private void textBox_textChanged(object ? sender, EventArgs e) { 
+            _isUpdating = true;
         }
 
         private void txtCCCD_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -128,6 +148,7 @@ namespace ShowroomData
                 position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
+                salary = txtSalary.Text.Trim(),
                 gender = (rdbMale.Checked ? 1 : 0)
             };
 
@@ -142,6 +163,7 @@ namespace ShowroomData
             query += $"StartDate = '{curr.start}',";
             query += $"Email = '{curr.email}',";
             query += $"Deleted = 0,";
+            query += $"Salary = {curr.salary},";
             query += $"Url_image = ''";
             query += $" WHERE EmployeeId = N'{curr.id}'";
 
@@ -153,7 +175,7 @@ namespace ShowroomData
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-            if (_parent != null) _parent.RefeshData();
+            if (_parent != null) _parent.RefreshData();
 
             // Earse current data
             CleanForm();
@@ -164,6 +186,18 @@ namespace ShowroomData
         private void CreateEmployeeForm_Load(object sender, EventArgs e)
         {
             // ToDo
+            Padding p = new Padding(5, 5, 2, 2);
+
+            txtId.Multiline = txtLastName.Multiline = txtFirstName.Multiline = txtPhone.Multiline
+                = txtCCCD.Multiline = txtEmail.Multiline = txtSalary.Multiline = true;
+
+            RoundTextBox.SetPadding(txtId, p);
+            RoundTextBox.SetPadding(txtFirstName, p);
+            RoundTextBox.SetPadding(txtLastName, p);
+            RoundTextBox.SetPadding(txtEmail, p);
+            RoundTextBox.SetPadding(txtPhone, p);
+            RoundTextBox.SetPadding(txtCCCD, p);
+            RoundTextBox.SetPadding(txtSalary, p);
         }
 
         //
@@ -179,7 +213,7 @@ namespace ShowroomData
                 sdt = txtPhone.Text.Trim(),
                 birth = birthDateTimePicker.Value,
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
-                //salary = Convert.ToInt32(txtSalary.Text.Trim()),
+                salary = Convert.ToInt32(txtSalary.Text.Trim()),
                 position = cbPosition.Text != "--- Chọn ---" ? cbPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
@@ -254,7 +288,8 @@ namespace ShowroomData
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
+            if (!_isUpdating || MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?",
+                "Thông báo", MessageBoxButtons.YesNo)
                 == DialogResult.Yes) Close();
         }
 

@@ -38,8 +38,8 @@
             btnDelete = new Button();
             btnBack = new Button();
             panel1 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
+            btnHideForm = new Button();
+            btnChangeSizeForm = new Button();
             btnSmallBack = new Button();
             lblHeadingPage = new Label();
             panelContent = new Panel();
@@ -175,8 +175,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnHideForm);
+            panel1.Controls.Add(btnChangeSizeForm);
             panel1.Controls.Add(btnSmallBack);
             panel1.Controls.Add(lblHeadingPage);
             panel1.Dock = DockStyle.Top;
@@ -186,33 +186,33 @@
             panel1.TabIndex = 1;
             panel1.MouseDown += Form_MouseDown;
             // 
-            // button2
+            // btnHideForm
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackgroundImage = Properties.Resources.arrow_down;
-            button2.BackgroundImageLayout = ImageLayout.Zoom;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(854, 15);
-            button2.Name = "button2";
-            button2.Size = new Size(30, 30);
-            button2.TabIndex = 3;
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += btnSmallForm_Click;
+            btnHideForm.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnHideForm.BackgroundImage = Properties.Resources.arrow_down;
+            btnHideForm.BackgroundImageLayout = ImageLayout.Zoom;
+            btnHideForm.FlatAppearance.BorderSize = 0;
+            btnHideForm.FlatStyle = FlatStyle.Flat;
+            btnHideForm.Location = new Point(854, 15);
+            btnHideForm.Name = "btnHideForm";
+            btnHideForm.Size = new Size(30, 30);
+            btnHideForm.TabIndex = 3;
+            btnHideForm.UseVisualStyleBackColor = true;
+            btnHideForm.Click += btnSmallForm_Click;
             // 
-            // button1
+            // btnChangeSizeForm
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.BackgroundImage = Properties.Resources.increase_size_option;
-            button1.BackgroundImageLayout = ImageLayout.Zoom;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(894, 15);
-            button1.Name = "button1";
-            button1.Size = new Size(22, 22);
-            button1.TabIndex = 3;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += btnChangeSize_Click;
+            btnChangeSizeForm.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnChangeSizeForm.BackgroundImage = Properties.Resources.increase_size_option;
+            btnChangeSizeForm.BackgroundImageLayout = ImageLayout.Zoom;
+            btnChangeSizeForm.FlatAppearance.BorderSize = 0;
+            btnChangeSizeForm.FlatStyle = FlatStyle.Flat;
+            btnChangeSizeForm.Location = new Point(894, 15);
+            btnChangeSizeForm.Name = "btnChangeSizeForm";
+            btnChangeSizeForm.Size = new Size(22, 22);
+            btnChangeSizeForm.TabIndex = 3;
+            btnChangeSizeForm.UseVisualStyleBackColor = true;
+            btnChangeSizeForm.Click += btnChangeSize_Click;
             // 
             // btnSmallBack
             // 
@@ -256,9 +256,9 @@
             // 
             panelFooter.BackColor = Color.White;
             panelFooter.Dock = DockStyle.Bottom;
-            panelFooter.Location = new Point(0, 316);
+            panelFooter.Location = new Point(0, 262);
             panelFooter.Name = "panelFooter";
-            panelFooter.Size = new Size(964, 128);
+            panelFooter.Size = new Size(964, 182);
             panelFooter.TabIndex = 0;
             panelFooter.MouseDown += Form_MouseDown;
             // 
@@ -312,7 +312,7 @@
         private Button btnSmallBack;
         private ToolTip toolTip1;
         private ContextMenuStrip contextMenuStrip1;
-        private Button button1;
-        private Button button2;
+        private Button btnChangeSizeForm;
+        private Button btnHideForm;
     }
 }

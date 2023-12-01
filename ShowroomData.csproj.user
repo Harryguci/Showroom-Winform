@@ -7,6 +7,9 @@
     <Compile Update="Component1.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="ComponentGUI\CButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="ComponentGUI\CTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
