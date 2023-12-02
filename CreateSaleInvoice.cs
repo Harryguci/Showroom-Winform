@@ -79,11 +79,11 @@ namespace ShowroomData
                 id = Convert.ToString(count + 1);
 
                 while (id.Length < 3) id = "0" + id;
-                id = "IS" + id;
+                id = "SI" + id;
             }
             else
             {
-                id = "IS001";
+                id = "SI001";
             }
             return id;
         }

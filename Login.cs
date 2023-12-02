@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ShowroomData.ComponentGUI;
+using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
 
@@ -9,6 +10,7 @@ namespace ShowroomData
     {
         private ProcessDatabase _ProcessDatabase = new ProcessDatabase();
         private string txtpassword = string.Empty;
+        public static Account CURR_USER = new Account();
         public Layout2()
         {
             InitializeComponent();
@@ -99,6 +101,14 @@ namespace ShowroomData
 
             if (CheckLogin(username, password))
             {
+                var query = _ProcessDatabase.GetData($"SELECT * FROM ACCOUNT WHERE USERNAME = N'{username}'");
+
+                CURR_USER.EmployeeId = query.Rows[0].Field<string>("EmployeeId");
+                CURR_USER.Username = query.Rows[0].Field<string>("Username")??"";
+                CURR_USER.Level_account = query.Rows[0].Field<int>("Level_account");
+                //CURR_USER.CreateAt = query.Rows[0].Field<DateTime>("CreateAt");
+                //CURR_USER.DeleteAt = query.Rows[0].Field<DateTime>("DeleteAt");
+
                 Home form = new Home();
                 form.Show();
                 Hide(); // Hide the current Form.

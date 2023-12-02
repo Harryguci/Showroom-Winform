@@ -33,7 +33,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
+            btnCurrAccount = new Button();
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
@@ -50,6 +50,7 @@
             btnSaleInvoice = new Button();
             btnSource = new Button();
             btnDevices = new Button();
+            btnTask = new Button();
             toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -63,7 +64,7 @@
             // 
             flowLayoutPanel1.BackColor = Color.MidnightBlue;
             flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.Controls.Add(button1);
+            flowLayoutPanel1.Controls.Add(btnCurrAccount);
             flowLayoutPanel1.Controls.Add(button2);
             flowLayoutPanel1.Controls.Add(button3);
             flowLayoutPanel1.Controls.Add(button4);
@@ -92,20 +93,20 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnCurrAccount
             // 
-            button1.BackColor = Color.FromArgb(50, 50, 150);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 128);
-            button1.Margin = new Padding(0, 0, 0, 30);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 51);
-            button1.TabIndex = 2;
-            button1.Text = "Tài khoản";
-            button1.UseVisualStyleBackColor = true;
+            btnCurrAccount.BackColor = Color.FromArgb(50, 50, 150);
+            btnCurrAccount.FlatAppearance.BorderSize = 0;
+            btnCurrAccount.FlatStyle = FlatStyle.Flat;
+            btnCurrAccount.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCurrAccount.ForeColor = Color.White;
+            btnCurrAccount.Location = new Point(0, 128);
+            btnCurrAccount.Margin = new Padding(0, 0, 0, 30);
+            btnCurrAccount.Name = "btnCurrAccount";
+            btnCurrAccount.Size = new Size(136, 51);
+            btnCurrAccount.TabIndex = 2;
+            btnCurrAccount.Text = "Tài khoản";
+            btnCurrAccount.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -119,8 +120,9 @@
             button2.Name = "button2";
             button2.Size = new Size(136, 51);
             button2.TabIndex = 3;
-            button2.Text = "Lịch làm việc";
+            button2.Text = "Công việc";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -226,6 +228,7 @@
             flowLayoutPanel2.Controls.Add(btnSaleInvoice);
             flowLayoutPanel2.Controls.Add(btnSource);
             flowLayoutPanel2.Controls.Add(btnDevices);
+            flowLayoutPanel2.Controls.Add(btnTask);
             flowLayoutPanel2.Location = new Point(42, 30);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(1001, 462);
@@ -342,6 +345,21 @@
             btnDevices.UseVisualStyleBackColor = true;
             btnDevices.Click += HandleChangeForm;
             // 
+            // btnTask
+            // 
+            btnTask.BackgroundImage = Properties.Resources.list;
+            btnTask.BackgroundImageLayout = ImageLayout.Zoom;
+            btnTask.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnTask.FlatAppearance.BorderSize = 0;
+            btnTask.FlatStyle = FlatStyle.Flat;
+            btnTask.Location = new Point(671, 210);
+            btnTask.Margin = new Padding(20);
+            btnTask.Name = "btnTask";
+            btnTask.Size = new Size(177, 150);
+            btnTask.TabIndex = 0;
+            btnTask.UseVisualStyleBackColor = true;
+            btnTask.Click += HandleChangeForm;
+            // 
             // toolTip1
             // 
             toolTip1.BackColor = Color.DeepSkyBlue;
@@ -362,6 +380,8 @@
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Management System";
+            WindowState = FormWindowState.Maximized;
+            Load += Home_Load;
             flowLayoutPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -378,7 +398,7 @@
         private Panel panel2;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private Button button1;
+        private Button btnCurrAccount;
         private Button button2;
         private Button button3;
         private Button button4;
@@ -395,5 +415,6 @@
         private Button btnDevices;
         private Button btnLogout;
         private Button btnSearchAll;
+        private Button btnTask;
     }
 }

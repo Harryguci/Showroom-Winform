@@ -85,7 +85,7 @@
                 new ColumnObject
                 {
                     Name = "Serial",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -100,12 +100,12 @@
                 new ColumnObject
                 {
                     Name = "Số lượng",
-                    Width = 100
+                    Width = 200
                 },
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 200
+                    Width = 300
                 },
                  new ColumnObject
                 {
@@ -163,7 +163,7 @@
                 {
                     Name = "Địa chỉ",
                     Width = 200
-                },          
+                },
                 new ColumnObject
                 {
                     Name = "Deleted",
@@ -414,6 +414,39 @@
                 {
                     Name = "Đường dẫn ảnh",
                     Width = 200
+                }
+        };
+        public static ColumnObject[] TASKS_COLS =
+        {
+            new ColumnObject
+                {
+                    Name = "ID",
+                    Width = 200
+                },
+            new ColumnObject
+                {
+                    Name = "Mã nhân viên",
+                    Width = 200
+                },
+            new ColumnObject
+                {
+                    Name = "Tên nhân viên",
+                    Width=300
+                },
+            new ColumnObject
+                {
+                    Name = "Dateline",
+                    Width = 300
+                },
+            new ColumnObject
+                {
+                    Name = "Nội dung",
+                    Width = 300
+                },
+            new ColumnObject
+                {
+                    Name = "Kết quả",
+                    Width = 300
                 }
         };
     }

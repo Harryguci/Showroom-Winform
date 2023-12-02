@@ -1,15 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using ShowroomData.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ShowroomData.Util;
 
 namespace ShowroomData
 {
@@ -41,7 +30,7 @@ namespace ShowroomData
             Size btnSize = new Size(minWidth, minWidth);
             btnCustomers.Size = btnEmployees.Size = btnPuchaInvoices.Size
                 = btnProducts.Size = btnSource.Size = btnPuchaInvoices.Size
-                = btnDevices.Size = btnSaleInvoice.Size = btnSize;
+                = btnDevices.Size = btnSaleInvoice.Size = btnTask.Size = btnSize;
 
 
         }
@@ -74,7 +63,18 @@ namespace ShowroomData
                 formName = TableName.DEVICES;
             else if (sender.Equals(btnSaleInvoice))
                 formName = TableName.SALEINVOICES;
-            else formName = "employees";
+            else if (sender.Equals(btnTask))
+            {
+                if (Layout2.CURR_USER.Level_account < 2)
+                {
+                    MessageBox.Show("Bạn không được cấp quyền để xem",
+                        "Thông Báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+                formName = TableName.TASKS;
+            }
+            else
+                formName = "employees";
 
             ListForm form = new ListForm(formName);
             form.Show();
@@ -89,6 +89,7 @@ namespace ShowroomData
                 == DialogResult.No) return;
 
             Layout2 login = new Layout2();
+            Layout2.CURR_USER = new Models.Account();
             login.FormClosed += (sender, args) =>
             {
                 Close();
@@ -110,7 +111,21 @@ namespace ShowroomData
         private void btnSearchAll_Click(object sender, EventArgs e)
         {
             SearchAll searchForm = new SearchAll();
+            searchForm.TopMost = true;
             searchForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ListForm taskForm = new ListForm(TableName.TASKS);
+            taskForm.FormClosed += (f, args) => Show();
+            Hide();
+            taskForm.Show();
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            btnCurrAccount.Text = Layout2.CURR_USER.Username;
         }
     }
 }

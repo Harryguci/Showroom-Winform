@@ -46,6 +46,12 @@
             txtPurchasePrice = new TextBox();
             label5 = new Label();
             panel3 = new Panel();
+            btnAddImage = new Button();
+            btnDeleteImage = new Button();
+            btnChangeImage = new Button();
+            btnNextImage = new Button();
+            btnBackImage = new Button();
+            pictureProductImage = new PictureBox();
             btnClean = new Button();
             btnCreate = new Button();
             label6 = new Label();
@@ -59,6 +65,7 @@
             panel1.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureProductImage).BeginInit();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -132,7 +139,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(136, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(928, 100);
+            panel1.Size = new Size(1090, 100);
             panel1.TabIndex = 100;
             // 
             // flowLayoutPanel2
@@ -143,7 +150,7 @@
             flowLayoutPanel2.FlowDirection = FlowDirection.RightToLeft;
             flowLayoutPanel2.Location = new Point(0, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(928, 33);
+            flowLayoutPanel2.Size = new Size(1090, 33);
             flowLayoutPanel2.TabIndex = 102;
             // 
             // button1
@@ -151,7 +158,7 @@
             button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlDarkDark;
-            button1.Location = new Point(879, 0);
+            button1.Location = new Point(1041, 0);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(49, 33);
@@ -165,7 +172,7 @@
             button2.Cursor = Cursors.Hand;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = SystemColors.ControlDarkDark;
-            button2.Location = new Point(830, 0);
+            button2.Location = new Point(992, 0);
             button2.Margin = new Padding(0);
             button2.Name = "button2";
             button2.Size = new Size(49, 33);
@@ -180,7 +187,7 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(355, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(366, 46);
+            lblHeading.Size = new Size(252, 31);
             lblHeading.TabIndex = 100;
             lblHeading.Text = "Tạo sản phẩm mới";
             // 
@@ -189,7 +196,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(166, 29);
+            label1.Size = new Size(110, 20);
             label1.TabIndex = 2;
             label1.Text = "Tên sản phẩm";
             // 
@@ -197,7 +204,7 @@
             // 
             txtNameProduct.Location = new Point(227, 34);
             txtNameProduct.Name = "txtNameProduct";
-            txtNameProduct.Size = new Size(374, 35);
+            txtNameProduct.Size = new Size(374, 26);
             txtNameProduct.TabIndex = 0;
             // 
             // label2
@@ -205,7 +212,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(42, 104);
             label2.Name = "label2";
-            label2.Size = new Size(156, 29);
+            label2.Size = new Size(105, 20);
             label2.TabIndex = 2;
             label2.Text = "Mã sản phẩm";
             // 
@@ -214,7 +221,7 @@
             txtIdProduct.Enabled = false;
             txtIdProduct.Location = new Point(227, 101);
             txtIdProduct.Name = "txtIdProduct";
-            txtIdProduct.Size = new Size(374, 35);
+            txtIdProduct.Size = new Size(374, 26);
             txtIdProduct.TabIndex = 1;
             // 
             // label3
@@ -222,7 +229,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(42, 174);
             label3.Name = "label3";
-            label3.Size = new Size(102, 29);
+            label3.Size = new Size(69, 20);
             label3.TabIndex = 2;
             label3.Text = "Giá mua";
             // 
@@ -230,8 +237,9 @@
             // 
             txtPurchasePrice.Location = new Point(227, 171);
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(374, 35);
+            txtPurchasePrice.Size = new Size(374, 26);
             txtPurchasePrice.TabIndex = 2;
+            txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // label5
@@ -239,13 +247,19 @@
             label5.AutoSize = true;
             label5.Location = new Point(43, 245);
             label5.Name = "label5";
-            label5.Size = new Size(96, 29);
+            label5.Size = new Size(65, 20);
             label5.TabIndex = 2;
             label5.Text = "Giá bán";
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(btnAddImage);
+            panel3.Controls.Add(btnDeleteImage);
+            panel3.Controls.Add(btnChangeImage);
+            panel3.Controls.Add(btnNextImage);
+            panel3.Controls.Add(btnBackImage);
+            panel3.Controls.Add(pictureProductImage);
             panel3.Controls.Add(btnClean);
             panel3.Controls.Add(btnCreate);
             panel3.Controls.Add(txtIdProduct);
@@ -260,10 +274,92 @@
             panel3.Controls.Add(txtSalePrice);
             panel3.Controls.Add(txtPurchasePrice);
             panel3.Controls.Add(label3);
-            panel3.Location = new Point(286, 116);
+            panel3.Location = new Point(195, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(634, 512);
+            panel3.Size = new Size(1004, 512);
             panel3.TabIndex = 100;
+            // 
+            // btnAddImage
+            // 
+            btnAddImage.BackColor = Color.FromArgb(50, 50, 150);
+            btnAddImage.FlatAppearance.BorderSize = 0;
+            btnAddImage.FlatStyle = FlatStyle.Flat;
+            btnAddImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddImage.ForeColor = Color.White;
+            btnAddImage.Location = new Point(667, 408);
+            btnAddImage.Name = "btnAddImage";
+            btnAddImage.Size = new Size(103, 34);
+            btnAddImage.TabIndex = 10;
+            btnAddImage.Text = "Thêm";
+            btnAddImage.UseVisualStyleBackColor = false;
+            btnAddImage.Click += btnAddImage_Click;
+            // 
+            // btnDeleteImage
+            // 
+            btnDeleteImage.BackColor = SystemColors.ScrollBar;
+            btnDeleteImage.FlatAppearance.BorderSize = 0;
+            btnDeleteImage.FlatStyle = FlatStyle.Flat;
+            btnDeleteImage.ForeColor = Color.White;
+            btnDeleteImage.Location = new Point(885, 408);
+            btnDeleteImage.Name = "btnDeleteImage";
+            btnDeleteImage.Size = new Size(97, 34);
+            btnDeleteImage.TabIndex = 10;
+            btnDeleteImage.Text = "Xóa";
+            btnDeleteImage.UseVisualStyleBackColor = false;
+            btnDeleteImage.Click += btnDeleteImage_Click;
+            // 
+            // btnChangeImage
+            // 
+            btnChangeImage.BackColor = Color.FromArgb(50, 50, 150);
+            btnChangeImage.FlatAppearance.BorderSize = 0;
+            btnChangeImage.FlatStyle = FlatStyle.Flat;
+            btnChangeImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChangeImage.ForeColor = Color.White;
+            btnChangeImage.Location = new Point(776, 408);
+            btnChangeImage.Name = "btnChangeImage";
+            btnChangeImage.Size = new Size(103, 34);
+            btnChangeImage.TabIndex = 10;
+            btnChangeImage.Text = "Đổi ảnh";
+            btnChangeImage.UseVisualStyleBackColor = false;
+            btnChangeImage.Click += btnChangeImage_Click;
+            // 
+            // btnNextImage
+            // 
+            btnNextImage.BackColor = Color.White;
+            btnNextImage.FlatAppearance.BorderSize = 0;
+            btnNextImage.FlatStyle = FlatStyle.Flat;
+            btnNextImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnNextImage.Location = new Point(958, 186);
+            btnNextImage.Name = "btnNextImage";
+            btnNextImage.Size = new Size(24, 60);
+            btnNextImage.TabIndex = 9;
+            btnNextImage.Text = ">";
+            btnNextImage.UseVisualStyleBackColor = false;
+            btnNextImage.Click += btnNextImage_Click;
+            // 
+            // btnBackImage
+            // 
+            btnBackImage.BackColor = Color.White;
+            btnBackImage.FlatAppearance.BorderSize = 0;
+            btnBackImage.FlatStyle = FlatStyle.Flat;
+            btnBackImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBackImage.Location = new Point(667, 186);
+            btnBackImage.Name = "btnBackImage";
+            btnBackImage.Size = new Size(24, 60);
+            btnBackImage.TabIndex = 9;
+            btnBackImage.Text = "<";
+            btnBackImage.UseVisualStyleBackColor = false;
+            btnBackImage.Click += btnBackImage_Click;
+            // 
+            // pictureProductImage
+            // 
+            pictureProductImage.BackColor = Color.White;
+            pictureProductImage.Location = new Point(667, 34);
+            pictureProductImage.Name = "pictureProductImage";
+            pictureProductImage.Size = new Size(315, 368);
+            pictureProductImage.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureProductImage.TabIndex = 8;
+            pictureProductImage.TabStop = false;
             // 
             // btnClean
             // 
@@ -302,7 +398,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(43, 382);
             label6.Name = "label6";
-            label6.Size = new Size(121, 29);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 2;
             label6.Text = "Trạng thái";
             // 
@@ -311,7 +407,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(43, 313);
             label4.Name = "label4";
-            label4.Size = new Size(109, 29);
+            label4.Size = new Size(72, 20);
             label4.TabIndex = 2;
             label4.Text = "Số lượng";
             // 
@@ -319,30 +415,31 @@
             // 
             txtStatus.Location = new Point(227, 379);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(374, 35);
+            txtStatus.Size = new Size(374, 26);
             txtStatus.TabIndex = 5;
             // 
             // txtQuantity
             // 
             txtQuantity.Location = new Point(227, 310);
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(173, 35);
+            txtQuantity.Size = new Size(173, 26);
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress_1;
             // 
             // txtSalePrice
             // 
+            txtSalePrice.Enabled = false;
             txtSalePrice.Location = new Point(227, 242);
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(374, 35);
+            txtSalePrice.Size = new Size(374, 26);
             txtSalePrice.TabIndex = 3;
             txtSalePrice.KeyPress += txtSalePrice_KeyPress;
             // 
             // CreateProduct
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 640);
+            ClientSize = new Size(1226, 640);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -359,6 +456,7 @@
             flowLayoutPanel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureProductImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -389,5 +487,11 @@
         private TextBox txtStatus;
         private TextBox txtQuantity;
         private TextBox txtSalePrice;
+        private Button btnBackImage;
+        private PictureBox pictureProductImage;
+        private Button btnAddImage;
+        private Button btnDeleteImage;
+        private Button btnChangeImage;
+        private Button btnNextImage;
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
         private bool _isCreateOne = false;
-
+        private List<string> _images = new List<string>();
+        private int indexImage = 0;
         public CreateProduct(Form? _parent, bool isCreateOne = false)
         {
             InitializeComponent();
@@ -194,6 +196,21 @@ namespace ShowroomData
             // Excute the query
             processDb.UpdateData(query);
 
+            foreach (string img in _images)
+            {
+                var path = Path.Combine("images", "uploaded",
+                    Path.GetFileName(img));
+                string qProductImage = "INSERT PRODUCT_IMAGES (\"SERIAL\", \"URL_IMAGE\") VALUES " +
+                    $"(N'{curr.idProduct}', N'{path}')";
+
+                while (path.Length > 0 && path[0] == '/')
+                {
+                    path = path.Substring(1);
+                }
+                File.Copy(img, Path.Combine(Directory.GetCurrentDirectory(), path));
+                processDb.UpdateData(qProductImage);
+            }
+
             // Earse current data
             CleanForm();
 
@@ -242,6 +259,85 @@ namespace ShowroomData
         private void Product_Load_1(object sender, EventArgs e)
         {
             txtIdProduct.Text = AutoCreateId();
+            indexImage = 0;
+            btnBackImage.Enabled = false;
+            btnNextImage.Enabled = indexImage == 0 || indexImage == _images.Count - 1;
+        }
+
+        private void txtPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int purchaseValue = Convert.ToInt32(txtPurchasePrice.Text);
+                int salePrice = (int)(purchaseValue * 1.2);
+                txtSalePrice.Text = salePrice.ToString();
+            }
+            catch
+            {
+                ;
+            }
+        }
+
+        private void btnAddImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            if (ofd.FileName != "")
+            {
+                pictureProductImage.ImageLocation = ofd.FileName;
+                _images.Add(ofd.FileName);
+                indexImage = _images.Count - 1;
+                btnBackImage.Enabled = indexImage != 0;
+                btnNextImage.Enabled = indexImage != _images.Count - 1;
+                btnDeleteImage.Enabled = true;
+            }
+        }
+
+        private void btnBackImage_Click(object sender, EventArgs e)
+        {
+            indexImage--;
+            if (indexImage < 0) indexImage = 0;
+            btnBackImage.Enabled = indexImage != 0;
+            btnNextImage.Enabled = indexImage != _images.Count - 1;
+
+            pictureProductImage.ImageLocation = _images[indexImage];
+        }
+
+        private void btnNextImage_Click(object sender, EventArgs e)
+        {
+            indexImage++;
+            if (indexImage >= _images.Count - 1) indexImage = _images.Count - 1;
+            btnBackImage.Enabled = indexImage != 0;
+            btnNextImage.Enabled = indexImage != _images.Count - 1;
+
+            pictureProductImage.ImageLocation = _images[indexImage];
+        }
+
+        private void btnChangeImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            if (ofd.FileName != "")
+            {
+                pictureProductImage.ImageLocation = ofd.FileName;
+                _images[indexImage] = ofd.FileName;
+            }
+        }
+
+        private void btnDeleteImage_Click(object sender, EventArgs e)
+        {
+            if (indexImage > 0 && indexImage < _images.Count)
+            {
+                _images.RemoveAt(indexImage);
+                if (_images.Count == 0)
+                {
+                    pictureProductImage.ImageLocation = null;
+                    btnDeleteImage.Enabled = false;
+                }
+                else if (_images.Count <= indexImage) indexImage--;
+                else
+                    pictureProductImage.ImageLocation = _images[indexImage];
+            }
         }
     }
 }

@@ -2,8 +2,6 @@
 using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Windows.Forms;
 
 namespace ShowroomData
 {
@@ -120,6 +118,7 @@ namespace ShowroomData
             dt.ReadOnly = true;
             #endregion
 
+            #region HANDLE_TITLE
             string title = "";
             if (listType == "employees")
             {
@@ -156,11 +155,15 @@ namespace ShowroomData
             else if (listType == "source")
             {
                 title = "nhà cung cấp";
-            }
+            } else if (listType == "tasks")
+            {
+                title = "Công việc";
+            }    
             else
             {
                 title = "tài khoản nội bộ";
             }
+            #endregion
 
             lblHeadingPage.Text = $"Danh sách {title}";
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
@@ -711,7 +714,8 @@ namespace ShowroomData
         {
             lblHeadingPage.Location = new Point((panel1.Width - lblHeadingPage.Width) / 2,
                lblHeadingPage.Location.Y);
-
+            dt.Width = panel1.Width;
+            panelFooter.Width = panel1.Width;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -719,11 +723,13 @@ namespace ShowroomData
             RefreshData();
         }
 
-        private void RenderDataToGridView(string type = "all", string whereCondition = "", int limits = 1000)
+        private void RenderDataToGridView(string type = "all",
+            string whereCondition = "",
+            int limits = 1000)
         {
             string query = "";
             string table = string.Empty;
-            ColumnObject[] colFormat;
+            ColumnObject[]? colFormat = null;
             #region COLUMOBJ
             if (listType == ListType.EMPLOYEES)
             {
@@ -779,6 +785,11 @@ namespace ShowroomData
                 //Định dạng dataGrid
                 colFormat = ColumnObject.ACCOUNT_COLS;
             }
+            else if (listType == ListType.TASKS)
+            {
+                table = TableName.TASKS;
+                colFormat = ColumnObject.TASKS_COLS;
+            }
             else
             {
                 table = TableName.SOURCE;
@@ -794,6 +805,12 @@ namespace ShowroomData
             else if (whereCondition != string.Empty)
                 query = $"select Top {limits} * from {table} where {whereCondition}";
 
+            if (listType == TableName.TASKS)
+                query = "SELECT ID, TASKS.EMPLOYEEID, " +
+                    "FULLNAME = Employees.FirstName + ' ' + Employees.LastName, " +
+                    "DATELINE, CONTENT, RESULT " +
+                    "FROM TASKS JOIN Employees ON TASKS.EMPLOYEEID = EMPLOYEES.EmployeeId";
+
             try
             {
                 DataTable dtResult = processDb.GetData(query);
@@ -805,7 +822,6 @@ namespace ShowroomData
 
                     dtResult.Columns[dtResult.Columns.IndexOf(colGenderText)]
                         .SetOrdinal(dtResult.Columns.IndexOf(colGenderRaw));
-
                 }
 
 
@@ -846,11 +862,13 @@ namespace ShowroomData
                 }
 
                 #endregion
-                for (int i = 0; i < colFormat.Length; i++)
-                {
-                    dt.Columns[i].HeaderText = colFormat[i].Name;
-                    dt.Columns[i].Width = colFormat[i].Width;
-                }
+
+                if (colFormat != null && colFormat.Length > 0)
+                    for (int i = 0; i < colFormat.Length && i < dt.Columns.Count; i++)
+                    {
+                        dt.Columns[i].HeaderText = colFormat[i].Name;
+                        dt.Columns[i].Width = colFormat[i].Width;
+                    }
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     if (dt.Columns[i].Name.ToLower() == "deleted"
@@ -1022,6 +1040,8 @@ namespace ShowroomData
                 };
 
                 UpdateProduct updateProduct = new UpdateProduct(products, this);
+                updateProduct.FormClosed += (f, args) =>
+                    RefreshData();
                 updateProduct.ShowDialog(this);
             }
             else if (listType == ListType.PURCHASEINVOICES)
@@ -1057,6 +1077,7 @@ namespace ShowroomData
 
                 UpdatePurchaseInvoice updatePurchaseInvoice = new UpdatePurchaseInvoice(purchaseInvoice,
                     this);
+                updatePurchaseInvoice.FormClosed += (f, args) => RefreshData();
                 updatePurchaseInvoice.Show();
             }
             else if (listType == ListType.SALEINVOICES)
@@ -1099,6 +1120,10 @@ namespace ShowroomData
                 };
 
                 UpdateSaleTarget updateSaleTarget = new UpdateSaleTarget(salesTarget, this);
+                updateSaleTarget.FormClosed += (f, args) =>
+                {
+                    RefreshData();
+                };
                 updateSaleTarget.Show();
             }
             else if (listType == ListType.SOURCE)
@@ -1112,6 +1137,7 @@ namespace ShowroomData
                 };
 
                 UpdateSource updateSource = new UpdateSource(source, this);
+                updateSource.FormClosed += (f, args) => RefreshData();
                 updateSource.Show();
             }
             else if (listType == ListType.DEVICES)
@@ -1128,6 +1154,7 @@ namespace ShowroomData
                 };
 
                 UpdateDevice updateDevice = new UpdateDevice(device, this);
+                updateDevice.FormClosed += (f, args) => RefreshData();
                 updateDevice.Show();
             }
             else
@@ -1145,6 +1172,7 @@ namespace ShowroomData
                 };
 
                 UpdateTestDrive updateTestDrive = new UpdateTestDrive(testDrive, this);
+                updateTestDrive.FormClosed += (f, args) => RefreshData();
                 updateTestDrive.Show();
             }
         }
@@ -1191,6 +1219,7 @@ namespace ShowroomData
 
                     string q = $"DELETE FROM Employees WHERE EmployeeId = N'{employee.EmployeeId}'";
                     processDb.UpdateData(q);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.CUSTOMERS)
@@ -1217,6 +1246,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM Customers WHERE ClientId = N'{customer.ClientId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.PRODUCTS)
@@ -1234,12 +1264,34 @@ namespace ShowroomData
                     Deleted = selected[6].Value != DBNull.Value ? (bool?)selected[6].Value : false,
                 };
 
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này không?",
+                    "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    string query = $"DELETE FROM Products WHERE Serial = N'{products.Serial}'";
-                    processDb.UpdateData(query);
+                    var imageList = processDb.GetData($"SELECT * FROM PRODUCT_IMAGES WHERE SERIAL = N'{products.Serial}'");
+                    if (imageList != null && imageList.Rows.Count > 0)
+                    {
+                        var root = Directory.GetCurrentDirectory();
+                        foreach (DataRow row in imageList.Rows)
+                        {
+                            var url = row.Field<string>("URL_Image");
+                            if (url == null) continue;
+                            while (url[0] == '/') url = url.Substring(1);
+
+                            try
+                            {
+                                File.Delete(Path.Combine(root, url));
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Không tìm thấy FILE: " + Path.Combine(root, url));
+                            }
+                        }
+                        string query = $"DELETE FROM Products WHERE Serial = N'{products.Serial}'";
+                        processDb.UpdateData(query);
+                        RefreshData();
+                    }
                 }
             }
             else if (listType == ListType.PURCHASEINVOICES)
@@ -1263,6 +1315,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM PurchaseInvoices WHERE InEnterId = N'{purchaseInvoice.InEnterId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.SALEINVOICES)
@@ -1287,6 +1340,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM SalesInvoices WHERE InSaleId = N'{salesInvoice.InSaleId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.SALESTARGETS)
@@ -1311,6 +1365,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM SalesTargets WHERE SaleId = N'{salesTarget.SaleId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.SOURCE)
@@ -1329,6 +1384,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM Source WHERE SourceId = N'{source.SourceId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else if (listType == ListType.DEVICES)
@@ -1350,6 +1406,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM Devices WHERE DeviceId = N'{device.DeviceId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
             else
@@ -1372,6 +1429,7 @@ namespace ShowroomData
                 {
                     string query = $"DELETE FROM TestDrive WHERE DriveId = N'{testDrive.DriveId}'";
                     processDb.UpdateData(query);
+                    RefreshData();
                 }
             }
         }
@@ -1386,7 +1444,8 @@ namespace ShowroomData
             if (WindowState == FormWindowState.Maximized)
             {
                 WindowState = FormWindowState.Normal;
-                Size = new Size(Screen.PrimaryScreen.WorkingArea.Width - 200, Screen.PrimaryScreen.WorkingArea.Height - 200);
+                Size = new Size(Screen.PrimaryScreen.WorkingArea.Width - 300,
+                    Screen.PrimaryScreen.WorkingArea.Height - 300);
                 CenterToScreen();
             }
             else WindowState = FormWindowState.Maximized;

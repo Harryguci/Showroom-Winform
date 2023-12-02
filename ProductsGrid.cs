@@ -13,6 +13,15 @@ namespace ShowroomData
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+            AutoSize = false;
+            AutoScroll = false;
+
+            tabPage1.AutoScroll = true;
+            tabPage2.AutoScroll = true;
+            tabPage3.AutoScroll = true;
+            tabPage4.AutoScroll = true;
+            tabPage5.AutoScroll = true;
+            tabPage6.AutoScroll = true;
             tabControl1.SelectedIndexChanged += tabPage_ChangeFocus;
 
             Padding tPadding = new Padding(5, 5, 1, 1);
@@ -130,10 +139,13 @@ namespace ShowroomData
             // 
             string rootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
 
-            if (url == null)
+            if (url == string.Empty || url == null)
                 pictureBox0.Image = Properties.Resources.car;
             else
-                pictureBox0.ImageLocation = Path.Combine(rootPath, url.Substring(1));
+            {
+                while (url[0] == '/') url = url.Substring(1);
+                pictureBox0.ImageLocation = Path.Combine(rootPath, url);
+            }
 
             pictureBox0.Location = new Point(0, 0);
             pictureBox0.Name = "pictureBox1";
@@ -234,7 +246,9 @@ namespace ShowroomData
                     var imgs = processDb.GetData($"SELECT * FROM " +
                         $"Product_Images Where Serial = N'{product.Serial}'");
 
-                    string? url = imgs.Rows[0].Field<string>("Url_image");
+                    string? url = "";
+                    if (imgs.Rows.Count > 0)
+                        url = imgs.Rows[0].Field<string>("Url_image");
 
                     CreateOneProductCard(title: product.ProductName,
                         url: url, id: product.Serial, saletPrice: product.SalePrice,

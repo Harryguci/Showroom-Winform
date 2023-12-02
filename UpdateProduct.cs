@@ -1,7 +1,6 @@
 ﻿using ShowroomData.ComponentGUI;
 using ShowroomData.Models;
 using System.Data;
-using System.Security.Policy;
 
 namespace ShowroomData
 {
@@ -11,6 +10,8 @@ namespace ShowroomData
         private Layout? parent;
         private int indexImage = 0;
         private Products currProduct;
+        private List<string> _images = new List<string>();
+        private List<string> _allImages = new List<string>();
         private bool isChanged = false;
 
         // Constructor
@@ -27,57 +28,6 @@ namespace ShowroomData
             //
             DoubleBuffered = true;
             SetStyle(ControlStyles.ResizeRedraw, true);
-
-            //
-            // Fill the data of the product which you want to change info.
-            //
-            txtName.Text = product.ProductName;
-            txtId.Text = product.Serial;
-            txtPurchasePrice.Text = product.PurchasePrice.ToString();
-            txtSalePrice.Text = product.SalePrice.ToString();
-            txtQuantity.Text = product.Quantity.ToString();
-            txtStatus.Text = product.Status;
-
-            txtName.TextChanged += InfoChanged;
-            txtPurchasePrice.TextChanged += InfoChanged;
-            txtSalePrice.TextChanged += InfoChanged;
-            txtQuantity.TextChanged += InfoChanged;
-            txtStatus.TextChanged += InfoChanged;
-
-            Padding p = new Padding(5, 5, 1, 1);
-            RoundTextBox.SetPadding(txtName, p);
-            RoundTextBox.SetPadding(txtId, p);
-            RoundTextBox.SetPadding(txtPurchasePrice, p);
-            RoundTextBox.SetPadding(txtSalePrice, p);
-            RoundTextBox.SetPadding(txtQuantity, p);
-            RoundTextBox.SetPadding(txtStatus, p);
-
-
-            button4.Enabled = false;
-
-            var imgs = processDb.GetData($"SELECT * FROM Product_Images Where Serial = N'{product.Serial}'");
-            if (imgs.Rows.Count > 0)
-            {
-
-                foreach (DataRow row in imgs.Rows)
-                {
-                    ProductImages productImages = new ProductImages()
-                    {
-                        Id = row.Field<int>("Id"),
-                        Serial = row.Field<string>("Serial"),
-                        Url_image = row.Field<string>("Url_image")
-                    };
-                    currProduct.ImageUrls.Add(productImages);
-                }
-
-                if (currProduct.ImageUrls.Count > 0)
-                {
-                    string url = currProduct.ImageUrls[0].Url_image ?? "";
-                    string rootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
-                    url = Path.Combine(rootPath, url.Substring(1));
-                    pictureBox2.ImageLocation = url;
-                }
-            }
         }
 
         private void InfoChanged(object? sender, EventArgs e)
@@ -164,8 +114,40 @@ namespace ShowroomData
                 $" SalePrice = N'{curr.salePrice}', Quantity = N'{curr.quantity}', Status = N'{curr.status}', " +
                 $" Deleted = 0 WHERE Serial = N'{curr.id}' ";
 
+            foreach (var img in _images)
+            {
+                string path = Path.Combine("//images//uploaded", Path.GetFileName(img));
+                string qProductImage = "INSERT PRODUCT_IMAGES (\"SERIAL\", \"URL_IMAGE\") VALUES " +
+                    $"(N'{curr.id}', N'{path}')";
+
+                while (path.Length > 0 && path[0] == '/')
+                {
+                    path = path.Substring(1);
+                }
+
+                File.Copy(img, Path.Combine(Directory.GetCurrentDirectory(), path));
+
+                processDb.UpdateData(qProductImage);
+            }
+
             // Excute the query
             processDb.UpdateData(query);
+
+            foreach (var img in currProduct.ImageUrls)
+            {
+                if (img.Url_image == string.Empty || img.Url_image == null)
+                {
+                    processDb.UpdateData($"DELETE PRODUCT_IMAGES WHERE ID = {img.Id}");
+                }
+                else
+                {
+                    var t = img.Url_image;
+                    while (t[0] == '/') t = t.Substring(1);
+                    // t = Path.Combine(Directory.GetCurrentDirectory(), t);
+                    processDb.UpdateData($"UPDATE PRODUCT_IMAGES set URl_IMAGE " +
+                        $"= N'{t}' WHERE ID = {img.Id}");
+                }
+            }
 
             // Earse current data
             CleanForm();
@@ -201,7 +183,7 @@ namespace ShowroomData
                 txtSalePrice.Text = currProduct.SalePrice.ToString();
                 txtQuantity.Text = currProduct.Quantity.ToString();
                 txtStatus.Text = currProduct.Status;
-                button4.Enabled = false;
+                btnImageBack.Enabled = false;
 
                 pictureBox2.ImageLocation = currProduct.ImageUrls[0].Url_image;
             }
@@ -213,7 +195,7 @@ namespace ShowroomData
                 Close();
             else
             {
-                MessageBox.Show("Bạn có muốn thoát? Thông tin chưa lưu sẽ bị xóa.", 
+                MessageBox.Show("Bạn có muốn thoát? Thông tin chưa lưu sẽ bị xóa.",
                     "Thông báo", MessageBoxButtons.OK);
             }
         }
@@ -286,28 +268,133 @@ namespace ShowroomData
             //TO DO
             isChanged = false;
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void UpdateProduct_Load(object sender, EventArgs e)
         {
+            //
+            // Fill the data of the product which you want to change info.
+            //
+            txtName.Text = currProduct.ProductName;
+            txtId.Text = currProduct.Serial;
+            txtPurchasePrice.Text = currProduct.PurchasePrice.ToString();
+            txtSalePrice.Text = currProduct.SalePrice.ToString();
+            txtQuantity.Text = currProduct.Quantity.ToString();
+            txtStatus.Text = currProduct.Status;
 
+            txtName.TextChanged += InfoChanged;
+            txtPurchasePrice.TextChanged += InfoChanged;
+            txtSalePrice.TextChanged += InfoChanged;
+            txtQuantity.TextChanged += InfoChanged;
+            txtStatus.TextChanged += InfoChanged;
+
+            Padding p = new Padding(5, 5, 1, 1);
+            RoundTextBox.SetPadding(txtName, p);
+            RoundTextBox.SetPadding(txtId, p);
+            RoundTextBox.SetPadding(txtPurchasePrice, p);
+            RoundTextBox.SetPadding(txtSalePrice, p);
+            RoundTextBox.SetPadding(txtQuantity, p);
+            RoundTextBox.SetPadding(txtStatus, p);
+
+
+            var imgs = processDb.GetData($"SELECT * FROM Product_Images Where Serial = N'{currProduct.Serial}'");
+            if (imgs.Rows.Count > 0)
+            {
+
+                foreach (DataRow row in imgs.Rows)
+                {
+                    ProductImages productImages = new ProductImages()
+                    {
+                        Id = row.Field<int>("Id"),
+                        Serial = row.Field<string>("Serial"),
+                        Url_image = row.Field<string>("Url_image")
+                    };
+                    currProduct.ImageUrls.Add(productImages);
+                    if (productImages.Url_image != null)
+                    {
+                        var url = productImages.Url_image;
+                        while (url.Length > 0 && url[0] == '/') url = url.Substring(1);
+                        _allImages.Add(Path.Combine(Directory.GetCurrentDirectory(), url));
+                    }
+                }
+
+                if (currProduct.ImageUrls.Count > 0)
+                {
+                    string url = currProduct.ImageUrls[0].Url_image ?? "";
+                    string rootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
+                    while (url.Length > 1 && url[0] == '/') url = url.Substring(1);
+                    url = Path.Combine(rootPath, url);
+                    pictureBox2.ImageLocation = url;
+                }
+            }
+
+
+            if (currProduct.ImageUrls.Count == 0)
+            {
+                btnImageBack.Enabled = false;
+                btnImageNext.Enabled = _allImages.Count != 0;
+                btnChangeImage.Enabled = false;
+            }
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void btnAddImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
             if (ofd.FileName != "")
             {
                 pictureBox2.ImageLocation = ofd.FileName;
+                _images.Add(ofd.FileName);
+                _allImages.Add(ofd.FileName);
+
+                indexImage = _allImages.Count() - 1;
+                btnChangeImage.Enabled = true;
+                btnBack.Enabled = true;
             }
         }
+        private void btnChangeImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            if (ofd.FileName != "")
+            {
+                pictureBox2.ImageLocation = ofd.FileName;
+                if (currProduct.ImageUrls.Count > indexImage)
+                {
+                    // _images[indexImage] = ofd.FileName;
+                    currProduct.ImageUrls[indexImage].Url_image
+                        = Path.Combine("images", "uploaded", Path.GetFileName(ofd.FileName));
+                }
+                _allImages[indexImage] = ofd.FileName;
 
-        private void button4_Click(object sender, EventArgs e)
+            }
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc muốn xóa ảnh?", "Thông Báo",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            File.Delete(_allImages[indexImage]);
+            _allImages.RemoveAt(indexImage);
+
+            if (currProduct.ImageUrls.Count > indexImage)
+            {
+                currProduct.ImageUrls[indexImage].Url_image = string.Empty;
+            }
+
+            indexImage--;
+            if (indexImage < 0)
+            {
+                indexImage = 0;
+                btnImageBack.Enabled = false;
+                if (_allImages.Count == 0)
+                {
+                    pictureBox2.ImageLocation = string.Empty;
+                    btnImageNext.Enabled = false;
+                }
+            }
+            else pictureBox2.ImageLocation = _allImages[indexImage];
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
         {
             indexImage--;
             if (indexImage < 0)
@@ -315,36 +402,39 @@ namespace ShowroomData
                 indexImage = 0;
             }
 
-            if (indexImage == 0) button4.Enabled = false;
-            else button4.Enabled = true;
+            btnImageNext.Enabled = indexImage != (_allImages.Count() - 1);
+            btnImageBack.Enabled = indexImage != 0;
 
-            button5.Enabled = true;
-
-            string rootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
-            string url = currProduct.ImageUrls[indexImage].Url_image ?? "";
-            url = Path.Combine(rootPath, url.Substring(1));
-
+            string url = _allImages[indexImage] ?? "";
             pictureBox2.ImageLocation = url;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
             indexImage++;
-            if (indexImage >= currProduct.ImageUrls.Count())
+            if (indexImage >= _allImages.Count())
             {
-                indexImage = currProduct.ImageUrls.Count() - 1;
+                indexImage = _allImages.Count() - 1;
             }
 
-            if (indexImage == currProduct.ImageUrls.Count() - 1) button5.Enabled = false;
-            else button5.Enabled = true;
+            btnImageNext.Enabled = indexImage != (_allImages.Count() - 1);
+            btnImageBack.Enabled = indexImage != 0;
 
-            button4.Enabled = true;
-
-            string rootPath = Path.GetDirectoryName(Application.ExecutablePath) ?? "";
-            string url = currProduct.ImageUrls[indexImage].Url_image ?? "";
-            url = Path.Combine(rootPath, url.Substring(1));
-
+            string url = _allImages[indexImage] ?? "";
             pictureBox2.ImageLocation = url;
+        }
+
+        private void txtPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPurchasePrice.Text == string.Empty)
+            {
+                txtSalePrice.Text = string.Empty;
+                return;
+            }
+            int purchasePrice = Convert.ToInt32(txtPurchasePrice.Text);
+            int salePrice = (int)(purchasePrice * 1.2);
+
+            txtSalePrice.Text = salePrice.ToString();
         }
     }
 }

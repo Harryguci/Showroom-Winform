@@ -18,6 +18,7 @@ namespace ShowroomData.Util
         public static string TESTDRIVE = "testdrive";
         public static string ACCOUNT = "account";
         public static string SOURCE = "source";
+        public static string TASKS = "tasks";
     }
     internal class ListType
     {
@@ -31,5 +32,6 @@ namespace ShowroomData.Util
         public static string TESTDRIVE = "testdrive";
         public static string ACCOUNT = "account";
         public static string SOURCE = "source";
+        public static string TASKS = "tasks";
     }
 }

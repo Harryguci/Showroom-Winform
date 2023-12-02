@@ -43,9 +43,11 @@ namespace ShowroomData
             label1 = new Label();
             txtName = new RoundTextBox();
             panel3 = new Panel();
-            button5 = new Button();
-            button4 = new Button();
+            btnImageNext = new Button();
+            btnImageBack = new Button();
+            btnAddImage = new Button();
             button3 = new Button();
+            btnChangeImage = new Button();
             pictureBox2 = new PictureBox();
             label4 = new Label();
             label5 = new Label();
@@ -221,9 +223,11 @@ namespace ShowroomData
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel3.Controls.Add(button5);
-            panel3.Controls.Add(button4);
+            panel3.Controls.Add(btnImageNext);
+            panel3.Controls.Add(btnImageBack);
+            panel3.Controls.Add(btnAddImage);
             panel3.Controls.Add(button3);
+            panel3.Controls.Add(btnChangeImage);
             panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label5);
@@ -245,47 +249,79 @@ namespace ShowroomData
             panel3.TabIndex = 100;
             panel3.MouseDown += Form_MouseDown;
             // 
-            // button5
+            // btnImageNext
             // 
-            button5.FlatAppearance.BorderSize = 0;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(943, 172);
-            button5.Name = "button5";
-            button5.Size = new Size(29, 56);
-            button5.TabIndex = 9;
-            button5.Text = ">";
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
+            btnImageNext.FlatAppearance.BorderSize = 0;
+            btnImageNext.FlatStyle = FlatStyle.Flat;
+            btnImageNext.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImageNext.Location = new Point(943, 172);
+            btnImageNext.Name = "btnImageNext";
+            btnImageNext.Size = new Size(29, 56);
+            btnImageNext.TabIndex = 9;
+            btnImageNext.Text = ">";
+            btnImageNext.UseVisualStyleBackColor = false;
+            btnImageNext.Click += btnNext_Click;
             // 
-            // button4
+            // btnImageBack
             // 
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(654, 172);
-            button4.Name = "button4";
-            button4.Size = new Size(29, 56);
-            button4.TabIndex = 9;
-            button4.Text = "<";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            btnImageBack.FlatAppearance.BorderSize = 0;
+            btnImageBack.FlatStyle = FlatStyle.Flat;
+            btnImageBack.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImageBack.Location = new Point(654, 172);
+            btnImageBack.Name = "btnImageBack";
+            btnImageBack.Size = new Size(29, 56);
+            btnImageBack.TabIndex = 9;
+            btnImageBack.Text = "<";
+            btnImageBack.UseVisualStyleBackColor = false;
+            btnImageBack.Click += btnBack_Click;
+            // 
+            // btnAddImage
+            // 
+            btnAddImage.BackColor = Color.FromArgb(50, 50, 150);
+            btnAddImage.FlatAppearance.BorderSize = 0;
+            btnAddImage.FlatStyle = FlatStyle.Flat;
+            btnAddImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddImage.ForeColor = Color.White;
+            btnAddImage.Location = new Point(776, 418);
+            btnAddImage.Margin = new Padding(0);
+            btnAddImage.Name = "btnAddImage";
+            btnAddImage.Size = new Size(112, 36);
+            btnAddImage.TabIndex = 8;
+            btnAddImage.Text = "Thêm";
+            btnAddImage.UseVisualStyleBackColor = false;
+            btnAddImage.Click += btnAddImage_Click;
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(50, 50, 150);
+            button3.BackColor = SystemColors.ScrollBar;
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(654, 418);
+            button3.Location = new Point(898, 418);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
-            button3.Size = new Size(112, 36);
+            button3.Size = new Size(74, 36);
             button3.TabIndex = 8;
-            button3.Text = "Đổi ảnh";
+            button3.Text = "Xóa";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += btnDelete_Click;
+            // 
+            // btnChangeImage
+            // 
+            btnChangeImage.BackColor = Color.FromArgb(50, 50, 150);
+            btnChangeImage.FlatAppearance.BorderSize = 0;
+            btnChangeImage.FlatStyle = FlatStyle.Flat;
+            btnChangeImage.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChangeImage.ForeColor = Color.White;
+            btnChangeImage.Location = new Point(654, 418);
+            btnChangeImage.Margin = new Padding(0);
+            btnChangeImage.Name = "btnChangeImage";
+            btnChangeImage.Size = new Size(112, 36);
+            btnChangeImage.TabIndex = 8;
+            btnChangeImage.Text = "Đổi ảnh";
+            btnChangeImage.UseVisualStyleBackColor = false;
+            btnChangeImage.Click += btnChangeImage_Click;
             // 
             // pictureBox2
             // 
@@ -418,6 +454,7 @@ namespace ShowroomData
             txtPurchasePrice.Name = "txtPurchasePrice";
             txtPurchasePrice.Size = new Size(387, 36);
             txtPurchasePrice.TabIndex = 2;
+            txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
             // 
             // txtId
@@ -479,14 +516,16 @@ namespace ShowroomData
         private Label label5;
         private Label label3;
         private PictureBox pictureBox2;
-        private Button button3;
-        private Button button5;
-        private Button button4;
+        private Button btnChangeImage;
+        private Button btnImageNext;
+        private Button btnImageBack;
         private RoundTextBox txtName;
         private RoundTextBox txtStatus;
         private RoundTextBox txtQuantity;
         private RoundTextBox txtSalePrice;
         private RoundTextBox txtPurchasePrice;
         private RoundTextBox txtId;
+        private Button btnAddImage;
+        private Button button3;
     }
 }
