@@ -15,6 +15,7 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
+        private int previousQuantity;
 
         public UpdatePurchaseInvoice(PurchaseInvoice purchaseInvoice, Form? _parent)
         {
@@ -39,6 +40,7 @@ namespace ShowroomData
             dayDateTimePicker.Value = purchaseInvoice.EnteredDate != null ? purchaseInvoice.EnteredDate.Value : DateTime.Now;
             txtQuantity.Text = purchaseInvoice.QuantityPurchase.ToString();
             txtStatus.Text = purchaseInvoice.Status;
+            setPrevious(Convert.ToInt32(purchaseInvoice.QuantityPurchase));
         }
 
 
@@ -81,6 +83,11 @@ namespace ShowroomData
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            if (!Check())
+            {
+                MessageBox.Show("Số lượng không phù hợp");
+                return;
+            }
             if (!ValidateForm()) return;
 
             if (MessageBox.Show("Cập nhật hóa đơn này?", "Thông báo",
@@ -110,6 +117,26 @@ namespace ShowroomData
 
             //
             Dispose();
+        }
+        private bool Check()
+        {
+            string serial = txtIdProduct.Text.Trim();
+            string query = $"Select * from Products where serial = N'{serial}'";
+            DataTable dat = new DataTable();
+            dat = processDb.GetData(query);
+            int quantity = dat.Rows[0].Field<int>("Quantity");
+            int purchase_quantity = int.Parse(txtQuantity.Text);
+
+            if (quantity - previousQuantity + purchase_quantity > 0)
+            {
+                return true;
+            }
+            return false;
+
+        }
+        private void setPrevious(int a)
+        {
+            previousQuantity = a;
         }
 
         private void btnClean_Click_1(object sender, EventArgs e)

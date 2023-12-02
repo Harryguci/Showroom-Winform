@@ -8,6 +8,7 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
         private bool isInfoChanged = false;
+        private int previousQuantity;
 
         public UpdateSaleInvoice(SalesInvoice salesInvoice, Form? _parent)
         {
@@ -41,8 +42,12 @@ namespace ShowroomData
             txtQuantity.TextChanged += InfoChanged;
             txtStatus.TextChanged += InfoChanged;
             dayDateTimePicker.TextChanged += InfoChanged;
+            setPreviousQuantity(Convert.ToInt32(salesInvoice.QuantitySale));
         }
-
+        private void setPreviousQuantity(int a)
+        {
+            previousQuantity = a;
+        }
         private void InfoChanged(object? sender, EventArgs e)
         {
             isInfoChanged = true;
@@ -95,6 +100,11 @@ namespace ShowroomData
 
         private void btnCreate_Click_1(object sender, EventArgs e)
         {
+            if (!Check())
+            {
+                MessageBox.Show("Số lượng không phù hợp");
+                return;
+            }
             if (!ValidateForm()) return;
 
             if (MessageBox.Show("Cập nhật hóa đơn này?", "Thông báo",
@@ -141,7 +151,7 @@ namespace ShowroomData
 
         private void btnBack_Click_2(object sender, EventArgs e)
         {
-            if (!isInfoChanged || MessageBox.Show("Bạn có chắc muốn thoát?\nThông tin không lưu sẽ bị xóa.", 
+            if (!isInfoChanged || MessageBox.Show("Bạn có chắc muốn thoát?\nThông tin không lưu sẽ bị xóa.",
                 "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 Close();
         }
@@ -239,7 +249,21 @@ namespace ShowroomData
                 }
             }
         }
+        private bool Check()
+        {
+            string serial = txtIdProducts.Text.Trim();
+            string query = $"Select * from Products where serial = N'{serial}'";
+            DataTable dat = new DataTable();
+            dat = processDb.GetData(query);
+            int quantity = dat.Rows[0].Field<int>("Quantity");
+            int sale_quantity = int.Parse(txtQuantity.Text);
 
+            if (quantity + previousQuantity - sale_quantity > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         private void txtIdProducts_TextChanged(object sender, EventArgs e)
         {
             if (txtIdProducts.Text.Trim().Length > 0)
