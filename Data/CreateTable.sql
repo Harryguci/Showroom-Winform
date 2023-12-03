@@ -1,4 +1,13 @@
-﻿---------------------
+﻿--- CREATE DATABASE ---
+USE MASTER;
+GO
+CREATE DATABASE SHOWROOMAUTO;
+GO
+USE SHOWROOMAUTO;
+GO
+-- END: CREATE DATABASE ---
+
+---------------------
 --- ACCOUNT TABLE ---
 ---------------------
 CREATE TABLE [dbo].[Account] (
