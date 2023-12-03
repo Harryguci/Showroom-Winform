@@ -1,17 +1,12 @@
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'admin123', <Binary Data>, 2, 0, N'2023-11-07 00:37:13', NULL, NULL, N'E001')
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'bob_jones', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, N'E001')
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'chuquanghuy', <Binary Data>, 2, 0, N'2023-11-07 10:13:59', NULL, NULL, N'E001')
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'david_brown', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'emily_white', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'jane_smith', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'jennifer_black', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, N'E005')
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'john_doe2', <Binary Data>, 2, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'lisa_miller', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'mike_adams', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'nguyenvana', <Binary Data>, 0, 0, N'2023-11-09 13:19:27', NULL, N'C013', NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'phamthiha', <Binary Data>, 2, 0, N'2023-11-07 10:27:08', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'phanngocanh', <Binary Data>, 0, 0, N'2023-11-07 00:22:41', NULL, N'C012', NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'phuclevan', <Binary Data>, 1, 0, N'2023-11-09 13:22:57', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'quanghuy0023', <Binary Data>, 0, 0, N'2023-11-11 20:57:38', NULL, N'C014', NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'steve_green', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
-INSERT INTO [dbo].[Account] ([Username], [Password_foruser], [Level_account], [Deleted], [CreateAt], [DeleteAt], [ClientId], [EmployeeId]) VALUES (N'susan_wilson', <Binary Data>, 1, 0, N'2023-11-04 15:42:51', NULL, NULL, NULL)
+INSERT INTO Account (EmployeeId, Username, Password_foruser,Level_account, Deleted, CreateAt, DeleteAt)
+VALUES 
+    (N'E001', 'john_doe2', CONVERT(VARBINARY(500), 'password1'),2, 0, GETDATE(), NULL),
+    (N'E002', 'jane_smith', CONVERT(VARBINARY(500), 'password2'),1, 0, GETDATE(), NULL),
+    (N'E003', 'bob_jones', CONVERT(VARBINARY(500), 'password3'),1, 0, GETDATE(), NULL),
+    (N'E004', 'susan_wilson', CONVERT(VARBINARY(500), 'password4'),1, 0, GETDATE(), NULL),
+    (N'E005', 'mike_adams', CONVERT(VARBINARY(500), 'password5'),1, 0, GETDATE(), NULL),
+    (N'E006', 'lisa_miller', CONVERT(VARBINARY(500), 'password6'),1, 0, GETDATE(), NULL),
+    (N'E007', 'david_brown', CONVERT(VARBINARY(500), 'password7'),1, 0, GETDATE(), NULL),
+    (N'E008', 'emily_white', CONVERT(VARBINARY(500), 'password8'),1, 0, GETDATE(), NULL),
+    (N'E009', 'steve_green', CONVERT(VARBINARY(500), 'password9'),1, 0, GETDATE(), NULL),
+    (N'E010', 'jennifer_black', CONVERT(VARBINARY(500), 'password10'),1, 0, GETDATE(), NULL);
