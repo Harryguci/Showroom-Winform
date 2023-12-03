@@ -17,6 +17,10 @@
 - Quản lý Source code: Git & Github
 
 ## Thành viên: (5)
+- Chu Quang Huy
+- Nguyễn Trọng Nghĩa
+- Dương Quốc Cường
+- Nguyễn Đức Hưng
 
 ## Cài đặt Database:
 - Excute trong SQL Server (2022): 
