@@ -25,5 +25,4 @@
 ## Cài đặt Database:
 - Excute trong SQL Server (2022): 
 	- File khởi tạo Table: <a href="https://github.com/Harryguci/Showroom-Winform/tree/main/Data/CreateTable.sql">./Data/CreateTable.sql</a>
-	- File Insert dữ liệu: <a href="https://github.com/Harryguci/Showroom-Winform/tree/main/Data">*.data.sql</a>
 	- File thêm khóa ngoại: <a href="https://github.com/Harryguci/Showroom-Winform/tree/main/Data/Add_ForeignKeys.sql">./Data/Add_ForeignKeys.sql</a>
