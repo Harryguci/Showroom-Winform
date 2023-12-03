@@ -1,12 +1,12 @@
-﻿--- CREATE DATABASE ---
-USE MASTER;
+﻿USE MASTER;
 GO
+--- CREATE DATABASE ---
 CREATE DATABASE SHOWROOMAUTO;
 GO
 USE SHOWROOMAUTO;
-GO
 -- END: CREATE DATABASE ---
 
+GO
 ---------------------
 --- ACCOUNT TABLE ---
 ---------------------
