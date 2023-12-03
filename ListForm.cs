@@ -806,7 +806,7 @@ namespace ShowroomData
                 query = $"select Top {limits} * from {table} where {whereCondition}";
 
             if (listType == TableName.TASKS)
-                query = "SELECT ID, TASKS.EMPLOYEEID AS, " +
+                query = "SELECT ID, TASKS.EMPLOYEEID, " +
                     "FULLNAME = Employees.FirstName + ' ' + Employees.LastName, " +
                     "DATELINE, CONTENT, RESULT " +
                     "FROM TASKS JOIN Employees ON TASKS.EMPLOYEEID = EMPLOYEES.EmployeeId";
