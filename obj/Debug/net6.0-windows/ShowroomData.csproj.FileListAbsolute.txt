@@ -77,3 +77,4 @@ E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\Showroom
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ComponentGUI.RoundTextBox.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.ComponentGUI.CTabControl.resources
 E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.CButton.resources
+E:\Projects\LTR-Truc-quan\BTL\Showroom-Winform\obj\Debug\net6.0-windows\ShowroomData.UserAccount.resources

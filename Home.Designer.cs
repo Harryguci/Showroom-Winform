@@ -107,6 +107,7 @@
             btnCurrAccount.TabIndex = 2;
             btnCurrAccount.Text = "Tài khoản";
             btnCurrAccount.UseVisualStyleBackColor = true;
+            btnCurrAccount.Click += btnCurrAccount_Click;
             // 
             // button2
             // 

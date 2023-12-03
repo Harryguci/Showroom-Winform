@@ -106,8 +106,16 @@ namespace ShowroomData
                 CURR_USER.EmployeeId = query.Rows[0].Field<string>("EmployeeId");
                 CURR_USER.Username = query.Rows[0].Field<string>("Username")??"";
                 CURR_USER.Level_account = query.Rows[0].Field<int>("Level_account");
-                //CURR_USER.CreateAt = query.Rows[0].Field<DateTime>("CreateAt");
-                //CURR_USER.DeleteAt = query.Rows[0].Field<DateTime>("DeleteAt");
+                CURR_USER.EmployeeId = query.Rows[0].Field<string>("EmployeeId") ?? "";
+                
+                try
+                {
+                    CURR_USER.CreateAt = query.Rows[0].Field<DateTime>("CreateAt");
+                    CURR_USER.DeleteAt = query.Rows[0].Field<DateTime>("DeleteAt");
+                } catch
+                {
+                    ;
+                }
 
                 Home form = new Home();
                 form.Show();

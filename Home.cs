@@ -127,5 +127,16 @@ namespace ShowroomData
         {
             btnCurrAccount.Text = Layout2.CURR_USER.Username;
         }
+
+        private void btnCurrAccount_Click(object sender, EventArgs e)
+        {
+            UserAccount userAccountForm = new UserAccount();
+            userAccountForm.FormClosed += (sender, args) => { 
+                Show();
+            };
+
+            Hide();
+            userAccountForm.Show();
+        }
     }
 }
