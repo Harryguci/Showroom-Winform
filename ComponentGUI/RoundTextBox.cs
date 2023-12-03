@@ -12,13 +12,13 @@ namespace ShowroomData.ComponentGUI
     internal class RoundTextBox : TextBox
     {
         // The padding value
-        private int padding = 5;
+        private int _padding = 6;
         // The border radius value
-        public int BorderRadius { get; set; } = 3;
+        public int BorderRadius { get; set; } = 5;
 
         public RoundTextBox()
         {
-            //Multiline = true;
+            Multiline = true;
         }
 
 
@@ -50,7 +50,8 @@ namespace ShowroomData.ComponentGUI
 
         public static void SetPadding(TextBox textBox, Padding padding)
         {
-            var rect = new Rectangle(padding.Left, padding.Top, textBox.ClientSize.Width - padding.Left - padding.Right, textBox.ClientSize.Height - padding.Top - padding.Bottom);
+            var rect = new Rectangle(padding.Left, padding.Top, 
+                textBox.ClientSize.Width - padding.Left - padding.Right, textBox.ClientSize.Height - padding.Top - padding.Bottom);
             RECT rc = new RECT(rect);
             SendMessageRefRect(textBox.Handle, EM_SETRECT, 0, ref rc);
         }
@@ -71,7 +72,7 @@ namespace ShowroomData.ComponentGUI
         protected override void OnResize(EventArgs e)
         {
             // Adjust the height of the TextBox
-            this.Height = this.PreferredHeight + padding * 2;
+            this.Height = this.PreferredHeight + _padding * 2;
             this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(2, 3, this.Width, 
                 this.Height, BorderRadius, BorderRadius)); //play with these values till you are happy
 

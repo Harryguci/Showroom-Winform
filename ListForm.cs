@@ -2,6 +2,7 @@
 using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ShowroomData
 {
@@ -155,10 +156,11 @@ namespace ShowroomData
             else if (listType == "source")
             {
                 title = "nhà cung cấp";
-            } else if (listType == "tasks")
+            }
+            else if (listType == "tasks")
             {
                 title = "Công việc";
-            }    
+            }
             else
             {
                 title = "tài khoản nội bộ";
@@ -196,7 +198,7 @@ namespace ShowroomData
         {
             int x = panelFooter.Width / 3;
             int y = panelFooter.Height / 2;
-
+            Color txtBoxBackColor = Color.FromArgb(50, 50, 150);
             if (listType == "employees"
                 || listType == "purchaseinvoices"
                 || listType == "customers"
@@ -208,13 +210,14 @@ namespace ShowroomData
                 lbMain.Location = new Point(50, 5);
                 lbMain.AutoSize = true;
 
-                txtMain.Location = new Point(lbMain.Location.X + lbMain.Width + 10, lbMain.Location.Y);
+                txtMain.Location = new Point(lbMain.Location.X + lbMain.Width + 10, lbMain.Location.Y - 5);
                 txtMain.Width = x - txtMain.Location.X - 50;
-                txtMain.TextChanged += SearchTextBox_Changed;
                 txtMain.Multiline = true;
-                txtMain.BackColor = Color.FromArgb(100, 100, 255);
+                txtMain.BackColor = txtBoxBackColor;
                 txtMain.ForeColor = Color.White;
-                RoundTextBox.SetPadding(txtMain, new Padding(10, 10, 2, 2));
+                txtMain.TextChanged += SearchTextBox_Changed;
+                txtMain.TextChanged += ChangeColorTextBox_TextChanged;
+                RoundTextBox.SetPadding(txtMain, new Padding(5));
 
                 btnSearch = new Button();
                 panelFooter.Controls.Add(btnSearch);
@@ -241,23 +244,25 @@ namespace ShowroomData
                 lbHo.Text = "Họ";
                 lbHo.Location = new Point(lbMain.Location.X, y + 5);
 
-                txtHo.Location = new Point(txtMain.Location.X, lbHo.Location.Y);
+                txtHo.Location = new Point(txtMain.Location.X, lbHo.Location.Y - 5);
                 txtHo.Width = txtMain.Width;
-                txtHo.BackColor = Color.FromArgb(100, 100, 255);
+                txtHo.BackColor = txtBoxBackColor;
                 txtHo.ForeColor = Color.White;
                 txtHo.Multiline = true;
                 txtHo.TextChanged += SearchTextBox_Changed;
+                txtHo.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbCCCD.AutoSize = true;
                 lbCCCD.Text = "CCCD";
                 lbCCCD.Location = new Point(x + 5, 5);
 
-                txtCCCD.Location = new Point(lbCCCD.Width + lbCCCD.Location.X + 50, lbCCCD.Location.Y);
+                txtCCCD.Location = new Point(lbCCCD.Width + lbCCCD.Location.X + 50, lbCCCD.Location.Y - 5);
                 txtCCCD.Width = txtMain.Width;
-                txtCCCD.BackColor = Color.FromArgb(100, 100, 255);
+                txtCCCD.BackColor = txtBoxBackColor;
                 txtCCCD.ForeColor = Color.White;
                 txtCCCD.Multiline = true;
                 txtCCCD.TextChanged += SearchTextBox_Changed;
+                txtCCCD.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbBirthDay.AutoSize = true;
                 lbBirthDay.Text = "Ngày sinh";
@@ -270,9 +275,6 @@ namespace ShowroomData
                 dtBirthDay.Location = new Point(txtCCCD.Location.X, lbBirthDay.Location.Y);
                 dtBirthDay.Width = 100;
                 dtBirthDay.Height = 100;
-
-                RoundTextBox.SetPadding(txtHo, new Padding(20));
-                RoundTextBox.SetPadding(txtCCCD, new Padding(20));
             }
             else if (listType == "purchaseinvoices")
             {
@@ -294,9 +296,10 @@ namespace ShowroomData
                 txtProduct.Location = new Point(txtMain.Location.X, lbProduct.Location.Y);
                 txtProduct.Width = txtMain.Width;
                 txtProduct.Multiline = true;
-                txtProduct.BackColor = Color.FromArgb(100, 100, 255);
+                txtProduct.BackColor = txtBoxBackColor;
                 txtProduct.ForeColor = Color.White;
                 txtProduct.TextChanged += SearchTextBox_Changed;
+                txtProduct.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbSource.AutoSize = true;
                 lbSource.Text = "Mã NCC";
@@ -305,9 +308,10 @@ namespace ShowroomData
                 txtSource.Location = new Point(lbSource.Width + lbSource.Location.X + 50, lbSource.Location.Y);
                 txtSource.Width = txtMain.Width;
                 txtSource.Multiline = true;
-                txtSource.BackColor = Color.FromArgb(100, 100, 255);
+                txtSource.BackColor = txtBoxBackColor;
                 txtSource.ForeColor = Color.White;
                 txtSource.TextChanged += SearchTextBox_Changed;
+                txtSource.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbBirthDay.AutoSize = true;
                 lbBirthDay.Text = "Ngày nhập";
@@ -342,10 +346,11 @@ namespace ShowroomData
 
                 txtHo.Location = new Point(txtMain.Location.X, lbHo.Location.Y);
                 txtHo.Width = txtMain.Width;
-                txtHo.BackColor = Color.FromArgb(100, 100, 255);
+                txtHo.BackColor = txtBoxBackColor;
                 txtHo.ForeColor = Color.White;
                 txtHo.Multiline = true;
                 txtHo.TextChanged += SearchTextBox_Changed;
+                txtHo.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbPhone.AutoSize = true;
                 lbPhone.Text = "CCCD";
@@ -354,9 +359,10 @@ namespace ShowroomData
                 txtPhone.Location = new Point(lbPhone.Width + lbPhone.Location.X + 50, lbPhone.Location.Y);
                 txtPhone.Width = txtMain.Width;
                 txtPhone.Multiline = true;
-                txtPhone.BackColor = Color.FromArgb(100, 100, 255);
+                txtPhone.BackColor = txtBoxBackColor;
                 txtPhone.ForeColor = Color.White;
                 txtPhone.TextChanged += SearchTextBox_Changed;
+                txtPhone.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbBirthDay.AutoSize = true;
                 lbBirthDay.Text = "Ngày sinh";
@@ -398,9 +404,10 @@ namespace ShowroomData
                 txtProduct.Location = new Point(txtMain.Location.X, lbProduct.Location.Y);
                 txtProduct.Width = txtMain.Width;
                 txtProduct.Multiline = true;
-                txtProduct.BackColor = Color.FromArgb(100, 100, 255);
+                txtProduct.BackColor = txtBoxBackColor;
                 txtProduct.TextChanged += SearchTextBox_Changed;
                 txtProduct.ForeColor = Color.White;
+                txtProduct.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbEmployee.AutoSize = true;
                 lbEmployee.Text = "Mã NV";
@@ -409,9 +416,10 @@ namespace ShowroomData
                 txtEmployee.Location = new Point(txtMain.Location.X, lbEmployee.Location.Y);
                 txtEmployee.Width = txtMain.Width;
                 txtEmployee.Multiline = true;
-                txtEmployee.BackColor = Color.FromArgb(100, 100, 255);
+                txtEmployee.BackColor = txtBoxBackColor;
                 txtEmployee.ForeColor = Color.White;
                 txtEmployee.TextChanged += SearchTextBox_Changed;
+                txtEmployee.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbClient.AutoSize = true;
                 lbClient.Text = "Mã KH";
@@ -419,10 +427,11 @@ namespace ShowroomData
 
                 txtClient.Location = new Point(lbClient.Width + x + 30, lbClient.Location.Y);
                 txtClient.Multiline = true;
-                txtClient.BackColor = Color.FromArgb(100, 100, 255);
+                txtClient.BackColor = txtBoxBackColor;
                 txtClient.ForeColor = Color.White;
                 txtClient.Width = txtMain.Width;
                 txtClient.TextChanged += SearchTextBox_Changed;
+                txtClient.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbBirthDay.AutoSize = true;
                 lbBirthDay.Text = "Ngày sinh";
@@ -608,6 +617,18 @@ namespace ShowroomData
         private void SearchTextBox_Changed(object? sender, EventArgs e)
         {
             dt.DataSource = HandleSearch();
+        }
+        private void ChangeColorTextBox_TextChanged(object? txt, EventArgs e)
+        {
+            if (txt != null
+                   && (txt.GetType() == typeof(RoundTextBox)
+                   || txt.GetType() == typeof(TextBox)))
+            {
+                if (((TextBox)txt).Text.Length > 0)
+                    ((TextBox)txt).BackColor = Color.FromArgb(100, 100, 250);
+                else
+                    ((TextBox)txt).BackColor = Color.FromArgb(50, 50, 150);
+            }
         }
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
@@ -927,6 +948,8 @@ namespace ShowroomData
         private void Form_Load(object sender, EventArgs e)
         {
             RenderDataToGridView(type: "all");
+
+            if (dt.Rows.Count == 0) MessageBox.Show("Chưa có dữ liệu nào", "Thông báo");
         }
 
         private void dt_CellValueChanged(object? sender, DataGridViewCellEventArgs e)
