@@ -32,9 +32,10 @@
             pictureBox1 = new PictureBox();
             flowpanelFooter = new FlowLayoutPanel();
             panelContent = new Panel();
-            panel1 = new Panel();
+            panelMain = new Panel();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
+            button2 = new Button();
             button1 = new Button();
             txtEmployeeId = new ComponentGUI.RoundTextBox();
             txtRole = new ComponentGUI.RoundTextBox();
@@ -46,11 +47,10 @@
             lblConfirmPassword = new Label();
             lblPassword = new Label();
             lblUsername = new Label();
-            button2 = new Button();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelContent.SuspendLayout();
-            panel1.SuspendLayout();
+            panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -86,27 +86,31 @@
             // panelContent
             // 
             panelContent.BackColor = Color.White;
-            panelContent.Controls.Add(panel1);
+            panelContent.Controls.Add(panelMain);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(0, 171);
             panelContent.Name = "panelContent";
             panelContent.Size = new Size(1155, 485);
             panelContent.TabIndex = 2;
             // 
-            // panel1
+            // panelMain
             // 
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(panel2);
-            panel1.Location = new Point(37, 6);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1106, 453);
-            panel1.TabIndex = 0;
+            panelMain.Controls.Add(pictureBox2);
+            panelMain.Controls.Add(panel2);
+            panelMain.Location = new Point(37, 6);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(1106, 453);
+            panelMain.TabIndex = 0;
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = SystemColors.Control;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Image = Properties.Resources.noimage;
             pictureBox2.Location = new Point(698, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(389, 443);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
             // 
@@ -128,6 +132,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(670, 443);
             panel2.TabIndex = 2;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(174, 333);
+            button2.Name = "button2";
+            button2.Size = new Size(68, 32);
+            button2.TabIndex = 2;
+            button2.Text = "Lưu";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnSave_Click;
             // 
             // button1
             // 
@@ -234,16 +248,6 @@
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Tên đăng nhập";
             // 
-            // button2
-            // 
-            button2.Location = new Point(174, 333);
-            button2.Name = "button2";
-            button2.Size = new Size(68, 32);
-            button2.TabIndex = 2;
-            button2.Text = "Lưu";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += btnSave_Click;
-            // 
             // UserAccount
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,10 +259,11 @@
             Name = "UserAccount";
             Text = "UserAccount";
             Load += UserAccount_Load;
+            Resize += UserAccount_Resize;
             panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelContent.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            panelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -271,7 +276,7 @@
         private PictureBox pictureBox1;
         private FlowLayoutPanel flowpanelFooter;
         private Panel panelContent;
-        private Panel panel1;
+        private Panel panelMain;
         private PictureBox pictureBox2;
         private Panel panel2;
         private ComponentGUI.RoundTextBox txtEmployeeId;

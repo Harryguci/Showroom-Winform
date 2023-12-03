@@ -24,6 +24,9 @@ namespace ShowroomData
 
         private void HandleGUI()
         {
+            WindowState = FormWindowState.Maximized;
+            AutoScroll = true;
+
             Padding padding = new Padding(5);
             RoundTextBox.SetPadding(txtUsername, padding);
             RoundTextBox.SetPadding(txtPassword, padding);
@@ -41,7 +44,9 @@ namespace ShowroomData
             txtUsername.Text = _currAccount.Username;
             txtPassword.Text = "***************";
             txtConfirmPassword.Text = "***************";
-            txtRole.Text = _currAccount.Level_account == 2 ? "Quản lý" : "Nhân viên";
+
+            txtRole.Text = _currAccount.Level_account == 2
+                ? "Quản lý" : "Nhân viên";
             txtEmployeeId.Text = _currAccount.EmployeeId;
 
             if (_currAccount.EmployeeId != null && _currAccount.EmployeeId.Length > 0)
@@ -92,6 +97,12 @@ namespace ShowroomData
 
             MessageBox.Show("Cập nhật thành công", "Thông báo",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void UserAccount_Resize(object sender, EventArgs e)
+        {
+            panelMain.Location = new Point((panelContent.Width - panelMain.Width) / 2,
+                (panelContent.Height - panelMain.Height) / 2);
         }
     }
 }
