@@ -1,14 +1,6 @@
 ﻿using ShowroomData.ComponentGUI;
 using ShowroomData.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ShowroomData
 {
@@ -24,6 +16,7 @@ namespace ShowroomData
 
         private void HandleGUI()
         {
+            FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             AutoScroll = true;
 
@@ -70,10 +63,12 @@ namespace ShowroomData
             {
                 txtPassword.Text = "";
                 txtConfirmPassword.Text = "";
+                txtPassword.BackColor = txtConfirmPassword.BackColor = Color.FromArgb(200, 200, 255);
             }
             else
             {
                 txtPassword.Text = txtConfirmPassword.Text = "***************";
+                txtPassword.BackColor = txtConfirmPassword.BackColor = Color.FromArgb(240, 240, 240);
             }
         }
 
@@ -101,8 +96,24 @@ namespace ShowroomData
 
         private void UserAccount_Resize(object sender, EventArgs e)
         {
+            pictureBox1.Location = new Point((panelHeader.Width - pictureBox1.Width) / 2,
+               (panelHeader.Height - pictureBox1.Height) / 2);
+
             panelMain.Location = new Point((panelContent.Width - panelMain.Width) / 2,
                 (panelContent.Height - panelMain.Height) / 2);
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            HelperDialog helper = HelperDialog.Create("Thông tin",
+                "Showroom Management Application");
+
+            helper.ShowDialog();
         }
     }
 }

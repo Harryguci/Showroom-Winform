@@ -33,7 +33,7 @@ namespace ShowroomData
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
-            numberLvl = new NumericUpDown();
+            levelNum = new NumericUpDown();
             button2 = new Button();
             button1 = new Button();
             cbId = new ComboBox();
@@ -48,7 +48,7 @@ namespace ShowroomData
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numberLvl).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)levelNum).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -76,7 +76,7 @@ namespace ShowroomData
             // panel2
             // 
             panel2.BackColor = Color.White;
-            panel2.Controls.Add(numberLvl);
+            panel2.Controls.Add(levelNum);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(cbId);
@@ -95,24 +95,24 @@ namespace ShowroomData
             panel2.Size = new Size(484, 356);
             panel2.TabIndex = 1;
             // 
-            // numberLvl
+            // levelNum
             // 
-            numberLvl.BackColor = Color.FromArgb(50, 50, 150);
-            numberLvl.BorderStyle = BorderStyle.FixedSingle;
-            numberLvl.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            numberLvl.ForeColor = Color.White;
-            numberLvl.Location = new Point(222, 125);
-            numberLvl.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            numberLvl.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numberLvl.Name = "numberLvl";
-            numberLvl.Size = new Size(206, 26);
-            numberLvl.TabIndex = 4;
-            numberLvl.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            numberLvl.ValueChanged += numberLvl_ValueChanged;
+            levelNum.BackColor = Color.FromArgb(50, 50, 150);
+            levelNum.BorderStyle = BorderStyle.FixedSingle;
+            levelNum.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            levelNum.ForeColor = Color.White;
+            levelNum.Location = new Point(222, 125);
+            levelNum.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            levelNum.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            levelNum.Name = "levelNum";
+            levelNum.Size = new Size(206, 26);
+            levelNum.TabIndex = 4;
+            levelNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            levelNum.ValueChanged += numberLvl_ValueChanged;
             // 
             // button2
             // 
-            button2.BackColor = Color.White;
+            button2.BackColor = SystemColors.ButtonFace;
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -166,7 +166,7 @@ namespace ShowroomData
             txtConfpassword.MaxLength = 30;
             txtConfpassword.Multiline = true;
             txtConfpassword.Name = "txtConfpassword";
-            txtConfpassword.Size = new Size(206, 36);
+            txtConfpassword.Size = new Size(206, 38);
             txtConfpassword.TabIndex = 1;
             txtConfpassword.KeyPress += txtConfpassword_KeyPress;
             // 
@@ -182,7 +182,7 @@ namespace ShowroomData
             txtPassword.MaxLength = 30;
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(206, 36);
+            txtPassword.Size = new Size(206, 38);
             txtPassword.TabIndex = 1;
             txtPassword.KeyPress += txtPassword_KeyPress;
             // 
@@ -198,7 +198,7 @@ namespace ShowroomData
             txtUsername.MaxLength = 30;
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(206, 36);
+            txtUsername.Size = new Size(206, 38);
             txtUsername.TabIndex = 1;
             txtUsername.KeyPress += txtUsername_KeyPress;
             // 
@@ -273,7 +273,7 @@ namespace ShowroomData
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numberLvl).EndInit();
+            ((System.ComponentModel.ISupportInitialize)levelNum).EndInit();
             ResumeLayout(false);
         }
 
@@ -290,7 +290,7 @@ namespace ShowroomData
         private Button button1;
         private Button button2;
         private Label label5;
-        private NumericUpDown numberLvl;
+        private NumericUpDown levelNum;
         private RoundTextBox txtUsername;
         private RoundTextBox txtConfpassword;
         private RoundTextBox txtPassword;

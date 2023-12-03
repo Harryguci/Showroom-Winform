@@ -39,7 +39,6 @@ namespace ShowroomData
             textBox1 = new RoundTextBox();
             btnLogin = new Button();
             label2 = new Label();
-            button1 = new Button();
             panel2 = new Panel();
             btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -69,7 +68,6 @@ namespace ShowroomData
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(button1);
             panel1.Location = new Point(0, 123);
             panel1.Name = "panel1";
             panel1.Size = new Size(444, 392);
@@ -112,7 +110,7 @@ namespace ShowroomData
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(196, 36);
+            textBox2.Size = new Size(196, 35);
             textBox2.TabIndex = 1;
             textBox2.KeyPress += textBox2_KeyPress;
             // 
@@ -136,7 +134,7 @@ namespace ShowroomData
             textBox1.Margin = new Padding(0);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(196, 36);
+            textBox1.Size = new Size(196, 35);
             textBox1.TabIndex = 0;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
@@ -150,7 +148,7 @@ namespace ShowroomData
             btnLogin.Location = new Point(56, 250);
             btnLogin.Margin = new Padding(0);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(223, 51);
+            btnLogin.Size = new Size(336, 51);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Đăng nhập";
             btnLogin.UseVisualStyleBackColor = true;
@@ -164,22 +162,6 @@ namespace ShowroomData
             label2.Size = new Size(75, 20);
             label2.TabIndex = 11;
             label2.Text = "Mật khẩu";
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.ButtonFace;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.HotTrack;
-            button1.Location = new Point(282, 250);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(110, 51);
-            button1.TabIndex = 3;
-            button1.Text = "Đăng ký";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // panel2
             // 
@@ -238,7 +220,6 @@ namespace ShowroomData
         private Label label1;
         private Button btnLogin;
         private Label label2;
-        public Button button1;
         private Panel panel2;
         private CheckBox checkBox1;
         public Button btnClose;

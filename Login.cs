@@ -20,8 +20,8 @@ namespace ShowroomData
         public void HandleGUI()
         {
             FormBorderStyle = FormBorderStyle.None;
-            RoundTextBox.SetPadding(textBox1, new Padding(5,5,1,1));
-            RoundTextBox.SetPadding(textBox2, new Padding(5,5,1,1));
+            RoundTextBox.SetPadding(textBox1, new Padding(5, 5, 1, 1));
+            RoundTextBox.SetPadding(textBox2, new Padding(5, 5, 1, 1));
         }
 
         //
@@ -104,15 +104,16 @@ namespace ShowroomData
                 var query = _ProcessDatabase.GetData($"SELECT * FROM ACCOUNT WHERE USERNAME = N'{username}'");
 
                 CURR_USER.EmployeeId = query.Rows[0].Field<string>("EmployeeId");
-                CURR_USER.Username = query.Rows[0].Field<string>("Username")??"";
+                CURR_USER.Username = query.Rows[0].Field<string>("Username") ?? "";
                 CURR_USER.Level_account = query.Rows[0].Field<int>("Level_account");
                 CURR_USER.EmployeeId = query.Rows[0].Field<string>("EmployeeId") ?? "";
-                
+
                 try
                 {
                     CURR_USER.CreateAt = query.Rows[0].Field<DateTime>("CreateAt");
                     CURR_USER.DeleteAt = query.Rows[0].Field<DateTime>("DeleteAt");
-                } catch
+                }
+                catch
                 {
                     ;
                 }
@@ -222,19 +223,20 @@ namespace ShowroomData
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Layout3 signUpForm = new Layout3();
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    Layout3 signUpForm = new Layout3();
 
-            signUpForm.FormClosed += (signUpForm, args) => {
-                Close();
-            };
-            signUpForm.Show();
+        //    signUpForm.FormClosed += (signUpForm, args) =>
+        //    {
+        //        Close();
+        //    };
+        //    signUpForm.Show();
 
-            Hide();
+        //    Hide();
 
-            signUpForm.FormClosed += (s, args) => Close();
-        }
+        //    signUpForm.FormClosed += (s, args) => Close();
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {

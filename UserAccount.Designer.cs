@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             panelHeader = new Panel();
+            button3 = new Button();
             pictureBox1 = new PictureBox();
             flowpanelFooter = new FlowLayoutPanel();
+            button4 = new Button();
             panelContent = new Panel();
             panelMain = new Panel();
             pictureBox2 = new PictureBox();
@@ -49,6 +51,7 @@
             lblUsername = new Label();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            flowpanelFooter.SuspendLayout();
             panelContent.SuspendLayout();
             panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -58,12 +61,27 @@
             // panelHeader
             // 
             panelHeader.BackColor = Color.FromArgb(50, 50, 150);
+            panelHeader.Controls.Add(button3);
             panelHeader.Controls.Add(pictureBox1);
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
             panelHeader.Name = "panelHeader";
             panelHeader.Size = new Size(1155, 171);
             panelHeader.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button3.BackgroundImage = Properties.Resources.pngaaa_com_4834605;
+            button3.BackgroundImageLayout = ImageLayout.Zoom;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Location = new Point(1068, 12);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 44);
+            button3.TabIndex = 1;
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += back_Click;
             // 
             // pictureBox1
             // 
@@ -77,11 +95,22 @@
             // 
             // flowpanelFooter
             // 
+            flowpanelFooter.Controls.Add(button4);
             flowpanelFooter.Dock = DockStyle.Bottom;
             flowpanelFooter.Location = new Point(0, 656);
             flowpanelFooter.Name = "flowpanelFooter";
             flowpanelFooter.Size = new Size(1155, 42);
             flowpanelFooter.TabIndex = 1;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(3, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(100, 35);
+            button4.TabIndex = 0;
+            button4.Text = "Help";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // panelContent
             // 
@@ -157,6 +186,7 @@
             // 
             txtEmployeeId.BackColor = SystemColors.Control;
             txtEmployeeId.BorderRadius = 5;
+            txtEmployeeId.Enabled = false;
             txtEmployeeId.Location = new Point(174, 274);
             txtEmployeeId.Multiline = true;
             txtEmployeeId.Name = "txtEmployeeId";
@@ -215,6 +245,7 @@
             // 
             txtUsername.BackColor = SystemColors.Control;
             txtUsername.BorderRadius = 5;
+            txtUsername.Enabled = false;
             txtUsername.Location = new Point(174, 54);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
@@ -262,6 +293,7 @@
             Resize += UserAccount_Resize;
             panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            flowpanelFooter.ResumeLayout(false);
             panelContent.ResumeLayout(false);
             panelMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -291,5 +323,7 @@
         private Label lblUsername;
         private Button button1;
         private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

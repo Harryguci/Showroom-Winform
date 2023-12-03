@@ -1,16 +1,6 @@
 ﻿using ShowroomData.ComponentGUI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ShowroomData
 {
@@ -34,28 +24,16 @@ namespace ShowroomData
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Hide();
-
-            if (ActiveForm != null)
-            {
-                ActiveForm.Show();
-                ActiveForm.FormClosed += (ActiveForm, args) =>
-                {
-                    Close();
-                };
-            }
-            else
-            {
-                Layout2 login = new Layout2();
-                login.Show();
-            }
+            Close();
         }
+
         private void btnSign_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string confirmPassword = txtConfpassword.Text;
             string id = EmployeeId[cbId.SelectedIndex];
+            int level_account = (int)levelNum.Value;
 
             Debug.WriteLine("\n\n " + id);
             // Kiểm tra xem liệu Username, Password và ConfirmPassword có rỗng hay không
@@ -87,7 +65,7 @@ namespace ShowroomData
             /// Kiem tra tai khoan ton tai chua :
             if (CheckExist(username, password))
             {
-                InsertAccount(id, username, password);
+                InsertAccount(id, username, password, level_account);
             }
             else
             {
@@ -103,9 +81,9 @@ namespace ShowroomData
             employees = GetEmployeeID();
             foreach (DataRow row in employees.Rows)
             {
-                string employeeid = row["EmployeeId"].ToString();
+                string employeeid = (string)row["EmployeeId"];
                 EmployeeId.Add(employeeid);
-                string name = row["HovaTen"].ToString();
+                string name = (string)row["HovaTen"];
                 string combinedName = employeeid + " -- " + name;
                 employeeCombo.Add(combinedName);
             }
@@ -132,18 +110,18 @@ namespace ShowroomData
             }
             return true;
         }
-        private void InsertAccount(string id, string username, string password)
+        private void InsertAccount(string id, string username, string password, int levelAccount = 1)
         {
-            string query = "INSERT INTO Account (EmployeeId, Username, Password_foruser, Deleted, CreateAt, DeleteAt) VALUES" +
-                 " ('" + id + "', '" + username + "', CONVERT(VARBINARY(500), '" + password + "'), 0, GETDATE(), NULL)";
+            string query = "INSERT INTO Account (EmployeeId, Username, Password_foruser, Deleted, CreateAt, DeleteAt, level_account) VALUES" +
+                 " ('" + id + "', '" + username + "', CONVERT(VARBINARY(500), '" + password + $"'), 0, GETDATE(), NULL, {levelAccount})";
             try
             {
                 processDatabase.UpdateData(query);
                 MessageBox.Show("Tài khoản tạo cho nhân viên : " + id + "\nusername : " + username + "\npassword : " + password, "Thông báo", MessageBoxButtons.OK);
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                throw;
             }
         }
         private DataTable GetEmployeeID()
@@ -155,9 +133,9 @@ namespace ShowroomData
                 dt = processDatabase.GetData(query);
                 return dt;
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                throw;
             }
         }
 
@@ -187,8 +165,11 @@ namespace ShowroomData
 
         private void numberLvl_ValueChanged(object sender, EventArgs e)
         {
-            if (numberLvl.Value < 0) {
-                numberLvl.Value = 0;
+            if (levelNum.Value < 0)
+            {
+                levelNum.Value = 0;
+            } else if (levelNum.Value >= 3) {
+                levelNum.Value = 2;
             }
         }
     }

@@ -14,7 +14,6 @@ namespace ShowroomData
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(0, 0);
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-
         }
 
         private void panelContent_Resize(object sender, EventArgs e)
@@ -30,7 +29,7 @@ namespace ShowroomData
             Size btnSize = new Size(minWidth, minWidth);
             btnCustomers.Size = btnEmployees.Size = btnPuchaInvoices.Size
                 = btnProducts.Size = btnSource.Size = btnPuchaInvoices.Size
-                = btnDevices.Size = btnSaleInvoice.Size = btnTask.Size = btnSize;
+                = btnDevices.Size = btnSaleInvoice.Size = btnTask.Size = btnAccounts.Size = btnSize;
 
 
         }
@@ -70,9 +69,20 @@ namespace ShowroomData
                     MessageBox.Show("Bạn không được cấp quyền để xem",
                         "Thông Báo", MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+                    return;
                 }
                 formName = TableName.TASKS;
             }
+            else if (sender.Equals(btnAccounts))
+                if (Layout2.CURR_USER.Level_account < 2)
+                {
+                    MessageBox.Show("Bạn không được cấp quyền để xem",
+                        "Thông Báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+                else
+                    formName = TableName.ACCOUNT;
             else
                 formName = "employees";
 
@@ -131,12 +141,29 @@ namespace ShowroomData
         private void btnCurrAccount_Click(object sender, EventArgs e)
         {
             UserAccount userAccountForm = new UserAccount();
-            userAccountForm.FormClosed += (sender, args) => { 
+            userAccountForm.FormClosed += (sender, args) =>
+            {
                 Show();
             };
 
             Hide();
             userAccountForm.Show();
+        }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            if (Layout2.CURR_USER.Level_account < 2)
+            {
+                MessageBox.Show("Bạn không được cấp quyền để xem",
+                      "Thông Báo", MessageBoxButtons.OK,
+                      MessageBoxIcon.Warning);
+                return;
+            }
+            Layout3 sign = new Layout3();
+            sign.TopMost = true;
+            sign.FormClosed += (sender, args) => Show();
+            Hide();
+            sign.ShowDialog();
         }
     }
 }

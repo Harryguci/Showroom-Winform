@@ -36,7 +36,7 @@
             btnCurrAccount = new Button();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
+            btnSignUp = new Button();
             panel1 = new Panel();
             btnSearchAll = new Button();
             btnLogout = new Button();
@@ -51,6 +51,7 @@
             btnSource = new Button();
             btnDevices = new Button();
             btnTask = new Button();
+            btnAccounts = new Button();
             toolTip1 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -67,11 +68,11 @@
             flowLayoutPanel1.Controls.Add(btnCurrAccount);
             flowLayoutPanel1.Controls.Add(button2);
             flowLayoutPanel1.Controls.Add(button3);
-            flowLayoutPanel1.Controls.Add(button4);
+            flowLayoutPanel1.Controls.Add(btnSignUp);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 701);
+            flowLayoutPanel1.Size = new Size(136, 785);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -141,20 +142,21 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += btnShowReport_Click;
             // 
-            // button4
+            // btnSignUp
             // 
-            button4.BackColor = Color.FromArgb(50, 50, 150);
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(0, 311);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Size = new Size(136, 51);
-            button4.TabIndex = 5;
-            button4.Text = "Tin tức";
-            button4.UseVisualStyleBackColor = true;
+            btnSignUp.BackColor = Color.FromArgb(50, 50, 150);
+            btnSignUp.FlatAppearance.BorderSize = 0;
+            btnSignUp.FlatStyle = FlatStyle.Flat;
+            btnSignUp.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSignUp.ForeColor = Color.White;
+            btnSignUp.Location = new Point(0, 311);
+            btnSignUp.Margin = new Padding(0);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(136, 51);
+            btnSignUp.TabIndex = 5;
+            btnSignUp.Text = "Đăng ký tài khoản";
+            btnSignUp.UseVisualStyleBackColor = true;
+            btnSignUp.Click += btnSignUp_Click;
             // 
             // panel1
             // 
@@ -216,7 +218,7 @@
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(136, 179);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(1055, 522);
+            panelContent.Size = new Size(1055, 606);
             panelContent.TabIndex = 2;
             panelContent.Resize += panelContent_Resize;
             // 
@@ -230,9 +232,10 @@
             flowLayoutPanel2.Controls.Add(btnSource);
             flowLayoutPanel2.Controls.Add(btnDevices);
             flowLayoutPanel2.Controls.Add(btnTask);
+            flowLayoutPanel2.Controls.Add(btnAccounts);
             flowLayoutPanel2.Location = new Point(42, 30);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(1001, 462);
+            flowLayoutPanel2.Size = new Size(1001, 564);
             flowLayoutPanel2.TabIndex = 0;
             // 
             // btnProducts
@@ -361,6 +364,21 @@
             btnTask.UseVisualStyleBackColor = true;
             btnTask.Click += HandleChangeForm;
             // 
+            // btnAccounts
+            // 
+            btnAccounts.BackgroundImage = Properties.Resources.user;
+            btnAccounts.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAccounts.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
+            btnAccounts.FlatAppearance.BorderSize = 0;
+            btnAccounts.FlatStyle = FlatStyle.Flat;
+            btnAccounts.Location = new Point(20, 400);
+            btnAccounts.Margin = new Padding(20);
+            btnAccounts.Name = "btnAccounts";
+            btnAccounts.Size = new Size(177, 150);
+            btnAccounts.TabIndex = 0;
+            btnAccounts.UseVisualStyleBackColor = true;
+            btnAccounts.Click += HandleChangeForm;
+            // 
             // toolTip1
             // 
             toolTip1.BackColor = Color.DeepSkyBlue;
@@ -370,7 +388,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1191, 701);
+            ClientSize = new Size(1191, 785);
             Controls.Add(panelContent);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
@@ -402,7 +420,7 @@
         private Button btnCurrAccount;
         private Button button2;
         private Button button3;
-        private Button button4;
+        private Button btnSignUp;
         private Label lblHeadingPage;
         private Panel panelContent;
         private FlowLayoutPanel flowLayoutPanel2;
@@ -417,5 +435,6 @@
         private Button btnLogout;
         private Button btnSearchAll;
         private Button btnTask;
+        private Button btnAccounts;
     }
 }

@@ -804,7 +804,7 @@ namespace ShowroomData
             {
                 table = TableName.ACCOUNT;
                 //Định dạng dataGrid
-                colFormat = ColumnObject.ACCOUNT_COLS;
+                //colFormat = ColumnObject.ACCOUNT_COLS;
             }
             else if (listType == ListType.TASKS)
             {
@@ -827,10 +827,19 @@ namespace ShowroomData
                 query = $"select Top {limits} * from {table} where {whereCondition}";
 
             if (listType == TableName.TASKS)
+            {
                 query = "SELECT ID, TASKS.EMPLOYEEID, " +
-                    "FULLNAME = Employees.FirstName + ' ' + Employees.LastName, " +
-                    "DATELINE, CONTENT, RESULT " +
-                    "FROM TASKS JOIN Employees ON TASKS.EMPLOYEEID = EMPLOYEES.EmployeeId";
+                "FULLNAME = Employees.FirstName + ' ' + Employees.LastName, " +
+                "DATELINE, CONTENT, RESULT " +
+                "FROM TASKS JOIN Employees ON TASKS.EMPLOYEEID = EMPLOYEES.EmployeeId";
+
+                btnCreate.Visible = btnUpdateInfo.Visible = btnDelete.Visible = false;
+            }
+            else if (listType == TableName.ACCOUNT)
+            {
+                query = "SELECT USERNAME, LEVEL_ACCOUNT, EMPLOYEEID FROM ACCOUNT";
+                btnCreate.Visible = btnUpdateInfo.Visible = btnDelete.Visible = false;
+            }
 
             try
             {
