@@ -235,6 +235,7 @@
             flowLayoutPanel2.Controls.Add(btnAccounts);
             flowLayoutPanel2.Location = new Point(42, 30);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Padding = new Padding(50, 0, 0, 0);
             flowLayoutPanel2.Size = new Size(1001, 564);
             flowLayoutPanel2.TabIndex = 0;
             // 
@@ -248,7 +249,7 @@
             btnProducts.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnProducts.ForeColor = SystemColors.ButtonHighlight;
             btnProducts.ImageAlign = ContentAlignment.TopCenter;
-            btnProducts.Location = new Point(20, 20);
+            btnProducts.Location = new Point(70, 20);
             btnProducts.Margin = new Padding(20);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(177, 150);
@@ -263,7 +264,7 @@
             btnEmployees.BackgroundImageLayout = ImageLayout.Zoom;
             btnEmployees.FlatAppearance.BorderSize = 0;
             btnEmployees.FlatStyle = FlatStyle.Flat;
-            btnEmployees.Location = new Point(237, 20);
+            btnEmployees.Location = new Point(287, 20);
             btnEmployees.Margin = new Padding(20);
             btnEmployees.Name = "btnEmployees";
             btnEmployees.Size = new Size(177, 150);
@@ -278,7 +279,7 @@
             btnCustomers.BackgroundImageLayout = ImageLayout.Zoom;
             btnCustomers.FlatAppearance.BorderSize = 0;
             btnCustomers.FlatStyle = FlatStyle.Flat;
-            btnCustomers.Location = new Point(454, 20);
+            btnCustomers.Location = new Point(504, 20);
             btnCustomers.Margin = new Padding(20);
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Size = new Size(177, 150);
@@ -293,7 +294,7 @@
             btnPuchaInvoices.BackgroundImageLayout = ImageLayout.Zoom;
             btnPuchaInvoices.FlatAppearance.BorderSize = 0;
             btnPuchaInvoices.FlatStyle = FlatStyle.Flat;
-            btnPuchaInvoices.Location = new Point(671, 20);
+            btnPuchaInvoices.Location = new Point(721, 20);
             btnPuchaInvoices.Margin = new Padding(20);
             btnPuchaInvoices.Name = "btnPuchaInvoices";
             btnPuchaInvoices.Size = new Size(177, 150);
@@ -309,7 +310,7 @@
             btnSaleInvoice.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnSaleInvoice.FlatAppearance.BorderSize = 0;
             btnSaleInvoice.FlatStyle = FlatStyle.Flat;
-            btnSaleInvoice.Location = new Point(20, 210);
+            btnSaleInvoice.Location = new Point(70, 210);
             btnSaleInvoice.Margin = new Padding(20);
             btnSaleInvoice.Name = "btnSaleInvoice";
             btnSaleInvoice.Size = new Size(177, 150);
@@ -325,7 +326,7 @@
             btnSource.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnSource.FlatAppearance.BorderSize = 0;
             btnSource.FlatStyle = FlatStyle.Flat;
-            btnSource.Location = new Point(237, 210);
+            btnSource.Location = new Point(287, 210);
             btnSource.Margin = new Padding(20);
             btnSource.Name = "btnSource";
             btnSource.Size = new Size(177, 150);
@@ -341,7 +342,7 @@
             btnDevices.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnDevices.FlatAppearance.BorderSize = 0;
             btnDevices.FlatStyle = FlatStyle.Flat;
-            btnDevices.Location = new Point(454, 210);
+            btnDevices.Location = new Point(504, 210);
             btnDevices.Margin = new Padding(20);
             btnDevices.Name = "btnDevices";
             btnDevices.Size = new Size(177, 150);
@@ -357,7 +358,7 @@
             btnTask.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnTask.FlatAppearance.BorderSize = 0;
             btnTask.FlatStyle = FlatStyle.Flat;
-            btnTask.Location = new Point(671, 210);
+            btnTask.Location = new Point(721, 210);
             btnTask.Margin = new Padding(20);
             btnTask.Name = "btnTask";
             btnTask.Size = new Size(177, 150);
@@ -373,7 +374,7 @@
             btnAccounts.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnAccounts.FlatAppearance.BorderSize = 0;
             btnAccounts.FlatStyle = FlatStyle.Flat;
-            btnAccounts.Location = new Point(20, 400);
+            btnAccounts.Location = new Point(70, 400);
             btnAccounts.Margin = new Padding(20);
             btnAccounts.Name = "btnAccounts";
             btnAccounts.Size = new Size(177, 150);
