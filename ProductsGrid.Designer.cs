@@ -314,6 +314,7 @@ namespace ShowroomData
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(169, 23);
             comboBox1.TabIndex = 3;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             comboBox1.TextChanged += btnSearch_Click;
             // 
             // label2
@@ -334,7 +335,7 @@ namespace ShowroomData
             txtPurchasePriceMax.Location = new Point(12, 595);
             txtPurchasePriceMax.Multiline = true;
             txtPurchasePriceMax.Name = "txtPurchasePriceMax";
-            txtPurchasePriceMax.Size = new Size(169, 33);
+            txtPurchasePriceMax.Size = new Size(169, 35);
             txtPurchasePriceMax.TabIndex = 2;
             txtPurchasePriceMax.TextChanged += btnSearch_Click;
             // 
@@ -345,7 +346,7 @@ namespace ShowroomData
             txtSalePriceMax.Location = new Point(12, 450);
             txtSalePriceMax.Multiline = true;
             txtSalePriceMax.Name = "txtSalePriceMax";
-            txtSalePriceMax.Size = new Size(169, 33);
+            txtSalePriceMax.Size = new Size(169, 35);
             txtSalePriceMax.TabIndex = 2;
             txtSalePriceMax.TextChanged += btnSearch_Click;
             // 
@@ -378,7 +379,7 @@ namespace ShowroomData
             txtPurchasePriceMin.Location = new Point(12, 526);
             txtPurchasePriceMin.Multiline = true;
             txtPurchasePriceMin.Name = "txtPurchasePriceMin";
-            txtPurchasePriceMin.Size = new Size(169, 33);
+            txtPurchasePriceMin.Size = new Size(169, 35);
             txtPurchasePriceMin.TabIndex = 2;
             txtPurchasePriceMin.TextChanged += btnSearch_Click;
             // 
@@ -400,7 +401,7 @@ namespace ShowroomData
             txtSalePriceMin.Location = new Point(12, 381);
             txtSalePriceMin.Multiline = true;
             txtSalePriceMin.Name = "txtSalePriceMin";
-            txtSalePriceMin.Size = new Size(169, 33);
+            txtSalePriceMin.Size = new Size(169, 35);
             txtSalePriceMin.TabIndex = 2;
             txtSalePriceMin.TextChanged += btnSearch_Click;
             // 
@@ -422,7 +423,7 @@ namespace ShowroomData
             textBox1.Location = new Point(12, 244);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(169, 33);
+            textBox1.Size = new Size(169, 35);
             textBox1.TabIndex = 2;
             textBox1.TextChanged += textBox1_TextChanged_1;
             // 

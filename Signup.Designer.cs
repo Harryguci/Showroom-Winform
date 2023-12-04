@@ -59,7 +59,7 @@ namespace ShowroomData
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(484, 133);
+            panel1.Size = new Size(558, 133);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -92,7 +92,7 @@ namespace ShowroomData
             panel2.Location = new Point(0, 133);
             panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(484, 356);
+            panel2.Size = new Size(558, 356);
             panel2.TabIndex = 1;
             // 
             // levelNum
@@ -105,7 +105,7 @@ namespace ShowroomData
             levelNum.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
             levelNum.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             levelNum.Name = "levelNum";
-            levelNum.Size = new Size(206, 26);
+            levelNum.Size = new Size(283, 26);
             levelNum.TabIndex = 4;
             levelNum.Value = new decimal(new int[] { 1, 0, 0, 0 });
             levelNum.ValueChanged += numberLvl_ValueChanged;
@@ -117,7 +117,7 @@ namespace ShowroomData
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.FromArgb(50, 50, 150);
-            button2.Location = new Point(294, 277);
+            button2.Location = new Point(366, 276);
             button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(135, 40);
@@ -132,10 +132,10 @@ namespace ShowroomData
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(51, 277);
+            button1.Location = new Point(51, 276);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(239, 40);
+            button1.Size = new Size(311, 40);
             button1.TabIndex = 3;
             button1.Text = "Xác nhận";
             button1.UseVisualStyleBackColor = false;
@@ -151,7 +151,7 @@ namespace ShowroomData
             cbId.Location = new Point(222, 87);
             cbId.Margin = new Padding(2);
             cbId.Name = "cbId";
-            cbId.Size = new Size(207, 23);
+            cbId.Size = new Size(284, 23);
             cbId.TabIndex = 2;
             // 
             // txtConfpassword
@@ -166,7 +166,8 @@ namespace ShowroomData
             txtConfpassword.MaxLength = 30;
             txtConfpassword.Multiline = true;
             txtConfpassword.Name = "txtConfpassword";
-            txtConfpassword.Size = new Size(206, 38);
+            txtConfpassword.PasswordChar = '*';
+            txtConfpassword.Size = new Size(283, 38);
             txtConfpassword.TabIndex = 1;
             txtConfpassword.KeyPress += txtConfpassword_KeyPress;
             // 
@@ -182,7 +183,8 @@ namespace ShowroomData
             txtPassword.MaxLength = 30;
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(206, 38);
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(283, 38);
             txtPassword.TabIndex = 1;
             txtPassword.KeyPress += txtPassword_KeyPress;
             // 
@@ -198,7 +200,7 @@ namespace ShowroomData
             txtUsername.MaxLength = 30;
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(206, 38);
+            txtUsername.Size = new Size(283, 38);
             txtUsername.TabIndex = 1;
             txtUsername.KeyPress += txtUsername_KeyPress;
             // 
@@ -228,12 +230,12 @@ namespace ShowroomData
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(148, 126);
+            label5.Location = new Point(83, 127);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(46, 20);
+            label5.Size = new Size(115, 20);
             label5.TabIndex = 0;
-            label5.Text = "Level";
+            label5.Text = "Quyền truy cập";
             // 
             // label2
             // 
@@ -261,7 +263,7 @@ namespace ShowroomData
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(484, 489);
+            ClientSize = new Size(558, 489);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

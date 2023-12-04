@@ -198,6 +198,8 @@ namespace ShowroomData
             // Excute the query
             processDb.UpdateData(query);
 
+            // Inform
+            MessageBox.Show("Tạo thành công", "Thông báo");
             // Earse current data
             CleanForm();
             MessageBox.Show("driveid : " + curr.id + "\nEmployeeid :" + curr.idEmployees + "\nClientId : " + curr.idClients + "\n", "Tai khoan ban vua dang ki la!!!", MessageBoxButtons.OK);

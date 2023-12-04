@@ -168,7 +168,9 @@ namespace ShowroomData
             if (levelNum.Value < 0)
             {
                 levelNum.Value = 0;
-            } else if (levelNum.Value >= 3) {
+            }
+            else if (levelNum.Value >= 3)
+            {
                 levelNum.Value = 2;
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class CreateDevice
     {
@@ -39,9 +41,9 @@
             button2 = new Button();
             lblHeading = new Label();
             label1 = new Label();
-            txtId = new TextBox();
+            txtId = new RoundTextBox();
             label2 = new Label();
-            txtName = new TextBox();
+            txtName = new RoundTextBox();
             label5 = new Label();
             dayDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
@@ -49,8 +51,8 @@
             btnCreate = new Button();
             label6 = new Label();
             label4 = new Label();
-            txtPrice = new TextBox();
-            txtStatus = new TextBox();
+            txtStatus = new RoundTextBox();
+            txtPrice = new RoundTextBox();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -178,7 +180,7 @@
             lblHeading.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point);
             lblHeading.Location = new Point(355, 57);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(229, 46);
+            lblHeading.Size = new Size(160, 31);
             lblHeading.TabIndex = 100;
             lblHeading.Text = "Tạo thiết bị";
             // 
@@ -187,7 +189,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(42, 37);
             label1.Name = "label1";
-            label1.Size = new Size(113, 29);
+            label1.Size = new Size(77, 20);
             label1.TabIndex = 2;
             label1.Text = "ID thiết bị";
             // 
@@ -196,7 +198,7 @@
             txtId.Enabled = false;
             txtId.Location = new Point(195, 34);
             txtId.Name = "txtId";
-            txtId.Size = new Size(406, 35);
+            txtId.Size = new Size(406, 26);
             txtId.TabIndex = 0;
             // 
             // label2
@@ -204,7 +206,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(42, 104);
             label2.Name = "label2";
-            label2.Size = new Size(133, 29);
+            label2.Size = new Size(87, 20);
             label2.TabIndex = 2;
             label2.Text = "Tên thiết bị";
             // 
@@ -212,7 +214,7 @@
             // 
             txtName.Location = new Point(195, 101);
             txtName.Name = "txtName";
-            txtName.Size = new Size(406, 35);
+            txtName.Size = new Size(406, 26);
             txtName.TabIndex = 1;
             // 
             // label5
@@ -220,15 +222,16 @@
             label5.AutoSize = true;
             label5.Location = new Point(43, 181);
             label5.Name = "label5";
-            label5.Size = new Size(107, 29);
+            label5.Size = new Size(72, 20);
             label5.TabIndex = 2;
             label5.Text = "Ngày thử";
             // 
             // dayDateTimePicker
             // 
+            dayDateTimePicker.Format = DateTimePickerFormat.Short;
             dayDateTimePicker.Location = new Point(195, 176);
             dayDateTimePicker.Name = "dayDateTimePicker";
-            dayDateTimePicker.Size = new Size(406, 35);
+            dayDateTimePicker.Size = new Size(406, 26);
             dayDateTimePicker.TabIndex = 2;
             // 
             // panel3
@@ -288,7 +291,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(43, 318);
             label6.Name = "label6";
-            label6.Size = new Size(121, 29);
+            label6.Size = new Size(80, 20);
             label6.TabIndex = 2;
             label6.Text = "Trạng thái";
             // 
@@ -297,28 +300,28 @@
             label4.AutoSize = true;
             label4.Location = new Point(43, 249);
             label4.Name = "label4";
-            label4.Size = new Size(50, 29);
+            label4.Size = new Size(34, 20);
             label4.TabIndex = 2;
             label4.Text = "Giá";
-            // 
-            // txtPrice
-            // 
-            txtPrice.Location = new Point(195, 246);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(173, 35);
-            txtPrice.TabIndex = 3;
-            txtPrice.KeyPress += txtPrice_KeyPress;
             // 
             // txtStatus
             // 
             txtStatus.Location = new Point(195, 315);
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(406, 35);
+            txtStatus.Size = new Size(406, 26);
             txtStatus.TabIndex = 4;
+            // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(195, 246);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(173, 26);
+            txtPrice.TabIndex = 3;
+            txtPrice.KeyPress += txtPrice_KeyPress;
             // 
             // CreateDevice
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 590);
             Controls.Add(panel1);

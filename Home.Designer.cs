@@ -298,7 +298,7 @@
             btnPuchaInvoices.Name = "btnPuchaInvoices";
             btnPuchaInvoices.Size = new Size(177, 150);
             btnPuchaInvoices.TabIndex = 0;
-            toolTip1.SetToolTip(btnPuchaInvoices, "Hóa đơn");
+            toolTip1.SetToolTip(btnPuchaInvoices, "Hóa đơn nhập");
             btnPuchaInvoices.UseVisualStyleBackColor = true;
             btnPuchaInvoices.Click += HandleChangeForm;
             // 
@@ -346,6 +346,7 @@
             btnDevices.Name = "btnDevices";
             btnDevices.Size = new Size(177, 150);
             btnDevices.TabIndex = 0;
+            toolTip1.SetToolTip(btnDevices, "Thiết bị");
             btnDevices.UseVisualStyleBackColor = true;
             btnDevices.Click += HandleChangeForm;
             // 
@@ -361,6 +362,7 @@
             btnTask.Name = "btnTask";
             btnTask.Size = new Size(177, 150);
             btnTask.TabIndex = 0;
+            toolTip1.SetToolTip(btnTask, "Công việc");
             btnTask.UseVisualStyleBackColor = true;
             btnTask.Click += HandleChangeForm;
             // 
@@ -376,13 +378,17 @@
             btnAccounts.Name = "btnAccounts";
             btnAccounts.Size = new Size(177, 150);
             btnAccounts.TabIndex = 0;
+            toolTip1.SetToolTip(btnAccounts, "Tài khoản");
             btnAccounts.UseVisualStyleBackColor = true;
             btnAccounts.Click += HandleChangeForm;
             // 
             // toolTip1
             // 
-            toolTip1.BackColor = Color.DeepSkyBlue;
+            toolTip1.BackColor = Color.FromArgb(50, 50, 150);
             toolTip1.ForeColor = Color.White;
+            toolTip1.OwnerDraw = true;
+            toolTip1.Draw += toolTip1_Draw;
+            toolTip1.Popup += toolTip1_Popup;
             // 
             // Home
             // 
@@ -392,6 +398,7 @@
             Controls.Add(panelContent);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
+            DoubleBuffered = true;
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximumSize = new Size(1560, 1032);

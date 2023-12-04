@@ -57,6 +57,8 @@
             label4 = new Label();
             txtStatus = new TextBox();
             txtQuantity = new TextBox();
+            txtPurchasePrice = new TextBox();
+            label7 = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -74,7 +76,7 @@
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 711);
+            flowLayoutPanel1.Size = new Size(136, 807);
             flowLayoutPanel1.TabIndex = 10;
             // 
             // panel2
@@ -271,18 +273,20 @@
             panel3.Controls.Add(dayDateTimePicker);
             panel3.Controls.Add(txtIdSuppliers);
             panel3.Controls.Add(label6);
+            panel3.Controls.Add(label7);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(txtIdInvoices);
             panel3.Controls.Add(label2);
+            panel3.Controls.Add(txtPurchasePrice);
             panel3.Controls.Add(txtStatus);
             panel3.Controls.Add(txtQuantity);
             panel3.Controls.Add(txtIdProducts);
             panel3.Controls.Add(label3);
             panel3.Location = new Point(208, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(827, 583);
+            panel3.Size = new Size(827, 679);
             panel3.TabIndex = 100;
             // 
             // lblProductName
@@ -332,7 +336,7 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(263, 484);
+            btnClean.Location = new Point(263, 546);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -348,7 +352,7 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(131, 484);
+            btnCreate.Location = new Point(131, 546);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -360,7 +364,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(42, 423);
+            label6.Location = new Point(42, 485);
             label6.Name = "label6";
             label6.Size = new Size(80, 20);
             label6.TabIndex = 2;
@@ -377,7 +381,7 @@
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(226, 420);
+            txtStatus.Location = new Point(226, 482);
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
             txtStatus.Size = new Size(374, 35);
@@ -392,11 +396,30 @@
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
+            // txtPurchasePrice
+            // 
+            txtPurchasePrice.Location = new Point(226, 419);
+            txtPurchasePrice.Multiline = true;
+            txtPurchasePrice.Name = "txtPurchasePrice";
+            txtPurchasePrice.Size = new Size(374, 35);
+            txtPurchasePrice.TabIndex = 4;
+            txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged;
+            txtPurchasePrice.KeyPress += txtQuantity_KeyPress;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(42, 422);
+            label7.Name = "label7";
+            label7.Size = new Size(74, 20);
+            label7.TabIndex = 2;
+            label7.Text = "Giá nhập";
+            // 
             // CreatePurchaseInvoice
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 711);
+            ClientSize = new Size(1064, 807);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -447,5 +470,7 @@
         private Button btnCreateProduct;
         private Label lblProductName;
         private Label lblSourceName;
+        private Label label7;
+        private TextBox txtPurchasePrice;
     }
 }

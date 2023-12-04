@@ -102,9 +102,9 @@ namespace ShowroomData
             var curr = new
             {
                 nameProduct = txtNameProduct.Text.Trim(),
-                purchasePrice = txtPurchasePrice.Text.Trim(),
-                salePrice = txtSalePrice.Text.Trim(),
-                quantity = txtQuantity.Text.Trim(),
+                //purchasePrice = txtPurchasePrice.Text.Trim(),
+                //salePrice = txtSalePrice.Text.Trim(),
+                //quantity = txtQuantity.Text.Trim(),
                 status = txtStatus.Text.Trim()
             };
 
@@ -113,21 +113,21 @@ namespace ShowroomData
                 MessageBox.Show("Bạn phải nhập tên sản phẩm");
                 return false;
             }
-            if (curr.purchasePrice.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập giá bán");
-                return false;
-            }
-            if (curr.salePrice.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập giá mua");
-                return false;
-            }
-            if (curr.quantity.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập số lượng");
-                return false;
-            }
+            //if (curr.purchasePrice.Length <= 0)
+            //{
+            //    MessageBox.Show("Bạn phải nhập giá bán");
+            //    return false;
+            //}
+            //if (curr.salePrice.Length <= 0)
+            //{
+            //    MessageBox.Show("Bạn phải nhập giá mua");
+            //    return false;
+            //}
+            //if (curr.quantity.Length <= 0)
+            //{
+            //    MessageBox.Show("Bạn phải nhập số lượng");
+            //    return false;
+            //}
             if (curr.status.Length <= 0)
             {
                 MessageBox.Show("Bạn phải nhập trạng thái");
@@ -140,7 +140,7 @@ namespace ShowroomData
         private void CleanForm()
         {
             // Earse current data
-            TextBox[] textBoxes = { txtNameProduct, txtPurchasePrice, txtSalePrice, txtQuantity, txtStatus };
+            TextBox[] textBoxes = { txtNameProduct, txtStatus };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
@@ -182,16 +182,17 @@ namespace ShowroomData
             {
                 nameProduct = txtNameProduct.Text.Trim(),
                 idProduct = txtIdProduct.Text.Trim(),
-                purchasePrice = txtPurchasePrice.Text.Trim(),
-                salePrice = txtSalePrice.Text.Trim(),
-                quantity = txtQuantity.Text.Trim(),
-                status = txtStatus.Text.Trim()
+                //purchasePrice = txtPurchasePrice.Text.Trim(),
+                //salePrice = txtSalePrice.Text.Trim(),
+                //quantity = txtQuantity.Text.Trim(),
+                status = txtStatus.Text.Trim(),
+                color = cboColor.Text.Trim()
             };
 
             // Handle Create
-            string query = $"INSERT INTO Products (ProductName, Serial, PurchasePrice, SalePrice, Quantity, Status, Deleted) " +
-                $"VALUES (N'{curr.nameProduct}',N'{curr.idProduct}',N'{curr.purchasePrice}','{curr.salePrice}', " +
-                $"N'{curr.quantity}',N'{curr.status}', 0)";
+            string query = $"INSERT INTO Products (ProductName, Serial, PurchasePrice, SalePrice, Quantity, Status, Deleted, Color) " +
+                $"VALUES (N'{curr.nameProduct}',N'{curr.idProduct}',0,0, " +
+                $"0,N'{curr.status}', 0, N'{curr.color}')";
 
             // Excute the query
             processDb.UpdateData(query);
@@ -207,9 +208,18 @@ namespace ShowroomData
                 {
                     path = path.Substring(1);
                 }
-                File.Copy(img, Path.Combine(Directory.GetCurrentDirectory(), path));
-                processDb.UpdateData(qProductImage);
+
+                try
+                {
+                    File.Copy(img, Path.Combine(Directory.GetCurrentDirectory(), path));
+                    processDb.UpdateData(qProductImage);
+                }
+                catch { 
+                    MessageBox.Show("Ảnh này đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+                }
             }
+
+            MessageBox.Show("Tạo thành công", "Thông báo");
 
             // Earse current data
             CleanForm();
@@ -222,16 +232,16 @@ namespace ShowroomData
             parent.Refresh();
         }
 
-        private void btnClean_Click_1(object sender, EventArgs e)
+        private void btnClean_Click(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { txtNameProduct, txtPurchasePrice, txtSalePrice, txtQuantity, txtStatus };
+            TextBox[] textBoxes = { txtNameProduct, txtStatus };
             for (int i = 0; i < textBoxes.Length; i++)
                 textBoxes[i].Text = string.Empty;
 
             txtIdProduct.Text = AutoCreateId();
         }
 
-        private void helpBtn_Click_1(object sender, EventArgs e)
+        private void helpBtn_Click(object sender, EventArgs e)
         {
             HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
                 "- Bắt buộc nhập đầy đủ thông tin\n" +
@@ -240,9 +250,9 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
-        private void btnBack_Click_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            Dispose();
+            Close();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -262,20 +272,6 @@ namespace ShowroomData
             indexImage = 0;
             btnBackImage.Enabled = false;
             btnNextImage.Enabled = indexImage == 0 || indexImage == _images.Count - 1;
-        }
-
-        private void txtPurchasePrice_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int purchaseValue = Convert.ToInt32(txtPurchasePrice.Text);
-                int salePrice = (int)(purchaseValue * 1.2);
-                txtSalePrice.Text = salePrice.ToString();
-            }
-            catch
-            {
-                ;
-            }
         }
 
         private void btnAddImage_Click(object sender, EventArgs e)

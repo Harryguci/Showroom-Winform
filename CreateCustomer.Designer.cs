@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class CreateCustomer
     {
@@ -39,12 +41,12 @@
             button2 = new Button();
             lblHeading = new Label();
             label1 = new Label();
-            txtId = new TextBox();
+            txtId = new RoundTextBox();
             label2 = new Label();
-            txtLastname = new TextBox();
+            txtLastname = new RoundTextBox();
             label3 = new Label();
             label4 = new Label();
-            txtAddress = new TextBox();
+            txtAddress = new RoundTextBox();
             label5 = new Label();
             birthDateTimePicker = new DateTimePicker();
             panel3 = new Panel();
@@ -54,12 +56,12 @@
             rdbMale = new RadioButton();
             btnClean = new Button();
             btnCreate = new Button();
-            txtEmail = new TextBox();
-            txtCCCD = new TextBox();
-            txtPhone = new TextBox();
+            txtEmail = new RoundTextBox();
+            txtCCCD = new RoundTextBox();
+            txtPhone = new RoundTextBox();
             label7 = new Label();
             label6 = new Label();
-            txtFirstname = new TextBox();
+            txtFirstname = new RoundTextBox();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -203,10 +205,12 @@
             // 
             // txtId
             // 
+            txtId.BorderRadius = 5;
             txtId.Enabled = false;
             txtId.Location = new Point(132, 34);
+            txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(469, 26);
+            txtId.Size = new Size(469, 35);
             txtId.TabIndex = 0;
             // 
             // label2
@@ -220,9 +224,11 @@
             // 
             // txtLastname
             // 
+            txtLastname.BorderRadius = 5;
             txtLastname.Location = new Point(132, 89);
+            txtLastname.Multiline = true;
             txtLastname.Name = "txtLastname";
-            txtLastname.Size = new Size(202, 26);
+            txtLastname.Size = new Size(202, 35);
             txtLastname.TabIndex = 1;
             // 
             // label3
@@ -245,9 +251,11 @@
             // 
             // txtAddress
             // 
+            txtAddress.BorderRadius = 5;
             txtAddress.Location = new Point(132, 399);
+            txtAddress.Multiline = true;
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(469, 26);
+            txtAddress.Size = new Size(469, 35);
             txtAddress.TabIndex = 8;
             // 
             // label5
@@ -340,13 +348,14 @@
             // 
             btnClean.BackColor = SystemColors.ActiveCaption;
             btnClean.BackgroundImageLayout = ImageLayout.None;
-            btnClean.FlatStyle = FlatStyle.Popup;
+            btnClean.FlatAppearance.BorderSize = 0;
+            btnClean.FlatStyle = FlatStyle.Flat;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(323, 454);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
-            btnClean.Size = new Size(121, 38);
+            btnClean.Size = new Size(171, 38);
             btnClean.TabIndex = 9;
             btnClean.Text = "Nhập mới";
             btnClean.UseVisualStyleBackColor = false;
@@ -356,13 +365,14 @@
             // 
             btnCreate.BackColor = SystemColors.MenuHighlight;
             btnCreate.BackgroundImageLayout = ImageLayout.None;
-            btnCreate.FlatStyle = FlatStyle.Popup;
+            btnCreate.FlatAppearance.BorderSize = 0;
+            btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(132, 454);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(121, 38);
+            btnCreate.Size = new Size(171, 38);
             btnCreate.TabIndex = 8;
             btnCreate.Text = "Tạo";
             btnCreate.UseVisualStyleBackColor = false;
@@ -370,24 +380,30 @@
             // 
             // txtEmail
             // 
+            txtEmail.BorderRadius = 5;
             txtEmail.Location = new Point(405, 318);
+            txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(196, 26);
+            txtEmail.Size = new Size(196, 35);
             txtEmail.TabIndex = 7;
             // 
             // txtCCCD
             // 
+            txtCCCD.BorderRadius = 5;
             txtCCCD.Location = new Point(132, 321);
+            txtCCCD.Multiline = true;
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(180, 26);
+            txtCCCD.Size = new Size(180, 35);
             txtCCCD.TabIndex = 6;
             txtCCCD.KeyPress += txtCCCD_KeyPress;
             // 
             // txtPhone
             // 
+            txtPhone.BorderRadius = 5;
             txtPhone.Location = new Point(132, 155);
+            txtPhone.Multiline = true;
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(180, 26);
+            txtPhone.Size = new Size(180, 35);
             txtPhone.TabIndex = 3;
             txtPhone.KeyPress += txtPhone_KeyPress;
             // 
@@ -411,9 +427,11 @@
             // 
             // txtFirstname
             // 
+            txtFirstname.BorderRadius = 5;
             txtFirstname.Location = new Point(430, 92);
+            txtFirstname.Multiline = true;
             txtFirstname.Name = "txtFirstname";
-            txtFirstname.Size = new Size(171, 26);
+            txtFirstname.Size = new Size(171, 35);
             txtFirstname.TabIndex = 2;
             // 
             // CreateCustomer
@@ -450,12 +468,9 @@
         private Panel panel1;
         private Button btnBack;
         private Label label1;
-        private TextBox txtId;
         private Label label2;
-        private TextBox txtLastname;
         private Label label3;
         private Label label4;
-        private TextBox txtAddress;
         private Label label5;
         private DateTimePicker birthDateTimePicker;
         private Panel panel3;
@@ -465,16 +480,19 @@
         private GroupBox grbGender;
         private RadioButton rdbFemale;
         private RadioButton rdbMale;
-        private TextBox txtPhone;
         private Label label6;
-        private TextBox txtEmail;
         private Label label9;
         private Button helpBtn;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;
         private Button button2;
-        private TextBox txtCCCD;
         private Label label7;
-        private TextBox txtFirstname;
+        private RoundTextBox txtId;
+        private RoundTextBox txtLastname;
+        private RoundTextBox txtAddress;
+        private RoundTextBox txtPhone;
+        private RoundTextBox txtEmail;
+        private RoundTextBox txtCCCD;
+        private RoundTextBox txtFirstname;
     }
 }

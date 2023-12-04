@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShowroomData.ComponentGUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,10 @@ namespace ShowroomData
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
-
+            RoundTextBox.SetPadding(txtId, new Padding(5));
+            RoundTextBox.SetPadding(txtName, new Padding(5));
+            RoundTextBox.SetPadding(txtPrice, new Padding(5));
+            RoundTextBox.SetPadding(txtStatus, new Padding(5));
 
             //
             // Enable resizing form size (without border)

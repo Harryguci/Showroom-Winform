@@ -106,13 +106,14 @@ namespace ShowroomData
                 purchasePrice = txtPurchasePrice.Text.Trim(),
                 salePrice = txtSalePrice.Text.Trim(),
                 quantity = txtQuantity.Text.Trim(),
-                status = txtStatus.Text.Trim()
+                status = txtStatus.Text.Trim(),
+                color = cboColor.Text.Trim(),
             };
 
             // Handle Create
             string query = $" UPDATE Products SET ProductName = N'{curr.name}', PurchasePrice = N'{curr.purchasePrice}', " +
                 $" SalePrice = N'{curr.salePrice}', Quantity = N'{curr.quantity}', Status = N'{curr.status}', " +
-                $" Deleted = 0 WHERE Serial = N'{curr.id}' ";
+                $" Deleted = 0, Color = N'{curr.color}' WHERE Serial = N'{curr.id}' ";
 
             foreach (var img in _images)
             {
@@ -148,6 +149,9 @@ namespace ShowroomData
                         $"= N'{t}' WHERE ID = {img.Id}");
                 }
             }
+
+            // Thong bao
+            MessageBox.Show("Cập nhật thành công", "Thông báo");
 
             // Earse current data
             CleanForm();
@@ -279,6 +283,7 @@ namespace ShowroomData
             txtSalePrice.Text = currProduct.SalePrice.ToString();
             txtQuantity.Text = currProduct.Quantity.ToString();
             txtStatus.Text = currProduct.Status;
+            cboColor.Text = currProduct.Color;
 
             txtName.TextChanged += InfoChanged;
             txtPurchasePrice.TextChanged += InfoChanged;

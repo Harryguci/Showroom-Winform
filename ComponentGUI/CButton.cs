@@ -193,6 +193,8 @@ namespace ShowroomData
             this.FlatAppearance.MouseOverBackColor = Color.Transparent;
             this.FlatAppearance.MouseDownBackColor = Color.Transparent;
             text = this.Text;
+            textX = Width / 2;
+            textY = Height / 2;
         }
 
 
@@ -336,11 +338,11 @@ namespace ShowroomData
             Region region = new System.Drawing.Region(new Rectangle(5, 5, this.Width, this.Height));
 
             GraphicsPath grp = new GraphicsPath();
-            grp.AddArc(5, 5, 40, 40, 180, 90);
+            grp.AddArc(5, 5, 40, 40, 100, 90);
             grp.AddLine(25, 5, this.Width - 25, 5);
-            grp.AddArc(this.Width - 45, 5, 40, 40, 270, 90);
+            grp.AddArc(this.Width - 45, 5, 40, 40, 190, 90);
             grp.AddLine(this.Width - 5, 25, this.Width - 5, this.Height - 25);
-            grp.AddArc(this.Width - 45, this.Height - 45, 40, 40, 0, 90);
+            grp.AddArc(this.Width - 45, this.Height - 45, 40, 40, 80, 90);
             grp.AddLine(25, this.Height - 5, this.Width - 25, this.Height - 5);
             grp.AddArc(5, this.Height - 45, 40, 40, 90, 90);
             grp.AddLine(5, 25, 5, this.Height - 25);
@@ -397,6 +399,42 @@ namespace ShowroomData
             }
         }
 
+        public static CButton ShowroomBtn()
+        {
+            CButton btn = new CButton();
+            // 
+            // btnLogin
+            // 
+            btn.BackColor = Color.Transparent;
+            btn.BorderColor = Color.Transparent;
+            btn.BorderWidth = 0;
+            btn.ButtonShape = CButton.ButtonsShapes.Rect;
+            btn.ButtonText = "Đăng nhập";
+            btn.EndColor = Color.FromArgb(2, 27, 121);
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btn.ForeColor = Color.White;
+            btn.GradientAngle = 0;
+            //btn.Location = new Point(56, 267);
+            btn.MouseClickColor1 = Color.FromArgb(5, 117, 230);
+            btn.MouseClickColor2 = Color.FromArgb(5, 117, 230);
+            btn.MouseHoverColor1 = Color.FromArgb(5, 117, 230);
+            btn.MouseHoverColor2 = Color.FromArgb(5, 117, 230);
+            btn.Name = "btnLogin";
+            btn.ShowButtontext = true;
+            btn.Size = new Size(336, 49);
+            btn.StartColor = Color.FromArgb(5, 117, 230);
+            btn.Text = "Đăng nhập";
+            btn.TextLocation_X = 120;
+            btn.TextLocation_Y = 15;
+            btn.Transparent1 = 250;
+            btn.Transparent2 = 250;
+            btn.UseVisualStyleBackColor = false;
 
+            return btn;
+        }
     }
 }

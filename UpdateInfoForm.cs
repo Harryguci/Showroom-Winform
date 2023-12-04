@@ -37,7 +37,7 @@ namespace ShowroomData
             txtCCCD.Text = employee.Cccd;
             txtPhone.Text = employee.Phone;
             txtSalary.Text = employee.Salary.ToString();
-            
+
             birthDateTimePicker.Value = employee.DateBirth != null ? employee.DateBirth.Value : DateTime.Now;
             txtEmail.Text = employee.Email;
             cbPosition.Text = employee.Position;
@@ -379,6 +379,11 @@ namespace ShowroomData
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnCreateTargetSale_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

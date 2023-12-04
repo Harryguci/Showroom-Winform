@@ -174,6 +174,14 @@ namespace ShowroomData
             // Excute the query
             processDb.UpdateData(query);
 
+            // Update PurchasePrice for the product
+            int purchasePrice = Convert.ToInt32(txtPurchasePrice.Text.Trim());
+            query = $"UPDATE PRODUCTS SET PURCHASEPRICE = {purchasePrice}, SALEPRICE = {(int)(purchasePrice * 1.2)}" +
+                $" WHERE SERIAL = N'{curr.id}'";
+            processDb.UpdateData(query);
+
+            MessageBox.Show("Tạo thành công", "Thông báo");
+
             // Earse current data
             CleanForm();
 
@@ -287,6 +295,11 @@ namespace ShowroomData
                     txtIdProducts.Text = query.Rows[0].Field<string>("SERIAL");
             };
             createProduct.ShowDialog();
+        }
+
+        private void txtPurchasePrice_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -42,9 +42,6 @@
             txtNameProduct = new TextBox();
             label2 = new Label();
             txtIdProduct = new TextBox();
-            label3 = new Label();
-            txtPurchasePrice = new TextBox();
-            label5 = new Label();
             panel3 = new Panel();
             btnAddImage = new Button();
             btnDeleteImage = new Button();
@@ -54,11 +51,10 @@
             pictureProductImage = new PictureBox();
             btnClean = new Button();
             btnCreate = new Button();
+            label3 = new Label();
             label6 = new Label();
-            label4 = new Label();
             txtStatus = new TextBox();
-            txtQuantity = new TextBox();
-            txtSalePrice = new TextBox();
+            cboColor = new ComboBox();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -113,7 +109,7 @@
             btnBack.TabIndex = 10;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click_1;
+            btnBack.Click += btnBack_Click;
             // 
             // helpBtn
             // 
@@ -129,7 +125,7 @@
             helpBtn.TabIndex = 11;
             helpBtn.Text = "Trợ giúp";
             helpBtn.UseVisualStyleBackColor = true;
-            helpBtn.Click += helpBtn_Click_1;
+            helpBtn.Click += helpBtn_Click;
             // 
             // panel1
             // 
@@ -194,7 +190,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(42, 37);
+            label1.Location = new Point(43, 139);
             label1.Name = "label1";
             label1.Size = new Size(110, 20);
             label1.TabIndex = 2;
@@ -202,7 +198,7 @@
             // 
             // txtNameProduct
             // 
-            txtNameProduct.Location = new Point(227, 34);
+            txtNameProduct.Location = new Point(228, 136);
             txtNameProduct.Name = "txtNameProduct";
             txtNameProduct.Size = new Size(374, 26);
             txtNameProduct.TabIndex = 0;
@@ -210,7 +206,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(42, 104);
+            label2.Location = new Point(43, 206);
             label2.Name = "label2";
             label2.Size = new Size(105, 20);
             label2.TabIndex = 2;
@@ -219,41 +215,15 @@
             // txtIdProduct
             // 
             txtIdProduct.Enabled = false;
-            txtIdProduct.Location = new Point(227, 101);
+            txtIdProduct.Location = new Point(228, 203);
             txtIdProduct.Name = "txtIdProduct";
             txtIdProduct.Size = new Size(374, 26);
             txtIdProduct.TabIndex = 1;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(42, 174);
-            label3.Name = "label3";
-            label3.Size = new Size(69, 20);
-            label3.TabIndex = 2;
-            label3.Text = "Giá mua";
-            // 
-            // txtPurchasePrice
-            // 
-            txtPurchasePrice.Location = new Point(227, 171);
-            txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(374, 26);
-            txtPurchasePrice.TabIndex = 2;
-            txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged;
-            txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(43, 245);
-            label5.Name = "label5";
-            label5.Size = new Size(65, 20);
-            label5.TabIndex = 2;
-            label5.Text = "Giá bán";
-            // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(cboColor);
             panel3.Controls.Add(btnAddImage);
             panel3.Controls.Add(btnDeleteImage);
             panel3.Controls.Add(btnChangeImage);
@@ -263,17 +233,12 @@
             panel3.Controls.Add(btnClean);
             panel3.Controls.Add(btnCreate);
             panel3.Controls.Add(txtIdProduct);
+            panel3.Controls.Add(label3);
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(label5);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(txtNameProduct);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(txtStatus);
-            panel3.Controls.Add(txtQuantity);
-            panel3.Controls.Add(txtSalePrice);
-            panel3.Controls.Add(txtPurchasePrice);
-            panel3.Controls.Add(label3);
             panel3.Location = new Point(195, 116);
             panel3.Name = "panel3";
             panel3.Size = new Size(1004, 512);
@@ -368,14 +333,14 @@
             btnClean.FlatStyle = FlatStyle.Popup;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(361, 426);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
             btnClean.TabIndex = 7;
             btnClean.Text = "Nhập mới";
             btnClean.UseVisualStyleBackColor = false;
-            btnClean.Click += btnClean_Click_1;
+            btnClean.Click += btnClean_Click;
             // 
             // btnCreate
             // 
@@ -384,7 +349,7 @@
             btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 454);
+            btnCreate.Location = new Point(229, 426);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -393,47 +358,39 @@
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(45, 337);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 20);
+            label3.TabIndex = 2;
+            label3.Text = "Màu";
+            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(43, 382);
+            label6.Location = new Point(44, 277);
             label6.Name = "label6";
             label6.Size = new Size(80, 20);
             label6.TabIndex = 2;
             label6.Text = "Trạng thái";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(43, 313);
-            label4.Name = "label4";
-            label4.Size = new Size(72, 20);
-            label4.TabIndex = 2;
-            label4.Text = "Số lượng";
-            // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(227, 379);
+            txtStatus.Location = new Point(228, 274);
             txtStatus.Name = "txtStatus";
             txtStatus.Size = new Size(374, 26);
             txtStatus.TabIndex = 5;
             // 
-            // txtQuantity
+            // cboColor
             // 
-            txtQuantity.Location = new Point(227, 310);
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(173, 26);
-            txtQuantity.TabIndex = 4;
-            txtQuantity.KeyPress += txtQuantity_KeyPress_1;
-            // 
-            // txtSalePrice
-            // 
-            txtSalePrice.Enabled = false;
-            txtSalePrice.Location = new Point(227, 242);
-            txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(374, 26);
-            txtSalePrice.TabIndex = 3;
-            txtSalePrice.KeyPress += txtSalePrice_KeyPress;
+            cboColor.FormattingEnabled = true;
+            cboColor.Items.AddRange(new object[] { "Trắng", "Đen", "Đỏ", "Vàng", "Xanh lá", "Xanh dương", "Hồng", "Tím", "Xám", "Bạc" });
+            cboColor.Location = new Point(228, 334);
+            cboColor.Name = "cboColor";
+            cboColor.Size = new Size(373, 28);
+            cboColor.TabIndex = 11;
             // 
             // CreateProduct
             // 
@@ -471,9 +428,6 @@
         private TextBox txtNameProduct;
         private Label label2;
         private TextBox txtIdProduct;
-        private Label label3;
-        private TextBox txtPurchasePrice;
-        private Label label5;
         private Panel panel3;
         private Button btnCreate;
         private Label lblHeading;
@@ -483,15 +437,14 @@
         private Button button1;
         private Button button2;
         private Label label6;
-        private Label label4;
         private TextBox txtStatus;
-        private TextBox txtQuantity;
-        private TextBox txtSalePrice;
         private Button btnBackImage;
         private PictureBox pictureProductImage;
         private Button btnAddImage;
         private Button btnDeleteImage;
         private Button btnChangeImage;
         private Button btnNextImage;
+        private Label label3;
+        private ComboBox cboColor;
     }
 }

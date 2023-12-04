@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using ShowroomData.ComponentGUI;
+using System.Data;
 
 namespace ShowroomData
 {
@@ -12,18 +13,12 @@ namespace ShowroomData
 
         public CreateCustomer(Form? _parent, bool isCreateOne = false)
         {
-            InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
-
-
-            //
-            // Enable resizing form size (without border)
-            //
-            DoubleBuffered = true;
-            SetStyle(ControlStyles.ResizeRedraw, true);
             this.isCreateOne = isCreateOne;
+
+            InitializeComponent();
+            HandleGUI();
         }
 
         #region Handle Form Dragging
@@ -49,6 +44,26 @@ namespace ShowroomData
         }
         #endregion
 
+        private void HandleGUI()
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            //
+            // Add textbox setting
+            //
+            Padding p = new Padding(5);
+            RoundTextBox.SetPadding(txtId, p);
+            RoundTextBox.SetPadding(txtPhone, p);
+            RoundTextBox.SetPadding(txtCCCD, p);
+            RoundTextBox.SetPadding(txtEmail, p);
+            RoundTextBox.SetPadding(txtAddress, p);
+            RoundTextBox.SetPadding(txtFirstname, p);
+            RoundTextBox.SetPadding(txtLastname, p);
+            //
+            // Enable resizing form size (without border)
+            //
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.ResizeRedraw, true);
+        }
         //
         // [Handle Events]
         //
@@ -63,6 +78,26 @@ namespace ShowroomData
         //
         // [Helper Methods]
         //
+
+        bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false; // suggested by @TK-421
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private bool ValidateForm()
         {
             if (rdbMale.Checked)
@@ -88,32 +123,32 @@ namespace ShowroomData
 
             if (curr.firstName.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập tên");
+                MessageBox.Show("Bạn phải nhập tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (curr.lastName.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập họ");
+                MessageBox.Show("Bạn phải nhập họ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (curr.cccd.Length <= 0)
             {
-                MessageBox.Show("Bạn phải nhập số căn cước công dân");
+                MessageBox.Show("Bạn phải nhập số căn cước công dân", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (curr.address.Length <= 0)
-            {
-                MessageBox.Show("Bạn phải nhập địa chỉ");
-                return false;
-            }
-            //if (curr.email.Length <= 0)
+            //if (curr.address.Length <= 0)
             //{
-            //    MessageBox.Show("Bạn phải nhập email");
+            //    MessageBox.Show("Bạn phải nhập địa chỉ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //    return false;
             //}
-            if (curr.phone.Length <= 0)
+            if (curr.email.Length >= 0 && !IsValidEmail(curr.email))
             {
-                MessageBox.Show("Bạn phải nhập số điện thoại");
+                MessageBox.Show("Địa chỉ Email không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (curr.phone.Length <= 0 || curr.phone.Length > 10)
+            {
+                MessageBox.Show("SĐT không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -208,6 +243,9 @@ namespace ShowroomData
 
             // Excute the query
             processDb.UpdateData(query);
+
+            // Inform
+            MessageBox.Show("Tạo thành công", "Thông báo");
 
             // Earse current data
             CleanForm();

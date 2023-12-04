@@ -16,10 +16,12 @@ namespace ShowroomData
     {
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
-
+        private bool isChanged = false;
+        private Source _source;
         public UpdateSource(Source source, Form? _parent)
         {
             InitializeComponent();
+            _source = source;
             FormBorderStyle = FormBorderStyle.None;
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
@@ -36,6 +38,9 @@ namespace ShowroomData
             //
             txtIdSuppliers.Text = source.SourceId;
             txtNameSuppliers.Text = source.Name;
+
+            txtIdSuppliers.TextChanged += Value_Changed;
+            txtNameSuppliers.TextChanged += Value_Changed;
         }
 
 
@@ -65,6 +70,10 @@ namespace ShowroomData
         //
         // [Handle Events]
         //
+        private void Value_Changed(object? sender, EventArgs e)
+        {
+            isChanged = true;
+        }
         private void UpdateSourceForm_Resize(object sender, EventArgs e)
         {
             lblHeading.Location = new Point((panel1.Width - lblHeading.Width) / 2,
@@ -95,23 +104,33 @@ namespace ShowroomData
             // Excute the query
             processDb.UpdateData(query);
 
+            // Inform
+            MessageBox.Show("Cập nhật thành công");
+
             // Earse current data
             CleanForm();
 
-            Dispose();
+            Close();
         }
 
         private void btnClean_Click_1(object sender, EventArgs e)
         {
-
+            //
+            // Fill the data of the product which you want to change info.
+            //
+            txtIdSuppliers.Text = _source.SourceId;
+            txtNameSuppliers.Text = _source.Name;
         }
 
-        private void btnBack_Click_1(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            Dispose();
+            if (!isChanged || MessageBox.Show("Bạn có chắc muốn thoát?\n" +
+                " Thông tin chưa lưu sẽ bị xóa", "Thông báo", 
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            Close();
         }
 
-        private void helpBtn_Click_1(object sender, EventArgs e)
+        private void helpBtn_Click(object sender, EventArgs e)
         {
             HelperDialog helperDialog = HelperDialog.Create("Trợ giúp",
                "- Bắt buộc nhập đầy đủ thông tin\n");
@@ -119,15 +138,17 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void btnChangeFormSize_Clicked(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?.\nDữ liệu chưa lưu sẽ bị xóa?", "Thông báo", MessageBoxButtons.YesNo)
-                == DialogResult.Yes) Close();
+            if (!isChanged || MessageBox.Show("Bạn có chắc muốn thoát?\n" +
+                " Thông tin chưa lưu sẽ bị xóa", "Thông báo",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Close();
         }
 
         //
@@ -151,7 +172,8 @@ namespace ShowroomData
         }
         private void CleanForm()
         {
-
+            txtIdSuppliers.Text = _source.SourceId;
+            txtNameSuppliers.Text = _source.Name;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

@@ -165,5 +165,25 @@ namespace ShowroomData
             Hide();
             sign.ShowDialog();
         }
+
+
+        string temptooltiptext = "";
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font tooltipFont = new Font("Roboto", 20.0f);
+            e.DrawBackground();
+            //e.DrawBorder();
+            temptooltiptext = e.ToolTipText;
+            e.Graphics.DrawString(e.ToolTipText,
+                tooltipFont, Brushes.White,
+                new PointF(2, 2));
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(
+                toolTip1.GetToolTip(e.AssociatedControl),
+                new Font("Roboto", 20.0f));
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace ShowroomData
             label1 = new Label();
             txtName = new RoundTextBox();
             panel3 = new Panel();
+            cboColor = new ComboBox();
             btnImageNext = new Button();
             btnImageBack = new Button();
             btnAddImage = new Button();
@@ -51,6 +52,7 @@ namespace ShowroomData
             pictureBox2 = new PictureBox();
             label4 = new Label();
             label5 = new Label();
+            label6 = new Label();
             label3 = new Label();
             label2 = new Label();
             label9 = new Label();
@@ -79,7 +81,7 @@ namespace ShowroomData
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(136, 640);
+            flowLayoutPanel1.Size = new Size(136, 738);
             flowLayoutPanel1.TabIndex = 10;
             flowLayoutPanel1.MouseDown += Form_MouseDown;
             // 
@@ -217,12 +219,13 @@ namespace ShowroomData
             txtName.Location = new Point(211, 34);
             txtName.Multiline = true;
             txtName.Name = "txtName";
-            txtName.Size = new Size(387, 36);
+            txtName.Size = new Size(387, 35);
             txtName.TabIndex = 0;
             // 
             // panel3
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel3.Controls.Add(cboColor);
             panel3.Controls.Add(btnImageNext);
             panel3.Controls.Add(btnImageBack);
             panel3.Controls.Add(btnAddImage);
@@ -231,6 +234,7 @@ namespace ShowroomData
             panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(label5);
+            panel3.Controls.Add(label6);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label9);
@@ -245,9 +249,18 @@ namespace ShowroomData
             panel3.Controls.Add(txtName);
             panel3.Location = new Point(182, 116);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1010, 512);
+            panel3.Size = new Size(1010, 610);
             panel3.TabIndex = 100;
             panel3.MouseDown += Form_MouseDown;
+            // 
+            // cboColor
+            // 
+            cboColor.FormattingEnabled = true;
+            cboColor.Items.AddRange(new object[] { "Trắng", "Đen", "Đỏ", "Vàng", "Xanh lá", "Xanh dương", "Hồng", "Tím", "Xám", "Bạc" });
+            cboColor.Location = new Point(212, 426);
+            cboColor.Name = "cboColor";
+            cboColor.Size = new Size(199, 28);
+            cboColor.TabIndex = 10;
             // 
             // btnImageNext
             // 
@@ -336,7 +349,7 @@ namespace ShowroomData
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(42, 381);
+            label4.Location = new Point(43, 238);
             label4.Name = "label4";
             label4.Size = new Size(80, 20);
             label4.TabIndex = 1;
@@ -345,16 +358,25 @@ namespace ShowroomData
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(43, 311);
+            label5.Location = new Point(44, 168);
             label5.Name = "label5";
             label5.Size = new Size(72, 20);
             label5.TabIndex = 1;
             label5.Text = "Số lượng";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(44, 429);
+            label6.Name = "label6";
+            label6.Size = new Size(40, 20);
+            label6.TabIndex = 1;
+            label6.Text = "Màu";
+            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(43, 244);
+            label3.Location = new Point(42, 364);
             label3.Name = "label3";
             label3.Size = new Size(65, 20);
             label3.TabIndex = 1;
@@ -363,7 +385,7 @@ namespace ShowroomData
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(42, 172);
+            label2.Location = new Point(43, 301);
             label2.Name = "label2";
             label2.Size = new Size(69, 20);
             label2.TabIndex = 1;
@@ -386,7 +408,7 @@ namespace ShowroomData
             btnClean.FlatStyle = FlatStyle.Flat;
             btnClean.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnClean.ForeColor = Color.White;
-            btnClean.Location = new Point(264, 454);
+            btnClean.Location = new Point(342, 521);
             btnClean.Margin = new Padding(0);
             btnClean.Name = "btnClean";
             btnClean.Size = new Size(121, 38);
@@ -403,7 +425,7 @@ namespace ShowroomData
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(132, 454);
+            btnCreate.Location = new Point(210, 521);
             btnCreate.Margin = new Padding(0);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(121, 38);
@@ -417,10 +439,10 @@ namespace ShowroomData
             txtQuantity.BackColor = Color.White;
             txtQuantity.BorderRadius = 5;
             txtQuantity.Enabled = false;
-            txtQuantity.Location = new Point(211, 308);
+            txtQuantity.Location = new Point(212, 165);
             txtQuantity.Multiline = true;
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(156, 36);
+            txtQuantity.Size = new Size(156, 35);
             txtQuantity.TabIndex = 4;
             txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
@@ -428,20 +450,21 @@ namespace ShowroomData
             // 
             txtStatus.BackColor = Color.White;
             txtStatus.BorderRadius = 5;
-            txtStatus.Location = new Point(211, 378);
+            txtStatus.Location = new Point(212, 235);
             txtStatus.Multiline = true;
             txtStatus.Name = "txtStatus";
-            txtStatus.Size = new Size(387, 36);
+            txtStatus.Size = new Size(387, 35);
             txtStatus.TabIndex = 5;
             // 
             // txtSalePrice
             // 
             txtSalePrice.BackColor = Color.White;
             txtSalePrice.BorderRadius = 5;
-            txtSalePrice.Location = new Point(211, 241);
+            txtSalePrice.Enabled = false;
+            txtSalePrice.Location = new Point(210, 361);
             txtSalePrice.Multiline = true;
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(387, 36);
+            txtSalePrice.Size = new Size(387, 35);
             txtSalePrice.TabIndex = 3;
             txtSalePrice.KeyPress += txtSalePrice_KeyPress;
             // 
@@ -449,10 +472,11 @@ namespace ShowroomData
             // 
             txtPurchasePrice.BackColor = Color.White;
             txtPurchasePrice.BorderRadius = 5;
-            txtPurchasePrice.Location = new Point(211, 169);
+            txtPurchasePrice.Enabled = false;
+            txtPurchasePrice.Location = new Point(212, 298);
             txtPurchasePrice.Multiline = true;
             txtPurchasePrice.Name = "txtPurchasePrice";
-            txtPurchasePrice.Size = new Size(387, 36);
+            txtPurchasePrice.Size = new Size(387, 35);
             txtPurchasePrice.TabIndex = 2;
             txtPurchasePrice.TextChanged += txtPurchasePrice_TextChanged;
             txtPurchasePrice.KeyPress += txtPurchasePrice_KeyPress;
@@ -465,14 +489,14 @@ namespace ShowroomData
             txtId.Location = new Point(211, 101);
             txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(387, 36);
+            txtId.Size = new Size(387, 35);
             txtId.TabIndex = 1;
             // 
             // UpdateProduct
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1221, 640);
+            ClientSize = new Size(1221, 738);
             Controls.Add(panel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
@@ -527,5 +551,7 @@ namespace ShowroomData
         private RoundTextBox txtId;
         private Button btnAddImage;
         private Button button3;
+        private ComboBox cboColor;
+        private Label label6;
     }
 }

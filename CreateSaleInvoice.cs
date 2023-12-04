@@ -175,6 +175,22 @@ namespace ShowroomData
             helperDialog.Show();
         }
 
+        private bool Check()
+        {
+            string serial = txtIdProducts.Text.Trim();
+            string query = $"Select * from Products where serial = N'{serial}'";
+            DataTable dat = new DataTable();
+            dat = processDb.GetData(query);
+            int quantity = dat.Rows[0].Field<int>("Quantity");
+            int sale_quantity = int.Parse(txtQuantity.Text);
+
+            if (quantity - sale_quantity >= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void btnCreate_Click(object sender, EventArgs e)
         {
             if (!ValidateForm()) return;
@@ -182,6 +198,13 @@ namespace ShowroomData
             if (MessageBox.Show("Tạo mới hóa đơn này?", "Thông báo",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                 return;
+
+            if (!Check())
+            {
+                MessageBox.Show("Không đủ số lượng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var curr = new
             {
                 id = txtIdInvoices.Text,
@@ -194,6 +217,8 @@ namespace ShowroomData
                 status = txtStatus.Text.Trim()
             };
 
+            
+
             // Handle Create
             string query = $"INSERT INTO SalesInvoices (InSaleId, ClientId, EmployeeId, ProductId, Date, QuantitySale, Status, Deleted) " +
                 $"VALUES (N'{curr.id}',N'{curr.idClients}',N'{curr.idEmployee}',N'{curr.idProducts}','{curr.day}', " +
@@ -201,6 +226,9 @@ namespace ShowroomData
 
             // Excute the query
             processDb.UpdateData(query);
+
+            // Inform
+            MessageBox.Show("Tạo thành công", "Thông báo");
 
             // Earse current data
             CleanForm();

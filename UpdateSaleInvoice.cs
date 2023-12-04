@@ -8,7 +8,8 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private Layout? parent;
         private bool isInfoChanged = false;
-        private int previousQuantity;
+        // private int previousQuantity;
+        private SalesInvoice _invoice;
 
         public UpdateSaleInvoice(SalesInvoice salesInvoice, Form? _parent)
         {
@@ -17,6 +18,8 @@ namespace ShowroomData
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
+            
+            _invoice = salesInvoice;
 
             //
             // Enable resizing form size (without border)
@@ -42,12 +45,12 @@ namespace ShowroomData
             txtQuantity.TextChanged += InfoChanged;
             txtStatus.TextChanged += InfoChanged;
             dayDateTimePicker.TextChanged += InfoChanged;
-            setPreviousQuantity(Convert.ToInt32(salesInvoice.QuantitySale));
+            // setPreviousQuantity(Convert.ToInt32(salesInvoice.QuantitySale));
         }
-        private void setPreviousQuantity(int a)
-        {
-            previousQuantity = a;
-        }
+        //private void setPreviousQuantity(int a)
+        //{
+        //    previousQuantity = a;
+        //}
         private void InfoChanged(object? sender, EventArgs e)
         {
             isInfoChanged = true;
@@ -258,7 +261,7 @@ namespace ShowroomData
             int quantity = dat.Rows[0].Field<int>("Quantity");
             int sale_quantity = int.Parse(txtQuantity.Text);
 
-            if (quantity + previousQuantity - sale_quantity > 0)
+            if (quantity + _invoice.QuantitySale - sale_quantity >= 0)
             {
                 return true;
             }

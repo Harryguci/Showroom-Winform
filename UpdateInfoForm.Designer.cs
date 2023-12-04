@@ -219,7 +219,7 @@ namespace ShowroomData
             txtId.Location = new Point(132, 34);
             txtId.Multiline = true;
             txtId.Name = "txtId";
-            txtId.Size = new Size(469, 36);
+            txtId.Size = new Size(469, 35);
             txtId.TabIndex = 0;
             // 
             // label2
@@ -237,7 +237,7 @@ namespace ShowroomData
             txtFirstName.Location = new Point(132, 89);
             txtFirstName.Multiline = true;
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(202, 36);
+            txtFirstName.Size = new Size(202, 35);
             txtFirstName.TabIndex = 1;
             // 
             // label3
@@ -255,7 +255,7 @@ namespace ShowroomData
             txtLastName.Location = new Point(430, 92);
             txtLastName.Multiline = true;
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(171, 36);
+            txtLastName.Size = new Size(171, 35);
             txtLastName.TabIndex = 2;
             // 
             // label4
@@ -273,7 +273,7 @@ namespace ShowroomData
             txtPhone.Location = new Point(132, 166);
             txtPhone.Multiline = true;
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(245, 36);
+            txtPhone.Size = new Size(245, 35);
             txtPhone.TabIndex = 3;
             txtPhone.KeyPress += txtPhone_KeyPress;
             // 
@@ -326,12 +326,17 @@ namespace ShowroomData
             // 
             // btnChangeAvt
             // 
-            btnChangeAvt.Location = new Point(817, 343);
+            btnChangeAvt.BackColor = Color.FromArgb(50, 50, 150);
+            btnChangeAvt.FlatAppearance.BorderSize = 0;
+            btnChangeAvt.FlatStyle = FlatStyle.Flat;
+            btnChangeAvt.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnChangeAvt.ForeColor = Color.White;
+            btnChangeAvt.Location = new Point(783, 343);
             btnChangeAvt.Name = "btnChangeAvt";
-            btnChangeAvt.Size = new Size(90, 32);
+            btnChangeAvt.Size = new Size(124, 37);
             btnChangeAvt.TabIndex = 10;
             btnChangeAvt.Text = "Đổi ảnh";
-            btnChangeAvt.UseVisualStyleBackColor = true;
+            btnChangeAvt.UseVisualStyleBackColor = false;
             btnChangeAvt.Click += btnChangeAvt_Click;
             // 
             // pictureBoxAvatar
@@ -445,7 +450,7 @@ namespace ShowroomData
             txtEmail.Location = new Point(132, 304);
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(469, 36);
+            txtEmail.Size = new Size(469, 35);
             txtEmail.TabIndex = 6;
             // 
             // txtSalary
@@ -454,7 +459,7 @@ namespace ShowroomData
             txtSalary.Location = new Point(131, 428);
             txtSalary.Multiline = true;
             txtSalary.Name = "txtSalary";
-            txtSalary.Size = new Size(178, 36);
+            txtSalary.Size = new Size(178, 35);
             txtSalary.TabIndex = 7;
             txtSalary.KeyPress += txtCCCD_KeyPress_1;
             // 
@@ -464,7 +469,7 @@ namespace ShowroomData
             txtCCCD.Location = new Point(131, 370);
             txtCCCD.Multiline = true;
             txtCCCD.Name = "txtCCCD";
-            txtCCCD.Size = new Size(178, 36);
+            txtCCCD.Size = new Size(178, 35);
             txtCCCD.TabIndex = 7;
             txtCCCD.KeyPress += txtCCCD_KeyPress_1;
             // 

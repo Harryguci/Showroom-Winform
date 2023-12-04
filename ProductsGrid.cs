@@ -104,7 +104,8 @@ namespace ShowroomData
                     SalePrice = q.Rows[0].Field<int>("SalePrice"),
                     Quantity = q.Rows[0].Field<int>("Quantity"),
                     Status = q.Rows[0].Field<string>("Status") ?? "",
-                    Deleted = q.Rows[0].Field<bool>("Deleted")
+                    Deleted = q.Rows[0].Field<bool>("Deleted"),
+                    Color = q.Rows[0].Field<string>("Color") ?? "",
                 };
 
                 UpdateProduct detailProduct = new UpdateProduct(currProduct, this);
@@ -219,12 +220,18 @@ namespace ShowroomData
 
             if (query.Rows.Count > 0)
             {
-                flowLayoutPanel1.Controls.Clear();
-                flowLayoutPanel2.Controls.Clear();
-                flowLayoutPanel3.Controls.Clear();
-                flowLayoutPanel4.Controls.Clear();
-                flowLayoutPanel5.Controls.Clear();
-                flowLayoutPanel6.Controls.Clear();
+                if (tabControl1.SelectedTab == tabPage1)
+                    flowLayoutPanel1.Controls.Clear();
+                else if (tabControl1.SelectedTab == tabPage2)
+                    flowLayoutPanel2.Controls.Clear();
+                else if (tabControl1.SelectedTab == tabPage3)
+                    flowLayoutPanel3.Controls.Clear();
+                else if (tabControl1.SelectedTab == tabPage4)
+                    flowLayoutPanel4.Controls.Clear();
+                else if (tabControl1.SelectedTab == tabPage5)
+                    flowLayoutPanel5.Controls.Clear();
+                else if (tabControl1.SelectedTab == tabPage6)
+                    flowLayoutPanel6.Controls.Clear();
 
                 foreach (DataRow row in query.Rows)
                 {
@@ -236,12 +243,14 @@ namespace ShowroomData
                         SalePrice = row.Field<int>("SalePrice"),
                         Quantity = row.Field<int>("Quantity"),
                         Status = row.Field<string>("Status"),
-                        Deleted = row.Field<bool>("Deleted")
+                        Deleted = row.Field<bool>("Deleted"),
+                        Color = row.Field<string>("Color") ?? "",
                     };
 
                     if (!product.ProductName.ToLower().Contains(qName)) continue;
                     if (product.SalePrice < qCost || product.SalePrice > qMaxCost) continue;
                     if (product.PurchasePrice < qPurchaseCost || product.PurchasePrice > qPurchaseMaxCost) continue;
+                    if (qColor != "" && product.Color.ToLower() != qColor) continue;
 
                     var imgs = processDb.GetData($"SELECT * FROM " +
                         $"Product_Images Where Serial = N'{product.Serial}'");
@@ -259,6 +268,18 @@ namespace ShowroomData
 
         private void ProductsGrid_Load(object sender, EventArgs e)
         {
+            HelperDialog pleaseWait = HelperDialog.CreateLoading();
+
+            // Display form modelessly
+            pleaseWait.Show();
+            new Thread(() =>
+            {
+                Thread.Sleep(1000);
+                pleaseWait.Close();
+            }).Start();
+            //  ALlow main UI thread to properly display please wait form.
+            Application.DoEvents();
+
             LoadTabData();
         }
 
@@ -291,6 +312,18 @@ namespace ShowroomData
         private void btnReset_Click(object sender, EventArgs e)
         {
             textBox1.Text = txtSalePriceMin.Text = comboBox1.Text = string.Empty;
+            HelperDialog pleaseWait = HelperDialog.CreateLoading();
+
+            // Display form modelessly
+            pleaseWait.Show();
+            new Thread(() =>
+            {
+                Thread.Sleep(1000);
+                pleaseWait.Close();
+            }).Start();
+            //  ALlow main UI thread to properly display please wait form.
+            Application.DoEvents();
+
             LoadTabData();
         }
 
@@ -318,6 +351,18 @@ namespace ShowroomData
 
         private void tabPage_ChangeFocus(object? sender, EventArgs e)
         {
+            HelperDialog pleaseWait = HelperDialog.CreateLoading();
+
+            // Display form modelessly
+            pleaseWait.Show();
+            new Thread(() =>
+            {
+                Thread.Sleep(1000);
+                pleaseWait.Close();
+            }).Start();
+            //  ALlow main UI thread to properly display please wait form.
+            Application.DoEvents();
+
             LoadTabData();
         }
 
@@ -329,6 +374,24 @@ namespace ShowroomData
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HelperDialog pleaseWait = HelperDialog.CreateLoading();
+
+            // Display form modelessly
+            pleaseWait.Show();
+            new Thread(() =>
+            {
+                Thread.Sleep(1000);
+                pleaseWait.Close();
+            }).Start();
+            //  ALlow main UI thread to properly display please wait form.
+            Application.DoEvents();
+
+            // Show or load the main form.
+            LoadTabData();
         }
     }
 }

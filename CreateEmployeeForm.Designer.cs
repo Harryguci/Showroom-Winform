@@ -51,7 +51,7 @@
             panel3 = new Panel();
             btnChangeAvt = new Button();
             pictureBoxAvatar = new PictureBox();
-            comboBox1 = new ComboBox();
+            cboPosition = new ComboBox();
             label10 = new Label();
             label7 = new Label();
             label9 = new Label();
@@ -188,7 +188,7 @@
             button2.TabIndex = 0;
             button2.Text = "-";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += btnChangeSize_Click;
             // 
             // lblHeading
             // 
@@ -287,7 +287,7 @@
             // 
             panel3.Controls.Add(btnChangeAvt);
             panel3.Controls.Add(pictureBoxAvatar);
-            panel3.Controls.Add(comboBox1);
+            panel3.Controls.Add(cboPosition);
             panel3.Controls.Add(label10);
             panel3.Controls.Add(label7);
             panel3.Controls.Add(label9);
@@ -333,14 +333,14 @@
             pictureBoxAvatar.TabIndex = 102;
             pictureBoxAvatar.TabStop = false;
             // 
-            // comboBox1
+            // cboPosition
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "NV bán hàng", "NV bảo trì", "NV phục vụ", "Quản lý" });
-            comboBox1.Location = new Point(423, 370);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(178, 28);
-            comboBox1.TabIndex = 12;
+            cboPosition.FormattingEnabled = true;
+            cboPosition.Items.AddRange(new object[] { "NV bán hàng", "NV bảo trì", "NV phục vụ", "Quản lý" });
+            cboPosition.Location = new Point(423, 370);
+            cboPosition.Name = "cboPosition";
+            cboPosition.Size = new Size(178, 28);
+            cboPosition.TabIndex = 12;
             // 
             // label10
             // 
@@ -440,7 +440,7 @@
             txtSalary.Name = "txtSalary";
             txtSalary.Size = new Size(178, 26);
             txtSalary.TabIndex = 10;
-            txtSalary.KeyPress += textBox1_KeyPress;
+            txtSalary.KeyPress += txtPhonenumber_KeyPress;
             // 
             // txtEmail
             // 
@@ -524,7 +524,7 @@
         private TextBox txtEmail;
         private Label label9;
         private Label label10;
-        private ComboBox comboBox1;
+        private ComboBox cboPosition;
         private Button helpBtn;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button1;

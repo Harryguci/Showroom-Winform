@@ -1,4 +1,6 @@
-﻿namespace ShowroomData
+﻿using ShowroomData.ComponentGUI;
+
+namespace ShowroomData
 {
     partial class CreateSource
     {
@@ -39,9 +41,9 @@
             button2 = new Button();
             lblHeading = new Label();
             label1 = new Label();
-            txtIdSuppliers = new TextBox();
+            txtIdSuppliers = new RoundTextBox();
             label2 = new Label();
-            txtNameSuppliers = new TextBox();
+            txtNameSuppliers = new RoundTextBox();
             panel3 = new Panel();
             btnClean = new Button();
             btnCreate = new Button();

@@ -167,6 +167,9 @@ namespace ShowroomData
 
             // Earse current data
             CleanForm();
+            
+            // Inform
+            MessageBox.Show("Tạo thành công", "Thông báo");
 
             // Refresh Data
             if (parent == null) return;

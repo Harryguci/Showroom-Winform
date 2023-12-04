@@ -32,12 +32,12 @@ namespace ShowroomData
         {
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            btnLogin = new CButton();
             btnTogglePassword = new Button();
             checkBox1 = new CheckBox();
             textBox2 = new RoundTextBox();
             label1 = new Label();
             textBox1 = new RoundTextBox();
-            btnLogin = new Button();
             label2 = new Label();
             panel2 = new Panel();
             btnClose = new Button();
@@ -61,18 +61,51 @@ namespace ShowroomData
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(btnTogglePassword);
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(0, 123);
             panel1.Name = "panel1";
             panel1.Size = new Size(444, 392);
             panel1.TabIndex = 8;
             panel1.MouseClick += Form_MouseDown;
+            // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.Transparent;
+            btnLogin.BorderColor = Color.Transparent;
+            btnLogin.BorderWidth = 0;
+            btnLogin.ButtonShape = CButton.ButtonsShapes.Rect;
+            btnLogin.ButtonText = "Đăng nhập";
+            btnLogin.EndColor = Color.FromArgb(2, 27, 121);
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnLogin.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.GradientAngle = 0;
+            btnLogin.Location = new Point(56, 267);
+            btnLogin.MouseClickColor1 = Color.FromArgb(5, 117, 230);
+            btnLogin.MouseClickColor2 = Color.FromArgb(5, 117, 230);
+            btnLogin.MouseHoverColor1 = Color.FromArgb(5, 117, 230);
+            btnLogin.MouseHoverColor2 = Color.FromArgb(5, 117, 230);
+            btnLogin.Name = "btnLogin";
+            btnLogin.ShowButtontext = true;
+            btnLogin.Size = new Size(336, 49);
+            btnLogin.StartColor = Color.FromArgb(5, 117, 230);
+            btnLogin.TabIndex = 13;
+            btnLogin.Text = "Đăng nhập";
+            btnLogin.TextLocation_X = 120;
+            btnLogin.TextLocation_Y = 15;
+            btnLogin.Transparent1 = 250;
+            btnLogin.Transparent2 = 250;
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnTogglePassword
             // 
@@ -138,22 +171,6 @@ namespace ShowroomData
             textBox1.TabIndex = 0;
             textBox1.KeyPress += textBox1_KeyPress;
             // 
-            // btnLogin
-            // 
-            btnLogin.BackColor = Color.FromArgb(50, 50, 150);
-            btnLogin.FlatAppearance.BorderSize = 0;
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(56, 250);
-            btnLogin.Margin = new Padding(0);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(336, 51);
-            btnLogin.TabIndex = 2;
-            btnLogin.Text = "Đăng nhập";
-            btnLogin.UseVisualStyleBackColor = true;
-            btnLogin.Click += btnLogin_Click;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -218,7 +235,6 @@ namespace ShowroomData
         private PictureBox pictureBox1;
         private Panel panel1;
         private Label label1;
-        private Button btnLogin;
         private Label label2;
         private Panel panel2;
         private CheckBox checkBox1;
@@ -226,5 +242,6 @@ namespace ShowroomData
         private Button btnTogglePassword;
         private RoundTextBox textBox2;
         private RoundTextBox textBox1;
+        private CButton btnLogin;
     }
 }

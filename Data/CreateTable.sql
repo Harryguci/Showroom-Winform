@@ -271,3 +271,37 @@ CREATE TABLE [dbo].[TestDrive] (
     PRIMARY KEY CLUSTERED ([DriveId] ASC),
     -- CONSTRAINT [FK_TestDrive_Employees] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employees] ([EmployeeId]) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+--- TRIGER ---
+---------------------------Tinh Tong Tien cua thang -----------------
+go 
+CREATE OR ALTER TRIGGER KPI 
+ON [dbo].[SalesInvoices]
+FOR INSERT,UPDATE 
+AS 
+BEGIN
+    UPDATE s
+    set Total =Total + Cast(i.QuantitySale* p.SalePrice as INT) 
+    FROM inserted as i join SalesTargets as s on i.EmployeeId = s.EmployeeId
+    join Products as p on i.ProductId = p.Serial
+    WHERE i.EmployeeId = s.EmployeeId
+END 
+---------------------------TINH LUONG-------------------------------------
+GO
+CREATE or ALTER FUNCTION Tinh_Luong(@idemployee NVARCHAR(20)) 
+RETURNS INT
+AS 
+BEGIN
+    DECLARE @salary int 
+    SELECT @Salary = 
+        CASE 
+            WHEN s.Total > s.Target THEN 9 + s.Reward * (s.Total - s.Target)
+            ELSE 9
+        END
+    FROM Employees e
+    INNER JOIN SalesTargets s ON e.EmployeeId = s.EmployeeId
+    WHERE e.EmployeeId = @idemployee
+
+    RETURN @salary 
+end

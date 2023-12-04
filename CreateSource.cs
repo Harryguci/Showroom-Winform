@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShowroomData.ComponentGUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,11 +20,11 @@ namespace ShowroomData
         {
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
-            //if (_parent != null && _parent.GetType() == typeof(Layout))
-            //    parent = (Layout?)_parent;
 
             if (_parent != null && _parent.GetType() == typeof(Layout))
                 parent = (Layout)_parent;
+            RoundTextBox.SetPadding(txtIdSuppliers, new Padding(5));
+            RoundTextBox.SetPadding(txtNameSuppliers, new Padding(5));
 
 
             //
@@ -139,6 +140,8 @@ namespace ShowroomData
             // Excute the query
             processDb.UpdateData(query);
 
+            // Inform
+            MessageBox.Show("Tạo thành công", "Thông báo");
             // Earse current data
             CleanForm();
 

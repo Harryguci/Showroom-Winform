@@ -81,7 +81,7 @@
             Controls.Add(panel2);
             Font = new Font("Roboto", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "HelperDialog";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Showroom - Management System";
             TopMost = true;
             MouseDown += Form_MouseDown;

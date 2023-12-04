@@ -98,7 +98,7 @@
             btnBack.TabIndex = 10;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click_1;
+            btnBack.Click += btnBack_Click;
             // 
             // helpBtn
             // 
@@ -114,7 +114,7 @@
             helpBtn.TabIndex = 11;
             helpBtn.Text = "Trợ giúp";
             helpBtn.UseVisualStyleBackColor = true;
-            helpBtn.Click += helpBtn_Click_1;
+            helpBtn.Click += helpBtn_Click;
             // 
             // panel1
             // 
@@ -164,7 +164,7 @@
             button2.TabIndex = 0;
             button2.Text = "-";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
+            button2.Click += btnChangeFormSize_Clicked;
             // 
             // lblHeading
             // 

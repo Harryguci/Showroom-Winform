@@ -11,7 +11,7 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
         private string listType = ListType.EMPLOYEES;
-
+        
         public ListForm(string _listType = "employees")
         {
             InitializeComponent();
@@ -399,7 +399,7 @@ namespace ShowroomData
 
                 lbProduct.AutoSize = true;
                 lbProduct.Text = "Mã SP";
-                lbProduct.Location = new Point(lbMain.Location.X, y + 5);
+                lbProduct.Location = new Point(lbMain.Location.X, _y + 5);
 
                 txtProduct.Location = new Point(txtMain.Location.X, lbProduct.Location.Y);
                 txtProduct.Width = txtMain.Width;
@@ -411,7 +411,7 @@ namespace ShowroomData
 
                 lbEmployee.AutoSize = true;
                 lbEmployee.Text = "Mã NV";
-                lbEmployee.Location = new Point(lbMain.Location.X, y * 2 + 5);
+                lbEmployee.Location = new Point(lbMain.Location.X, _y * 2 + 5);
 
                 txtEmployee.Location = new Point(txtMain.Location.X, lbEmployee.Location.Y);
                 txtEmployee.Width = txtMain.Width;
@@ -435,7 +435,7 @@ namespace ShowroomData
 
                 lbBirthDay.AutoSize = true;
                 lbBirthDay.Text = "Ngày sinh";
-                lbBirthDay.Location = new Point(lbClient.Location.X, y + 5);
+                lbBirthDay.Location = new Point(lbClient.Location.X, _y + 5);
 
                 dtBirthDay.Format = DateTimePickerFormat.Custom;
                 dtBirthDay.CustomFormat = "MM/yyyy";
@@ -566,7 +566,8 @@ namespace ShowroomData
             }
             else if (listType == "salesinvoices")
             {
-                query += $"SELECT * FROM {listType} WHERE 1 = 1 ";
+                query += $"SELECT SalesInvoices.* FROM {listType} Join Employees On SalesInvoices.EmployeeId = Employees.EmployeeId" +
+                    $" WHERE 1 = 1 ";
                 string main = txtMain.Text.Trim().ToLower();
                 string clientid = txtClient.Text.Trim().ToLower();
                 string productid = txtProduct.Text.Trim().ToLower();
@@ -597,7 +598,8 @@ namespace ShowroomData
                 }
                 if (!string.IsNullOrEmpty(employeeid))
                 {
-                    query += $"AND EmployeeId  LIKE N'%{employeeid}%'";
+                    query += $"AND (SalesInvoices.EmployeeId LIKE N'%{employeeid}%'" +
+                        $" OR Firstname Like N'%{employeeid}%' OR LastName Like N'%{employeeid}%')";
                 }
             }
 
@@ -680,46 +682,55 @@ namespace ShowroomData
             if (listType == ListType.EMPLOYEES)
             {
                 CreateEmployeeForm createForm = new CreateEmployeeForm(this);
+                createForm.FormClosed += (sender, args) => RefreshData();
                 createForm.Show();
             }
             else if (listType == ListType.PRODUCTS)
             {
                 CreateProduct createProduct = new CreateProduct(this);
+                createProduct.FormClosed += (sender, args) => RefreshData();
                 createProduct.Show();
             }
             else if (listType == ListType.CUSTOMERS)
             {
-                CreateUpdateCustomer form = new CreateUpdateCustomer(this);
+                CreateCustomer form = new CreateCustomer(this);
+                form.FormClosed += (sender, args) => RefreshData();
                 form.Show();
             }
             else if (listType == ListType.DEVICES)
             {
                 CreateDevice createDevice = new CreateDevice(this);
+                createDevice.FormClosed += (sender, args) => RefreshData();
                 createDevice.Show();
             }
             else if (listType == ListType.PURCHASEINVOICES)
             {
                 CreatePurchaseInvoice createPurchaseInvoice = new CreatePurchaseInvoice(this);
+                createPurchaseInvoice.FormClosed += (sender, args) => RefreshData();
                 createPurchaseInvoice.Show();
             }
             else if (listType == ListType.SALEINVOICES)
             {
                 CreateSaleInvoice createSaleInvoice = new CreateSaleInvoice(this);
+                createSaleInvoice.FormClosed += (sender, args) => RefreshData();
                 createSaleInvoice.Show();
             }
             else if (listType == ListType.SALESTARGETS)
             {
                 CreateSaleTarget createSaleTarget = new CreateSaleTarget(this);
+                createSaleTarget.FormClosed += (sender, args) => RefreshData();
                 createSaleTarget.Show();
             }
             else if (listType == ListType.SOURCE)
             {
                 CreateSource createSource = new CreateSource(this);
+                createSource.FormClosed += (sender, args) => RefreshData();
                 createSource.Show();
             }
             else
             {
                 CreateSchedule createSchedule = new CreateSchedule(this);
+                createSchedule.FormClosed += (sender, args) => RefreshData();
                 createSchedule.Show();
             }
         }
@@ -1068,7 +1079,8 @@ namespace ShowroomData
                     SalePrice = response.Field<int>("SalePrice"),
                     Quantity = response.Field<int>("Quantity"),
                     Status = response.Field<string>("Status") ?? "",
-                    Deleted = response.Field<bool>("Deleted")
+                    Deleted = response.Field<bool>("Deleted"),
+                    Color = response.Field<string>("Color") ?? "",
                 };
 
                 UpdateProduct updateProduct = new UpdateProduct(products, this);

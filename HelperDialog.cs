@@ -63,6 +63,42 @@
             return new HelperDialog(_contentPanel);
         }
 
+        public static HelperDialog CreateLoading()
+        {
+            Label _lblHeading = new Label();
+            // 
+            // lblHeading
+            // 
+            _lblHeading.AutoSize = true;
+            _lblHeading.Font = new Font("Roboto", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            _lblHeading.Location = new Point(50, 15);
+            _lblHeading.Name = "lblHeading";
+            _lblHeading.Size = new Size(200, 50);
+            _lblHeading.TabIndex = 0;
+            _lblHeading.Text = "Loading...";
+            _lblHeading.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // panel1
+            //
+            Panel _contentPanel = new Panel()
+            {
+                Location = new Point(0, 123),
+                Name = "panel1",
+                Size = new Size(688, 392),
+                TabIndex = 8
+            };
+
+            _contentPanel.Controls.Add(_lblHeading);
+            HelperDialog helperDialog = new HelperDialog(_contentPanel);
+            helperDialog.panel2.Visible = false;
+            helperDialog.Size = new Size(200, 50);
+            helperDialog.ForeColor = Color.White;
+            helperDialog.BackColor = Color.Black;
+            helperDialog.Opacity = 50;
+            
+            return helperDialog;
+        }
+
         public static HelperDialog Create(string _heading, string content)
         {
             Label _lblHeading = new Label();

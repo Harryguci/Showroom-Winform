@@ -20,6 +20,7 @@ namespace ShowroomData
             WindowState = FormWindowState.Maximized;
             AutoScroll = true;
 
+
             Padding padding = new Padding(5);
             RoundTextBox.SetPadding(txtUsername, padding);
             RoundTextBox.SetPadding(txtPassword, padding);
