@@ -38,6 +38,7 @@
             btnDelete = new Button();
             btnBack = new Button();
             panel1 = new Panel();
+            lblCellInfomation = new Label();
             btnSmallSearch = new Button();
             btnHideForm = new Button();
             btnChangeSizeForm = new Button();
@@ -48,6 +49,7 @@
             component11 = new Component1(components);
             toolTip1 = new ToolTip(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
+            toolTip2 = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -176,6 +178,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblCellInfomation);
             panel1.Controls.Add(btnSmallSearch);
             panel1.Controls.Add(btnHideForm);
             panel1.Controls.Add(btnChangeSizeForm);
@@ -187,6 +190,17 @@
             panel1.Size = new Size(964, 100);
             panel1.TabIndex = 1;
             panel1.MouseDown += Form_MouseDown;
+            // 
+            // lblCellInfomation
+            // 
+            lblCellInfomation.AutoSize = true;
+            lblCellInfomation.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCellInfomation.ForeColor = Color.FromArgb(150, 150, 150);
+            lblCellInfomation.Location = new Point(11, 82);
+            lblCellInfomation.Name = "lblCellInfomation";
+            lblCellInfomation.Size = new Size(116, 18);
+            lblCellInfomation.TabIndex = 1;
+            lblCellInfomation.Text = "Cell information";
             // 
             // btnSmallSearch
             // 
@@ -282,6 +296,18 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
+            // toolTip2
+            // 
+            toolTip2.AutoPopDelay = 15000;
+            toolTip2.BackColor = Color.Black;
+            toolTip2.ForeColor = Color.White;
+            toolTip2.InitialDelay = 500;
+            toolTip2.IsBalloon = true;
+            toolTip2.OwnerDraw = true;
+            toolTip2.ReshowDelay = 50;
+            toolTip2.Draw += toolTip2_Draw;
+            toolTip2.Popup += toolTip2_Popup;
+            // 
             // ListForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -329,5 +355,7 @@
         private Button btnChangeSizeForm;
         private Button btnHideForm;
         private Button btnSmallSearch;
+        private ToolTip toolTip2;
+        private Label lblCellInfomation;
     }
 }

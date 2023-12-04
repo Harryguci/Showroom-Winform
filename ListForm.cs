@@ -56,8 +56,8 @@ namespace ShowroomData
                         var fullname = query.Rows[0].Field<string>("FULLNAME") ?? "";
                         if (fullname.Length > 0)
                         {
-                            toolTip1.Show(fullname, dt);
-                         //   return;
+                            lblCellInfomation.Text = "Nhân viên: " + fullname;
+                            return;
                         }
                     }
 
@@ -67,8 +67,8 @@ namespace ShowroomData
                         var fullname = query.Rows[0].Field<string>("FULLNAME") ?? "";
                         if (fullname.Length > 0)
                         {
-                            toolTip1.Show(fullname, dt);
-                           // return;
+                            lblCellInfomation.Text = "Khách hàng: " + fullname;
+                            return;
                         }
                     }
 
@@ -78,8 +78,8 @@ namespace ShowroomData
                         var fullname = query.Rows[0].Field<string>("PRODUCTNAME") ?? "";
                         if (fullname.Length > 0)
                         {
-                            toolTip1.Show(fullname, dt);
-                            //return;
+                            lblCellInfomation.Text = "Sản phẩm: " + fullname;
+                            return;
                         }
                     }
 
@@ -89,11 +89,13 @@ namespace ShowroomData
                         var fullname = query.Rows[0].Field<string>("NAME") ?? "";
                         if (fullname.Length > 0)
                         {
-                            toolTip1.Show(fullname, dt);
-                            //return;
+                            lblCellInfomation.Text = "Nhà cung cấp: " + fullname;
+                            return;
                         }
                     }
                 }
+
+                lblCellInfomation.Text = "";
             };
         }
 
@@ -552,13 +554,8 @@ namespace ShowroomData
 
                 DateTime selectedDateTime = dtBirthDay.Value;
                 DateTime currentDateTime = DateTime.Now;
-
-
                 DateTime currentMonthYear = new DateTime(currentDateTime.Year, currentDateTime.Month, 1);
-
-
                 DateTime selectedMonthYear = new DateTime(selectedDateTime.Year, selectedDateTime.Month, 1);
-
 
                 if (selectedMonthYear != currentMonthYear)
                 {
@@ -566,7 +563,6 @@ namespace ShowroomData
                     int year = selectedMonthYear.Year;
                     query += $"AND  MONTH(DateBirth) = {month} and YEAR(DateBirth) = {year}";
                 }
-
 
                 if (!string.IsNullOrEmpty(main))
                 {
@@ -1549,6 +1545,24 @@ namespace ShowroomData
         {
             SearchAll searchForm = new SearchAll();
             searchForm.ShowDialog();
+        }
+
+        private string temptooltiptext = "";
+        private void toolTip2_Popup(object sender, PopupEventArgs e)
+        {
+            e.ToolTipSize = TextRenderer.MeasureText(
+               toolTip1.GetToolTip(e.AssociatedControl),
+               new Font("Roboto", 20.0f));
+        }
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            Font tooltipFont = new Font("Roboto", 20.0f);
+            e.DrawBackground();
+            //e.DrawBorder();
+            temptooltiptext = e.ToolTipText;
+            e.Graphics.DrawString(e.ToolTipText,
+                tooltipFont, Brushes.White,
+                new PointF(2, 2));
         }
     }
 }
