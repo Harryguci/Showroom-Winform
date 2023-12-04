@@ -93,22 +93,29 @@ namespace ShowroomData
                 day = dayDateTimePicker.Value.ToString("yyyy-MM-dd"),
                 start = DateTime.Now.ToString("yyyy-MM-dd"),
                 quantity = txtQuantity.Text.Trim(),
-                status = txtStatus.Text.Trim()
+                status = txtStatus.Text.Trim(),
+                purchasePrice = Convert.ToInt32(txtPurchasePrice.Text.Trim()),
             };
 
             // Handle Create
             string query = $" UPDATE PurchaseInvoices SET SourceId = N'{curr.idSupplier}', ProductId = N'{curr.idProduct}', " +
                 $" Date = N'{curr.day}', QuantityPurchase = N'{curr.quantity}', Status = N'{curr.status}', " +
                 $" Deleted = 0 WHERE InEnterId = N'{curr.id}' ";
-
             // Excute the query
             processDb.UpdateData(query);
+
+            int purchasePrice = Convert.ToInt32(txtPurchasePrice.Text.Trim());
+            query = $"UPDATE PRODUCTS SET PURCHASEPRICE = {purchasePrice}, SALEPRICE = {(int)(purchasePrice * 1.2)}" +
+                $" WHERE SERIAL = N'{curr.idProduct}'";
+            processDb.UpdateData(query);
+
+            MessageBox.Show("Cập nhật thành công");
 
             // Earse current data
             CleanForm();
 
             //
-            Dispose();
+            Close();
         }
         private bool Check()
         {

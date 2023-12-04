@@ -53,6 +53,8 @@
             txtStatus = new TextBox();
             txtIdProduct = new TextBox();
             txtIdSupplier = new TextBox();
+            txtPurchasePrice = new TextBox();
+            label6 = new Label();
             flowLayoutPanel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -207,12 +209,14 @@
             panel3.Controls.Add(dayDateTimePicker);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label4);
+            panel3.Controls.Add(label6);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label9);
             panel3.Controls.Add(btnClean);
             panel3.Controls.Add(btnCreate);
             panel3.Controls.Add(label1);
+            panel3.Controls.Add(txtPurchasePrice);
             panel3.Controls.Add(txtQuantity);
             panel3.Controls.Add(txtStatus);
             panel3.Controls.Add(txtIdProduct);
@@ -243,7 +247,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(42, 381);
+            label4.Location = new Point(42, 400);
             label4.Name = "label4";
             label4.Size = new Size(80, 20);
             label4.TabIndex = 1;
@@ -252,7 +256,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(43, 311);
+            label5.Location = new Point(43, 301);
             label5.Name = "label5";
             label5.Size = new Size(72, 20);
             label5.TabIndex = 1;
@@ -310,7 +314,7 @@
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(233, 311);
+            txtQuantity.Location = new Point(233, 301);
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(156, 26);
             txtQuantity.TabIndex = 4;
@@ -318,7 +322,7 @@
             // 
             // txtStatus
             // 
-            txtStatus.Location = new Point(233, 378);
+            txtStatus.Location = new Point(233, 397);
             txtStatus.Name = "txtStatus";
             txtStatus.Size = new Size(368, 26);
             txtStatus.TabIndex = 5;
@@ -336,6 +340,23 @@
             txtIdSupplier.Name = "txtIdSupplier";
             txtIdSupplier.Size = new Size(368, 26);
             txtIdSupplier.TabIndex = 1;
+            // 
+            // txtPurchasePrice
+            // 
+            txtPurchasePrice.Location = new Point(233, 345);
+            txtPurchasePrice.Name = "txtPurchasePrice";
+            txtPurchasePrice.Size = new Size(368, 26);
+            txtPurchasePrice.TabIndex = 4;
+            txtPurchasePrice.KeyPress += txtQuantity_KeyPress;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(43, 345);
+            label6.Name = "label6";
+            label6.Size = new Size(74, 20);
+            label6.TabIndex = 1;
+            label6.Text = "Giá nhập";
             // 
             // UpdatePurchaseInvoice
             // 
@@ -388,5 +409,7 @@
         private DateTimePicker dayDateTimePicker;
         private Label label3;
         private TextBox txtIdProduct;
+        private Label label6;
+        private TextBox txtPurchasePrice;
     }
 }

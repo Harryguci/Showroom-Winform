@@ -177,7 +177,7 @@ namespace ShowroomData
             // Update PurchasePrice for the product
             int purchasePrice = Convert.ToInt32(txtPurchasePrice.Text.Trim());
             query = $"UPDATE PRODUCTS SET PURCHASEPRICE = {purchasePrice}, SALEPRICE = {(int)(purchasePrice * 1.2)}" +
-                $" WHERE SERIAL = N'{curr.id}'";
+                $" WHERE SERIAL = N'{curr.idProducts}'";
             processDb.UpdateData(query);
 
             MessageBox.Show("Tạo thành công", "Thông báo");

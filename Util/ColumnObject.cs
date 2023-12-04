@@ -14,7 +14,7 @@
                 new ColumnObject
                 {
                     Name = "Tên",
-                    Width = 50
+                    Width = 100
                 },
                 new ColumnObject
                 {
@@ -43,7 +43,7 @@
                 new ColumnObject
                 {
                     Name = "CCCD",
-                    Width = 150
+                    Width = 200
                 },
                 new ColumnObject
                 {
@@ -63,7 +63,7 @@
                 new ColumnObject
                 {
                     Name = "Email",
-                    Width = 200
+                    Width = 250
                 },
                 new ColumnObject
                 {
@@ -189,7 +189,7 @@
                 new ColumnObject
                 {
                     Name = "Ngày nhập",
-                    Width = 250
+                    Width = 350
                 },
                  new ColumnObject
                 {
@@ -199,7 +199,7 @@
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 200
+                    Width = 300
                 },
                 new ColumnObject
                 {
@@ -231,7 +231,7 @@
                 new ColumnObject
                 {
                     Name = "Ngày nhập",
-                    Width = 250
+                    Width = 350
                 },
                  new ColumnObject
                 {
@@ -241,7 +241,7 @@
                 new ColumnObject
                 {
                     Name = "Trạng thái",
-                    Width = 200
+                    Width = 300
                 },
                 new ColumnObject
                 {

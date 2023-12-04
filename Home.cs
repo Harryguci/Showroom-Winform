@@ -162,7 +162,7 @@ namespace ShowroomData
             Layout3 sign = new Layout3();
             sign.TopMost = true;
             sign.FormClosed += (sender, args) => Show();
-            Hide();
+            //Hide();
             sign.ShowDialog();
         }
 

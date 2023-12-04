@@ -131,17 +131,14 @@ namespace ShowroomData
                 MessageBox.Show("Bạn phải nhập họ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (curr.cccd.Length <= 0)
+            if (curr.cccd.Length < 9 || curr.cccd.Length > 12)
             {
-                MessageBox.Show("Bạn phải nhập số căn cước công dân", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Số căn cước công dân không hợp lệ",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            //if (curr.address.Length <= 0)
-            //{
-            //    MessageBox.Show("Bạn phải nhập địa chỉ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return false;
-            //}
-            if (curr.email.Length >= 0 && !IsValidEmail(curr.email))
+            
+            if (curr.email.Length > 0 && !IsValidEmail(curr.email))
             {
                 MessageBox.Show("Địa chỉ Email không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

@@ -133,7 +133,7 @@ namespace ShowroomData
                 position = cboPosition.Text != "--- Chọn ---" ? cboPosition.Text : "",
                 cccd = txtCCCD.Text.Trim(),
                 email = txtEmail.Text.Trim(),
-                salary = 0,
+                salary = Convert.ToInt32(txtSalary.Text.Trim()),
                 gender = rdbMale.Checked ? 1 : 0,
                 Url_image = "images//uploaded//" + Path.GetFileName(pictureBoxAvatar.ImageLocation)
             };

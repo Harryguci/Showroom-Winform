@@ -2,7 +2,6 @@
 using ShowroomData.Models;
 using ShowroomData.Util;
 using System.Data;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ShowroomData
 {
@@ -11,7 +10,7 @@ namespace ShowroomData
         private ProcessDatabase processDb = new ProcessDatabase();
         private DataGridView dt = new DataGridView();
         private string listType = ListType.EMPLOYEES;
-        
+
         public ListForm(string _listType = "employees")
         {
             InitializeComponent();
@@ -44,6 +43,56 @@ namespace ShowroomData
                     btnDelete.Enabled = false;
                     btnUpdateInfo.BackColor = Color.FromArgb(50, 50, 100);
                     btnDelete.BackColor = Color.FromArgb(50, 50, 100);
+                }
+            };
+
+            dt.CellClick += (sender, args) =>
+            {
+                if (dt.SelectedCells.Count > 0)
+                {
+                    var query = processDb.GetData($"SELECT FULLNAME = FIRSTNAME + ' ' + LASTNAME FROM EMPLOYEES WHERE EMPLOYEEID = N'{dt.SelectedCells[0].Value}'");
+                    if (query.Rows.Count > 0)
+                    {
+                        var fullname = query.Rows[0].Field<string>("FULLNAME") ?? "";
+                        if (fullname.Length > 0)
+                        {
+                            toolTip1.Show(fullname, dt);
+                         //   return;
+                        }
+                    }
+
+                    query = processDb.GetData($"SELECT FULLNAME = FIRSTNAME + ' ' + LASTNAME FROM CUSTOMERS WHERE CLIENTID = N'{dt.SelectedCells[0].Value}'");
+                    if (query.Rows.Count > 0)
+                    {
+                        var fullname = query.Rows[0].Field<string>("FULLNAME") ?? "";
+                        if (fullname.Length > 0)
+                        {
+                            toolTip1.Show(fullname, dt);
+                           // return;
+                        }
+                    }
+
+                    query = processDb.GetData($"SELECT PRODUCTNAME FROM PRODUCTS WHERE SERIAL = N'{dt.SelectedCells[0].Value}'");
+                    if (query.Rows.Count > 0)
+                    {
+                        var fullname = query.Rows[0].Field<string>("PRODUCTNAME") ?? "";
+                        if (fullname.Length > 0)
+                        {
+                            toolTip1.Show(fullname, dt);
+                            //return;
+                        }
+                    }
+
+                    query = processDb.GetData($"SELECT NAME FROM SOURCE WHERE SOURCEID = N'{dt.SelectedCells[0].Value}'");
+                    if (query.Rows.Count > 0)
+                    {
+                        var fullname = query.Rows[0].Field<string>("NAME") ?? "";
+                        if (fullname.Length > 0)
+                        {
+                            toolTip1.Show(fullname, dt);
+                            //return;
+                        }
+                    }
                 }
             };
         }
@@ -353,7 +402,7 @@ namespace ShowroomData
                 txtHo.TextChanged += ChangeColorTextBox_TextChanged;
 
                 lbPhone.AutoSize = true;
-                lbPhone.Text = "CCCD";
+                lbPhone.Text = "Phone";
                 lbPhone.Location = new Point(x + 5, 5);
 
                 txtPhone.Location = new Point(lbPhone.Width + lbPhone.Location.X + 50, lbPhone.Location.Y);
@@ -499,7 +548,7 @@ namespace ShowroomData
                 query += $"SELECT * FROM {listType} WHERE 1 = 1 ";
                 string main = txtMain.Text.Trim().ToLower();
                 string ho = txtHo.Text.Trim().ToLower();
-                string cccd = txtCCCD.Text.Trim().ToLower();
+                string phone = txtPhone.Text.Trim().ToLower();
 
                 DateTime selectedDateTime = dtBirthDay.Value;
                 DateTime currentDateTime = DateTime.Now;
@@ -527,9 +576,9 @@ namespace ShowroomData
                 {
                     query += $"AND LastName LIKE N'%{ho}%'";
                 }
-                if (!string.IsNullOrEmpty(cccd))
+                if (!string.IsNullOrEmpty(phone))
                 {
-                    query += $"AND CCCD  LIKE N'%{cccd}%'";
+                    query += $"AND PHONENUMBER LIKE N'%{phone}%'";
                 }
 
             }
@@ -1274,14 +1323,7 @@ namespace ShowroomData
                 {
                     ClientId = selected[0].Value != DBNull.Value ? (string)selected[0].Value : "",
                     Firstname = selected[1].Value != DBNull.Value ? (string)selected[1].Value : "",
-                    Lastname = selected[2].Value != DBNull.Value ? (string)selected[2].Value : "",
-                    DateBirth = selected[3].Value != DBNull.Value ? (DateTime)selected[3].Value : DateTime.Now,
-                    Phone = selected[4].Value != DBNull.Value ? (string)selected[4].Value : "",
-                    Gender = selected[5].Value != DBNull.Value ? (bool)selected[5].Value : true,
-                    Cccd = selected[6].Value != DBNull.Value ? (string)selected[6].Value : "",
-                    Email = selected[7].Value != DBNull.Value ? (string)selected[7].Value : "",
-                    Address = selected[8].Value != DBNull.Value ? (string)selected[8].Value : "",
-                    Deleted = selected[9].Value != DBNull.Value ? (bool?)selected[9].Value : false
+                    Lastname = selected[2].Value != DBNull.Value ? (string)selected[2].Value : ""
                 };
 
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này không?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1289,6 +1331,9 @@ namespace ShowroomData
                 if (result == DialogResult.Yes)
                 {
                     string query = $"DELETE FROM Customers WHERE ClientId = N'{customer.ClientId}'";
+                    string query2 = $"UPDATE SALESINVOICES SET CLIENTID = NULL WHERE CLIENTID = N'{customer.ClientId}'";
+
+                    processDb.UpdateData(query2);
                     processDb.UpdateData(query);
                     RefreshData();
                 }
