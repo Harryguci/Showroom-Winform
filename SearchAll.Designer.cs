@@ -53,12 +53,14 @@
             // 
             txtSearchQ.BackColor = Color.FromArgb(50, 50, 150);
             txtSearchQ.BorderStyle = BorderStyle.None;
+            txtSearchQ.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             txtSearchQ.ForeColor = Color.White;
             txtSearchQ.Location = new Point(9, 17);
             txtSearchQ.Margin = new Padding(0);
+            txtSearchQ.Multiline = true;
             txtSearchQ.Name = "txtSearchQ";
             txtSearchQ.PlaceholderText = "SEARCH...";
-            txtSearchQ.Size = new Size(357, 16);
+            txtSearchQ.Size = new Size(357, 23);
             txtSearchQ.TabIndex = 1;
             txtSearchQ.TextChanged += textBox1_TextChanged;
             // 
@@ -122,6 +124,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SearchAll";
             Load += SearchAll_Load;
+            Enter += SearchAll_Enter;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

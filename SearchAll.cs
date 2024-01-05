@@ -57,7 +57,8 @@ namespace ShowroomData
 
             if (filter == "" || filter.Contains("product"))
             {
-                var resProduct = processDb.GetData($"SELECT * FROM PRODUCTS WHERE PRODUCTNAME LIKE N'%{q}%' OR Serial LIKE N'%{q}%'");
+                var resProduct = processDb.GetData($"SELECT * FROM PRODUCTS " +
+                    $"WHERE PRODUCTNAME LIKE N'%{q}%' OR Serial LIKE N'%{q}%'");
                 foreach (DataRow row in resProduct.Rows)
                 {
                     Label label = new Label()
@@ -79,8 +80,8 @@ namespace ShowroomData
                         SalePrice = (int)row[3],
                         Quantity = (int)row[4],
                         Status = (string)row[5],
-                        Deleted = (bool)row[6]
-
+                        Deleted = (bool)row[6],
+                        Color = (string)row[7],
                     };
                     if (!CanNavigate)
                         label.Click += (label, args) =>
@@ -104,7 +105,6 @@ namespace ShowroomData
                     flowLayoutPanel1.Controls.Add(label);
                 }
             }
-
             if (filter == "" || filter.Contains("employee"))
             {
                 var resEmployee = processDb.GetData($"SELECT * FROM EMPLOYEES WHERE Firstname LIKE N'%{q}%' OR LastName Like N'%{q}%' OR EmployeeId Like N'%{q}%'");
@@ -217,6 +217,11 @@ namespace ShowroomData
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void SearchAll_Enter(object sender, EventArgs e)
+        {
+            txtSearchQ.Focus();
         }
     }
 }

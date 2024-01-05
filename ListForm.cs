@@ -14,10 +14,10 @@ namespace ShowroomData
         public ListForm(string _listType = "employees")
         {
             InitializeComponent();
-            listType = _listType;
             HandleGUI();
             HandleSearchGUI();
 
+            listType = _listType;
             //
             // [Add Form events]
             //
@@ -45,7 +45,6 @@ namespace ShowroomData
                     btnDelete.BackColor = Color.FromArgb(50, 50, 100);
                 }
             };
-
             dt.CellClick += (sender, args) =>
             {
                 if (dt.SelectedCells.Count > 0)
@@ -234,6 +233,7 @@ namespace ShowroomData
             lbEmployee = new Label(),
             lbClient = new Label(),
             lbCCCD = new Label();
+
         private TextBox txtMain = new RoundTextBox(),
             txtHo = new RoundTextBox(),
             txtPhone = new RoundTextBox(),
@@ -242,6 +242,7 @@ namespace ShowroomData
             txtEmployee = new RoundTextBox(),
             txtClient = new RoundTextBox(),
             txtCCCD = new RoundTextBox();
+
         private DateTimePicker dtBirthDay = new DateTimePicker();
         private Button btnSearch = new Button();
 
